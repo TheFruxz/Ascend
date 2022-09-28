@@ -1,4 +1,4 @@
-
+![Ascend Banner](https://user-images.githubusercontent.com/28064149/192885894-e412f3e6-9efe-4195-891e-7ba54f0edd7e.jpg)
 [![Open Source](https://forthebadge.com/images/badges/open-source.svg)](https://github.com/TheFruxz/Ascend/blob/main/LICENSE)
 [![Built by developers](https://forthebadge.com/images/badges/built-by-developers.svg)](https://github.com/TheFruxz/Ascend/graphs/contributors)
 [![Written in Kotlin](https://forthebadge.com/images/badges/makes-people-smile.svg)](https://github.com/JetBrains/kotlin)
