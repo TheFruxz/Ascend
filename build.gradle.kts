@@ -8,17 +8,88 @@ plugins {
     `maven-publish`
 }
 
+var host = "github.com/TheFruxz/Ascend"
+
 repositories {
     mavenCentral()
 }
 
-allprojects {
+version = "1.0-PRE-17"
+group = "de.moltenKt"
 
-    version = "1.0-PRE-17"
-    group = "de.moltenKt"
+dependencies {
 
-    tasks.withType<KotlinCompile>().configureEach {
-        kotlinOptions.freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
+    // Kotlin
+
+    testImplementation(kotlin("test"))
+    implementation(kotlin("reflect"))
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    implementation("org.slf4j:slf4j-api:2.0.2")
+
+    implementation("org.jetbrains.exposed:exposed-core:0.39.2")
+    implementation("org.jetbrains.exposed:exposed-dao:0.39.2")
+    implementation("org.jetbrains.exposed:exposed-jdbc:0.39.2")
+
+}
+
+val dokkaJavadocJar by tasks.register<Jar>("dokkaJavadocJar") {
+    dependsOn(tasks.dokkaJavadoc)
+    from(tasks.dokkaJavadoc.flatMap { it.outputDirectory })
+    archiveClassifier.set("javadoc")
+}
+
+val dokkaHtmlJar by tasks.register<Jar>("dokkaHtmlJar") {
+    dependsOn(tasks.dokkaHtml)
+    from(tasks.dokkaHtml.flatMap { it.outputDirectory })
+    archiveClassifier.set("html-doc")
+}
+
+val source by tasks.register<Jar>("sourceJar") {
+    from(sourceSets.main.get().allSource)
+    archiveClassifier.set("sources")
+}
+
+publishing {
+
+    repositories {
+
+        mavenLocal()
+
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.$host")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+
+    }
+
+    publications.create("MoltenKT-Core", MavenPublication::class) {
+
+        from(components["kotlin"])
+
+        artifact(dokkaJavadocJar)
+        artifact(dokkaHtmlJar)
+        artifact(source)
+
+        artifactId = "moltenkt-core"
+        version = version.toLowerCase()
+
+    }
+
+}
+
+tasks {
+
+    withType<KotlinCompile> {
+        kotlinOptions.jvmTarget = "17"
+    }
+
+    dokkaHtml.configure {
+        outputDirectory.set(buildDir.resolve("../docs/"))
     }
 
 }
@@ -28,16 +99,4 @@ java {
     targetCompatibility = VERSION_17
     withJavadocJar()
     withSourcesJar()
-}
-
-tasks {
-
-    withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = "17"
-    }
-
-    dokkaHtmlMultiModule.configure {
-        outputDirectory.set(buildDir.resolve("../docs/"))
-    }
-
 }
