@@ -11,7 +11,7 @@ import kotlinx.serialization.Serializable
  * that created the configuration file. (compatibility)
  * and also a list of [AscendAppConfigModule]s.
  * @param ascendVersion the Ascend-instance, that created the configuration file.
- * @param apps the list of [AscendAppConfigModule]s, used/configured to run with MoltenKT.
+ * @param apps the list of [AscendAppConfigModule]s, used/configured to run with Ascend.
  * @author Fruxz
  * @since 1.0
  */

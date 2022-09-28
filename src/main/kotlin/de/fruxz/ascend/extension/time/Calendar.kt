@@ -16,12 +16,12 @@ import java.util.Calendar as JavaUtilCalendar
  * @author Fruxz
  * @since 1.0
  */
-val JavaUtilCalendar.moltenCalendar: Calendar
+val JavaUtilCalendar.ascendCalendar: Calendar
 	get() = Calendar.fromLegacy(this)
 
 /**
- * Gets the [JavaUtilCalendar], internally converts it, with its contents, to a
- * Ascend-[Calendar], edit it with the [action] in the MoltenKT-Calender-Environment and
+ * Gets the [JavaUtilCalendar], internally converts it, with its contents, to an
+ * Ascend-[Calendar], edit it with the [action] in the Ascend/Kotlin-Calender-Environment and
  * returns the [Calendar] converted back to a [JavaUtilCalendar] with the new
  * values containing inside the [JavaUtilCalendar].
  * @param action the edit process, which is executed in the Ascend-[Calendar]-Environment
@@ -29,7 +29,7 @@ val JavaUtilCalendar.moltenCalendar: Calendar
  * @author Fruxz
  * @since 1.0
  */
-fun JavaUtilCalendar.editInKotlinEnvironment(action: Calendar.() -> Unit) = moltenCalendar.apply(action).produce()
+fun JavaUtilCalendar.editInKotlinEnvironment(action: Calendar.() -> Unit) = ascendCalendar.apply(action).produce()
 
 /**
  * This value returns the value of the [Calendar.get] function
