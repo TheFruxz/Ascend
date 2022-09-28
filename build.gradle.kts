@@ -15,7 +15,7 @@ repositories {
 }
 
 version = "1.0-PRE-17"
-group = "de.moltenKt"
+group = "de.fruxz.ascend"
 
 dependencies {
 
@@ -67,7 +67,7 @@ publishing {
 
     }
 
-    publications.create("MoltenKT-Core", MavenPublication::class) {
+    publications.create("Ascend", MavenPublication::class) {
 
         from(components["kotlin"])
 
@@ -75,7 +75,7 @@ publishing {
         artifact(dokkaHtmlJar)
         artifact(source)
 
-        artifactId = "moltenkt-core"
+        artifactId = "ascend"
         version = version.toLowerCase()
 
     }
@@ -86,6 +86,7 @@ tasks {
 
     withType<KotlinCompile> {
         kotlinOptions.jvmTarget = "17"
+        kotlinOptions.freeCompilerArgs += "-opt-in=kotlinx.serialization.ExperimentalSerializationApi"
     }
 
     dokkaHtml.configure {
