@@ -1,4 +1,4 @@
-name: MOLTEN-BUILD
+name: Build Library
 on: [push]
 jobs:
   build:

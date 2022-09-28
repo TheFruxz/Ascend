@@ -1,4 +1,4 @@
-name: MOLTEN-TEST
+name: Test Library
 on: [push]
 jobs:
   build:
