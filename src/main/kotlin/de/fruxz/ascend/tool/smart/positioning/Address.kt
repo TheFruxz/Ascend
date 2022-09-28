@@ -1,6 +1,6 @@
 package de.fruxz.ascend.tool.smart.positioning
 
-import de.moltenKt.core.tool.smart.identification.Identifiable
+import de.fruxz.ascend.tool.smart.identification.Identifiable
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

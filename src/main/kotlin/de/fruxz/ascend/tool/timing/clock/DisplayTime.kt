@@ -1,6 +1,6 @@
 package de.fruxz.ascend.tool.timing.clock
 
-import de.moltenKt.core.tool.timing.clock.DisplayTime.Format.*
+import de.fruxz.ascend.tool.timing.clock.DisplayTime.Format.*
 import kotlin.math.floor
 import kotlin.math.roundToInt
 import kotlin.time.Duration

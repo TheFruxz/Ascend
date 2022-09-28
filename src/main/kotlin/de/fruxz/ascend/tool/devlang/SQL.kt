@@ -1,6 +1,6 @@
 package de.fruxz.ascend.tool.devlang
 
-import de.moltenKt.core.tool.base.Constructable
+import de.fruxz.ascend.tool.base.Constructable
 import org.intellij.lang.annotations.Language
 
 /**

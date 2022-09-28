@@ -1,8 +1,8 @@
 package de.fruxz.ascend.extension.data
 
-import de.moltenKt.core.tool.devlang.JSON
-import de.moltenKt.core.tool.devlang.SQL
-import de.moltenKt.core.tool.devlang.YAML
+import de.fruxz.ascend.tool.devlang.JSON
+import de.fruxz.ascend.tool.devlang.SQL
+import de.fruxz.ascend.tool.devlang.YAML
 import org.intellij.lang.annotations.Language
 import java.net.URL
 

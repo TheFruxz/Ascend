@@ -2,10 +2,10 @@
 
 package de.fruxz.ascend.extension.input
 
-import de.moltenKt.core.interchange.ConsoleInterchangeBranch
-import de.moltenKt.core.interchange.ConsoleInterchangeBranchType
-import de.moltenKt.core.interchange.ConsoleInterchangeConfiguration
-import de.moltenKt.core.tool.smart.positioning.Address
+import de.fruxz.ascend.interchange.ConsoleInterchangeBranch
+import de.fruxz.ascend.interchange.ConsoleInterchangeBranchType
+import de.fruxz.ascend.interchange.ConsoleInterchangeConfiguration
+import de.fruxz.ascend.tool.smart.positioning.Address
 
 /**
  * Constructs a new [ConsoleInterchangeBranch].
@@ -42,7 +42,7 @@ fun requestTerminalInterchangeInput(consoleInterchangeConfiguration: ConsoleInte
 		assert(interchanges.all { it.address.isRoot }) { "Not all branches are roots!" }
 
 		println(buildString {
-			if (run == 1) appendLine("Welcome to the custom MoltenKT-Core Console Interchange Console!")
+			if (run == 1) appendLine("Welcome to the custom Ascend Console Interchange Console!")
 			append("[>] Enter interchange/command, 'help' or 'exit':")
 		})
 

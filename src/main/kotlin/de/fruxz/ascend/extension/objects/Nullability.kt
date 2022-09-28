@@ -1,6 +1,6 @@
 package de.fruxz.ascend.extension.objects
 
-import de.moltenKt.core.extension.tryOrNull
+import de.fruxz.ascend.extension.tryOrNull
 import org.jetbrains.annotations.NotNull
 
 /**
@@ -44,7 +44,7 @@ inline fun <reified T : Any> T?.trust() = trustOrThrow(
 	NoSuchElementException("""
 		
 		Trust not available: Element of type [${T::class.simpleName}] (@Nullable) was null, but it can't be null and trusted at the same time!
-		You don't know, that the above means? see MoltenKT-Core:Nullability.kt:trust()
+		You don't know, that the above means? see Ascend:Nullability.kt:trust()
 	""".trimIndent())
 )
 

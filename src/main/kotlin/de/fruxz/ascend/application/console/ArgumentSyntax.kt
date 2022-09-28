@@ -2,10 +2,10 @@
 
 package de.fruxz.ascend.application.console
 
-import de.moltenKt.core.application.console.ArgumentSyntax.ContentType.*
-import de.moltenKt.core.application.console.ArgumentSyntax.SyntaxCheck.Companion
-import de.moltenKt.core.extension.switchResult
-import de.moltenKt.core.tool.smart.identification.Identifiable
+import de.fruxz.ascend.application.console.ArgumentSyntax.ContentType.*
+import de.fruxz.ascend.application.console.ArgumentSyntax.SyntaxCheck.Companion
+import de.fruxz.ascend.extension.switchResult
+import de.fruxz.ascend.tool.smart.identification.Identifiable
 
 class ArgumentSyntax(
     private vararg val syntaxVariables: ConsoleSyntaxVariable
@@ -79,40 +79,40 @@ class ArgumentSyntax(
         override val identity = variableName
 
         fun checkVariableContent(value: String) = when (contentType) {
-            NONE -> Companion.produce(
+            NONE -> SyntaxCheck.produce(
                 value.isBlank(),
                 "Content ('$value') not allowed at -$variableName! (is-set-variable)"
             )
-            WORD -> Companion.produce(
+            WORD -> SyntaxCheck.produce(
                 value.isNotEmpty() && value.split(" ").size == 1,
                 "Only one word (string with only one word) allowed at -$variableName!"
             )
-            STRING -> Companion.produce(value.isNotBlank(), "Content is required at -$variableName!")
-            INT -> Companion.produce(
+            STRING -> SyntaxCheck.produce(value.isNotBlank(), "Content is required at -$variableName!")
+            INT -> SyntaxCheck.produce(
                 value.toIntOrNull() != null,
                 "Integer/Number is required at -$variableName!"
             )
-            LONG -> Companion.produce(
+            LONG -> SyntaxCheck.produce(
                 value.toLongOrNull() != null,
                 "Long/Number is required at -$variableName"
             )
-            BYTE -> Companion.produce(
+            BYTE -> SyntaxCheck.produce(
                 value.toByteOrNull() != null,
                 "Byte/Number is required at -$variableName"
             )
-            SHORT -> Companion.produce(
+            SHORT -> SyntaxCheck.produce(
                 value.toShortOrNull() != null,
                 "Short/Number is required at -$variableName"
             )
-            DOUBLE -> Companion.produce(
+            DOUBLE -> SyntaxCheck.produce(
                 value.toDoubleOrNull() != null,
                 "Double/Number is required at -$variableName!"
             )
-            FLOAT -> Companion.produce(
+            FLOAT -> SyntaxCheck.produce(
                 value.toFloatOrNull() != null,
                 "Float/Number is required at -$variableName"
             )
-            BOOLEAN -> Companion.produce(
+            BOOLEAN -> SyntaxCheck.produce(
                 value.toBooleanStrictOrNull() != null,
                 "Boolean is required at -$variableName!"
             )

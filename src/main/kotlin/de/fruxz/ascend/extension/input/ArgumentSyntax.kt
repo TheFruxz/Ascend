@@ -1,6 +1,6 @@
 package de.fruxz.ascend.extension.input
 
-import de.moltenKt.core.application.console.ArgumentInput
+import de.fruxz.ascend.application.console.ArgumentInput
 
 /**
  * Processes all console variables out of [this] [Array]<[String]>

@@ -1,10 +1,10 @@
 package de.fruxz.ascend.extension.container
 
-import de.moltenKt.core.extension.math.ceilToInt
-import de.moltenKt.core.extension.math.floorToInt
-import de.moltenKt.core.extension.math.maxTo
-import de.moltenKt.core.extension.math.minTo
-import de.moltenKt.core.tool.collection.IterablePage
+import de.fruxz.ascend.extension.math.ceilToInt
+import de.fruxz.ascend.extension.math.floorToInt
+import de.fruxz.ascend.extension.math.maxTo
+import de.fruxz.ascend.extension.math.minTo
+import de.fruxz.ascend.tool.collection.IterablePage
 import kotlin.random.Random
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
@@ -21,7 +21,7 @@ import kotlin.time.Duration.Companion.milliseconds
  * used in this function!
  *
  * ## Base
- * This function is globally available through the whole MoltenKT-Core API and beyond!
+ * This function is globally available through the whole Ascend API and beyond!
  *
  * This function creates a new [ArrayList] object of containing-type [T], obtained
  * from the Collection [C], which has also the containing-type [T]. This [toArrayList]
@@ -47,7 +47,7 @@ fun <T, C : Collection<T>> C.toArrayList(): ArrayList<T> = ArrayList(this)
  * used in this function!
  *
  * ## Base
- * This function is globally available through the whole MoltenKT-Core API and beyond!
+ * This function is globally available through the whole Ascend API and beyond!
  *
  * This function creates a new [ArrayList] object of containing-type [T], obtained from the Array<out [T]>.
  * This [toArrayList] function is attached as an extension function to the Array<out [T]> object.

@@ -1,6 +1,6 @@
 package de.fruxz.ascend.extension.container
 
-import de.moltenKt.core.extension.forceCast
+import de.fruxz.ascend.extension.forceCast
 import java.util.*
 
 /**

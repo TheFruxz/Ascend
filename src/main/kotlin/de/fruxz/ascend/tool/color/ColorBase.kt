@@ -1,9 +1,9 @@
 package de.fruxz.ascend.tool.color
 
-import de.moltenKt.core.tool.color.Color.ShiftType
-import de.moltenKt.core.tool.color.Color.ShiftType.RELATIVE_TO_SPECTRUM
-import de.moltenKt.core.tool.color.Color.ShiftType.RELATIVE_TO_TRANSITION
-import de.moltenKt.core.tool.smart.identification.Identifiable
+import de.fruxz.ascend.tool.color.Color.ShiftType
+import de.fruxz.ascend.tool.color.Color.ShiftType.RELATIVE_TO_SPECTRUM
+import de.fruxz.ascend.tool.color.Color.ShiftType.RELATIVE_TO_TRANSITION
+import de.fruxz.ascend.tool.smart.identification.Identifiable
 import java.awt.Color
 
 interface ColorBase<T : ColorBase<T>> : Identifiable<T> {

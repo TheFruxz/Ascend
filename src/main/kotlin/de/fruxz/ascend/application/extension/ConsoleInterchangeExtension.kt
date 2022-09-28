@@ -1,7 +1,7 @@
 package de.fruxz.ascend.application.extension
 
-import de.moltenKt.core.extension.input.requestTerminalInterchangeInput
-import de.moltenKt.core.interchange.ConsoleInterchangeBranch
+import de.fruxz.ascend.extension.input.requestTerminalInterchangeInput
+import de.fruxz.ascend.interchange.ConsoleInterchangeBranch
 import kotlin.reflect.KFunction1
 
 /**

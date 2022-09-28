@@ -1,6 +1,6 @@
 package de.fruxz.ascend.extension.classType
 
-import de.moltenKt.core.extension.math.limitTo
+import de.fruxz.ascend.extension.math.limitTo
 
 /**
  * Returns the next enum in the ordinal order. If the current enum is the last one, the first

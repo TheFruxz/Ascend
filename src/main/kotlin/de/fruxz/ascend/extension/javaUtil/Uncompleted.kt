@@ -1,6 +1,6 @@
 package de.fruxz.ascend.extension.javaUtil
 
-import de.moltenKt.core.extension.isNotNull
+import de.fruxz.ascend.extension.isNotNull
 import java.util.*
 
 /**

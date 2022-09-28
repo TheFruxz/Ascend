@@ -1,9 +1,7 @@
 package de.fruxz.ascend.structure
 
-import de.moltenKt.core.tool.smart.identification.Identifiable
-import de.moltenKt.core.tool.smart.positioning.Address
-import de.moltenKt.core.tool.smart.positioning.Address.Companion.address
-import de.moltenKt.core.tool.smart.positioning.Pathed
+import de.fruxz.ascend.tool.smart.positioning.Address
+import de.fruxz.ascend.tool.smart.positioning.Address.Companion.address
 
 open class DataStructureHolder<T : DataStructureItem>(
 	open val smashedStructure: List<T>,

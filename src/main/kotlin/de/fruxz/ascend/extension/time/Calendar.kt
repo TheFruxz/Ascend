@@ -1,18 +1,18 @@
 package de.fruxz.ascend.extension.time
 
-import de.moltenKt.core.tool.timing.calendar.Calendar
-import de.moltenKt.core.tool.timing.calendar.CalendarRange
-import de.moltenKt.core.tool.timing.calendar.timeUnit.TimeUnit.Companion.ERA
-import de.moltenKt.core.tool.timing.calendar.timeUnit.TimeUnit.Companion.HOUR
-import de.moltenKt.core.tool.timing.calendar.timeUnit.TimeUnit.Companion.MILLISECOND
-import de.moltenKt.core.tool.timing.calendar.timeUnit.TimeUnit.Companion.MINUTE
-import de.moltenKt.core.tool.timing.calendar.timeUnit.TimeUnit.Companion.MONTH
-import de.moltenKt.core.tool.timing.calendar.timeUnit.TimeUnit.Companion.SECOND
-import de.moltenKt.core.tool.timing.calendar.timeUnit.TimeUnit.Companion.YEAR
+import de.fruxz.ascend.tool.timing.calendar.Calendar
+import de.fruxz.ascend.tool.timing.calendar.CalendarRange
+import de.fruxz.ascend.tool.timing.calendar.timeUnit.TimeUnit.Companion.ERA
+import de.fruxz.ascend.tool.timing.calendar.timeUnit.TimeUnit.Companion.HOUR
+import de.fruxz.ascend.tool.timing.calendar.timeUnit.TimeUnit.Companion.MILLISECOND
+import de.fruxz.ascend.tool.timing.calendar.timeUnit.TimeUnit.Companion.MINUTE
+import de.fruxz.ascend.tool.timing.calendar.timeUnit.TimeUnit.Companion.MONTH
+import de.fruxz.ascend.tool.timing.calendar.timeUnit.TimeUnit.Companion.SECOND
+import de.fruxz.ascend.tool.timing.calendar.timeUnit.TimeUnit.Companion.YEAR
 import java.util.Calendar as JavaUtilCalendar
 
 /**
- * Converts a [JavaUtilCalendar] to a [Calendar] from MoltenKT, but keeps it contents.
+ * Converts a [JavaUtilCalendar] to a [Calendar] from Ascend, but keeps it contents.
  * @author Fruxz
  * @since 1.0
  */
@@ -21,15 +21,15 @@ val JavaUtilCalendar.moltenCalendar: Calendar
 
 /**
  * Gets the [JavaUtilCalendar], internally converts it, with its contents, to a
- * MoltenKT-[Calendar], edit it with the [action] in the MoltenKT-Calender-Environment and
+ * Ascend-[Calendar], edit it with the [action] in the MoltenKT-Calender-Environment and
  * returns the [Calendar] converted back to a [JavaUtilCalendar] with the new
  * values containing inside the [JavaUtilCalendar].
- * @param action the edit process, which is executed in the MoltenKT-[Calendar]-Environment
+ * @param action the edit process, which is executed in the Ascend-[Calendar]-Environment
  * @return the [JavaUtilCalendar] with the new values
  * @author Fruxz
  * @since 1.0
  */
-fun JavaUtilCalendar.editInMoltenEnvironment(action: Calendar.() -> Unit) = moltenCalendar.apply(action).produce()
+fun JavaUtilCalendar.editInKotlinEnvironment(action: Calendar.() -> Unit) = moltenCalendar.apply(action).produce()
 
 /**
  * This value returns the value of the [Calendar.get] function

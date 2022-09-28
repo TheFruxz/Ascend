@@ -1,8 +1,6 @@
 package de.fruxz.ascend.tool.timing.cooldown
 
-import de.moltenKt.core.tool.timing.calendar.Calendar
-import de.moltenKt.core.tool.timing.cooldown.Cooldown.CooldownDestination
-import de.moltenKt.core.tool.timing.cooldown.Cooldown.CooldownHeartbeat
+import de.fruxz.ascend.tool.timing.calendar.Calendar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel

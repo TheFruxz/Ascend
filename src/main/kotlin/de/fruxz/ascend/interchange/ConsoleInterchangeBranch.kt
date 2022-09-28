@@ -1,7 +1,7 @@
 package de.fruxz.ascend.interchange
 
-import de.moltenKt.core.tool.smart.positioning.Address
-import de.moltenKt.core.tree.TreeBranch
+import de.fruxz.ascend.tool.smart.positioning.Address
+import de.fruxz.ascend.tree.TreeBranch
 
 /**
  * This class defines a branch of the console interchange.

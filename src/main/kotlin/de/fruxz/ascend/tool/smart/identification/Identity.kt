@@ -1,6 +1,6 @@
 package de.fruxz.ascend.tool.smart.identification
 
-import de.moltenKt.core.tool.smart.identification.Identity.IdentityColumnType
+import de.fruxz.ascend.tool.smart.identification.Identity.IdentityColumnType
 import org.jetbrains.exposed.sql.Column
 import org.jetbrains.exposed.sql.ColumnType
 import org.jetbrains.exposed.sql.Table

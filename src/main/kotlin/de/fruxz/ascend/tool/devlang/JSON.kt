@@ -1,8 +1,8 @@
 package de.fruxz.ascend.tool.devlang
 
-import de.moltenKt.core.extension.data.fromJson
-import de.moltenKt.core.extension.data.fromJsonString
-import de.moltenKt.core.tool.base.Constructable
+import de.fruxz.ascend.extension.data.fromJson
+import de.fruxz.ascend.extension.data.fromJsonString
+import de.fruxz.ascend.tool.base.Constructable
 import org.intellij.lang.annotations.Language
 
 /**

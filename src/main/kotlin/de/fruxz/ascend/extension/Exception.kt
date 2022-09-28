@@ -1,6 +1,6 @@
 package de.fruxz.ascend.extension
 
-import de.moltenKt.core.tool.exception.ExceptionHandler
+import de.fruxz.ascend.tool.exception.ExceptionHandler
 import kotlin.random.Random
 
 /**

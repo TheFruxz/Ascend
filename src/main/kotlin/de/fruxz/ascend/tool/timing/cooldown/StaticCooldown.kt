@@ -1,6 +1,6 @@
 package de.fruxz.ascend.tool.timing.cooldown
 
-import de.moltenKt.core.tool.timing.calendar.Calendar
+import de.fruxz.ascend.tool.timing.calendar.Calendar
 import kotlin.time.Duration
 
 object StaticCooldown {

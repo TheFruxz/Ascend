@@ -1,13 +1,13 @@
 package de.fruxz.ascend.application.extension
 
-import de.moltenKt.core.tool.smart.identification.Identifiable
-import de.moltenKt.core.tool.smart.identification.Identity
+import de.fruxz.ascend.tool.smart.identification.Identifiable
+import de.fruxz.ascend.tool.smart.identification.Identity
 import kotlin.reflect.KFunction1
 
 /**
  * This interface defines the functionality of an application extension.
  * An application extension is a class that is used to extend the functionality
- * of an MoltenKT application with additional 'runnable' processing stuff.
+ * of an Ascend application with additional 'runnable' processing stuff.
  * @param RUNTIME the type of data used in the lambda *(<HERE>).-> Unit*
  * @param ACCESSOR_OUT the type of data, that the lambda returns *().-> <HERE>*
  * @param UNIT the type of data, that the function (not the lambda) returns, usually [Unit]

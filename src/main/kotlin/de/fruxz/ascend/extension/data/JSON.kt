@@ -1,8 +1,8 @@
 package de.fruxz.ascend.extension.data
 
-import de.moltenKt.core.extension.dump
-import de.moltenKt.core.extension.readTextOrNull
-import de.moltenKt.core.extension.tryOrNull
+import de.fruxz.ascend.extension.dump
+import de.fruxz.ascend.extension.readTextOrNull
+import de.fruxz.ascend.extension.tryOrNull
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
@@ -100,7 +100,7 @@ private var backingJsonBase: Json? = null
  * @author Fruxz
  * @since 1.0
  */
-fun addMoltenJsonModuleModification(process: SerializersModuleBuilder.() -> Unit) {
+fun addAscendJsonModuleModification(process: SerializersModuleBuilder.() -> Unit) {
 	runningJsonModuleModifications += process
 }
 
@@ -119,7 +119,7 @@ fun <T : Any> addJsonContextualConfiguration(clazz: KClass<T>, serializer: KSeri
  * @author Fruxz
  * @since 1.0
  */
-fun addMoltenJsonModification(process: JsonBuilder.() -> Unit) {
+fun addAscendJsonModification(process: JsonBuilder.() -> Unit) {
 	runningJsonModifications += process
 }
 

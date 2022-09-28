@@ -1,7 +1,7 @@
 package de.fruxz.ascend.interchange
 
-import de.moltenKt.core.tool.smart.identification.UUID
-import de.moltenKt.core.tree.TreeBranchType
+import de.fruxz.ascend.tool.smart.identification.UUID
+import de.fruxz.ascend.tree.TreeBranchType
 
 /**
  * This class defines the branch types of the console interchanges.

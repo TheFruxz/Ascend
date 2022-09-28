@@ -1,11 +1,11 @@
 package de.fruxz.ascend.extension.data
 
-import de.moltenKt.core.extension.container.mapToString
-import de.moltenKt.core.extension.container.mixedCase
-import de.moltenKt.core.extension.container.stackRandom
-import de.moltenKt.core.extension.data.RandomTagType.MIXED_CASE
-import de.moltenKt.core.extension.data.RandomTagType.ONLY_UPPERCASE
-import de.moltenKt.core.extension.switchResult
+import de.fruxz.ascend.extension.container.mapToString
+import de.fruxz.ascend.extension.container.mixedCase
+import de.fruxz.ascend.extension.container.stackRandom
+import de.fruxz.ascend.extension.data.RandomTagType.MIXED_CASE
+import de.fruxz.ascend.extension.data.RandomTagType.ONLY_UPPERCASE
+import de.fruxz.ascend.extension.switchResult
 import kotlin.random.Random
 import kotlin.random.nextInt
 

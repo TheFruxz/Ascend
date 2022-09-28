@@ -1,7 +1,7 @@
 package de.fruxz.ascend.extension.display
 
-import de.moltenKt.core.tool.timing.clock.DisplayTime
-import de.moltenKt.core.tool.timing.clock.DisplayTime.Format.SECONDS
+import de.fruxz.ascend.tool.timing.clock.DisplayTime
+import de.fruxz.ascend.tool.timing.clock.DisplayTime.Format.SECONDS
 import kotlin.time.Duration
 
 /**

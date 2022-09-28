@@ -1,8 +1,7 @@
 package de.fruxz.ascend.extension.math
 
-import de.moltenKt.core.tool.math.Percentage
+import de.fruxz.ascend.tool.math.Percentage
 import java.text.DecimalFormat
-import kotlin.DeprecationLevel.ERROR
 
 /**
  * Returns if the string can be parsed to a [Int].

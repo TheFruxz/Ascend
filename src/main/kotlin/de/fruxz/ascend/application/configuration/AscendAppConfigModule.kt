@@ -1,6 +1,6 @@
 package de.fruxz.ascend.application.configuration
 
-import de.moltenKt.core.tool.smart.identification.Identifiable
+import de.fruxz.ascend.tool.smart.identification.Identifiable
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -13,11 +13,11 @@ import kotlinx.serialization.Serializable
  * @since 1.0
  */
 @Serializable
-@SerialName("MoltenAppModule")
-data class MoltenCoreAppConfigModule(
+@SerialName("AscendAppModule")
+data class AscendAppConfigModule(
 	override val identity: String,
 	val appFileFolderPath: String,
-) : Identifiable<MoltenCoreAppConfigModule> {
+) : Identifiable<AscendAppConfigModule> {
 
 	companion object {
 
@@ -30,8 +30,8 @@ data class MoltenCoreAppConfigModule(
 		 * @since 1.0
 		 */
 		@JvmStatic
-		fun autoGenerateFromApp(app: de.fruxz.ascend.application.configuration.MoltenCoreApp) =
-			MoltenCoreAppConfigModule(app.identity, "APP_${app.identity}/")
+		fun autoGenerateFromApp(app: de.fruxz.ascend.application.configuration.AscendApp) =
+			AscendAppConfigModule(app.identity, "APP_${app.identity}/")
 
 	}
 

@@ -1,17 +1,15 @@
 package de.fruxz.ascend.tool.timing.calendar
 
-import de.moltenKt.core.extension.data.fromJson
-import de.moltenKt.core.extension.data.fromJsonString
-import de.moltenKt.core.extension.data.toJson
-import de.moltenKt.core.extension.data.toJsonString
-import de.moltenKt.core.extension.dump
-import de.moltenKt.core.extension.tryOrNull
-import de.moltenKt.core.tool.smart.Producible
-import de.moltenKt.core.tool.timing.calendar.Calendar.FormatStyle.FULL
-import de.moltenKt.core.tool.timing.calendar.Calendar.FormatStyle.MEDIUM
-import de.moltenKt.core.tool.timing.calendar.Calendar.MoltenCalendarColumnType
-import de.moltenKt.core.tool.timing.calendar.timeUnit.TimeUnit
-import de.moltenKt.core.tool.timing.calendar.timeUnit.TimeUnit.Companion.SECOND
+import de.fruxz.ascend.extension.data.fromJsonString
+import de.fruxz.ascend.extension.data.toJsonString
+import de.fruxz.ascend.extension.dump
+import de.fruxz.ascend.extension.tryOrNull
+import de.fruxz.ascend.tool.smart.Producible
+import de.fruxz.ascend.tool.timing.calendar.Calendar.AscendCalendarColumnType
+import de.fruxz.ascend.tool.timing.calendar.Calendar.FormatStyle.FULL
+import de.fruxz.ascend.tool.timing.calendar.Calendar.FormatStyle.MEDIUM
+import de.fruxz.ascend.tool.timing.calendar.timeUnit.TimeUnit
+import de.fruxz.ascend.tool.timing.calendar.timeUnit.TimeUnit.Companion.SECOND
 import kotlinx.serialization.Serializable
 import org.jetbrains.exposed.sql.Column
 import org.jetbrains.exposed.sql.ColumnType
@@ -266,13 +264,13 @@ class Calendar constructor(
 	fun durationTo(javaCalendar: JavaUtilCalendar) = (javaCalendar.timeInMillis-origin.timeInMillis).milliseconds
 
 	/**
-	 * Gets the duration from this to the [moltenCalendar].
-	 * @param moltenCalendar the calendar which should be compared
-	 * @return the duration from this to the [moltenCalendar]
+	 * Gets the duration from this to the [ascendCalendar].
+	 * @param ascendCalendar the calendar which should be compared
+	 * @return the duration from this to the [ascendCalendar]
 	 * @author Fruxz
 	 * @since 1.0
 	 */
-	fun durationTo(moltenCalendar: Calendar) = durationTo(moltenCalendar.origin)
+	fun durationTo(ascendCalendar: Calendar) = durationTo(ascendCalendar.origin)
 
 	/**
 	 * Gets the duration from this to the current time.
@@ -292,13 +290,13 @@ class Calendar constructor(
 	fun durationFrom(javaCalendar: JavaUtilCalendar) = (origin.timeInMillis-javaCalendar.timeInMillis).milliseconds
 
 	/**
-	 * Gets the duration from the [moltenCalendar] to this.
-	 * @param moltenCalendar the calendar which should be compared
-	 * @return the duration from the [moltenCalendar] to this
+	 * Gets the duration from the [ascendCalendar] to this.
+	 * @param ascendCalendar the calendar which should be compared
+	 * @return the duration from the [ascendCalendar] to this
 	 * @author Fruxz
 	 * @since 1.0
 	 */
-	fun durationFrom(moltenCalendar: Calendar) = durationFrom(moltenCalendar.origin)
+	fun durationFrom(ascendCalendar: Calendar) = durationFrom(ascendCalendar.origin)
 
 	/**
 	 * Gets the duration from the current time to this.
@@ -487,7 +485,7 @@ class Calendar constructor(
 		FULL, HUGE, MEDIUM, SHORT;
 	}
 
-	class MoltenCalendarColumnType : ColumnType() {
+	class AscendCalendarColumnType : ColumnType() {
 		override fun sqlType() = currentDialect.dataTypeProvider.textType()
 
 		override fun nonNullValueToString(value: Any) = when (value) {
@@ -524,11 +522,11 @@ class Calendar constructor(
 		}
 
 		companion object {
-			internal val INSTANCE = MoltenCalendarColumnType()
+			internal val INSTANCE = AscendCalendarColumnType()
 		}
 
 	}
 
 }
 
-fun Table.calendar(name: String): Column<Calendar> = registerColumn(name, MoltenCalendarColumnType())
+fun Table.calendar(name: String): Column<Calendar> = registerColumn(name, AscendCalendarColumnType())

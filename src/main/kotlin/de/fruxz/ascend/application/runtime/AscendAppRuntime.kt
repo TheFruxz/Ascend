@@ -1,20 +1,21 @@
 package de.fruxz.ascend.application.runtime
 
-import de.moltenKt.core.application.configuration.MoltenCoreAppConfigModule
-import de.moltenKt.core.application.extension.AppExtension
-import de.moltenKt.core.application.tag.Version
-import de.moltenKt.core.application.tag.version
-import de.moltenKt.core.extension.data.json
-import de.moltenKt.core.extension.div
-import de.moltenKt.core.extension.pathAsFileFromRuntime
-import de.moltenKt.core.tool.timing.calendar.Calendar
+import de.fruxz.ascend.application.configuration.AscendAppConfigModule
+import de.fruxz.ascend.application.configuration.MoltenCoreAppConfigModule
+import de.fruxz.ascend.application.extension.AppExtension
+import de.fruxz.ascend.application.tag.Version
+import de.fruxz.ascend.application.tag.version
+import de.fruxz.ascend.extension.data.json
+import de.fruxz.ascend.extension.div
+import de.fruxz.ascend.extension.pathAsFileFromRuntime
+import de.fruxz.ascend.tool.timing.calendar.Calendar
 import java.io.File
 import java.nio.file.Path
 import kotlin.concurrent.thread
 import kotlin.io.path.pathString
 
 /**
- * This class represents a running MoltenKT application and its properties.
+ * This class represents a running Ascend application and its properties.
  * At this app it is possible, to attach/start extensions and get
  * the application allowed directory to store and read files.
  * @param identity is the identity of the application.
@@ -22,7 +23,7 @@ import kotlin.io.path.pathString
  * @author Fruxz
  * @since 1.0
  */
-class MoltenCoreAppRuntime(override val identity: String, override val version: Version = 1.0.version) : de.fruxz.ascend.application.configuration.MoltenCoreApp(identity, version) {
+class AscendAppRuntime(override val identity: String, override val version: Version = 1.0.version) : de.fruxz.ascend.application.configuration.AscendApp(identity, version) {
 
 	/**
 	 * The current registered and running extensions as a list
@@ -32,7 +33,7 @@ class MoltenCoreAppRuntime(override val identity: String, override val version: 
 	private val runningExtensions = mutableListOf<AppExtension<*, *, *>>()
 
 	/**
-	 * The current state of itself as a [MoltenCoreAppConfigModule]
+	 * The current state of itself as a [AscendAppConfigModule]
 	 * @author Fruxz
 	 * @since 1.0
 	 */
@@ -45,10 +46,10 @@ class MoltenCoreAppRuntime(override val identity: String, override val version: 
 	 * @since 1.0
 	 */
 	internal fun init() {
-		de.fruxz.ascend.application.configuration.MoltenCoreAppConfigController.apply {
-			module = MoltenCoreAppConfigModule.autoGenerateFromApp(this@MoltenCoreAppRuntime)
+		de.fruxz.ascend.application.configuration.AscendAppConfigController.apply {
+			module = AscendAppConfigModule.autoGenerateFromApp(this@AscendAppRuntime)
 			addApp(module)
-			(getApp(this@MoltenCoreAppRuntime)!!.appFileFolderPath + RUNNER_FILE_NAME).pathAsFileFromRuntime().apply {
+			(getApp(this@AscendAppRuntime)!!.appFileFolderPath + RUNNER_FILE_NAME).pathAsFileFromRuntime().apply {
 				if (!exists()) {
 					toPath().parent.toFile().mkdirs()
 					createNewFile()
@@ -74,12 +75,12 @@ class MoltenCoreAppRuntime(override val identity: String, override val version: 
 	 * @since 1.0
 	 */
 	val appFolder: File by lazy {
-		return@lazy de.fruxz.ascend.application.configuration.MoltenCoreAppConfigController.getApp(this)?.appFileFolderPath.let { folderPath ->
+		return@lazy de.fruxz.ascend.application.configuration.AscendAppConfigController.getApp(this)?.appFileFolderPath.let { folderPath ->
 			if (folderPath != null) {
 				return@let folderPath.pathAsFileFromRuntime()
 			} else {
-				return@let MoltenCoreAppConfigModule.autoGenerateFromApp(this).let {
-					de.fruxz.ascend.application.configuration.MoltenCoreAppConfigController.addApp(it)
+				return@let AscendAppConfigModule.autoGenerateFromApp(this).let {
+					de.fruxz.ascend.application.configuration.AscendAppConfigController.addApp(it)
 					it.appFileFolderPath.pathAsFileFromRuntime()
 				}
 			}
@@ -147,8 +148,7 @@ class MoltenCoreAppRuntime(override val identity: String, override val version: 
 
 	companion object {
 
-		const val RUNNER_FILE_NAME = "molten" +
-				"-app-info.json"
+		const val RUNNER_FILE_NAME = "ascend" + "-app-info.json"
 
 	}
 

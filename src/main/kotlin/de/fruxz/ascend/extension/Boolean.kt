@@ -1,7 +1,7 @@
 package de.fruxz.ascend.extension
 
-import de.moltenKt.core.tool.mutable.FlexibleMutable
-import de.moltenKt.core.tool.mutable.Mutable
+import de.fruxz.ascend.tool.mutable.FlexibleMutable
+import de.fruxz.ascend.tool.mutable.Mutable
 
 /**
  * This functions returns [match] if [this] is true, otherwise [mismatch].

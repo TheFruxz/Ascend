@@ -1,9 +1,9 @@
 package de.fruxz.ascend.tree
 
-import de.moltenKt.core.extension.forceCast
-import de.moltenKt.core.tool.smart.identification.Identifiable
-import de.moltenKt.core.tool.smart.positioning.Address
-import de.moltenKt.core.tool.smart.positioning.Pathed
+import de.fruxz.ascend.extension.forceCast
+import de.fruxz.ascend.tool.smart.identification.Identifiable
+import de.fruxz.ascend.tool.smart.positioning.Address
+import de.fruxz.ascend.tool.smart.positioning.Pathed
 
 /**
  * This open class represents a branch of a tree, containing and based on another branches.

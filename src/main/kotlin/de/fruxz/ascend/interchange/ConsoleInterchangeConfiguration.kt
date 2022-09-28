@@ -1,7 +1,7 @@
 package de.fruxz.ascend.interchange
 
-import de.moltenKt.core.extension.input.buildConsoleInterchange
-import de.moltenKt.core.extension.switchResult
+import de.fruxz.ascend.extension.input.buildConsoleInterchange
+import de.fruxz.ascend.extension.switchResult
 
 /**
  * This data class represents a configuration of multiple

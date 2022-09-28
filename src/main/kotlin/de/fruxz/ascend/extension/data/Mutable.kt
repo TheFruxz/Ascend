@@ -1,6 +1,6 @@
 package de.fruxz.ascend.extension.data
 
-import de.moltenKt.core.tool.mutable.Mutable
+import de.fruxz.ascend.tool.mutable.Mutable
 
 /**
  * Creates a new mutable object using the [Mutable.default] function.

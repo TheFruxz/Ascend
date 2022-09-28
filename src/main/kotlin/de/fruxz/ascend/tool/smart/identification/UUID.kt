@@ -1,6 +1,6 @@
 package de.fruxz.ascend.tool.smart.identification
 
-import de.moltenKt.core.extension.classType.UUID
+import de.fruxz.ascend.extension.classType.UUID
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import java.util.UUID as UtilUUID

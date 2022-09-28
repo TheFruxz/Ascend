@@ -2,8 +2,8 @@
 
 package de.fruxz.ascend.extension
 
-import de.moltenKt.core.tool.path.ArtificialPath
-import de.moltenKt.core.tool.path.ArtificialReadOnlyResourcePathProcessor
+import de.fruxz.ascend.tool.path.ArtificialPath
+import de.fruxz.ascend.tool.path.ArtificialReadOnlyResourcePathProcessor
 import java.io.File
 import java.nio.charset.Charset
 import java.nio.file.Path
@@ -62,18 +62,18 @@ fun String.pathAsFileFromRuntime() =
 operator fun Path.div(other: String): Path = resolve(other)
 
 /**
- * This value defines the basic, from MoltenKT created [ArtificialPath].
+ * This value defines the basic, from Ascend created [ArtificialPath].
  * This [ArtificialPath] can be used, to easily access file in the
  * local directory & the resources.
  * @author Fruxz
  * @since 1.0
  */
-val moltenArtificialPath = ArtificialPath(arrayOf(
+val ascendArtificialPath = ArtificialPath(arrayOf(
     ArtificialReadOnlyResourcePathProcessor,
 ))
 
 /**
- * This function uses the [moltenArtificialPath] and its [ArtificialPath.getFile]
+ * This function uses the [ascendArtificialPath] and its [ArtificialPath.getFile]
  * function, to get access to the file behind the [path].
  * @param path is the path to the file
  * @return the file behind the path, or if the path is a '//readOnlyResource/:/',
@@ -81,7 +81,7 @@ val moltenArtificialPath = ArtificialPath(arrayOf(
  * @author Fruxz
  * @since 1.0
  */
-fun getFileViaArtificialPath(path: String) = moltenArtificialPath.getFile(path)
+fun getFileViaArtificialPath(path: String) = ascendArtificialPath.getFile(path)
 
 /**
  * This function creates the parent folders and the file

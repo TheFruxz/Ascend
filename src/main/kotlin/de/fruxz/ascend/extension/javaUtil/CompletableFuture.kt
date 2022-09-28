@@ -1,6 +1,6 @@
 package de.fruxz.ascend.extension.javaUtil
 
-import de.moltenKt.core.extension.tryOrNull
+import de.fruxz.ascend.extension.tryOrNull
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull

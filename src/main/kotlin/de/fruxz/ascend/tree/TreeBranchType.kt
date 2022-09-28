@@ -1,7 +1,7 @@
 package de.fruxz.ascend.tree
 
-import de.moltenKt.core.tool.smart.identification.Identifiable
-import de.moltenKt.core.tool.smart.identification.UUID
+import de.fruxz.ascend.tool.smart.identification.Identifiable
+import de.fruxz.ascend.tool.smart.identification.UUID
 
 open class TreeBranchType(override val identity: String = UUID.randomString()) : Identifiable<TreeBranchType> {
 

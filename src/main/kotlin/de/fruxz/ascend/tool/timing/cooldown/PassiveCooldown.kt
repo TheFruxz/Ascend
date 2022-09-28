@@ -1,6 +1,6 @@
 package de.fruxz.ascend.tool.timing.cooldown
 
-import de.moltenKt.core.tool.timing.calendar.TimeState
+import de.fruxz.ascend.tool.timing.calendar.TimeState
 
 open class PassiveCooldown(var destination: TimeState) {
 

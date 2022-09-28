@@ -1,10 +1,9 @@
 package de.fruxz.ascend.tool.color
 
-import de.moltenKt.core.extension.math.ceilToInt
-import de.moltenKt.core.extension.math.floorToInt
-import de.moltenKt.core.extension.math.limitTo
-import de.moltenKt.core.tool.color.Color.ShiftType.RELATIVE_TO_SPECTRUM
-import de.moltenKt.core.tool.color.Color.ShiftType.RELATIVE_TO_TRANSITION
+import de.fruxz.ascend.extension.math.ceilToInt
+import de.fruxz.ascend.extension.math.floorToInt
+import de.fruxz.ascend.extension.math.limitTo
+import de.fruxz.ascend.tool.color.Color.ShiftType.RELATIVE_TO_SPECTRUM
 import kotlinx.serialization.Serializable
 import kotlin.math.roundToInt
 import java.awt.Color as AwtColor

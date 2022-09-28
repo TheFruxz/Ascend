@@ -1,6 +1,6 @@
 package de.fruxz.ascend.extension.data
 
-import de.moltenKt.core.tool.color.Color
+import de.fruxz.ascend.tool.color.Color
 import java.awt.Color as AwtColor
 
 fun rgb(red: Int, green: Int, blue: Int) = Color.of(red, green, blue)

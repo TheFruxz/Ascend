@@ -1,10 +1,10 @@
 package de.fruxz.ascend.tool.path
 
-import de.moltenKt.core.extension.getResourceByteArray
+import de.fruxz.ascend.extension.getResourceByteArray
 import java.io.File
 
 /**
- * This object represents the MoltenKT provided [ArtificialPathProcessor],
+ * This object represents the Ascend provided [ArtificialPathProcessor],
  * to easily get files from the resources.
  * @author Fruxz
  * @since 1.0
