@@ -1,7 +1,9 @@
 package de.fruxz.ascend.structure
 
+import de.fruxz.ascend.tool.smart.identification.Identifiable
 import de.fruxz.ascend.tool.smart.positioning.Address
 import de.fruxz.ascend.tool.smart.positioning.Address.Companion.address
+import de.fruxz.ascend.tool.smart.positioning.Pathed
 
 open class DataStructureHolder<T : DataStructureItem>(
 	open val smashedStructure: List<T>,

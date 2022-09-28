@@ -1,7 +1,6 @@
 package de.fruxz.ascend.application.runtime
 
 import de.fruxz.ascend.application.configuration.AscendAppConfigModule
-import de.fruxz.ascend.application.configuration.MoltenCoreAppConfigModule
 import de.fruxz.ascend.application.extension.AppExtension
 import de.fruxz.ascend.application.tag.Version
 import de.fruxz.ascend.application.tag.version
@@ -37,7 +36,7 @@ class AscendAppRuntime(override val identity: String, override val version: Vers
 	 * @author Fruxz
 	 * @since 1.0
 	 */
-	private lateinit var module: MoltenCoreAppConfigModule
+	private lateinit var module: AscendAppConfigModule
 
 	/**
 	 * The initiation function, that creates the workspace files
