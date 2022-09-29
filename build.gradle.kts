@@ -14,7 +14,7 @@ repositories {
     mavenCentral()
 }
 
-version = "1.0-PRE-17"
+version = "1.0.0-RC"
 group = "de.fruxz.ascend"
 
 dependencies {
