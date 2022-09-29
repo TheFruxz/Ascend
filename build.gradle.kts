@@ -15,7 +15,7 @@ repositories {
 }
 
 version = "1.0.0-RC"
-group = "de.fruxz.ascend"
+group = "de.fruxz"
 
 dependencies {
 
