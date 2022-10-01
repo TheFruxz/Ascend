@@ -21,7 +21,7 @@ maven("https://jitpack.io")
 
 ##### Dependency
 ```kotlin
-implementation("com.github.TheFruxz.Ascend:ascend:$ascendVersion")
+implementation("com.github.TheFruxz:Ascend:$ascendVersion")
 ```
 
 #### Using GitHub Packages
