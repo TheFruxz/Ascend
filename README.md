@@ -39,7 +39,7 @@ maven("https://maven.pkg.github.com/TheFruxz/Ascend") {
 
 ##### Dependency
 ```kotlin
-implementation("de.ascend:ascend:$ascendVersion")
+implementation("de.fruxz:ascend:$ascendVersion")
 ```
 
 #### 🔐 Auth
