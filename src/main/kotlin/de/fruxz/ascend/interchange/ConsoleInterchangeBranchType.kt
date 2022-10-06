@@ -1,6 +1,6 @@
 package de.fruxz.ascend.interchange
 
-import de.fruxz.ascend.tool.smart.identification.UUID
+import de.fruxz.ascend.extension.data.buildRandomTag
 import de.fruxz.ascend.tree.TreeBranchType
 
 /**
@@ -8,7 +8,7 @@ import de.fruxz.ascend.tree.TreeBranchType
  * @author Fruxz
  * @since 1.0
  */
-class ConsoleInterchangeBranchType(identity: String = UUID.randomString()) : TreeBranchType(identity) {
+class ConsoleInterchangeBranchType(identity: String = buildRandomTag(hashtag = false)) : TreeBranchType(identity) {
 
 	companion object {
 
