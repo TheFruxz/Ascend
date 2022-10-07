@@ -1,4 +1,4 @@
-package de.fruxz.ascend.tool.smart
+package de.fruxz.ascend.tool.smart.composition
 
 /**
  * This interface marks every class/object, that can produce an object type [T]

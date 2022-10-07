@@ -4,7 +4,7 @@ import de.fruxz.ascend.extension.data.fromJsonString
 import de.fruxz.ascend.extension.data.toJsonString
 import de.fruxz.ascend.extension.dump
 import de.fruxz.ascend.extension.tryOrNull
-import de.fruxz.ascend.tool.smart.Producible
+import de.fruxz.ascend.tool.smart.composition.Producible
 import de.fruxz.ascend.tool.timing.calendar.Calendar.AscendCalendarColumnType
 import de.fruxz.ascend.tool.timing.calendar.Calendar.FormatStyle.FULL
 import de.fruxz.ascend.tool.timing.calendar.Calendar.FormatStyle.MEDIUM
