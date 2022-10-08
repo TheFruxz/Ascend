@@ -47,3 +47,10 @@ fun <I, O, T : Collection<I>> T.withMap(action: I.() -> O) = map(action)
  * @since 1.0
  */
 fun <I, O> Array<I>.withMap(action: I.() -> O) = map(action)
+
+/**
+ * Maps a [Map] using the [Map.map] function.
+ * @author Fruxz
+ * @since 1.0
+ */
+fun <K, V, O, T : Map<K, V>> T.withMap(action: Map.Entry<K, V>.() -> O) = map(action)
