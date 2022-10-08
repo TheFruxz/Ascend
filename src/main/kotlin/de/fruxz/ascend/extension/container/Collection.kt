@@ -468,3 +468,13 @@ inline fun <I, O> Array<I>.flatMapNotNull(builder: (I) -> Iterable<O?>): List<O 
 }
 
 fun <T : Iterable<O>, O> Array<T>.flattenNotNull() = flatMapNotNull { it }
+
+fun <T> List<T>?.takeOrEmpty() = this ?: emptyList()
+
+fun <T> Set<T>?.takeOrEmpty() = this ?: emptySet()
+
+inline fun <reified T> Array<T>?.takeOrEmpty() = this ?: emptyArray()
+
+fun <K, V> Map<K, V>?.takeOrEmpty() = this ?: emptyMap()
+
+fun <K, V> Map.Entry<K, V>?.takeOrEmpty() = this ?: emptyMap<K, V>().entries.first()
