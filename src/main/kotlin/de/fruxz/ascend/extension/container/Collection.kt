@@ -478,3 +478,21 @@ inline fun <reified T> Array<T>?.takeOrEmpty() = this ?: emptyArray()
 fun <K, V> Map<K, V>?.takeOrEmpty() = this ?: emptyMap()
 
 fun <K, V> Map.Entry<K, V>?.takeOrEmpty() = this ?: emptyMap<K, V>().entries.first()
+
+/**
+ * This function returns, if every element, produced by [process] is unique.
+ * @param process the function, which is used to get the value, which should be unique
+ * @return true, if every element is unique, false otherwise
+ * @author Fruxz
+ * @since 1.0
+ */
+inline fun <T, C> Iterable<T>.isUnique(process: (T) -> C) = groupBy { process(it) }.all { it.value.size == 1 }
+
+/**
+ * This function returns, if every element, produced by [process] is unique.
+ * @param process the function, which is used to get the value, which should be unique
+ * @return true, if every element is unique, false otherwise
+ * @author Fruxz
+ * @since 1.0
+ */
+inline fun <T, C> Array<T>.isUnique(process: (T) -> C) = groupBy { process(it) }.all { it.value.size == 1 }
