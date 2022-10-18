@@ -90,7 +90,7 @@ fun <T> T?.applyIfNull(process: (T?) -> Unit) = modifyIf(isNull, process)
  * @author Fruxz
  * @since 1.0
  */
-fun <T> T?.applyIfNotNull(process: (T & Any) -> Unit) = modifyIf(isNotNull) {
+inline fun <T> T?.applyIfNotNull(crossinline process: (T & Any) -> Unit) = modifyIf(isNotNull) {
 	process(this!!)
 }
 
@@ -100,7 +100,7 @@ fun <T> T?.applyIfNotNull(process: (T & Any) -> Unit) = modifyIf(isNotNull) {
  * @author Fruxz
  * @since 1.0
  */
-fun <T> T?.ifNull(process: () -> Unit) = if (isNull) process() else empty()
+inline fun <T> T?.ifNull(process: () -> Unit) = if (isNull) process() else empty()
 
 /**
  * Executes the [process], if the [T] (nullable) is notNull ([isNotNull])
@@ -108,7 +108,7 @@ fun <T> T?.ifNull(process: () -> Unit) = if (isNull) process() else empty()
  * @author Fruxz
  * @since 1.0
  */
-fun <T> T?.ifNotNull(process: () -> Unit) = if (isNotNull) process() else empty()
+inline fun <T> T?.ifNotNull(process: () -> Unit) = if (isNotNull) process() else empty()
 
 /**
  * Returns [Pair.first] if [T]? [isNotNull], else use [Pair.second]

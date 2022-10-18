@@ -7,7 +7,7 @@ package de.fruxz.ascend.extension.container
  * @author Fruxz
  * @since 1.0
  */
-fun <I, O> Map<I, O>.edited(builder: MutableMap<I, O>.() -> Unit) = toMutableMap().apply(builder).toMap()
+inline fun <I, O> Map<I, O>.edited(builder: MutableMap<I, O>.() -> Unit) = toMutableMap().apply(builder).toMap()
 
 /**
  * This function takes the input [Iterable], converts it into a [MutableList] using
@@ -16,7 +16,7 @@ fun <I, O> Map<I, O>.edited(builder: MutableMap<I, O>.() -> Unit) = toMutableMap
  * @author Fruxz
  * @since 1.0
  */
-fun <O> Iterable<O>.edited(builder: MutableList<O>.() -> Unit) = toMutableList().apply(builder).toList()
+inline fun <O> Iterable<O>.edited(builder: MutableList<O>.() -> Unit) = toMutableList().apply(builder).toList()
 
 /**
  * This function takes the input [Array], converts it into a [MutableList] using

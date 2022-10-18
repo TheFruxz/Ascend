@@ -36,6 +36,6 @@ fun Mutable<Boolean>.turnFalse() { property = false }
  * @author Fruxz
  * @since 1.0
  */
-fun buildBoolean(base: Boolean = false, process: FlexibleMutable<Boolean>.() -> Unit): Boolean {
+inline fun buildBoolean(base: Boolean = false, process: FlexibleMutable<Boolean>.() -> Unit): Boolean {
 	return Mutable.default(base).apply(process).property
 }

@@ -12,16 +12,16 @@ data class Cooldown(val duration: Duration, var running: Boolean = false, var on
 
 	companion object {
 
-		fun create(duration: Duration, onFinish: List<CooldownDestination> = emptyList(), onHeartbeat: List<CooldownHeartbeat> = emptyList(), heartBeatDuration: Duration = Duration.ZERO, beatOnRemainingTime: Boolean = true, beatOnLaunch: Boolean = true, builder: Cooldown.() -> Unit = { }) =
+		inline fun create(duration: Duration, onFinish: List<CooldownDestination> = emptyList(), onHeartbeat: List<CooldownHeartbeat> = emptyList(), heartBeatDuration: Duration = Duration.ZERO, beatOnRemainingTime: Boolean = true, beatOnLaunch: Boolean = true, builder: Cooldown.() -> Unit = { }) =
 			Cooldown(duration, false, onFinish, onHeartbeat, heartBeatDuration, beatOnRemainingTime, beatOnLaunch).apply(builder)
 
-		fun launch(duration: Duration, onFinish: List<CooldownDestination> = emptyList(), onHeartbeat: List<CooldownHeartbeat> = emptyList(), heartBeatDuration: Duration = Duration.ZERO, beatOnRemainingTime: Boolean = true, beatOnLaunch: Boolean = true,  builder: Cooldown.() -> Unit = { }) =
+		inline fun launch(duration: Duration, onFinish: List<CooldownDestination> = emptyList(), onHeartbeat: List<CooldownHeartbeat> = emptyList(), heartBeatDuration: Duration = Duration.ZERO, beatOnRemainingTime: Boolean = true, beatOnLaunch: Boolean = true,  builder: Cooldown.() -> Unit = { }) =
 			create(duration, onFinish, onHeartbeat, heartBeatDuration, beatOnRemainingTime, beatOnLaunch, builder).launchNative()
 
-		fun create(destination: Calendar, onFinish: List<CooldownDestination> = emptyList(), onHeartbeat: List<CooldownHeartbeat> = emptyList(), heartBeatDuration: Duration = Duration.ZERO, beatOnRemainingTime: Boolean = true, beatOnLaunch: Boolean = true,  builder: Cooldown.() -> Unit = { }) =
+		inline fun create(destination: Calendar, onFinish: List<CooldownDestination> = emptyList(), onHeartbeat: List<CooldownHeartbeat> = emptyList(), heartBeatDuration: Duration = Duration.ZERO, beatOnRemainingTime: Boolean = true, beatOnLaunch: Boolean = true,  builder: Cooldown.() -> Unit = { }) =
 			Cooldown(destination.durationFromNow(), false, onFinish, onHeartbeat, heartBeatDuration, beatOnRemainingTime, beatOnLaunch).apply(builder)
 
-		fun launch(destination: Calendar, onFinish: List<CooldownDestination> = emptyList(), onHeartbeat: List<CooldownHeartbeat> = emptyList(), heartBeatDuration: Duration = Duration.ZERO, beatOnRemainingTime: Boolean = true, beatOnLaunch: Boolean = true,  builder: Cooldown.() -> Unit = { }) =
+		inline fun launch(destination: Calendar, onFinish: List<CooldownDestination> = emptyList(), onHeartbeat: List<CooldownHeartbeat> = emptyList(), heartBeatDuration: Duration = Duration.ZERO, beatOnRemainingTime: Boolean = true, beatOnLaunch: Boolean = true,  builder: Cooldown.() -> Unit = { }) =
 			create(destination, onFinish, onHeartbeat, heartBeatDuration, beatOnRemainingTime, beatOnLaunch, builder).launchNative()
 
 	}
