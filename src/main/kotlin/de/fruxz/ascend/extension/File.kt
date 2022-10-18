@@ -6,8 +6,12 @@ import de.fruxz.ascend.tool.path.ArtificialPath
 import de.fruxz.ascend.tool.path.ArtificialReadOnlyResourcePathProcessor
 import java.io.File
 import java.nio.charset.Charset
+import java.nio.file.Files.createFile
 import java.nio.file.Path
 import java.nio.file.Paths
+import java.nio.file.attribute.FileAttribute
+import kotlin.io.path.createDirectories
+import kotlin.io.path.createFile
 import kotlin.io.path.readText
 
 /**
@@ -84,14 +88,37 @@ val ascendArtificialPath = ArtificialPath(arrayOf(
 fun getFileViaArtificialPath(path: String) = ascendArtificialPath.getFile(path)
 
 /**
- * This function creates the parent folders and the file
- * itself, if the file doesn't exist.
+ * This function creates the parent directories and the
+ * file itself. This utilizes the [File.mkdirs]
+ * and the [File.createNewFile] function.
  * @author Fruxz
  * @since 1.0
  */
-fun File.generateFileAndPath() {
+fun File.createFileAndDirectories() {
     parentFile.mkdirs()
     createNewFile()
+}
+
+/**
+ * This function uses the [Path.getParent] of this [Path] to
+ * generate the directories, to which this path points to.
+ * @author Fruxz
+ * @since 1.0
+ */
+fun Path.createParentDirectories(vararg attributes: FileAttribute<*>) {
+    parent.createDirectories(*attributes)
+}
+
+/**
+ * This function creates the parent directories and the
+ * file itself. This utilizes the [createParentDirectories]
+ * and the [createFile] function.
+ * @author Fruxz
+ * @since 1.0
+ */
+fun Path.createFileAndDirectories(vararg attributes: FileAttribute<*>) {
+    createParentDirectories(*attributes)
+    createFile(*attributes)
 }
 
 /**
