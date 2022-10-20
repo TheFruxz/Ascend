@@ -5,6 +5,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
 import java.util.concurrent.CompletableFuture
+import kotlin.coroutines.CoroutineContext
 import kotlin.time.Duration
 
 /**
@@ -23,7 +24,7 @@ fun <T> CompletableFuture<T>.getOrNull() = tryOrNull { get() }
  * @author Fruxz
  * @since 1.0
  */
-fun <T> CompletableFuture<T>.getOrDefault(default: T) = getOrNull() ?: default
+fun <T> CompletableFuture<T>.getOrDefault(default: T & Any): T & Any = getOrNull() ?: default
 
 /**
  * This suspend function returns the result [T] of this [CompletableFuture],
@@ -34,8 +35,8 @@ fun <T> CompletableFuture<T>.getOrDefault(default: T) = getOrNull() ?: default
  * @since 1.0
  * @see CompletableFuture.join
  */
-suspend fun <T> CompletableFuture<T>.await() =
-	withContext(Dispatchers.Default) { this@await.join() }
+suspend fun <T> CompletableFuture<T>.await(context: CoroutineContext = Dispatchers.Default): T =
+	withContext(context) { this@await.join() }
 
 /**
  * This suspend function returns the result [T] of this [CompletableFuture],
@@ -47,8 +48,8 @@ suspend fun <T> CompletableFuture<T>.await() =
  * @author Fruxz
  * @since 1.0
  */
-suspend fun <T> CompletableFuture<T>.await(block: (T) -> Unit) =
-	await().apply(block)
+suspend fun <T> CompletableFuture<T>.await(context: CoroutineContext = Dispatchers.Default, block: (T) -> Unit) =
+	await(context).apply(block)
 
 /**
  * This suspend function returns the result [T] of this [CompletableFuture],
@@ -60,7 +61,7 @@ suspend fun <T> CompletableFuture<T>.await(block: (T) -> Unit) =
  * @author Fruxz
  * @since 1.0
  */
-suspend fun <T> CompletableFuture<T>.await(timeout: Duration) = withTimeoutOrNull(timeout) { await() }
+suspend fun <T> CompletableFuture<T>.await(context: CoroutineContext = Dispatchers.Default, timeout: Duration) = withTimeoutOrNull(timeout) { await(context) }
 
 /**
  * This suspend function returns the result [T] of this [CompletableFuture],
@@ -73,4 +74,4 @@ suspend fun <T> CompletableFuture<T>.await(timeout: Duration) = withTimeoutOrNul
  * @author Fruxz
  * @since 1.0
  */
-suspend fun <T> CompletableFuture<T>.await(timeout: Duration, block: (T) -> Unit) = withTimeoutOrNull(timeout) { await(block) }
+suspend fun <T> CompletableFuture<T>.await(context: CoroutineContext = Dispatchers.Default, timeout: Duration, block: (T) -> Unit) = withTimeoutOrNull(timeout) { await(context, block) }
