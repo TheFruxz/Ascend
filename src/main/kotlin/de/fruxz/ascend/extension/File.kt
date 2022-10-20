@@ -116,9 +116,9 @@ fun Path.createParentDirectories(vararg attributes: FileAttribute<*>) {
  * @author Fruxz
  * @since 1.0
  */
-fun Path.createFileAndDirectories(vararg attributes: FileAttribute<*>) {
-    createParentDirectories(*attributes)
-    createFile(*attributes)
+fun Path.createFileAndDirectories(directoryAttributes: List<FileAttribute<*>> = emptyList(), fileAttributes: List<FileAttribute<*>> = listOf()) {
+    createParentDirectories(*directoryAttributes.toTypedArray())
+    createFile(*fileAttributes.toTypedArray())
 }
 
 /**
