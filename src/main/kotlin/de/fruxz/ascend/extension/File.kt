@@ -12,6 +12,8 @@ import java.nio.file.Paths
 import java.nio.file.attribute.FileAttribute
 import kotlin.io.path.createDirectories
 import kotlin.io.path.createFile
+import kotlin.io.path.exists
+import kotlin.io.path.notExists
 import kotlin.io.path.readText
 
 /**
@@ -94,9 +96,9 @@ fun getFileViaArtificialPath(path: String) = ascendArtificialPath.getFile(path)
  * @author Fruxz
  * @since 1.0
  */
-fun File.createFileAndDirectories() {
-    parentFile.mkdirs()
-    createNewFile()
+fun File.createFileAndDirectories(ignoreIfExists: Boolean = true) {
+    if (!parentFile.exists() || !ignoreIfExists) parentFile.mkdirs()
+    if (!exists() || !ignoreIfExists) createNewFile()
 }
 
 /**
@@ -105,8 +107,8 @@ fun File.createFileAndDirectories() {
  * @author Fruxz
  * @since 1.0
  */
-fun Path.createParentDirectories(vararg attributes: FileAttribute<*>) {
-    parent.createDirectories(*attributes)
+fun Path.createParentDirectories(ignoreIfExists: Boolean = true, vararg attributes: FileAttribute<*>) {
+    if (parent.notExists() || !ignoreIfExists) parent.createDirectories(*attributes)
 }
 
 /**
@@ -116,9 +118,9 @@ fun Path.createParentDirectories(vararg attributes: FileAttribute<*>) {
  * @author Fruxz
  * @since 1.0
  */
-fun Path.createFileAndDirectories(directoryAttributes: List<FileAttribute<*>> = emptyList(), fileAttributes: List<FileAttribute<*>> = listOf()) {
-    createParentDirectories(*directoryAttributes.toTypedArray())
-    createFile(*fileAttributes.toTypedArray())
+fun Path.createFileAndDirectories(ignoreIfExists: Boolean = true, directoryAttributes: List<FileAttribute<*>> = emptyList(), fileAttributes: List<FileAttribute<*>> = listOf()) {
+    createParentDirectories(ignoreIfExists, *directoryAttributes.toTypedArray())
+    if (notExists() || !ignoreIfExists) createFile(*fileAttributes.toTypedArray())
 }
 
 /**
