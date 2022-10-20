@@ -24,7 +24,7 @@ fun <T> CompletableFuture<T>.getOrNull() = tryOrNull { get() }
  * @author Fruxz
  * @since 1.0
  */
-fun <T> CompletableFuture<T>.getOrDefault(default: T & Any): T & Any = getOrNull() ?: default
+fun <T> CompletableFuture<T>.getOrDefault(default: T): T = getOrNull() ?: default
 
 /**
  * This suspend function returns the result [T] of this [CompletableFuture],
