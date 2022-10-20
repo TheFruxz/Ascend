@@ -59,7 +59,7 @@ fun String?.isBoolean() = this?.toBooleanStrictOrNull() != null
  * @author Fruxz
  * @since 1.0
  */
-fun Number.format(pattern: String): String = DecimalFormat(pattern).format(this)
+infix fun Number.format(pattern: String): String = DecimalFormat(pattern).format(this)
 
 /**
  * Formats the number to the '##.##' pattern using the [Number.format] function.
@@ -114,3 +114,17 @@ val INT_RANGE: IntRange
  */
 val LONG_RANGE: LongRange
 	get() = Long.MIN_VALUE..Long.MAX_VALUE
+
+/**
+ * This value represents the computational output of [INT_RANGE]
+ * @author Fruxz
+ * @since 1.0
+ */
+val Int.Companion.RANGE: IntRange by lazy { INT_RANGE }
+
+/**
+ * This value represents the computational output of [LONG_RANGE]
+ * @author Fruxz
+ * @since 1.0
+ */
+val Long.Companion.RANGE: LongRange by lazy { LONG_RANGE }

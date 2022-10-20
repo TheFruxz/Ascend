@@ -8,7 +8,7 @@ package de.fruxz.ascend.extension.math
  * @author Fruxz
  * @since 1.0
  */
-fun <C : Comparable<C>> C.limitTo(range: ClosedRange<C>) = let { if (it in range) it else if (it > range.endInclusive) range.endInclusive else range.start }
+infix fun <C : Comparable<C>> C.limitTo(range: ClosedRange<C>) = let { if (it in range) it else if (it > range.endInclusive) range.endInclusive else range.start }
 
 /**
  * Limits [this] to the given [range]. If you want it to something like a [ClosedRange],
@@ -17,7 +17,7 @@ fun <C : Comparable<C>> C.limitTo(range: ClosedRange<C>) = let { if (it in range
  * @author Fruxz
  * @since 1.0
  */
-fun <C : Iterable<T>, T : Comparable<T>> T.limitToIterable(range: C) = let { if (it in range) it else if (it > range.max()) range.max() else range.min() }
+infix fun <C : Iterable<T>, T : Comparable<T>> T.limitToIterable(range: C) = let { if (it in range) it else if (it > range.max()) range.max() else range.min() }
 
 /**
  * Limits [this] to the minimum of [minimum].
@@ -26,7 +26,7 @@ fun <C : Iterable<T>, T : Comparable<T>> T.limitToIterable(range: C) = let { if 
  * @author Fruxz
  * @since 1.0
  */
-fun <C : Comparable<C>> C.minTo(minimum: C) = let { if (it >= minimum) it else minimum }
+infix fun <C : Comparable<C>> C.minTo(minimum: C) = let { if (it >= minimum) it else minimum }
 
 /**
  * Limits [this] to the maximum of [maximum].
@@ -35,4 +35,4 @@ fun <C : Comparable<C>> C.minTo(minimum: C) = let { if (it >= minimum) it else m
  * @author Fruxz
  * @since 1.0
  */
-fun <C : Comparable<C>> C.maxTo(maximum: C) = let { if (it <= maximum) it else maximum }
+infix fun <C : Comparable<C>> C.maxTo(maximum: C) = let { if (it <= maximum) it else maximum }

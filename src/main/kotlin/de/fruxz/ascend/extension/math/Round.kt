@@ -153,7 +153,7 @@ fun round(x: Double, decimals: Int): Double = 10.0.pow(decimals).let { factor ->
  * @since 1.0
  */
 @JvmName("roundWithDecimalsThis")
-fun Double.round(decimals: Int): Double = round(this, decimals)
+infix fun Double.round(decimals: Int): Double = round(this, decimals)
 
 /**
  * This function returns the [x] float, but rounded with [decimals]-amount of decimals.
@@ -173,4 +173,4 @@ fun round(x: Float, decimals: Int): Float = 10.0.pow(decimals).toFloat().let { f
  * @since 1.0
  */
 @JvmName("roundWithDecimalsThis")
-fun Float.round(decimals: Int): Float = round(this, decimals)
+infix fun Float.round(decimals: Int): Float = round(this, decimals)
