@@ -200,17 +200,6 @@ inline fun <reified T> T.toJsonElementOrNull() = tryOrNull { toJsonElement() }
 // fromJson conversion
 
 /**
- * Tries to decode the given JSON string to an object type [T] using the
- * Kotlinx serialization library's [Json.decodeFromString] function.
- * @param T The result type, which is the destination type.
- * @return The decoded object.
- * @author Fruxz
- * @since 1.0
- */
-@Deprecated(level = WARNING, message = "use fromJsonString() instead", replaceWith = ReplaceWith("this.fromJsonString<T>()"))
-inline fun <reified T : Any> String.fromJson() = fromJsonString<T>()
-
-/**
  * This function converts [this] JSON string to an object type [T] via the [jsonBase]
  * and [Json.decodeFromString] function from the Kotlinx serialization library.
  * This process can throw exceptions if something goes wrong!
