@@ -84,12 +84,5 @@ fun <O> Nothing?.forceNullableCastOrNull() = try {
  * @author Fruxz
  * @since 1.0
  */
-fun Any?.dump() = Unit
-
-/**
- * Throws away the nothing by returning [Unit]
- * @return [Unit]
- * @author Fruxz
- * @since 1.0
- */
-fun Nothing?.dump() = Unit
+@Suppress("UnusedReceiverParameter")
+fun <T> T.dump(): Unit = Unit
