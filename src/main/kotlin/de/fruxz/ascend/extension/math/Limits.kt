@@ -26,7 +26,7 @@ infix fun <C : Iterable<T>, T : Comparable<T>> T.limitToIterable(range: C) = let
  * @author Fruxz
  * @since 1.0
  */
-infix fun <C : Comparable<C>> C.minTo(minimum: C) = let { if (it >= minimum) it else minimum }
+infix fun <C : Comparable<C>> C.minTo(minimum: C) = this.coerceAtLeast(minimum)
 
 /**
  * Limits [this] to the maximum of [maximum].
@@ -35,4 +35,4 @@ infix fun <C : Comparable<C>> C.minTo(minimum: C) = let { if (it >= minimum) it 
  * @author Fruxz
  * @since 1.0
  */
-infix fun <C : Comparable<C>> C.maxTo(maximum: C) = let { if (it <= maximum) it else maximum }
+infix fun <C : Comparable<C>> C.maxTo(maximum: C) = this.coerceAtMost(maximum)
