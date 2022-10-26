@@ -3,6 +3,8 @@ package de.fruxz.ascend.extension.data
 import de.fruxz.ascend.tool.color.Color
 import java.awt.Color as AwtColor
 
+fun rgb(rgb: Int) = Color.of(rgb)
+
 fun rgb(red: Int, green: Int, blue: Int) = Color.of(red, green, blue)
 
 fun rgbAwt(red: Int, green: Int, blue: Int) = AwtColor(red, green, blue)
