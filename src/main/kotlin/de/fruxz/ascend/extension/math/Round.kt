@@ -1,11 +1,9 @@
 package de.fruxz.ascend.extension.math
 
-import java.util.DoubleSummaryStatistics
 import kotlin.math.ceil
 import kotlin.math.floor
 import kotlin.math.pow
 import kotlin.math.round
-import kotlin.math.roundToInt
 
 /**
  * This function executes the [ceil] function on the given [x]
