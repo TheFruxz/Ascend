@@ -4,7 +4,10 @@
 
 ## 👋 Welcome to Ascend
 
-Placeholder
+Ascend provides several small, but useful, features and tools, to help you get the most out of you code.
+It is a collection of tools that I have found useful in my own projects, and I hope you find them useful too.
+These tools are designed, to seamlessly integrate into your code, and to be as unobtrusive as possible.
+You can find most of them, by looking into your code completions, because a huge part of them are provided via extension functions.
 
 ## ⚙️ Setup
 
