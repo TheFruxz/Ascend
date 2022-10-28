@@ -1,6 +1,5 @@
 package de.fruxz.ascend.extension
 
-import de.fruxz.ascend.tool.exception.ExceptionHandler
 import kotlin.random.Random
 
 /**
@@ -20,17 +19,6 @@ fun catchException(exception: Exception, random: Random = Random) {
 	println(" < $exceptionTag - $exceptionShort")
 
 }
-
-/**
- * This function creates a [ExceptionHandler] and places its try block to the [tryBlock]
- * parameter from this function.
- * @param tryBlock the try block to place
- * @return the [ExceptionHandler]
- * @author Fruxz
- * @since 1.0
- */
-fun <O> doTry(tryBlock: () -> O) =
-	ExceptionHandler(tryBlock, null)
 
 /**
  * Try to execute the code specified inside the [process] function.
