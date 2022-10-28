@@ -1,4 +1,4 @@
-package de.fruxz.ascend.tool.base
+package de.fruxz.ascend.tool.smart.composition
 
 /**
  * Interface for constructable objects.

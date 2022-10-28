@@ -1,7 +1,7 @@
 package de.fruxz.ascend.tool.devlang
 
 import de.fruxz.ascend.extension.data.fromJsonString
-import de.fruxz.ascend.tool.base.Constructable
+import de.fruxz.ascend.tool.smart.composition.Constructable
 import org.intellij.lang.annotations.Language
 
 /**
