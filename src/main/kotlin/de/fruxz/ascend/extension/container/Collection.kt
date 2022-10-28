@@ -4,7 +4,7 @@ import de.fruxz.ascend.extension.math.ceilToInt
 import de.fruxz.ascend.extension.math.floorToInt
 import de.fruxz.ascend.extension.math.maxTo
 import de.fruxz.ascend.extension.math.minTo
-import de.fruxz.ascend.tool.collection.IterablePage
+import de.fruxz.ascend.tool.collection.PagedIterable
 import kotlin.random.Random
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
@@ -209,7 +209,7 @@ fun <T> Array<T>.take(intRange: IntRange): List<T> =
 /**
  * This function returns a small list of [T] objects, that
  * are in a simulated page, which is created by the [pageSize]
- * and the [page] number.
+ * and the [paged] number.
  * If the requested page is out of range, it will return the last non-empty page.
  * @param page the page, where the list should be
  * @param pageSize the size of each individual page
@@ -217,15 +217,15 @@ fun <T> Array<T>.take(intRange: IntRange): List<T> =
  * @author Fruxz
  * @since 1.0
  */
-fun <T, C : Iterable<T>> C.page(pageIndex: Int, pageSize: Int): IterablePage<T> {
+fun <T, C : Iterable<T>> C.paged(pageIndex: Int, pageSize: Int): PagedIterable<T> {
 	if (pageSize < 1) throw IllegalArgumentException("Page size must be greater than 0!")
 	if (pageIndex < 0) throw IllegalArgumentException("Page must be greater than or equals 0!")
-	if (none()) return IterablePage(1, 1..1, emptyList())
+	if (none()) return PagedIterable(1, 1..1, emptyList())
 
 	val pages = ceilToInt(count().toDouble() / pageSize)
 	val actualPage = (pageIndex + 1).maxTo(pages)
 
-	return IterablePage(actualPage, 1..pages, toList().subList(((1+pageSize*(actualPage-1)-1)..(pageSize*actualPage).maxTo(count()))))
+	return PagedIterable(actualPage, 1..pages, toList().subList(((1+pageSize*(actualPage-1)-1)..(pageSize*actualPage).maxTo(count()))))
 }
 
 /**
@@ -239,8 +239,8 @@ fun <T, C : Iterable<T>> C.page(pageIndex: Int, pageSize: Int): IterablePage<T> 
  * @author Fruxz
  * @since 1.0
  */
-fun <T> Array<T>.page(page: Int, pageSize: Int): IterablePage<T> =
-	toList().page(page, pageSize)
+fun <T> Array<T>.paged(page: Int, pageSize: Int): PagedIterable<T> =
+	toList().paged(page, pageSize)
 
 /**
  * This function returns, if the current [Collection]

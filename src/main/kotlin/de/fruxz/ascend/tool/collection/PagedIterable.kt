@@ -8,11 +8,11 @@ package de.fruxz.ascend.tool.collection
  * @author Fruxz
  * @since 1.0
  */
-data class IterablePage<T>(
+data class PagedIterable<T>(
 	val pageNumber: Int,
 	val availablePages: IntRange,
 	val content: List<T>,
-) {
+) : Iterable<T> {
 
 	/**
 	 * This property represents the index of this current page.
@@ -62,5 +62,15 @@ data class IterablePage<T>(
 	 * @since 1.0
 	 */
 	val isMultiPage: Boolean = !isSinglePage
+
+	/**
+	 * This property represents the amount of items,
+	 * stored inside this page.
+	 * @author Fruxz
+	 * @since 1.0
+	 */
+	val size: Int = content.size
+
+	override fun iterator() = content.iterator()
 
 }
