@@ -9,6 +9,8 @@ fun rgb(red: Int, green: Int, blue: Int) = Color.of(red, green, blue)
 
 fun rgbAwt(red: Int, green: Int, blue: Int) = AwtColor(red, green, blue)
 
+fun rgbAwt(rgb: Int) = AwtColor(rgb)
+
 fun hsb(h: Float, s: Float, b: Float) = Color.of(hsbAwt(h, s, b))
 
 fun hsbAwt(h: Float, s: Float, b: Float): AwtColor = AwtColor.getHSBColor(h, s, b)
