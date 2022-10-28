@@ -15,7 +15,7 @@ import de.fruxz.ascend.application.tag.version
  * @author Fruxz
  * @since 1.0
  */
-fun runApp(appName: String, appVersion: Version = 1.0.version, appInstance: de.fruxz.ascend.application.configuration.AscendApp = de.fruxz.ascend.application.configuration.AscendApp(
+fun runApp(appName: String, appVersion: Version = 1.0.version, appInstance: AscendApp = AscendApp(
 	appName,
 	appVersion
 ), runtime: AscendAppRuntime.() -> Unit) {
