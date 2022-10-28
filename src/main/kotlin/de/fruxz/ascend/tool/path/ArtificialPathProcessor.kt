@@ -18,7 +18,7 @@ interface ArtificialPathProcessor {
      * @author Fruxz
      * @since 1.0
      */
-    val triggerWord: String
+    val protocolName: String
 
     /**
      * The procedure, to return the file used by the path, provided inside the lambda.

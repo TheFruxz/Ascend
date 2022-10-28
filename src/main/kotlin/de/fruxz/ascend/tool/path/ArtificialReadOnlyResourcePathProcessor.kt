@@ -11,7 +11,7 @@ import java.io.File
  */
 object ArtificialReadOnlyResourcePathProcessor : ArtificialPathProcessor {
 
-    override val triggerWord = "readOnlyResource"
+    override val protocolName = "readOnlyResource"
 
     override val processFile: (String) -> File = {
         val tempFile = File.createTempFile(it.split(".").last(), null)

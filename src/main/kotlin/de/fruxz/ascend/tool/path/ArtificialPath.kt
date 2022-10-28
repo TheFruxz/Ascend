@@ -25,10 +25,10 @@ data class ArtificialPath(
      * @since 1.0
      */
     fun getFile(fullPath: String): File {
-        val triggerWord = fullPath.split("/:/").firstOrNull { it.startsWith("//") }?.removePrefix("//")
-        val extension = extensions.firstOrNull { it.triggerWord == triggerWord }
+        val triggerWord = fullPath.split("://").firstOrNull { it.startsWith("//") }?.removePrefix("//")
+        val extension = extensions.firstOrNull { it.protocolName == triggerWord }
 
-        return extension?.processFile?.invoke(fullPath.removePrefix("//$triggerWord/:/")) ?: Path.of(fullPath).toFile()
+        return extension?.processFile?.invoke(fullPath.removePrefix("$triggerWord://")) ?: Path.of(fullPath).toFile()
 
     }
 
