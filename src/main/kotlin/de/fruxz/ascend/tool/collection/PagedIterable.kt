@@ -12,7 +12,7 @@ data class PagedIterable<T>(
 	val pageNumber: Int,
 	val availablePages: IntRange,
 	val content: List<T>,
-) : Iterable<T> {
+) : Iterable<T>, Comparable<PagedIterable<T>>, Cloneable {
 
 	/**
 	 * This property represents the index of this current page.
@@ -72,5 +72,7 @@ data class PagedIterable<T>(
 	val size: Int = content.size
 
 	override fun iterator() = content.iterator()
+
+	override fun compareTo(other: PagedIterable<T>) = pageIndex - other.pageIndex
 
 }
