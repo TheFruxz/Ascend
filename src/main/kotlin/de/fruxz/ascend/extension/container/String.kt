@@ -37,7 +37,8 @@ fun String.replace(vararg pairs: Pair<Any?, Any?>) = replace(mapOf(*pairs))
  * @author Fruxz
  * @since 1.0
  */
-fun String.replace(pairs: Collection<Pair<Any?, Any?>>, ignoreCase: Boolean = false) = replace(map = pairs.toMap(), ignoreCase = ignoreCase)
+fun String.replace(pairs: Collection<Pair<Any?, Any?>>, ignoreCase: Boolean = false) =
+	replace(map = pairs.toMap(), ignoreCase = ignoreCase)
 
 /**
  * Replaces all occurrences of the given [Map.keys] surrounded by a `[` and a `]` with the given [Map.values] in this string.
@@ -72,7 +73,8 @@ fun String.replaceVariables(vararg pairs: Pair<Any?, Any?>) = replaceVariables(m
  * @author Fruxz
  * @since 1.0
  */
-fun String.replaceVariables(pairs: Collection<Pair<Any?, Any?>>, ignoreCase: Boolean = false) = replaceVariables(pairs.toMap(), ignoreCase)
+fun String.replaceVariables(pairs: Collection<Pair<Any?, Any?>>, ignoreCase: Boolean = false) =
+	replaceVariables(pairs.toMap(), ignoreCase)
 
 /**
  * Generates a new complete empty String without any content or any characters.
@@ -104,10 +106,11 @@ fun String.toUUID() = UUID.fromString(this)!!
  * @author Fruxz
  * @since 1.0
  */
-fun String.replacePrefix(oldValue: String, newValue: String, ignoreCase: Boolean = false) = if (startsWith(oldValue, ignoreCase)) {
-	replaceFirst(oldValue, newValue, ignoreCase)
-} else
-	this
+fun String.replacePrefix(oldValue: String, newValue: String, ignoreCase: Boolean = false) =
+	if (startsWith(oldValue, ignoreCase)) {
+		replaceFirst(oldValue, newValue, ignoreCase)
+	} else
+		this
 
 /**
  * Replaces the last [oldValue] with the [newValue] (respecting the [ignoreCase]),
@@ -119,10 +122,11 @@ fun String.replacePrefix(oldValue: String, newValue: String, ignoreCase: Boolean
  * @author Fruxz
  * @since 1.0
  */
-fun String.replaceSuffix(oldValue: String, newValue: String, ignoreCase: Boolean = false) = if (endsWith(oldValue, ignoreCase)) {
-	split(oldValue).dropLast(1).joinToString(oldValue) + newValue
-} else
-	this
+fun String.replaceSuffix(oldValue: String, newValue: String, ignoreCase: Boolean = false) =
+	if (endsWith(oldValue, ignoreCase)) {
+		split(oldValue).dropLast(1).joinToString(oldValue) + newValue
+	} else
+		this
 
 /**
  * Replaces the first and last [oldValue] with the [newValue] (respecting the [ignoreCase]),
@@ -153,11 +157,63 @@ fun String.replaceSurrounding(oldValue: String, newValue: String, ignoreCase: Bo
  * @author Fruxz
  * @since 1.0
  */
-fun String.mixedCase(randomized: Boolean = true, random: Random = Random(Random.nextLong())) = toCharArray().withIndex().joinToString(separator = "") { (index, char) ->
-	if (randomized && randomBoolean(random) || index % 2 == 0) { // More forced uniqueness, because of next seed
-		char.uppercase()
-	} else
-		char.lowercase()
+fun String.mixedCase(randomized: Boolean = true, random: Random = Random(Random.nextLong())) =
+	toCharArray().withIndex().joinToString(separator = "") { (index, char) ->
+		if (randomized && randomBoolean(random) || index % 2 == 0) { // More forced uniqueness, because of next seed
+			char.uppercase()
+		} else
+			char.lowercase()
+	}
+
+/**
+ * This function splits the string into a list of strings, by the points
+ * where the [spliterator] matches.
+ * Due to the fact, that the kotlin [split] function does not support,
+ * to keep the spliterator itself in the list, this function was created.
+ * @param spliterator the spliterator to split the string by
+ * @param containSpliterator if the spliterator should be contained in the list
+ * @author Fruxz
+ * @since 1.0
+ */
+fun String.split(
+	spliterator: Regex,
+	containSpliterator: Boolean,
+): List<String> = when (containSpliterator) {
+	false -> split(spliterator)
+	true -> {
+		split(spliterator)
+			.zip(spliterator.findAll(this).map { it.value }.asIterable() + "") { a, b ->
+				listOf(a, b)
+			}
+			.flatten()
+			.dropLast(1)
+	}
 }
 
+/**
+ * This function splits the string into a list of strings, where
+ * 'zones' are detected. Zones are defined by being surrounded by
+ * the [regexMatch], which is stored inside a big regex: `(?<=$regexMatch)[^$regexMatch]*(?=$regexMatch)`.
+ * The matching symbols are stored outside the matched zones.
+ * With [onlyBiZones] you can limit, that they have to be surrounded on both sides, or that a single side already is enough.
+ *
+ * ***ATTENTION: [regexMatch] is placed inside a regex string, so you have to consider this!***
+ * @author Fruxz
+ * @since 1.0
+ */
+fun String.splitZones(
+	regexMatch: CharSequence = "\"",
+	keepSpliterator: Boolean = true,
+	onlyBiZones: Boolean = true
+): List<String> {
+	val result = split(
+		"(?<=$regexMatch)[^$regexMatch]*(?=$regexMatch)".toRegex(),
+		keepSpliterator
+	)
 
+	return when (onlyBiZones) {
+		false -> result
+		true -> result.dropLast(3) + result.takeLast(3).joinToString("")
+	}
+
+}
