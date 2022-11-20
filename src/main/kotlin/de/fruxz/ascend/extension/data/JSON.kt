@@ -3,6 +3,7 @@ package de.fruxz.ascend.extension.data
 import de.fruxz.ascend.extension.dump
 import de.fruxz.ascend.extension.readTextOrNull
 import de.fruxz.ascend.extension.tryOrNull
+import de.fruxz.ascend.serialization.AdaptiveSerializer
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
@@ -29,7 +30,9 @@ import kotlin.io.path.readText
 import kotlin.io.path.writeText
 import kotlin.reflect.KClass
 
-internal val runningJsonModuleModifications = mutableListOf<SerializersModuleBuilder.() -> Unit>()
+internal val runningJsonModuleModifications = mutableListOf<SerializersModuleBuilder.() -> Unit>({
+	contextual(Any::class, AdaptiveSerializer())
+})
 internal var lastKnownJsonModuleModifications = listOf<SerializersModuleBuilder.() -> Unit>()
 
 internal val runningJsonModifications = mutableListOf<JsonBuilder.() -> Unit>()
