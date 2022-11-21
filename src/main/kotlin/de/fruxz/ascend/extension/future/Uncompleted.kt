@@ -1,4 +1,4 @@
-package de.fruxz.ascend.extension.javaUtil
+package de.fruxz.ascend.extension.future
 
 import de.fruxz.ascend.extension.isNotNull
 import java.util.*

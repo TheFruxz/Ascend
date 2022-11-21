@@ -1,4 +1,4 @@
-package de.fruxz.ascend.extension.javaUtil
+package de.fruxz.ascend.extension.future
 
 import de.fruxz.ascend.extension.tryOrNull
 import kotlinx.coroutines.Dispatchers
