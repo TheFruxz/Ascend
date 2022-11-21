@@ -4,7 +4,7 @@ import de.fruxz.ascend.application.configuration.AscendAppConfigModule
 import de.fruxz.ascend.application.extension.AppExtension
 import de.fruxz.ascend.application.tag.Version
 import de.fruxz.ascend.application.tag.version
-import de.fruxz.ascend.extension.data.json
+import de.fruxz.ascend.extension.data.writeJson
 import de.fruxz.ascend.extension.div
 import de.fruxz.ascend.extension.pathAsFileFromRuntime
 import de.fruxz.ascend.tool.timing.calendar.Calendar
@@ -52,7 +52,7 @@ class AscendAppRuntime(override val identity: String, override val version: Vers
 				if (!exists()) {
 					toPath().parent.toFile().mkdirs()
 					createNewFile()
-					writeText(json("""
+					writeText("""
 						{
 							"init_date": "${Calendar.now()}",
 							"init_app_state": {
@@ -62,7 +62,7 @@ class AscendAppRuntime(override val identity: String, override val version: Vers
 								"genuinFile": "${this.toPath().pathString.replace("\\", "/")}"
 							}
 						}
-					""".trimIndent()).value)
+					""".trimIndent())
 				}
 			}
 		}
