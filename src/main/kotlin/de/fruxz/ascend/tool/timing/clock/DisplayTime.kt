@@ -1,6 +1,7 @@
 package de.fruxz.ascend.tool.timing.clock
 
 import de.fruxz.ascend.tool.timing.clock.DisplayTime.Format.*
+import kotlinx.serialization.Serializable
 import kotlin.math.floor
 import kotlin.math.roundToInt
 import kotlin.time.Duration
@@ -11,6 +12,7 @@ import kotlin.time.Duration
  * you want to display it.
  * @param ticks the amount of ticks used in this time
  */
+@Serializable
 data class DisplayTime(
 	var ticks: Double
 ) {
