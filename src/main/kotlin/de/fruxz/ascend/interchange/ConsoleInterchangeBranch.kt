@@ -12,9 +12,13 @@ class ConsoleInterchangeBranch(
 	override var identity: String,
 	override var address: Address<ConsoleInterchangeBranch>,
 	override var subBranches: List<ConsoleInterchangeBranch> = emptyList(),
-	override var branchType: ConsoleInterchangeBranchType = ConsoleInterchangeBranchType.OBJECT,
 	override var content: ((String) -> Unit)?,
-) : TreeBranch<ConsoleInterchangeBranch, ((String) -> Unit)?, ConsoleInterchangeBranchType>(identity, address, branchType, subBranches, content) {
+) : TreeBranch<ConsoleInterchangeBranch, ((String) -> Unit)?>(
+	identity = identity,
+	address = address,
+	subBranches = subBranches,
+	content = content
+) {
 
     /**
      * This function returns the best matching branch of the [commandInput] input
@@ -52,14 +56,12 @@ class ConsoleInterchangeBranch(
     fun branch(
 	    identity: String,
 	    path: Address<ConsoleInterchangeBranch> = this.address / identity,
-	    branchType: ConsoleInterchangeBranchType = ConsoleInterchangeBranchType.OBJECT,
 	    process: ConsoleInterchangeBranch.() -> Unit,
     ) {
         subBranches += ConsoleInterchangeBranch(
             identity = identity,
             address = path,
             subBranches = listOf(),
-            branchType = branchType,
             content = null,
         ).apply(process)
     }

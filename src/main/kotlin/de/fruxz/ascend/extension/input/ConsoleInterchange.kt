@@ -3,7 +3,6 @@
 package de.fruxz.ascend.extension.input
 
 import de.fruxz.ascend.interchange.ConsoleInterchangeBranch
-import de.fruxz.ascend.interchange.ConsoleInterchangeBranchType
 import de.fruxz.ascend.interchange.ConsoleInterchangeConfiguration
 import de.fruxz.ascend.tool.smart.positioning.Address
 
@@ -15,7 +14,7 @@ import de.fruxz.ascend.tool.smart.positioning.Address
  * @since 1.0
  */
 fun buildConsoleInterchange(name: String, process: ConsoleInterchangeBranch.() -> Unit = { }) =
-	ConsoleInterchangeBranch(name, Address.address(name), emptyList(), ConsoleInterchangeBranchType.OBJECT, null).apply(
+	ConsoleInterchangeBranch(name, Address.address(name), emptyList(), null).apply(
 		process
 	)
 

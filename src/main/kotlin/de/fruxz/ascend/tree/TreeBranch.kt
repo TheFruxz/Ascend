@@ -18,10 +18,9 @@ import de.fruxz.ascend.tool.smart.positioning.Pathed
  * @author Fruxz
  * @since 1.0
  */
-open class TreeBranch<SUBBRANCH : TreeBranch<SUBBRANCH, CONTENT, BRANCH_TYPE>, CONTENT, BRANCH_TYPE : TreeBranchType>(
+open class TreeBranch<SUBBRANCH : TreeBranch<SUBBRANCH, CONTENT>, CONTENT>(
     override var identity: String,
     override var address: Address<SUBBRANCH> = Address.address(identity),
-    open var branchType: BRANCH_TYPE,
     open var subBranches: List<SUBBRANCH>,
     open var content: CONTENT,
 ) : Identifiable<SUBBRANCH>, Pathed<SUBBRANCH> {
@@ -62,7 +61,7 @@ open class TreeBranch<SUBBRANCH : TreeBranch<SUBBRANCH, CONTENT, BRANCH_TYPE>, C
      * @author Fruxz
      * @since 1.0
      */
-    fun getBestMatchFromPath(path: Address<TreeBranch<SUBBRANCH, CONTENT, BRANCH_TYPE>>): SUBBRANCH? {
+    fun getBestMatchFromPath(path: Address<TreeBranch<SUBBRANCH, CONTENT>>): SUBBRANCH? {
         return allKnownBranches()
             .filter { path.addressString.startsWith(it.address.addressString) }
             .maxByOrNull { obj -> obj.addressObject.let { address -> return@let address.addressString.split(address.divider) }.let { split -> split.size + split.last().length } }
@@ -76,12 +75,12 @@ open class TreeBranch<SUBBRANCH : TreeBranch<SUBBRANCH, CONTENT, BRANCH_TYPE>, C
      * @author Fruxz
      * @since 1.0
      */
-    fun getBestMatchFromPathWithRemaining(path: Address<TreeBranch<SUBBRANCH, CONTENT, BRANCH_TYPE>>): Pair<SUBBRANCH?, Address<TreeBranch<SUBBRANCH, CONTENT, BRANCH_TYPE>>> {
+    fun getBestMatchFromPathWithRemaining(path: Address<TreeBranch<SUBBRANCH, CONTENT>>): Pair<SUBBRANCH?, Address<TreeBranch<SUBBRANCH, CONTENT>>> {
         val bestMatch = getBestMatchFromPath(path)
         return bestMatch to Address.address(path.addressString.removePrefix(bestMatch?.addressString ?: ""))
     }
 
 }
 
-fun <SUBBRANCH : TREE, CONTENT, BRANCH_TYPE : TreeBranchType, TREE : TreeBranch<SUBBRANCH, CONTENT, BRANCH_TYPE>> TREE.searchBranchByAddress(address: Address<TREE>): SUBBRANCH? =
+fun <SUBBRANCH : TREE, CONTENT, TREE : TreeBranch<SUBBRANCH, CONTENT>> TREE.searchBranchByAddress(address: Address<TREE>): SUBBRANCH? =
     flatSubBranches().firstOrNull { it.address == address }
