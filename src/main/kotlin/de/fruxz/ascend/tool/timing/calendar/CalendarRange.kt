@@ -1,5 +1,8 @@
 package de.fruxz.ascend.tool.timing.calendar
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class CalendarRange(override val start: Calendar, override val endInclusive: Calendar) : Iterable<Calendar>, ClosedRange<Calendar>, Comparable<Calendar> {
 
 	/**
