@@ -14,11 +14,9 @@ object ArtificialReadOnlyResourcePathProcessor : ArtificialPathProcessor {
     override val protocolName = "readOnlyResource"
 
     override val processFile: (String) -> File = {
-        val tempFile = File.createTempFile(it.split(".").last(), null)
-
-        tempFile.writeBytes(getResourceByteArray(it))
-
-        tempFile
+        File.createTempFile(it.split(".").last(), null).also { file ->
+            file.writeBytes(getResourceByteArray(it))
+        }
     }
 
 }
