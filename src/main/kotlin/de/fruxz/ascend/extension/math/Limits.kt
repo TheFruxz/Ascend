@@ -5,19 +5,23 @@ package de.fruxz.ascend.extension.math
  * use the [limitToIterable] function instead!
  * @param range the range to limit [this] to.
  * @return [this], or [ClosedRange.start] if [this] is smaller than [ClosedRange.start], or [ClosedRange.endInclusive] if [this] is bigger than [ClosedRange.endInclusive].
+ * @see minTo
+ * @See maxTo
  * @author Fruxz
  * @since 1.0
  */
-infix fun <C : Comparable<C>> C.limitTo(range: ClosedRange<C>) = let { if (it in range) it else if (it > range.endInclusive) range.endInclusive else range.start }
+infix fun <C : Comparable<C>> C.limitTo(range: ClosedRange<C>) = this.minTo(range.start).maxTo(range.endInclusive)
 
 /**
  * Limits [this] to the given [range]. If you want it to something like a [ClosedRange],
  * use the [limitTo] function instead!
  * @param range the range to limit [this] to.
+ * @see minTo
+ * @See maxTo
  * @author Fruxz
  * @since 1.0
  */
-infix fun <C : Iterable<T>, T : Comparable<T>> T.limitToIterable(range: C) = let { if (it in range) it else if (it > range.max()) range.max() else range.min() }
+infix fun <C : Iterable<T>, T : Comparable<T>> T.limitToIterable(range: C) = this.minTo(range.min()).maxTo(range.max())
 
 /**
  * Limits [this] to the minimum of [minimum].
