@@ -48,7 +48,6 @@ class ConsoleInterchangeBranch(
      * This function creates and attaches a new branch to the current branch.
      * @param identity The identity of the new branch
      * @param path The path of the new branch
-     * @param branchType The type of the new branch
      * @param process The process of the new branch
      * @author Fruxz
      * @since 1.0

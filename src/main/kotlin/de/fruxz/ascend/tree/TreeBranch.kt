@@ -9,10 +9,8 @@ import de.fruxz.ascend.tool.smart.positioning.Pathed
  * This open class represents a branch of a tree, containing and based on another branches.
  * @param SUBBRANCH the type of the subbranches, have to be the same as this origin branch type!
  * @param CONTENT the content, contained & stored in each branch
- * @param BRANCH_TYPE the type of the branch (useful for directories, etc.)
  * @param identity the name of the branch
  * @param address the path of the branch (have to contain the whole path, like 'this/is/a/path')
- * @param branchType the type of the branch
  * @param subBranches the subbranches of the branch, that is a list of [SUBBRANCH]es
  * @param content the content of the branch, which is a [CONTENT]
  * @author Fruxz
