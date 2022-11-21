@@ -29,7 +29,7 @@ fun <F, S> Map<F, S>.flipped() = (values to keys).toMap()
  * @author Fruxz
  * @since 1.0
  */
-fun <F, S> Map<F, S>.firstOrNull(predicate: (Entry<F, S>) -> Boolean): Entry<F, S>? {
+inline fun <F, S> Map<F, S>.firstOrNull(predicate: (Entry<F, S>) -> Boolean): Entry<F, S>? {
 
 	forEach { mapEntry ->
 		if (predicate(mapEntry)) return mapEntry
@@ -47,7 +47,7 @@ fun <F, S> Map<F, S>.firstOrNull(predicate: (Entry<F, S>) -> Boolean): Entry<F, 
  * @author Fruxz
  * @since 1.0
  */
-fun <F, S> Map<F, S>.first(predicate: (Entry<F, S>) -> Boolean): Entry<F, S> =
+inline fun <F, S> Map<F, S>.first(predicate: (Entry<F, S>) -> Boolean): Entry<F, S> =
 	firstOrNull(predicate) ?: throw NoSuchElementException("No element found for the given predicate")
 
 /**
@@ -57,7 +57,7 @@ fun <F, S> Map<F, S>.first(predicate: (Entry<F, S>) -> Boolean): Entry<F, S> =
  * @author Fruxz
  * @since 1.0
  */
-fun <K, V> Map<K, V>.lastOrNull(predicate: (Entry<K, V>) -> Boolean): Entry<K, V>? {
+inline fun <K, V> Map<K, V>.lastOrNull(predicate: (Entry<K, V>) -> Boolean): Entry<K, V>? {
 
 	forEach { mapEntry ->
 		if (predicate(mapEntry)) return mapEntry
@@ -74,5 +74,5 @@ fun <K, V> Map<K, V>.lastOrNull(predicate: (Entry<K, V>) -> Boolean): Entry<K, V
  * @author Fruxz
  * @since 1.0
  */
-fun <K, V> Map<K, V>.last(predicate: (Entry<K, V>) -> Boolean): Entry<K, V> =
+inline fun <K, V> Map<K, V>.last(predicate: (Entry<K, V>) -> Boolean): Entry<K, V> =
 	lastOrNull(predicate) ?: throw NoSuchElementException("No element found for the given predicate")
