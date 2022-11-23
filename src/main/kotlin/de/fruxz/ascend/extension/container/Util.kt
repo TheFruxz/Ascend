@@ -17,7 +17,7 @@ fun <T> List<T>.subList(values: IntRange) = subList(values.first, values.last)
  * @author Fruxz
  * @since 1.0
  */
-inline fun <O, T : Collection<O>> T.withForEach(action: O.() -> Unit) = forEach(action)
+inline fun <O, T : Iterable<O>> T.withForEach(action: O.() -> Unit) = forEach(action)
 
 /**
  * [forEach] a [Array] but instead of a 'it' lambda it uses a 'this' lambda,
@@ -36,7 +36,7 @@ inline fun <O> Array<O>.withForEach(action: O.() -> Unit) = forEach(action)
  * @author Fruxz
  * @since 1.0
  */
-inline fun <I, O, T : Collection<I>> T.withMap(action: I.() -> O) = map(action)
+inline fun <I, O, T : Iterable<I>> T.withMap(action: I.() -> O) = map(action)
 
 /**
  * Maps a [Array] to a [List] using the [map] function, which
