@@ -54,3 +54,30 @@ inline fun <I, O> Array<I>.withMap(action: I.() -> O) = map(action)
  * @since 1.0
  */
 inline fun <K, V, O, T : Map<K, V>> T.withMap(action: Map.Entry<K, V>.() -> O) = map(action)
+
+/**
+ * Maps an [Iterable] to a [List] using the [mapNotNull] function, which
+ * is the same as [mapNotNull] a [Collection] with the [with] function inside.
+ * @param action the action in the 'this' perspective
+ * @return the mapped [List] without null values
+ * @author Fruxz
+ * @since 1.0
+ */
+inline fun <I, O, T : Iterable<I>> T.withMapNotNull(action: I.() -> O?) = mapNotNull(action)
+
+/**
+ * Maps a [Array] to a [List] using the [mapNotNull] function, which
+ * is the same as [mapNotNull] a [Array] with the [with] function inside.
+ * @param action the action in the 'this' perspective
+ * @return the mapped [List] without null values
+ * @author Fruxz
+ * @since 1.0
+ */
+inline fun <I, O> Array<I>.withMapNotNull(action: I.() -> O?) = mapNotNull(action)
+
+/**
+ * Maps a [Map] using the [Map.mapNotNull] function.
+ * @author Fruxz
+ * @since 1.0
+ */
+inline fun <K, V, O, T : Map<K, V>> T.withMapNotNull(action: Map.Entry<K, V>.() -> O?) = mapNotNull(action)
