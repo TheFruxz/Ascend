@@ -97,7 +97,7 @@ fun getFileViaArtificialPath(path: String) = ascendArtificialPath.getFile(path)
  * @since 1.0
  */
 fun File.createFileAndDirectories(ignoreIfExists: Boolean = true) {
-    if (!parentFile.exists() || !ignoreIfExists) parentFile.mkdirs()
+    if (tryOrNull { parentFile } != null && (!parentFile.exists() || !ignoreIfExists)) parentFile.mkdirs()
     if (!exists() || !ignoreIfExists) createNewFile()
 }
 
@@ -108,7 +108,7 @@ fun File.createFileAndDirectories(ignoreIfExists: Boolean = true) {
  * @since 1.0
  */
 fun Path.createParentDirectories(ignoreIfExists: Boolean = true, vararg attributes: FileAttribute<*>) {
-    if (parent.notExists() || !ignoreIfExists) parent.createDirectories(*attributes)
+    if (tryOrNull { parent } != null && (parent.notExists() || !ignoreIfExists)) parent.createDirectories(*attributes)
 }
 
 /**
