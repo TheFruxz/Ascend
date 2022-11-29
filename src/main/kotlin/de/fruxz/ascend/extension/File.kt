@@ -14,6 +14,7 @@ import kotlin.io.path.createDirectories
 import kotlin.io.path.createFile
 import kotlin.io.path.exists
 import kotlin.io.path.notExists
+import kotlin.io.path.pathString
 import kotlin.io.path.readText
 
 /**
@@ -125,13 +126,17 @@ fun Path.createFileAndDirectories(ignoreIfExists: Boolean = true, directoryAttri
 
 /**
  * This function returns the path, where the application
- * is running from.
- * @sample getHomePath
+ * is running from. This utilizes the [Paths.get] function
+ * with an empty string, and then (if [absolute] is not false)
+ * converts the path to an absolute path using [Path.toAbsolutePath].
+ * @param absolute if the path should be absolute
  * @return the path, where the application is running from
  * @author Fruxz
  * @since 1.0
  */
-inline fun getHomePath(): Path = Paths.get("")
+inline fun getHomePath(absolute: Boolean = true): Path = Paths.get("").let {
+    if (absolute) it.toAbsolutePath() else it
+}
 
 /**
  * This function tries to return the result of executing the [readText],
