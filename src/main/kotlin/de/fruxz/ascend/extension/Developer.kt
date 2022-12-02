@@ -49,7 +49,7 @@ fun <T> T.modifyIf(modifyIf: Boolean, modification: T.() -> Unit) = if (!modifyI
  * @author Fruxz
  * @since 1.0
  */
-fun <T> T.modifiedIfSuccess(modification: T.() -> T): T = tryOrNull(modification) ?: this
+fun <T> T.modifiedIfSuccess(modification: T.() -> T): T = tryOrNull(process = modification) ?: this
 
 /**
  * Returns true if this [Any]? is null, otherwise false.
