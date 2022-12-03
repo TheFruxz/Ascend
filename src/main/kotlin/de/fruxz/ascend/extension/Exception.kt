@@ -1,5 +1,6 @@
 package de.fruxz.ascend.extension
 
+import de.fruxz.ascend.extension.data.randomInt
 import kotlin.random.Random
 
 /**
@@ -10,13 +11,12 @@ import kotlin.random.Random
  */
 fun catchException(exception: Exception, random: Random = Random) {
 
-	val exceptionIdentity = random.nextInt(10000, 99999)
-	val exceptionTag = "#$exceptionIdentity"
-	val exceptionShort = exception.stackTrace.firstOrNull()?.className ?: "Can't get short!"
+	val tag = "#${randomInt(10_000..99_999, random)}"
+	val exceptionShort = exception.stackTrace.firstOrNull()?.className ?: "Unknown exception!"
 
-	println(" > $exceptionTag - $exceptionShort")
+	println(" > $tag - $exceptionShort")
 	exception.printStackTrace()
-	println(" < $exceptionTag - $exceptionShort")
+	println(" < $tag - $exceptionShort")
 
 }
 
@@ -28,14 +28,8 @@ fun catchException(exception: Exception, random: Random = Random) {
  * @author Fruxz
  * @since 1.0
  */
-@Deprecated("Try to print seems like a good replacement!")
-inline fun <A> A.tryToCatch(process: A.() -> Unit) {
-	try {
-		process(this)
-	} catch (e: Exception) {
-		catchException(e)
-	}
-}
+@Deprecated("TryOrPrint seems like a good replacement!", ReplaceWith("tryOrPrint(process = process)"))
+inline fun <A> A.tryToCatch(process: A.() -> Unit) = tryOrPrint(process = process)
 
 /**
  * Try return the value and returns the result inside a [Result] object.
@@ -47,11 +41,11 @@ inline fun <A> A.tryToCatch(process: A.() -> Unit) {
  * @author Fruxz
  * @since 1.0
  */
-inline fun <A, T> A.tryToResult(silent: Boolean = true, process: A.() -> T): Result<T> {
+inline fun <A, T> A.tryWithResult(silent: Boolean = true, process: A.() -> T): Result<T> {
 	return try {
 		Result.success(process())
 	} catch (e: Exception) {
-		if (!silent) e.printStackTrace()
+		if (!silent) catchException(e)
 		Result.failure(e)
 	}
 }
@@ -66,8 +60,8 @@ inline fun <A, T> A.tryToResult(silent: Boolean = true, process: A.() -> T): Res
  * @author Fruxz
  * @since 1.0
  */
-inline fun <A, T> A.tryToResult(silent: () -> Boolean, process: A.() -> T): Result<T> =
-	tryToResult(silent = silent(), process = process)
+inline fun <A, T> A.tryWithResult(silent: () -> Boolean, process: A.() -> T): Result<T> =
+	tryWithResult(silent = silent(), process = process)
 
 /**
  * Try return the value returning of the [process] or returns the [other].
@@ -83,7 +77,7 @@ inline fun <A, T> A.tryToResult(silent: () -> Boolean, process: A.() -> T): Resu
  * @since 1.0
  */
 inline fun <A, R, T : R> A.tryOrElse(silent: Boolean = true, other: T, process: A.() -> R): R {
-	return tryToResult(silent, process).getOrElse { other }
+	return tryWithResult(silent = silent, process = process).getOrElse { other }
 }
 
 /**
@@ -114,7 +108,7 @@ inline fun <A, R, T : R> A.tryOrElse(silent: () -> Boolean, other: T, process: A
  * @since 1.0
  */
 inline fun <A, T> A.tryOrNull(silent: Boolean = true, process: A.() -> T): T? =
-	tryToResult(silent, process).getOrNull()
+	tryWithResult(silent = silent, process = process).getOrNull()
 
 /**
  * Try return the value returning of the [process] or returns null.
@@ -137,8 +131,8 @@ inline fun <A, T> A.tryOrNull(silent: () -> Boolean, process: A.() -> T): T? =
  * @author Fruxz
  * @since 1.0
  */
-inline fun <A> A.tryToIgnore(silent: Boolean = true, process: A.() -> Unit) {
-	tryToResult(silent, process)
+inline fun <A> A.tryOrIgnore(silent: Boolean = true, process: A.() -> Unit) {
+	tryWithResult(silent = silent, process = process)
 }
 
 /**
@@ -148,8 +142,8 @@ inline fun <A> A.tryToIgnore(silent: Boolean = true, process: A.() -> Unit) {
  * @author Fruxz
  * @since 1.0
  */
-inline fun <A> A.tryToIgnore(silent: () -> Boolean, process: A.() -> Unit): Unit =
-	tryToIgnore(silent = silent(), process = process)
+inline fun <A> A.tryOrIgnore(silent: () -> Boolean, process: A.() -> Unit): Unit =
+	tryOrIgnore(silent = silent(), process = process)
 
 /**
  * Try to execute the code specified inside the [process] function.
@@ -158,16 +152,6 @@ inline fun <A> A.tryToIgnore(silent: () -> Boolean, process: A.() -> Unit): Unit
  * @author Fruxz
  * @since 1.0
  */
-inline fun <A> A.tryToPrint(silent: Boolean = true, process: A.() -> Unit) {
-	tryToResult(silent = silent, process = process).exceptionOrNull()?.printStackTrace()
+inline fun <A> A.tryOrPrint(process: A.() -> Unit) {
+	tryWithResult(process = process).exceptionOrNull()?.printStackTrace()
 }
-
-/**
- * Try to execute the code specified inside the [process] function.
- * if an exception is thrown, the stack trace will be printed.
- * @param silent if returns false, the exception will be printed
- * @author Fruxz
- * @since 1.0
- */
-inline fun <A> A.tryToPrint(silent: () -> Boolean, process: A.() -> Unit): Unit =
-	tryToPrint(silent = silent(), process = process)
