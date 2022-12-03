@@ -5,6 +5,7 @@ package de.fruxz.ascend.tool.data
  * @author Fruxz
  * @since 1.0
  */
+@Deprecated("Ascends CSV solution is very rudimentary and should be replaced by a better solution in the future.")
 object CSV {
 
 	/**
@@ -19,6 +20,7 @@ object CSV {
 		}
 	}
 
+	@Suppress("DEPRECATION") // We are currently inside the deprecated api, no need of extra compiler warnings.
 	fun convertToTabularData(csvContent: String) = TabularData(csvContent)
 
 }

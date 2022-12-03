@@ -7,6 +7,7 @@ package de.fruxz.ascend.tool.data
  * @author Fruxz
  * @since 1.0
  */
+@Deprecated("Ascends CSV solution is very rudimentary and should be replaced by a better solution in the future.")
 data class TabularData(
 	val headers: List<String> = listOf(),
 	val rows: List<List<String>> = listOf(),
