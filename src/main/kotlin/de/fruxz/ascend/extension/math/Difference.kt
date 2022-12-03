@@ -11,7 +11,7 @@ import kotlin.math.abs
  * @author Fruxz
  * @since 1.0
  */
-infix fun Int.difference(o: Int) = abs(o - this)
+infix fun Int.differenceTo(o: Int) = abs(o - this)
 
 /**
  * This function returns the non-negative difference between two numbers.
@@ -21,7 +21,7 @@ infix fun Int.difference(o: Int) = abs(o - this)
  * @author Fruxz
  * @since 1.0
  */
-infix fun Long.difference(o: Long) = abs(o - this)
+infix fun Long.differenceTo(o: Long) = abs(o - this)
 
 /**
  * This function returns the non-negative difference between two numbers.
@@ -31,7 +31,7 @@ infix fun Long.difference(o: Long) = abs(o - this)
  * @author Fruxz
  * @since 1.0
  */
-infix fun Double.difference(o: Double) = abs(o - this)
+infix fun Double.differenceTo(o: Double) = abs(o - this)
 
 /**
  * This function returns the non-negative difference between two numbers.
@@ -41,7 +41,7 @@ infix fun Double.difference(o: Double) = abs(o - this)
  * @author Fruxz
  * @since 1.0
  */
-infix fun Float.difference(o: Float) = abs(o - this)
+infix fun Float.differenceTo(o: Float) = abs(o - this)
 
 /**
  * This function returns the non-negative difference between two numbers.
@@ -51,7 +51,7 @@ infix fun Float.difference(o: Float) = abs(o - this)
  * @author Fruxz
  * @since 1.0
  */
-infix fun Byte.difference(o: Byte) = abs(o - this)
+infix fun Byte.differenceTo(o: Byte) = abs(o - this)
 
 /**
  * This function returns the non-negative difference between two numbers.
@@ -61,4 +61,4 @@ infix fun Byte.difference(o: Byte) = abs(o - this)
  * @author Fruxz
  * @since 1.0
  */
-infix fun Short.difference(o: Short) = abs(o - this)
+infix fun Short.differenceTo(o: Short) = abs(o - this)
