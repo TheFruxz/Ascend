@@ -10,6 +10,7 @@ import java.nio.file.Files.createFile
 import java.nio.file.Path
 import java.nio.file.Paths
 import java.nio.file.attribute.FileAttribute
+import kotlin.io.path.absolute
 import kotlin.io.path.createDirectories
 import kotlin.io.path.createFile
 import kotlin.io.path.exists
@@ -46,7 +47,7 @@ inline fun getResourceByteArray(resource: String) =
  * @since 1.0
  */
 fun String.pathAsFile(): File =
-    Path.of(this).toFile()
+    Path.of(this).absolute().toFile()
 
 /**
  * Converts the string [this] into a base-based [File] using [this] as a [Path],
