@@ -28,7 +28,7 @@ class AdaptiveSerializer : KSerializer<Any> {
 	}
 
 	override fun deserialize(decoder: Decoder): Any {
-		throw IllegalArgumentException("Unsupported type behind 'Any'!")
+		throw IllegalArgumentException("[AdaptiveSerializer Emergency-Solution] Unsupported type 'Any'!")
 	}
 
 }
