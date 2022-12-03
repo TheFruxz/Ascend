@@ -15,6 +15,7 @@ infix fun <C : Comparable<C>> C.limitTo(range: ClosedRange<C>) = this.minTo(rang
 /**
  * Limits [this] to the given [range]. If you want it to something like a [ClosedRange],
  * use the [limitTo] function instead!
+ * The min of this [C] is the minimum value and the max of this [C] is the maximum value.
  * @param range the range to limit [this] to.
  * @see minTo
  * @See maxTo
