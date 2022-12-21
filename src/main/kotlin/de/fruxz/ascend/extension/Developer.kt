@@ -1,26 +1,30 @@
 package de.fruxz.ascend.extension
 
-/**
- * Executes a check, if all [objects] are passing the [check] check.
- * @param objects The objects to check.
- * @param check The check to execute.
- * @return `true` if all [objects] are passing the [check] check, `false` otherwise.
- * @author Fruxz
- * @since 1.0
- */
-@Deprecated("Use the `all` extension function instead.", ReplaceWith("all(*objects, check = check)"))
-fun <T> checkAllObjects(vararg objects: T, check: T.() -> Boolean) =
-	all(*objects, check = check)
+import de.fruxz.ascend.annotation.LanguageFeature
 
 /**
  * Executes a check, if all [objects] are passing the [check] check.
- * @param objects The objects to check.
- * @param check The check to execute.
- * @return `true` if all [objects] are passing the [check] check, `false` otherwise.
  * @author Fruxz
  * @since 1.0
  */
+@LanguageFeature
 fun <T> all(vararg objects: T, check: T.() -> Boolean) = objects.all(check)
+
+/**
+ * Executes a check, if none of the [objects] are passing the [check] check.
+ * @author Fruxz
+ * @since 1.0
+ */
+@LanguageFeature
+fun <T> none(vararg objects: T, check: T.() -> Boolean) = objects.none(check)
+
+/**
+ * Executes a check, if at least one of the [objects] is passing the [check] check.
+ * @author Fruxz
+ * @since 1.0
+ */
+@LanguageFeature
+fun <T> any(vararg objects: T, check: T.() -> Boolean) = objects.any(check)
 
 /**
  * Returning the [this]<[T]> modified with the [modification] if [modifyIf] is true,
@@ -56,6 +60,7 @@ fun <T> T.modifiedIfSuccess(modification: T.() -> T): T = tryOrNull(process = mo
  * @author Fruxz
  * @since 1.0
  */
+@LanguageFeature
 val Any?.isNull: Boolean
 	get() = this == null
 
@@ -64,6 +69,7 @@ val Any?.isNull: Boolean
  * @author Fruxz
  * @since 1.0
  */
+@LanguageFeature
 val Any?.isNotNull: Boolean
 	get() = !isNull
 
