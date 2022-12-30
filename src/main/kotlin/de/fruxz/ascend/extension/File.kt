@@ -130,6 +130,13 @@ inline fun getHomePath(absolute: Boolean = true): Path = Paths.get("").let {
 }
 
 /**
+ * This computational value returns the result of invoking the [getHomePath].
+ * @author Fruxz
+ * @since 1.0
+ */
+val absoluteHomePath = getHomePath(true)
+
+/**
  * This function tries to return the result of executing the [readText],
  * or returns null, if an exception gets thrown.
  * @see readText
