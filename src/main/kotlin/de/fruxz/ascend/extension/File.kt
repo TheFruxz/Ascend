@@ -60,16 +60,6 @@ fun String.pathAsFileFromRuntime() =
     File(System.getProperty("user.dir") + "/$this")
 
 /**
- * This function adds a part to the [Path] using
- * the [Path.resolve] function and a [other] part attaching
- * to the [Path].
- * @param other is the additional path
- * @author Fruxz
- * @since 1.0
- */
-operator fun Path.div(other: String): Path = resolve(other)
-
-/**
  * This value defines the basic, from Ascend created [ArtificialPath].
  * This [ArtificialPath] can be used, to easily access file in the
  * local directory & the resources.
