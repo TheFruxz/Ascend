@@ -7,12 +7,9 @@ package de.fruxz.ascend.extension.container
  * @author Fruxz
  * @since 1.0
  */
-fun <T> MutableCollection<T>.mutableReplaceWith(collection: Collection<T>) {
-	removeAll { !collection.contains(it) }
-	collection.forEach { c ->
-		if (!contains(c))
-			add(c)
-	}
+fun <T> MutableCollection<T>.mutableReplaceWith(iterable: Iterable<T>) {
+	clear()
+	addAll(iterable)
 }
 
 /**
