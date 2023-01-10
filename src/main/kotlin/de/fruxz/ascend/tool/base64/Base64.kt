@@ -1,4 +1,4 @@
-package de.fruxz.ascend.tool.data
+package de.fruxz.ascend.tool.base64
 
 import java.util.Base64
 
