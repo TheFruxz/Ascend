@@ -14,6 +14,7 @@ import kotlin.reflect.full.createType
 /**
  * This class defines a column type, which transform its value via
  * the [jsonBase] of ascends json system.
+ * The sql type for this column is 'TEXT' be default, but can vary by the dialect.
  * @author Fruxz
  * @since 1.0
  */
