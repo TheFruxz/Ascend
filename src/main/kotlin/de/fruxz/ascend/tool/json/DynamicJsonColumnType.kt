@@ -3,6 +3,7 @@ package de.fruxz.ascend.tool.json
 import de.fruxz.ascend.extension.data.jsonBase
 import de.fruxz.ascend.extension.data.toJsonString
 import de.fruxz.ascend.extension.forceCast
+import de.fruxz.ascend.extension.forceCastOrNull
 import kotlinx.serialization.serializer
 import org.jetbrains.exposed.sql.Column
 import org.jetbrains.exposed.sql.ColumnType
@@ -33,7 +34,7 @@ class DynamicJsonColumnType<T : Any>(private val clazz: KClass<T>) : ColumnType(
 		valueToDB(value)
 
 	override fun valueToDB(value: Any?): String =
-		jsonBase.encodeToString(jsonBase.serializersModule.serializer(clazz.createType()), value.forceCast<T?>())
+		jsonBase.encodeToString(jsonBase.serializersModule.serializer(clazz.createType()), value.forceCastOrNull<T?>())
 
 }
 
