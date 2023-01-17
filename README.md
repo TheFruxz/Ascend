@@ -63,6 +63,7 @@ If you have any questions, suggestions or other items you would like to contribu
 
 ###### We build & use Ascend on Java 17 - [Eclipse Temurin](https://adoptium.net/).
 ###### Also build & run Ascend with [Eclipse Temurin](https://adoptium.net/) to get the best possible experience!
+###### Special thanks for Hashing Utils to Sam Clarke <www.samclarke.com>
 
 [![Open Source](https://forthebadge.com/images/badges/open-source.svg)](https://github.com/TheFruxz/Ascend/blob/main/LICENSE)
 [![Built by developers](https://forthebadge.com/images/badges/built-by-developers.svg)](https://github.com/TheFruxz/Ascend/graphs/contributors)
