@@ -44,9 +44,6 @@ class DynamicJsonColumnType<T : Any>(private val type: KType) : ColumnType() {
 		jsonBase.decodeFromString(jsonBase.serializersModule.serializer(type), "$value").forceCast()
 
 	override fun notNullValueToDB(value: Any): String =
-		valueToDB(value)
-
-	override fun valueToDB(value: Any?): String =
 		jsonBase.encodeToString(jsonBase.serializersModule.serializer(type), value.forceCastOrNull<T?>())
 
 }
