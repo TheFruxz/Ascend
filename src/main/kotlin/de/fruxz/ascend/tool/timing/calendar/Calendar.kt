@@ -1,21 +1,15 @@
 package de.fruxz.ascend.tool.timing.calendar
 
-import de.fruxz.ascend.extension.data.fromJsonString
-import de.fruxz.ascend.extension.data.toJsonString
 import de.fruxz.ascend.extension.dump
-import de.fruxz.ascend.extension.tryOrNull
+import de.fruxz.ascend.tool.json.dynamicJson
 import de.fruxz.ascend.tool.smart.composition.Producible
-import de.fruxz.ascend.tool.timing.calendar.Calendar.AscendCalendarColumnType
 import de.fruxz.ascend.tool.timing.calendar.Calendar.FormatStyle.FULL
 import de.fruxz.ascend.tool.timing.calendar.Calendar.FormatStyle.MEDIUM
 import de.fruxz.ascend.tool.timing.calendar.timeUnit.TimeUnit
 import de.fruxz.ascend.tool.timing.calendar.timeUnit.TimeUnit.Companion.SECOND
 import kotlinx.serialization.Serializable
 import org.jetbrains.exposed.sql.Column
-import org.jetbrains.exposed.sql.ColumnType
 import org.jetbrains.exposed.sql.Table
-import org.jetbrains.exposed.sql.vendors.currentDialect
-import java.sql.ResultSet
 import java.text.SimpleDateFormat
 import java.time.Instant
 import java.time.LocalDateTime
@@ -485,48 +479,6 @@ data class Calendar constructor(
 		FULL, HUGE, MEDIUM, SHORT;
 	}
 
-	class AscendCalendarColumnType : ColumnType() {
-		override fun sqlType() = currentDialect.dataTypeProvider.textType()
-
-		override fun nonNullValueToString(value: Any) = when (value) {
-			is String -> value
-			is Calendar -> value.toJsonString()
-			is Long -> Calendar(value).toJsonString()
-			is Number -> Calendar(value.toLong()).toJsonString()
-			is LocalDateTime -> Calendar(value).toJsonString()
-			else -> throw IllegalArgumentException("Value is not a Calendar")
-		}
-
-		override fun valueFromDB(value: Any) = when (value) {
-			is String -> value.fromJsonString()
-			is JavaUtilCalendar -> Calendar(value)
-			is Long -> Calendar(value)
-			is Calendar -> value
-			is LocalDateTime -> Calendar(value)
-			else -> "$value".fromJsonString()
-		}
-
-		override fun readObject(rs: ResultSet, index: Int) =
-			tryOrNull { rs.getString(index).takeIf { !it.isNullOrBlank() }?.fromJsonString<Calendar>() }
-				?: tryOrNull { Calendar(LocalDateTime.parse(rs.getString(index))) }
-
-		override fun notNullValueToDB(value: Any) = valueToDB(value) ?: error("Value is null")
-
-		override fun valueToDB(value: Any?) = when (value) {
-			is String -> value
-			is Calendar -> value.toJsonString()
-			is Long -> Calendar(value).toJsonString()
-			is Number -> Calendar(value.toLong()).toJsonString()
-			is LocalDateTime -> Calendar(value).toJsonString()
-			else -> value
-		}
-
-		companion object {
-			internal val INSTANCE = AscendCalendarColumnType()
-		}
-
-	}
-
 }
 
-fun Table.calendar(name: String): Column<Calendar> = registerColumn(name, AscendCalendarColumnType())
+fun Table.calendar(name: String): Column<Calendar> = dynamicJson(name, Calendar::class)
