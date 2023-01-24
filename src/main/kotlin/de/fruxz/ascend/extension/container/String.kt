@@ -217,3 +217,33 @@ fun String.splitZones(
 	}
 
 }
+
+/**
+ * This function takes [this] string as the input and splits it
+ * by their ' ' (space) characters, using the [split] function.
+ * But instead of only split the spaces, this function does something,
+ * before the space splits, it splits by blocks. A block can be
+ * defined via quotes like "...".
+ * Quotes override the need, to break at spaces, so a text like
+ * 'This is "a small" test!' produces a result of ["This", "is",
+ * "a small", "test!"]
+ * @author Fruxz
+ * @since 1.0
+ */
+fun String.splitArguments() = split("\"")
+	.let {
+
+		if (it.size % 2 == 0 && it.isNotEmpty()) {
+			val result = it.toMutableList()
+
+			result[it.lastIndex-1] = (result[it.lastIndex-1] + result.last())
+			result.removeLast()
+
+			return@let result
+		} else return@let it
+
+	}
+	.flatMapIndexed { index: Int, value: String ->
+		if (index % 2 == 0) value.split(" ") else listOf(value)
+	}
+	.filterNot { it.isBlank() }
