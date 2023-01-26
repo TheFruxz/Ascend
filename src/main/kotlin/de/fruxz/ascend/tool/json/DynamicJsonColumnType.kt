@@ -38,15 +38,15 @@ class DynamicJsonColumnType<T : Any>(private val type: KType) : ColumnType() {
 		currentDialect.dataTypeProvider.textType()
 
 	override fun nonNullValueToString(value: Any): String =
-		value.toJsonString()
+		"'${value.toJsonString()}'"
 
 	override fun valueFromDB(value: Any): T = when (value) {
-		is String -> jsonBase.decodeFromString(jsonBase.serializersModule.serializer(type), "$value").forceCast()
+		is String -> jsonBase.decodeFromString(jsonBase.serializersModule.serializer(type), "$value".removeSurrounding("'")).forceCast()
 		else -> value.forceCast()
 	}
 
 	override fun notNullValueToDB(value: Any): String =
-		jsonBase.encodeToString(jsonBase.serializersModule.serializer(type), value.forceCastOrNull<T?>())
+		"'${jsonBase.encodeToString(jsonBase.serializersModule.serializer(type), value.forceCastOrNull<T?>())}'"
 
 }
 
