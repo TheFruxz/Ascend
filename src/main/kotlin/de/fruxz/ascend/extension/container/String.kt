@@ -1,5 +1,6 @@
 package de.fruxz.ascend.extension.container
 
+import de.fruxz.ascend.annotation.ExperimentalAscendApi
 import de.fruxz.ascend.extension.data.randomBoolean
 import java.util.*
 import kotlin.random.Random
@@ -230,6 +231,7 @@ fun String.splitZones(
  * @author Fruxz
  * @since 1.0
  */
+@ExperimentalAscendApi
 fun String.splitArguments() = split("\"")
 	.let {
 
