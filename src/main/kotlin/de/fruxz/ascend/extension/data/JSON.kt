@@ -126,17 +126,7 @@ fun addAscendJsonModification(process: JsonBuilder.() -> Unit) {
 	runningJsonModifications += process
 }
 
-// toJson conversion
-
-/**
- * Tries to encode the given object to a JSON string using the Kotlinx
- * serialization library's [Json.encodeToString] function.
- * @return The JSON string.
- * @author Fruxz
- * @since 1.0
- */
-@Deprecated(level = WARNING, message = "use toJsonString() instead", replaceWith = ReplaceWith("this.toJsonString()"))
-inline fun <reified T : Any> T.toJson() = toJsonString()
+// toJson conversionF
 
 /**
  * This function converts [this] object to a json string via the [jsonBase]
