@@ -1,5 +1,6 @@
 package de.fruxz.ascend.extension.container
 
+import de.fruxz.ascend.annotation.ExperimentalAscendApi
 import de.fruxz.ascend.extension.math.ceilToInt
 import de.fruxz.ascend.extension.math.floorToInt
 import de.fruxz.ascend.extension.math.maxTo
@@ -496,3 +497,53 @@ inline fun <T, C> Iterable<T>.isUnique(process: (T) -> C) = groupBy { process(it
  * @since 1.0
  */
 inline fun <T, C> Array<T>.isUnique(process: (T) -> C) = groupBy { process(it) }.all { it.value.size == 1 }
+
+/**
+ * This function modifies the current [MutableList] so, that the first [n] strings
+ * are being merged together, with the [spliterator] and [transform] used.
+ * @author Fruxz
+ * @since 1.0
+ */
+@ExperimentalAscendApi
+fun <T : MutableList<String>> T.joinFirst(n: Int, spliterator: String = ", ", transform: (String) -> String = { it }) {
+	repeat(n) {
+		this[1] = (transform("${removeFirstOrNull()}") + spliterator + this[1])
+	}
+}
+
+/**
+ * This function modifies the current [MutableList] so, that the last [n] strings
+ * are being merged together, with the [spliterator] and [transform] used.
+ * @author Fruxz
+ * @since 1.0
+ */
+@ExperimentalAscendApi
+fun <T : MutableList<String>> T.joinLast(n: Int, spliterator: String = ", ", transform: (String) -> String = { it }) {
+	repeat(n) {
+		this[lastIndex - 1] = (this[lastIndex - 1] + spliterator + transform("${removeLastOrNull()}"))
+	}
+}
+
+/**
+ * This function returns a modified list of the current [Iterable], with the first [n]
+ * entries merged together with the [spliterator] and [transform] used.
+ * This does not modify the originally used [Iterable].
+ * @author Fruxz
+ * @since 1.0
+ */
+@ExperimentalAscendApi
+fun <T : Iterable<String>> T.joinedFirst(n: Int, spliterator: String = ", ", transform: (String) -> String = { it }) = this.edited {
+	joinFirst(n, spliterator, transform)
+}
+
+/**
+ * This function returns a modified list of the current [Iterable], with the last [n]
+ * entries merged together with the [spliterator] and [transform] used.
+ * This does not modify the originally used [Iterable].
+ * @author Fruxz
+ * @since 1.0
+ */
+@ExperimentalAscendApi
+fun <T : Iterable<String>> T.joinedLast(n: Int, spliterator: String = ", ", transform: (String) -> String = { it }) = this.edited {
+	joinLast(n, spliterator, transform)
+}
