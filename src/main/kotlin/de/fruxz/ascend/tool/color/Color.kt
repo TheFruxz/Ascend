@@ -17,6 +17,7 @@ import java.awt.Color as AwtColor
  * @since 1.0
  */
 @Serializable
+@Deprecated("Java's AWT Color will be used in the future and it will receive the KotlinX Serialization compatibility.")
 open class Color private constructor(
     override val red: Int,
     override val green: Int,
