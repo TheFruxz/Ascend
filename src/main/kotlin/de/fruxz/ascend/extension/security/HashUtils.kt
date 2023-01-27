@@ -6,6 +6,7 @@ import java.security.MessageDigest
  * Hashing Utils
  * @author Sam Clarke <www.samclarke.com>
  * @license MIT
+ * @since 1.0
  */
 object HashUtils {
 
@@ -43,4 +44,24 @@ object HashUtils {
 
 		return result.toString()
 	}
+
+}
+
+/**
+ * This enum class defines the supported hash types.
+ * @author Fruxz
+ * @since 1.0
+ */
+enum class HashType {
+
+	MD5, SHA1, SHA256, SHA512;
+
+	val hash: (String) -> String
+		get() = when (this) {
+			MD5 -> HashUtils::md5
+			SHA1 -> HashUtils::sha1
+			SHA256 -> HashUtils::sha256
+			SHA512 -> HashUtils::sha512
+		}
+
 }
