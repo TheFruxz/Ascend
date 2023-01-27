@@ -233,18 +233,7 @@ fun String.splitZones(
  */
 @ExperimentalAscendApi
 fun String.splitArguments() = split("\"")
-	.let {
-
-		if (it.size % 2 == 0 && it.isNotEmpty()) {
-			val result = it.toMutableList()
-
-			result[it.lastIndex-1] = (result[it.lastIndex-1] + result.last())
-			result.removeLast()
-
-			return@let result
-		} else return@let it
-
-	}
+	.let { it.takeIf { it.size % 2 != 0 } ?: it.joinedLast(1, "\"") }
 	.flatMapIndexed { index: Int, value: String ->
 		if (index % 2 == 0) value.split(" ") else listOf(value)
 	}
