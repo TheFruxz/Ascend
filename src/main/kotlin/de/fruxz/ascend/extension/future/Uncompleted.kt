@@ -1,37 +1,26 @@
 package de.fruxz.ascend.extension.future
 
-import de.fruxz.ascend.extension.isNotNull
+import de.fruxz.ascend.extension.tryOrNull
 import java.util.*
 
 /**
  * Returns the value of the [Optional] or null if the optional
- * throws a [NoSuchElementException]
+ * throws an exception.
  * @return the value of the [Optional] or null
  * @author Fruxz
  * @since 1.0
  */
-fun <T> Optional<T>.getOrNull() = try {
-    get()
-} catch (e: NoSuchElementException) {
-    null
-}
+fun <T> Optional<T>.getOrNull() = tryOrNull { get() }
 
 /**
  * Returns the value of the [Optional] or null if the [Optional]
- * is null or if the [Optional] throws a [NoSuchElementException].
+ * is null or if the [Optional] throws an exception.
  * @return the value of the [Optional] or null
  * @author Fruxz
  * @since 1.0
  */
 @JvmName("nullableGetOrNullT")
-fun <T> Optional<T>?.getOrNull() = try {
-    if (isNotNull) {
-        this!!.get()
-    } else
-        null
-} catch (e: NoSuchElementException) {
-    null
-}
+fun <T> Optional<T>?.getOrNull() = tryOrNull { this?.get() }
 
 /**
  * Returns the value of the [Optional] or the [default] parameter
