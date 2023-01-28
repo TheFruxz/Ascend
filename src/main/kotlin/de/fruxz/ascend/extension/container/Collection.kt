@@ -57,7 +57,7 @@ fun <T, C : Collection<T>> C.toArrayList(): ArrayList<T> = ArrayList(this)
  * @since 1.0-BETA-5 (preview)
  * @param T the inner containing data type of both, input [Array] and output [ArrayList]
  */
-fun <T> Array<out T>.toArrayList(): ArrayList<out T> = ArrayList(this.toList())
+fun <T> Array<out T>.toArrayList(): ArrayList<out T> = toList().toArrayList()
 
 fun <T, C : Collection<T>> C.stackRandom(times: Int, random: Random = Random): String = buildString {
 	repeat(times) { append(this@stackRandom.random(random)) }
@@ -92,7 +92,7 @@ fun <T, C : Iterable<T>> C.stackUniqueRandom(times: Int, random: Random = Random
  * @since 1.0
  */
 fun <T> Array<out T>.stackUniqueRandom(times: Int, random: Random = Random): String =
-	toList().shuffled(random).take(times).joinToString(separator = "")
+	toList().stackUniqueRandom(times, random)
 
 /**
  * This function creates a list of [T] objects, created
