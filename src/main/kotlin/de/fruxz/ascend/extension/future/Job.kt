@@ -20,13 +20,19 @@ suspend fun Job.await() = this.join()
  * @author Fruxz
  * @since 1.0
  */
-fun <I, O> Deferred<I>.mapOnCompletion(process: (I) -> O) = CompletableDeferred<O>().also {
+fun <I, O> Deferred<I>.mapOnCompletion(process: (I) -> O) = deferred { deferred ->
 
 	@OptIn(ExperimentalCoroutinesApi::class)
 	invokeOnCompletion { exception ->
 		when (exception) {
-			null -> it.complete(process(this.getCompleted()))
-			else -> it.completeExceptionally(exception)
+			null -> deferred.complete(process(this.getCompleted()))
+			else -> deferred.completeExceptionally(exception)
 		}
 	}
 }
+
+/**
+ * This function creates a new [CompletableDeferred] of the type [T], optionally it is the child of [job].
+ * Then it applies the [builder] function on it, so that you can easily edit it.
+ */
+fun <T> deferred(job: Job? = null, builder: (CompletableDeferred<T>) -> Unit = { }) = CompletableDeferred<T>(job).apply(builder)
