@@ -26,14 +26,14 @@ fun getLogger(name: String, resourceBundleName: String): JavaUtilLogger = JavaUt
 
 /**
  * Creates a logger from the name of given class.
- * @param kclass the class
+ * @param clazz the class
  * @return the logger
  * @see JavaUtilLogger.getLogger
  * @author Fruxz
  * @since 1.0
  */
-fun getLogger(kclass: KClass<*>) =
-	getLogger(kclass.simpleName ?: "generic")
+fun getLogger(clazz: KClass<*>) =
+	getLogger(clazz.simpleName ?: "generic")
 
 /**
  * Creates a logger from the [JavaUtilLogger] using the class of the given object.
