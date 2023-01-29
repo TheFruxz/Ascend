@@ -58,12 +58,13 @@ inline fun <F, S> Map<F, S>.first(predicate: (Entry<F, S>) -> Boolean): Entry<F,
  * @since 1.0
  */
 inline fun <K, V> Map<K, V>.lastOrNull(predicate: (Entry<K, V>) -> Boolean): Entry<K, V>? {
+	var last: Entry<K, V>? = null
 
 	forEach { mapEntry ->
-		if (predicate(mapEntry)) return mapEntry
+		if (predicate(mapEntry)) last = mapEntry
 	}
 
-	return null
+	return last
 }
 
 /**
