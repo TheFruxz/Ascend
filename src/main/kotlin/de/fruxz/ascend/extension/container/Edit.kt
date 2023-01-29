@@ -7,7 +7,7 @@ package de.fruxz.ascend.extension.container
  * @author Fruxz
  * @since 1.0
  */
-inline fun <I, O> Map<I, O>.edited(builder: MutableMap<I, O>.() -> Unit) = toMutableMap().apply(builder).toMap()
+inline fun <I, O> Map<I, O>.modified(builder: MutableMap<I, O>.() -> Unit) = toMutableMap().apply(builder).toMap()
 
 /**
  * This function takes the input [Iterable], converts it into a [MutableList] using
@@ -16,7 +16,7 @@ inline fun <I, O> Map<I, O>.edited(builder: MutableMap<I, O>.() -> Unit) = toMut
  * @author Fruxz
  * @since 1.0
  */
-inline fun <O> Iterable<O>.edited(builder: MutableList<O>.() -> Unit) = toMutableList().apply(builder).toList()
+inline fun <O> Iterable<O>.modified(builder: MutableList<O>.() -> Unit) = toMutableList().apply(builder).toList()
 
 /**
  * This function takes the input [Array], converts it into a [MutableList] using
@@ -25,4 +25,4 @@ inline fun <O> Iterable<O>.edited(builder: MutableList<O>.() -> Unit) = toMutabl
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified O> Array<O>.edited(builder: MutableList<O>.() -> Unit) = toMutableList().apply(builder).toTypedArray()
+inline fun <reified O> Array<O>.modified(builder: MutableList<O>.() -> Unit) = toMutableList().apply(builder).toTypedArray()

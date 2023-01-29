@@ -532,7 +532,7 @@ fun <T : MutableList<String>> T.joinLast(n: Int, spliterator: String = ", ", tra
  * @since 1.0
  */
 @ExperimentalAscendApi
-fun <T : Iterable<String>> T.joinedFirst(n: Int, spliterator: String = ", ", transform: (String) -> String = { it }) = this.edited {
+fun <T : Iterable<String>> T.joinedFirst(n: Int, spliterator: String = ", ", transform: (String) -> String = { it }) = modified {
 	joinFirst(n, spliterator, transform)
 }
 
@@ -544,6 +544,6 @@ fun <T : Iterable<String>> T.joinedFirst(n: Int, spliterator: String = ", ", tra
  * @since 1.0
  */
 @ExperimentalAscendApi
-fun <T : Iterable<String>> T.joinedLast(n: Int, spliterator: String = ", ", transform: (String) -> String = { it }) = this.edited {
+fun <T : Iterable<String>> T.joinedLast(n: Int, spliterator: String = ", ", transform: (String) -> String = { it }) = modified {
 	joinLast(n, spliterator, transform)
 }
