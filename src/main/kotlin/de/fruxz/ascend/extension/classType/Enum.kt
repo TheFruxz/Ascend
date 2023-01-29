@@ -25,7 +25,6 @@ inline fun <reified T : Enum<T>> Enum<T>.next(overflow: Boolean = true): T =
  * @since 1.0
  */
 inline fun <reified T : Enum<T>> Enum<T>.previous(overflow: Boolean = true): T =
-
 	if (overflow) {
 		enumValues<T>()[(ordinal - 1).let { if (it < 0) enumValues<T>().lastIndex else it }]
 	} else {
