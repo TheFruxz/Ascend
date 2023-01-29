@@ -126,7 +126,7 @@ fun addAscendJsonModification(process: JsonBuilder.() -> Unit) {
 	runningJsonModifications += process
 }
 
-// toJson conversionF
+// toJson conversion
 
 /**
  * This function converts [this] object to a json string via the [jsonBase]
