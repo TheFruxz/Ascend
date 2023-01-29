@@ -329,7 +329,7 @@ data class Calendar constructor(
 	 * @author Fruxz
 	 * @since 1.0
 	 */
-	override fun toString() = getFormatted()
+	override fun toString(): String = getFormatted()
 
 	/**
 	 * Returns the current [Calendar]-Time as a localized String,
@@ -344,8 +344,10 @@ data class Calendar constructor(
 	 * @author Fruxz
 	 * @since 1.0
 	 */
-	fun getFormatted(locale: Locale = Locale.getDefault(), dateStyle: FormatStyle = FULL, timeStyle: FormatStyle = MEDIUM) =
-		SimpleDateFormat.getDateTimeInstance(dateStyle.ordinal, timeStyle.ordinal, locale).format(javaDate)
+	fun getFormatted(locale: Locale = Locale.getDefault(), dateStyle: FormatStyle = FULL, timeStyle: FormatStyle = MEDIUM): String =
+		SimpleDateFormat
+			.getDateTimeInstance(dateStyle.ordinal, timeStyle.ordinal, locale)
+			.format(javaDate)
 
 	/**
 	 * This function returns, if the [JavaUtilCalendar.getTimeInMillis] of this == [other].
