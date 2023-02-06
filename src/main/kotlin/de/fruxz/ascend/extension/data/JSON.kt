@@ -4,6 +4,7 @@ import de.fruxz.ascend.extension.dump
 import de.fruxz.ascend.extension.readTextOrNull
 import de.fruxz.ascend.extension.tryOrNull
 import de.fruxz.ascend.json.AdaptiveSerializer
+import de.fruxz.ascend.json.ColorSerializer
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
@@ -16,6 +17,7 @@ import kotlinx.serialization.json.encodeToJsonElement
 import kotlinx.serialization.json.encodeToStream
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.SerializersModuleBuilder
+import java.awt.Color
 import java.io.File
 import java.io.InputStream
 import java.io.OutputStream
@@ -31,6 +33,7 @@ import kotlin.reflect.KClass
 
 internal val runningJsonModuleModifications = mutableListOf<SerializersModuleBuilder.() -> Unit>({
 	contextual(Any::class, AdaptiveSerializer())
+	contextual(Color::class, ColorSerializer())
 })
 internal var lastKnownJsonModuleModifications = listOf<SerializersModuleBuilder.() -> Unit>()
 
