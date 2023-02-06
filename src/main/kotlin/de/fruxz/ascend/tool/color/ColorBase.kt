@@ -6,6 +6,7 @@ import de.fruxz.ascend.tool.color.Color.ShiftType.RELATIVE_TO_TRANSITION
 import de.fruxz.ascend.tool.smart.identification.Identifiable
 import java.awt.Color
 
+@Deprecated("Java's AWT Color will be used in the future and it will receive the KotlinX Serialization compatibility.")
 interface ColorBase<T : ColorBase<T>> : Identifiable<T> {
 
 	val red: Int
