@@ -3,7 +3,7 @@ package de.fruxz.ascend.extension.data
 import de.fruxz.ascend.extension.dump
 import de.fruxz.ascend.extension.readTextOrNull
 import de.fruxz.ascend.extension.tryOrNull
-import de.fruxz.ascend.serialization.AdaptiveSerializer
+import de.fruxz.ascend.json.AdaptiveSerializer
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
@@ -22,7 +22,6 @@ import java.io.OutputStream
 import java.nio.charset.Charset
 import java.nio.file.OpenOption
 import java.nio.file.Path
-import kotlin.DeprecationLevel.WARNING
 import kotlin.io.path.Path
 import kotlin.io.path.createDirectories
 import kotlin.io.path.exists

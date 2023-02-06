@@ -1,4 +1,4 @@
-package de.fruxz.ascend.tool.json
+package de.fruxz.ascend.json
 
 import de.fruxz.ascend.extension.data.jsonBase
 import de.fruxz.ascend.extension.data.toJsonString
@@ -9,7 +9,6 @@ import org.jetbrains.exposed.sql.Column
 import org.jetbrains.exposed.sql.ColumnType
 import org.jetbrains.exposed.sql.Table
 import org.jetbrains.exposed.sql.vendors.currentDialect
-import java.sql.ResultSet
 import kotlin.reflect.KClass
 import kotlin.reflect.KType
 import kotlin.reflect.KTypeProjection

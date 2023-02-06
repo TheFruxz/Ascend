@@ -1,7 +1,6 @@
-package de.fruxz.ascend.serialization
+package de.fruxz.ascend.json
 
 import de.fruxz.ascend.extension.forceCast
-import de.fruxz.ascend.extension.tryOrNull
 import kotlinx.serialization.ContextualSerializer
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi

@@ -1,7 +1,7 @@
 package de.fruxz.ascend.tool.timing.calendar
 
 import de.fruxz.ascend.extension.dump
-import de.fruxz.ascend.tool.json.dynamicJson
+import de.fruxz.ascend.json.dynamicJson
 import de.fruxz.ascend.tool.smart.composition.Producible
 import de.fruxz.ascend.tool.timing.calendar.Calendar.FormatStyle.FULL
 import de.fruxz.ascend.tool.timing.calendar.Calendar.FormatStyle.MEDIUM
