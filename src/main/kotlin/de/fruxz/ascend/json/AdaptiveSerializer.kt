@@ -1,16 +1,9 @@
 package de.fruxz.ascend.json
 
-import de.fruxz.ascend.extension.data.fromJsonString
-import de.fruxz.ascend.extension.data.toJsonString
 import de.fruxz.ascend.extension.forceCast
-import kotlinx.serialization.ContextualSerializer
-import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.InternalSerializationApi
-import kotlinx.serialization.KSerializer
+import kotlinx.serialization.*
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
-import kotlinx.serialization.serializer
-import java.awt.Color
 
 /**
  * This serializer helps to serialize objects, which are
