@@ -205,6 +205,37 @@ inline fun <reified T> T.toJsonElement() = jsonBase.encodeToJsonElement(this)
  */
 inline fun <reified T> T.toJsonElementOrNull() = tryOrNull { toJsonElement() }
 
+/**
+ * This function parses this string into a [JsonElement] using the [jsonBase]
+ * @author Fruxz
+ * @since 1.0
+ */
+fun String.parseToJsonElement() = jsonBase.parseToJsonElement(this)
+
+/**
+ * This function parses this string into a [JsonElement] using the [jsonBase]
+ * or null if it fails
+ * @author Fruxz
+ * @since 1.0
+ */
+fun String.parseToJsonElementOrNull() = tryOrNull { parseToJsonElement() }
+
+/**
+ * This function parses this string into a [JsonObject] using the
+ * [parseToJsonElement] function.
+ * @author Fruxz
+ * @since 1.0
+ */
+fun String.parseToJsonObject() = parseToJsonElement().jsonObject
+
+/**
+ * This function parses this string into a [JsonObject] using the
+ * [parseToJsonElementOrNull] function, or null if it fails.
+ * @author Fruxz
+ * @since 1.0
+ */
+fun String.parseToJsonObjectOrNull() = tryOrNull { parseToJsonObject() }
+
 // fromJson conversion
 
 /**
@@ -454,6 +485,42 @@ inline fun <reified T> Path.readJson(charset: Charset = Charsets.UTF_8) = fromJs
  * @since 1.0
  */
 inline fun <reified T> Path.readJsonOrNull(charset: Charset = Charsets.UTF_8) = fromJsonFileOrNull<T>(charset)
+
+/**
+ * This function reads the file content and parses it to a [JsonElement]
+ * using the [parseToJsonElement] function.
+ * @return the parsed [JsonElement]
+ * @author Fruxz
+ * @since 1.0
+ */
+fun Path.readJsonElement(charset: Charset = Charsets.UTF_8) = readText(charset).parseToJsonElement()
+
+/**
+ * This function reads the file content and parses it to a [JsonElement]
+ * using the [parseToJsonElementOrNull] function.
+ * @return the parsed [JsonElement] or null if failed
+ * @author Fruxz
+ * @since 1.0
+ */
+fun Path.readJsonElementOrNull(charset: Charset = Charsets.UTF_8) = readTextOrNull(charset)?.parseToJsonElementOrNull()
+
+/**
+ * This function reads, parses and converts the file content to an [JsonObject]
+ * using the [parseToJsonObject] function.
+ * @return the parsed [JsonObject]
+ * @author Fruxz
+ * @since 1.0
+ */
+fun Path.readJsonObject(charset: Charset = Charsets.UTF_8) = readText(charset).parseToJsonObject()
+
+/**
+ * This function reads, parses and converts the file content to an [JsonObject]
+ * using the [parseToJsonObjectOrNull] function.
+ * @return the parsed [JsonObject] or null if failed
+ * @author Fruxz
+ * @since 1.0
+ */
+fun Path.readJsonObjectOrNull(charset: Charset = Charsets.UTF_8) = readTextOrNull(charset)?.parseToJsonObjectOrNull()
 
 /**
  * This function returns the content of [this] File using the [fromJsonFile] function.
