@@ -8,13 +8,7 @@ import de.fruxz.ascend.json.ColorSerializer
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonBuilder
-import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.json.decodeFromJsonElement
-import kotlinx.serialization.json.decodeFromStream
-import kotlinx.serialization.json.encodeToJsonElement
-import kotlinx.serialization.json.encodeToStream
+import kotlinx.serialization.json.*
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.SerializersModuleBuilder
 import java.awt.Color
@@ -24,11 +18,7 @@ import java.io.OutputStream
 import java.nio.charset.Charset
 import java.nio.file.OpenOption
 import java.nio.file.Path
-import kotlin.io.path.Path
-import kotlin.io.path.createDirectories
-import kotlin.io.path.exists
-import kotlin.io.path.readText
-import kotlin.io.path.writeText
+import kotlin.io.path.*
 import kotlin.reflect.KClass
 
 internal val runningJsonModuleModifications = mutableListOf<SerializersModuleBuilder.() -> Unit>({
@@ -126,6 +116,29 @@ fun <T : Any> addJsonContextualConfiguration(clazz: KClass<T>, serializer: KSeri
  */
 fun addAscendJsonModification(process: JsonBuilder.() -> Unit) {
 	runningJsonModifications += process
+}
+
+// builder
+
+/**
+ * This function puts every item from the [jsonObject] int the current [JsonObjectBuilder].
+ * @author Fruxz
+ * @since 1.0
+ */
+fun JsonObjectBuilder.putAll(jsonObject: JsonObject) = jsonObject.entries.forEach {
+	this.put(it.key, it.value)
+}
+
+/**
+ * This function builds a new [JsonObject] using the [buildJsonObject] function, and
+ * [JsonObjectBuilder.putAll] the [base] (if not-null) as the first action, to be used
+ * as the base.
+ * @author Fruxz
+ * @since 1.0
+ */
+fun buildJsonObject(base: JsonObject?, builderAction: JsonObjectBuilder.() -> Unit): JsonObject = buildJsonObject {
+	base?.let { putAll(it) }
+	apply(builderAction)
 }
 
 // toJson conversion
