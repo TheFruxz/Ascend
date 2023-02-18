@@ -17,6 +17,7 @@ import kotlin.reflect.KProperty
 data class JsonProperty<T : Any>(
 	val file: Path,
 	val key: String,
+	val json: Json = jsonBase,
 	val default: () -> T,
 ) {
 
@@ -39,7 +40,7 @@ data class JsonProperty<T : Any>(
 
 			}
 			is JsonArray -> this.toList().takeIfCastableTo()
-			is JsonObject -> jsonBase.decodeFromJsonElement(cachedDefault::class.serializer(), this).takeIfCastableTo()
+			is JsonObject -> json.decodeFromJsonElement(cachedDefault::class.serializer(), this).takeIfCastableTo()
 		}
 	}
 
@@ -48,13 +49,13 @@ data class JsonProperty<T : Any>(
 		(this as? Number)?.jsonPrimitive() ?:
 		(this as? Double)?.jsonPrimitive() ?:
 		(this as? String)?.jsonPrimitive() ?:
-		jsonBase.encodeToJsonElement(this::class.serializer().forceCast<KSerializer<T>>(), this)
+		json.encodeToJsonElement(this::class.serializer().forceCast<KSerializer<T>>(), this)
 
 	var content: T
 		get() {
 			return when (val cachedValue = cache[file]?.get(key)) {
 				null -> {
-					val fileContent = file.readJsonObjectOrNull()
+					val fileContent = file.readJsonObjectOrNull(json = json)
 					val propertyValue = fileContent?.get(key)
 
 					when (val transformedValue = propertyValue?.toRequested<T>()) {
@@ -72,7 +73,7 @@ data class JsonProperty<T : Any>(
 			}
 		}
 		set(value) {
-			val currentObject = file.readJsonObjectOrNull() ?: JsonObject(emptyMap())
+			val currentObject = file.readJsonObjectOrNull(json = json) ?: JsonObject(emptyMap())
 			val newObject = buildJsonObject(currentObject) {
 				put(key, value.fromProvided())
 			}
@@ -110,5 +111,6 @@ data class JsonProperty<T : Any>(
 fun <T : Any> property(
 	file: Path,
 	key: String,
+	json: Json = jsonBase,
 	defaultValue: () -> T,
-): JsonProperty<T> = JsonProperty(file.absolute(), key, defaultValue)
+): JsonProperty<T> = JsonProperty(file.absolute(), key, json, defaultValue)

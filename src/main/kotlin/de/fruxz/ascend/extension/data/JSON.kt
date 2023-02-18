@@ -1,11 +1,13 @@
 package de.fruxz.ascend.extension.data
 
 import de.fruxz.ascend.extension.dump
+import de.fruxz.ascend.extension.forceCast
 import de.fruxz.ascend.extension.readTextOrNull
 import de.fruxz.ascend.extension.tryOrNull
 import de.fruxz.ascend.json.AdaptiveSerializer
 import de.fruxz.ascend.json.ColorSerializer
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.*
@@ -152,7 +154,7 @@ fun buildJsonObject(base: JsonObject?, builderAction: JsonObjectBuilder.() -> Un
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> T.toJsonString() = jsonBase.encodeToString(this)
+inline fun <reified T> T.toJsonString(json: Json = jsonBase) = json.encodeToString(this)
 
 /**
  * This function tries to return the result of executing the [toJsonString] function,
@@ -162,7 +164,7 @@ inline fun <reified T> T.toJsonString() = jsonBase.encodeToString(this)
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> T.toJsonStringOrNull() = tryOrNull { toJsonString() }
+inline fun <reified T> T.toJsonStringOrNull(json: Json = jsonBase) = tryOrNull { toJsonString(json = json) }
 
 /**
  * This function converts [this] object as a json stream into the [stream] via the
@@ -172,7 +174,7 @@ inline fun <reified T> T.toJsonStringOrNull() = tryOrNull { toJsonString() }
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> T.toJsonStream(stream: OutputStream) = jsonBase.encodeToStream(this, stream)
+inline fun <reified T> T.toJsonStream(stream: OutputStream, json: Json = jsonBase) = json.encodeToStream(this, stream)
 
 /**
  * This function tries to return the result of executing the [toJsonStream] function,
@@ -182,7 +184,7 @@ inline fun <reified T> T.toJsonStream(stream: OutputStream) = jsonBase.encodeToS
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> T.toJsonStreamOrNull(stream: OutputStream) = tryOrNull { toJsonStream(stream) }
+inline fun <reified T> T.toJsonStreamOrNull(stream: OutputStream, json: Json = jsonBase) = tryOrNull { toJsonStream(stream, json = json) }
 
 /**
  * This function converts [this] object to a [JsonElement] via the [jsonBase]
@@ -193,7 +195,7 @@ inline fun <reified T> T.toJsonStreamOrNull(stream: OutputStream) = tryOrNull { 
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> T.toJsonElement() = jsonBase.encodeToJsonElement(this)
+inline fun <reified T> T.toJsonElement(json: Json = jsonBase) = json.encodeToJsonElement(this)
 
 /**
  * This function tries to return the result of executing the [toJsonElement] function,
@@ -203,14 +205,14 @@ inline fun <reified T> T.toJsonElement() = jsonBase.encodeToJsonElement(this)
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> T.toJsonElementOrNull() = tryOrNull { toJsonElement() }
+inline fun <reified T> T.toJsonElementOrNull(json: Json = jsonBase) = tryOrNull { toJsonElement(json = json) }
 
 /**
  * This function parses this string into a [JsonElement] using the [jsonBase]
  * @author Fruxz
  * @since 1.0
  */
-fun String.parseToJsonElement() = jsonBase.parseToJsonElement(this)
+fun String.parseToJsonElement(json: Json = jsonBase) = json.parseToJsonElement(this)
 
 /**
  * This function parses this string into a [JsonElement] using the [jsonBase]
@@ -218,7 +220,7 @@ fun String.parseToJsonElement() = jsonBase.parseToJsonElement(this)
  * @author Fruxz
  * @since 1.0
  */
-fun String.parseToJsonElementOrNull() = tryOrNull { parseToJsonElement() }
+fun String.parseToJsonElementOrNull(json: Json = jsonBase) = tryOrNull { parseToJsonElement(json = json) }
 
 /**
  * This function parses this string into a [JsonObject] using the
@@ -226,7 +228,7 @@ fun String.parseToJsonElementOrNull() = tryOrNull { parseToJsonElement() }
  * @author Fruxz
  * @since 1.0
  */
-fun String.parseToJsonObject() = parseToJsonElement().jsonObject
+fun String.parseToJsonObject(json: Json = jsonBase) = parseToJsonElement(json = json).jsonObject
 
 /**
  * This function parses this string into a [JsonObject] using the
@@ -234,7 +236,7 @@ fun String.parseToJsonObject() = parseToJsonElement().jsonObject
  * @author Fruxz
  * @since 1.0
  */
-fun String.parseToJsonObjectOrNull() = tryOrNull { parseToJsonObject() }
+fun String.parseToJsonObjectOrNull(json: Json = jsonBase) = tryOrNull { parseToJsonObject(json = json) }
 
 // fromJson conversion
 
@@ -247,7 +249,7 @@ fun String.parseToJsonObjectOrNull() = tryOrNull { parseToJsonObject() }
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> String.fromJsonString() = jsonBase.decodeFromString<T>(this)
+inline fun <reified T> String.fromJsonString(json: Json = jsonBase) = json.decodeFromString<T>(this)
 
 /**
  * This function tries to return the result of executing the [fromJsonString] function,
@@ -257,7 +259,7 @@ inline fun <reified T> String.fromJsonString() = jsonBase.decodeFromString<T>(th
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> String.fromJsonStringOrNull() = tryOrNull { fromJsonString<T>() }
+inline fun <reified T> String.fromJsonStringOrNull(json: Json = jsonBase) = tryOrNull { fromJsonString<T>(json = json) }
 
 /**
  * This function converts [this] JSON stream to an object type [T] via the [jsonBase]
@@ -268,7 +270,7 @@ inline fun <reified T> String.fromJsonStringOrNull() = tryOrNull { fromJsonStrin
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> InputStream.fromJsonStream() = jsonBase.decodeFromStream<T>(this)
+inline fun <reified T> InputStream.fromJsonStream(json: Json = jsonBase) = json.decodeFromStream<T>(this)
 
 /**
  * This function tries to return the result of executing the [fromJsonStream] function,
@@ -278,7 +280,7 @@ inline fun <reified T> InputStream.fromJsonStream() = jsonBase.decodeFromStream<
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> InputStream.fromJsonStreamOrNull() = tryOrNull { fromJsonStream<T>() }
+inline fun <reified T> InputStream.fromJsonStreamOrNull(json: Json = jsonBase) = tryOrNull { fromJsonStream<T>(json = json) }
 
 /**
  * This function converts [this] [JsonElement] to an object type [T] via the [jsonBase]
@@ -289,7 +291,7 @@ inline fun <reified T> InputStream.fromJsonStreamOrNull() = tryOrNull { fromJson
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> JsonElement.fromJsonElement() = jsonBase.decodeFromJsonElement<T>(this)
+inline fun <reified T> JsonElement.fromJsonElement(json: Json = jsonBase) = json.decodeFromJsonElement<T>(this)
 
 /**
  * This function tries to return the result of executing the [fromJsonElement] function,
@@ -299,7 +301,7 @@ inline fun <reified T> JsonElement.fromJsonElement() = jsonBase.decodeFromJsonEl
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> JsonElement.fromJsonElementOrNull() = tryOrNull { fromJsonElement<T>() }
+inline fun <reified T> JsonElement.fromJsonElementOrNull(json: Json = jsonBase) = tryOrNull { fromJsonElement<T>(json = json) }
 
 /**
  * This function reads the content of [this] Path using the [readText] function and
@@ -312,7 +314,7 @@ inline fun <reified T> JsonElement.fromJsonElementOrNull() = tryOrNull { fromJso
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> Path.fromJsonFile(charset: Charset = Charsets.UTF_8) = readText(charset).fromJsonString<T>()
+inline fun <reified T> Path.fromJsonFile(charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = readText(charset).fromJsonString<T>(json = json)
 
 /**
  * This function tries to return the result of executing the [fromJsonFile] function,
@@ -322,7 +324,7 @@ inline fun <reified T> Path.fromJsonFile(charset: Charset = Charsets.UTF_8) = re
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> Path.fromJsonFileOrNull(charset: Charset = Charsets.UTF_8) = tryOrNull { fromJsonFile<T>(charset) }
+inline fun <reified T> Path.fromJsonFileOrNull(charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = tryOrNull { fromJsonFile<T>(charset, json = json) }
 
 /**
  * This function reads the content of [this] File using the [readText] function and
@@ -334,7 +336,7 @@ inline fun <reified T> Path.fromJsonFileOrNull(charset: Charset = Charsets.UTF_8
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> File.fromJsonFile(charset: Charset = Charsets.UTF_8) = readText(charset).fromJsonString<T>()
+inline fun <reified T> File.fromJsonFile(charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = readText(charset).fromJsonString<T>(json = json)
 
 /**
  * This function tries to return the result of executing the [fromJsonFile] function,
@@ -344,7 +346,7 @@ inline fun <reified T> File.fromJsonFile(charset: Charset = Charsets.UTF_8) = re
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> File.fromJsonFileOrNull(charset: Charset = Charsets.UTF_8) = tryOrNull { fromJsonFile<T>(charset) }
+inline fun <reified T> File.fromJsonFileOrNull(charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = tryOrNull { fromJsonFile<T>(charset, json = json) }
 
 // write JSON
 
@@ -358,7 +360,7 @@ inline fun <reified T> File.fromJsonFileOrNull(charset: Charset = Charsets.UTF_8
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> Path.writeJson(content: T, charset: Charset = Charsets.UTF_8, vararg options: OpenOption) = apply { writeText(content.toJsonString(), charset, *options) }
+inline fun <reified T> Path.writeJson(content: T, charset: Charset = Charsets.UTF_8, json: Json = jsonBase, vararg options: OpenOption) = apply { writeText(content.toJsonString(json = json), charset, *options) }
 
 /**
  * This function writes the given [this] object to a JSON file via the [jsonBase]
@@ -370,7 +372,7 @@ inline fun <reified T> Path.writeJson(content: T, charset: Charset = Charsets.UT
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> File.writeJson(content: T, charset: Charset = Charsets.UTF_8) = apply { writeText(content.toJsonString(), charset) }
+inline fun <reified T> File.writeJson(content: T, charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = apply { writeText(content.toJsonString(json = json), charset) }
 
 /**
  * This function writes the given [content], to the file under [this] path, via the [writeJson]
@@ -383,10 +385,10 @@ inline fun <reified T> File.writeJson(content: T, charset: Charset = Charsets.UT
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> Path.writeJsonIfNotExists(content: T, createParent: Boolean = true, charset: Charset = Charsets.UTF_8, vararg options: OpenOption) = apply {
+inline fun <reified T> Path.writeJsonIfNotExists(content: T, createParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = jsonBase, vararg options: OpenOption) = apply {
 	if (!exists()) {
 		if (createParent) parent.createDirectories()
-		writeJson(content, charset, *options)
+		writeJson(content, charset, json = json, *options)
 	}
 }
 
@@ -401,10 +403,10 @@ inline fun <reified T> Path.writeJsonIfNotExists(content: T, createParent: Boole
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> File.writeJsonIfNotExists(content: T, createParent: Boolean = true, charset: Charset = Charsets.UTF_8) = apply {
+inline fun <reified T> File.writeJsonIfNotExists(content: T, createParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = apply {
 	if (!exists()) {
 		if (createParent) parentFile.mkdirs()
-		writeJson(content, charset)
+		writeJson(content, charset, json = json)
 	}
 }
 
@@ -419,10 +421,10 @@ inline fun <reified T> File.writeJsonIfNotExists(content: T, createParent: Boole
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> Path.writeJsonIfEmpty(content: T, createParent: Boolean = true, charset: Charset = Charsets.UTF_8, vararg options: OpenOption) = apply {
+inline fun <reified T> Path.writeJsonIfEmpty(content: T, createParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = jsonBase, vararg options: OpenOption) = apply {
 	if (readTextOrNull(charset)?.isBlank() != false) {
 		if (createParent) parent.createDirectories()
-		writeJson(content, charset, *options)
+		writeJson(content, charset, json = json, *options)
 	}
 }
 
@@ -437,10 +439,10 @@ inline fun <reified T> Path.writeJsonIfEmpty(content: T, createParent: Boolean =
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> File.writeJsonIfEmpty(content: T, createParent: Boolean = true, charset: Charset = Charsets.UTF_8) = apply {
+inline fun <reified T> File.writeJsonIfEmpty(content: T, createParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = apply {
 	if (readTextOrNull(charset)?.isBlank() != false) {
 		if (createParent) parentFile.mkdirs()
-		writeJson(content, charset)
+		writeJson(content, charset, json = json)
 	}
 }
 
@@ -455,17 +457,17 @@ inline fun <reified T> File.writeJsonIfEmpty(content: T, createParent: Boolean =
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> Path.writeJsonIfBlank(content: T, createParent: Boolean = true, charset: Charset = Charsets.UTF_8, vararg options: OpenOption) = apply {
+inline fun <reified T> Path.writeJsonIfBlank(content: T, createParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = jsonBase, vararg options: OpenOption) = apply {
 	if (readTextOrNull(charset)?.isBlank() != false) {
 		if (createParent) parent.createDirectories()
-		writeJson(content, charset, *options)
+		writeJson(content, charset, json = json, *options)
 	}
 }
 
-inline fun <reified T> File.writeJsonIfBlank(content: T, createParent: Boolean = true, charset: Charset = Charsets.UTF_8) = apply {
+inline fun <reified T> File.writeJsonIfBlank(content: T, createParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = apply {
 	if (readTextOrNull(charset)?.isBlank() != false) {
 		if (createParent) parentFile.mkdirs()
-		writeJson(content, charset)
+		writeJson(content, charset, json = json)
 	}
 }
 
@@ -477,14 +479,14 @@ inline fun <reified T> File.writeJsonIfBlank(content: T, createParent: Boolean =
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> Path.readJson(charset: Charset = Charsets.UTF_8) = fromJsonFile<T>(charset)
+inline fun <reified T> Path.readJson(charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = fromJsonFile<T>(charset, json = json)
 
 /**
  * This function returns the content of [this] File using the [fromJsonFileOrNull] function.
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> Path.readJsonOrNull(charset: Charset = Charsets.UTF_8) = fromJsonFileOrNull<T>(charset)
+inline fun <reified T> Path.readJsonOrNull(charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = fromJsonFileOrNull<T>(charset, json = json)
 
 /**
  * This function reads the file content and parses it to a [JsonElement]
@@ -493,7 +495,7 @@ inline fun <reified T> Path.readJsonOrNull(charset: Charset = Charsets.UTF_8) = 
  * @author Fruxz
  * @since 1.0
  */
-fun Path.readJsonElement(charset: Charset = Charsets.UTF_8) = readText(charset).parseToJsonElement()
+fun Path.readJsonElement(charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = readText(charset).parseToJsonElement(json = json)
 
 /**
  * This function reads the file content and parses it to a [JsonElement]
@@ -502,7 +504,7 @@ fun Path.readJsonElement(charset: Charset = Charsets.UTF_8) = readText(charset).
  * @author Fruxz
  * @since 1.0
  */
-fun Path.readJsonElementOrNull(charset: Charset = Charsets.UTF_8) = readTextOrNull(charset)?.parseToJsonElementOrNull()
+fun Path.readJsonElementOrNull(charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = readTextOrNull(charset)?.parseToJsonElementOrNull(json = json)
 
 /**
  * This function reads, parses and converts the file content to an [JsonObject]
@@ -511,7 +513,7 @@ fun Path.readJsonElementOrNull(charset: Charset = Charsets.UTF_8) = readTextOrNu
  * @author Fruxz
  * @since 1.0
  */
-fun Path.readJsonObject(charset: Charset = Charsets.UTF_8) = readText(charset).parseToJsonObject()
+fun Path.readJsonObject(charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = readText(charset).parseToJsonObject(json = json)
 
 /**
  * This function reads, parses and converts the file content to an [JsonObject]
@@ -520,21 +522,21 @@ fun Path.readJsonObject(charset: Charset = Charsets.UTF_8) = readText(charset).p
  * @author Fruxz
  * @since 1.0
  */
-fun Path.readJsonObjectOrNull(charset: Charset = Charsets.UTF_8) = readTextOrNull(charset)?.parseToJsonObjectOrNull()
+fun Path.readJsonObjectOrNull(charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = readTextOrNull(charset)?.parseToJsonObjectOrNull(json = json)
 
 /**
  * This function returns the content of [this] File using the [fromJsonFile] function.
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> File.readJson(charset: Charset = Charsets.UTF_8) = fromJsonFile<T>(charset)
+inline fun <reified T> File.readJson(charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = fromJsonFile<T>(charset, json = json)
 
 /**
  * This function returns the content of [this] File using the [fromJsonFileOrNull] function.
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> File.readJsonOrNull(charset: Charset = Charsets.UTF_8) = fromJsonFileOrNull<T>(charset)
+inline fun <reified T> File.readJsonOrNull(charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = fromJsonFileOrNull<T>(charset, json = json)
 
 // read default
 
@@ -554,13 +556,13 @@ inline fun <reified T> File.readJsonOrNull(charset: Charset = Charsets.UTF_8) = 
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> Path.readJsonOrDefault(default: T, writeIfBlank: Boolean = false, writeCreatesParent: Boolean = true, charset: Charset = Charsets.UTF_8, vararg options: OpenOption) = if (writeIfBlank) {
+inline fun <reified T> Path.readJsonOrDefault(default: T, writeIfBlank: Boolean = false, writeCreatesParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = jsonBase, vararg options: OpenOption) = if (writeIfBlank) {
 	readJsonOrNull<T>(charset) ?: default.also {
 		if (writeCreatesParent) parent.createDirectories()
-		writeJson(default, charset, *options)
+		writeJson(default, charset, json = json, *options)
 	}
 } else {
-	readJsonOrNull<T>(charset) ?: default
+	readJsonOrNull<T>(charset, json = json) ?: default
 }
 
 /**
@@ -579,13 +581,13 @@ inline fun <reified T> Path.readJsonOrDefault(default: T, writeIfBlank: Boolean 
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> File.readJsonOrDefault(default: T, writeIfBlank: Boolean = false, writeCreatesParent: Boolean = true, charset: Charset = Charsets.UTF_8) = if (writeIfBlank) {
+inline fun <reified T> File.readJsonOrDefault(default: T, writeIfBlank: Boolean = false, writeCreatesParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = if (writeIfBlank) {
 	readJsonOrNull<T>(charset) ?: default.also {
 		if (writeCreatesParent) parentFile.mkdirs()
-		writeJson(default, charset)
+		writeJson(default, charset, json = json)
 	}
 } else {
-	readJsonOrNull<T>(charset) ?: default
+	readJsonOrNull<T>(charset, json = json) ?: default
 }
 
 // JSON Primitives
