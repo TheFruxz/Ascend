@@ -587,3 +587,9 @@ inline fun <reified T> File.readJsonOrDefault(default: T, writeIfBlank: Boolean 
 } else {
 	readJsonOrNull<T>(charset) ?: default
 }
+
+// JSON Primitives
+
+fun Boolean.jsonPrimitive() = JsonPrimitive(this)
+fun Number.jsonPrimitive() = JsonPrimitive(this)
+fun String.jsonPrimitive() = JsonPrimitive(this)

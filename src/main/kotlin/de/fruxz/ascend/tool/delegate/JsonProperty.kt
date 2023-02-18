@@ -2,44 +2,53 @@ package de.fruxz.ascend.tool.delegate
 
 import de.fruxz.ascend.annotation.LanguageFeature
 import de.fruxz.ascend.extension.data.*
+import de.fruxz.ascend.extension.forceCast
 import de.fruxz.ascend.extension.forceCastOrNull
 import de.fruxz.ascend.extension.objects.takeIfCastableTo
+import de.fruxz.ascend.json.AdaptiveSerializer
+import kotlinx.serialization.InternalSerializationApi
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.*
-import kotlinx.serialization.json.JsonNull.content
+import kotlinx.serialization.serializer
 import java.nio.file.Path
 import kotlin.io.path.absolute
 import kotlin.reflect.KProperty
 
-data class JsonProperty<T>(
+data class JsonProperty<T : Any>(
 	val file: Path,
 	val key: String,
 	val default: () -> T,
 ) {
 
-	private fun <T> JsonPrimitive.translate(): T? {
-		val content = this.contentOrNull ?: return null
+	private val cachedDefault by lazy { default() }
 
-		val asString = content.takeIf { this.isString }?.forceCastOrNull<T>()
-		val asBoolean = content.toBooleanStrictOrNull()?.takeIfCastableTo<T>()
-		val asInt = content.toIntOrNull()?.takeIfCastableTo<T>()
-		val asLong = content.toLongOrNull()?.takeIfCastableTo<T>()
-		val asFloat = content.toFloatOrNull()?.takeIfCastableTo<T>()
-		val asDouble = content.toDoubleOrNull()?.takeIfCastableTo<T>()
-
-		return asString ?: asBoolean ?: asInt ?: asLong ?: asFloat ?: asDouble ?: error("Delegate properties only accept String, Boolean, Int, Long, Float and Double, because they are primitive types!")
-	}
-
-	private fun <T> T.translate(): JsonPrimitive {
+	@OptIn(InternalSerializationApi::class)
+	private fun <T : Any> JsonElement.toRequested(): T? {
 		return when (this) {
-			is String -> JsonPrimitive(this)
-			is Boolean -> JsonPrimitive(this)
-			is Int -> JsonPrimitive(this)
-			is Long -> JsonPrimitive(this)
-			is Float -> JsonPrimitive(this)
-			is Double -> JsonPrimitive(this)
-			else -> error("Delegate properties only accept String, Boolean, Int, Long, Float and Double, because they are primitive types!")
+			is JsonPrimitive -> {
+				val content = this.contentOrNull ?: return null
+
+				val asString = content.takeIf { this.isString }?.forceCastOrNull<T>()
+				val asBoolean = content.toBooleanStrictOrNull()?.takeIfCastableTo<T>()
+				val asInt = content.toIntOrNull()?.takeIfCastableTo<T>()
+				val asLong = content.toLongOrNull()?.takeIfCastableTo<T>()
+				val asFloat = content.toFloatOrNull()?.takeIfCastableTo<T>()
+				val asDouble = content.toDoubleOrNull()?.takeIfCastableTo<T>()
+
+				asString ?: asBoolean ?: asInt ?: asLong ?: asFloat ?: asDouble ?: throw IllegalStateException("Primitive json type has no content, which met the requirements")
+
+			}
+			is JsonArray -> this.toList().takeIfCastableTo()
+			is JsonObject -> jsonBase.decodeFromJsonElement(cachedDefault::class.serializer(), this).takeIfCastableTo()
 		}
 	}
+
+	@OptIn(InternalSerializationApi::class)
+	private fun <T : Any> T.fromProvided(): JsonElement =
+		(this as? Number)?.jsonPrimitive() ?:
+		(this as? Double)?.jsonPrimitive() ?:
+		(this as? String)?.jsonPrimitive() ?:
+		jsonBase.encodeToJsonElement(this::class.serializer().forceCast<KSerializer<T>>(), this)
 
 	var content: T
 		get() {
@@ -48,7 +57,7 @@ data class JsonProperty<T>(
 					val fileContent = file.readJsonObjectOrNull()
 					val propertyValue = fileContent?.get(key)
 
-					when (val transformedValue = propertyValue?.jsonPrimitive?.translate<T>()) {
+					when (val transformedValue = propertyValue?.toRequested<T>()) {
 						null -> default().also { this.content = it }
 						else -> {
 
@@ -59,13 +68,13 @@ data class JsonProperty<T>(
 					}
 
 				}
-				else -> cachedValue.jsonPrimitive.translate<T>()!! // TODO should accept every type in the near future!
+				else -> cachedValue.toRequested() ?: error("Problem of resolving cached content, invalid or corrupted!")
 			}
 		}
 		set(value) {
 			val currentObject = file.readJsonObjectOrNull() ?: JsonObject(emptyMap())
 			val newObject = buildJsonObject(currentObject) {
-				put(key, value.translate())
+				put(key, value.fromProvided())
 			}
 
 			file.writeJson(newObject)
