@@ -1,0 +1,12 @@
+{
+    "test": {
+        "name": "Test-Name",
+        "age": 4
+    },
+    "primitve": 97,
+    "list": [
+        "Apple",
+        "Banana",
+        "Pineapple"
+    ]
+}
