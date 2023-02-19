@@ -2,7 +2,7 @@ import org.gradle.api.JavaVersion.VERSION_17
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.8.10"
+    kotlin("jvm") version "1.8.20-Beta"
     kotlin("plugin.serialization") version "1.8.10"
     id("org.jetbrains.dokka") version "1.7.20"
     `maven-publish`
@@ -23,7 +23,7 @@ dependencies {
 
     testImplementation(kotlin("test"))
     implementation(kotlin("reflect"))
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0-RC")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
     implementation("org.jetbrains.exposed:exposed-core:0.41.1")

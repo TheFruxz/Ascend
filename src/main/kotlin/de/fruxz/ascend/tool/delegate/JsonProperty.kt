@@ -5,7 +5,6 @@ import de.fruxz.ascend.extension.data.*
 import de.fruxz.ascend.extension.forceCast
 import de.fruxz.ascend.extension.forceCastOrNull
 import de.fruxz.ascend.extension.objects.takeIfCastableTo
-import de.fruxz.ascend.json.AdaptiveSerializer
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.*
@@ -13,17 +12,17 @@ import kotlinx.serialization.serializer
 import java.nio.file.Path
 import kotlin.io.path.absolute
 import kotlin.reflect.KProperty
+import kotlin.reflect.KType
+import kotlin.reflect.typeOf
 
 data class JsonProperty<T : Any>(
 	val file: Path,
 	val key: String,
 	val json: Json = jsonBase,
+	val type: KType,
 	val default: () -> T,
 ) {
 
-	private val cachedDefault by lazy { default() }
-
-	@OptIn(InternalSerializationApi::class)
 	private fun <T : Any> JsonElement.toRequested(): T? {
 		return when (this) {
 			is JsonPrimitive -> {
@@ -40,16 +39,19 @@ data class JsonProperty<T : Any>(
 
 			}
 			is JsonArray -> this.toList().takeIfCastableTo()
-			is JsonObject -> json.decodeFromJsonElement(cachedDefault::class.serializer(), this).takeIfCastableTo()
+			is JsonObject -> json.decodeFromJsonElement(json.serializersModule.serializer(type).forceCast<KSerializer<T>>(), this).takeIfCastableTo()
 		}
 	}
 
-	@OptIn(InternalSerializationApi::class)
 	private fun <T : Any> T.fromProvided(): JsonElement =
 		(this as? Number)?.jsonPrimitive() ?:
 		(this as? Double)?.jsonPrimitive() ?:
 		(this as? String)?.jsonPrimitive() ?:
-		json.encodeToJsonElement(this::class.serializer().forceCast<KSerializer<T>>(), this)
+		json
+			.encodeToJsonElement(
+				serializer = json.serializersModule.serializer(type),
+				value = this,
+			) // TODO serializer was casted to .forceCast<KSerializer<T>>() but was removed with the type introduction, still required? I dont think so
 
 	var content: T
 		get() {
@@ -108,9 +110,9 @@ data class JsonProperty<T : Any>(
  * @since 1.0
  */
 @LanguageFeature
-fun <T : Any> property(
+inline fun <reified T : Any> property(
 	file: Path,
 	key: String,
 	json: Json = jsonBase,
-	defaultValue: () -> T,
-): JsonProperty<T> = JsonProperty(file.absolute(), key, json, defaultValue)
+	noinline defaultValue: () -> T,
+): JsonProperty<T> = JsonProperty(file.absolute(), key, json, typeOf<T>(), defaultValue)

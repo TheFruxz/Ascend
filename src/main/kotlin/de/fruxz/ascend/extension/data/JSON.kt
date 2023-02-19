@@ -22,6 +22,7 @@ import java.nio.file.OpenOption
 import java.nio.file.Path
 import kotlin.io.path.*
 import kotlin.reflect.KClass
+import kotlin.reflect.jvm.internal.impl.serialization.deserialization.builtins.BuiltInSerializerProtocol
 
 internal val runningJsonModuleModifications = mutableListOf<SerializersModuleBuilder.() -> Unit>({
 	contextual(Any::class, AdaptiveSerializer())
@@ -61,7 +62,10 @@ var jsonBase: Json
 				explicitNulls = true
 				allowStructuredMapKeys = true
 				allowSpecialFloatingPointValues = true
+
 				serializersModule = SerializersModule {
+					include(serializersModule)
+
 					contextuals.forEach { contextual ->
 						include(contextual)
 					}
@@ -69,9 +73,11 @@ var jsonBase: Json
 						this.apply(it)
 					}
 				}
+
 				runningJsonModifications.forEach {
 					this.apply(it)
 				}
+
 			}.let { constructed ->
 				backingJsonBase = constructed
 				return constructed
