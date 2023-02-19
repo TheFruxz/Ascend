@@ -1,5 +1,6 @@
 package de.fruxz.ascend.tool.delegate
 
+import de.fruxz.ascend.annotation.ExperimentalAscendApi
 import de.fruxz.ascend.annotation.LanguageFeature
 import de.fruxz.ascend.extension.data.*
 import de.fruxz.ascend.extension.forceCast
@@ -106,9 +107,11 @@ data class JsonProperty<T : Any>(
  * to initialize the file with all its possible properties.
  * This has the benefit, that for example, properties can be directly edited with its full potential, without
  * having to call every code snipped to fully initialize the file.
+ * **Currently there is an issue with specific types (e.g. lists is having problems), because of that [ExperimentalAscendApi]**
  * @author Fruxz
  * @since 1.0
  */
+@ExperimentalAscendApi
 @LanguageFeature
 inline fun <reified T : Any> property(
 	file: Path,
