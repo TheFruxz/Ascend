@@ -6,7 +6,6 @@ import de.fruxz.ascend.extension.data.*
 import de.fruxz.ascend.extension.forceCast
 import de.fruxz.ascend.extension.forceCastOrNull
 import de.fruxz.ascend.extension.objects.takeIfCastableTo
-import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.*
 import kotlinx.serialization.serializer
@@ -19,12 +18,12 @@ import kotlin.reflect.typeOf
 data class JsonProperty<T : Any>(
 	val file: Path,
 	val key: String,
-	val json: Json = jsonBase,
 	val type: KType,
+	val json: Json = jsonBase,
 	val default: () -> T,
 ) {
 
-	private fun <T : Any> JsonElement.toRequested(): T? {
+	private fun JsonElement.toRequested(): T? {
 		return when (this) {
 			is JsonPrimitive -> {
 				val content = this.contentOrNull ?: return null
@@ -44,14 +43,11 @@ data class JsonProperty<T : Any>(
 		}
 	}
 
-	private fun <T : Any> T.fromProvided(): JsonElement =
-		(this as? Number)?.jsonPrimitive() ?:
-		(this as? Double)?.jsonPrimitive() ?:
-		(this as? String)?.jsonPrimitive() ?:
-		json
-			.encodeToJsonElement(
-				serializer = json.serializersModule.serializer(type),
-				value = this,
+	private fun fromProvided(data: T): JsonElement =
+		json.also { println("$type") }
+			.encodeToJsonElement<T>(
+				serializer = json.serializersModule.serializer(type).also { println("test ${it.descriptor.serialName}") },
+				value = data.also { println("test2 $it ${it::class.qualifiedName}") },
 			) // TODO serializer was casted to .forceCast<KSerializer<T>>() but was removed with the type introduction, still required? I dont think so
 
 	var content: T
@@ -61,7 +57,7 @@ data class JsonProperty<T : Any>(
 					val fileContent = file.readJsonObjectOrNull(json = json)
 					val propertyValue = fileContent?.get(key)
 
-					when (val transformedValue = propertyValue?.toRequested<T>()) {
+					when (val transformedValue = propertyValue?.toRequested()) {
 						null -> default().also { this.content = it }
 						else -> {
 
@@ -78,7 +74,7 @@ data class JsonProperty<T : Any>(
 		set(value) {
 			val currentObject = file.readJsonObjectOrNull(json = json) ?: JsonObject(emptyMap())
 			val newObject = buildJsonObject(currentObject) {
-				put(key, value.fromProvided())
+				put(key, element = fromProvided(value))
 			}
 
 			file.writeJson(newObject)
@@ -118,4 +114,10 @@ inline fun <reified T : Any> property(
 	key: String,
 	json: Json = jsonBase,
 	noinline defaultValue: () -> T,
-): JsonProperty<T> = JsonProperty(file.absolute(), key, json, typeOf<T>(), defaultValue)
+): JsonProperty<T> = println("T:: is -> ${T::class.qualifiedName}").let { JsonProperty<T>(
+	file = file.absolute(),
+	key = key,
+	type = typeOf<T>(),
+	json = json,
+	default = defaultValue
+) }
