@@ -1,7 +1,11 @@
 package de.fruxz.ascend.extension
 
+import de.fruxz.ascend.extension.container.emptyString
 import de.fruxz.ascend.extension.data.randomInt
+import java.lang.invoke.MethodHandles.catchException
 import kotlin.random.Random
+
+private typealias ExceptionCatch = (Throwable, String) -> Unit
 
 /**
  * Gets the exception [exception] and prints a beautiful stack trace & message.
@@ -9,10 +13,16 @@ import kotlin.random.Random
  * @author Fruxz
  * @since 1.0
  */
-fun catchException(exception: Exception, random: Random = Random) {
+fun catchException(
+	exception: Exception,
+	catch: ExceptionCatch = { _, _ -> },
+	random: Random = Random,
+) {
 
 	val tag = "#${randomInt(10_000..99_999, random)}"
 	val exceptionShort = exception.stackTrace.firstOrNull()?.className ?: "Unknown exception!"
+
+	catch.invoke(exception, tag)
 
 	println(" > $tag - $exceptionShort")
 	exception.printStackTrace()
@@ -26,17 +36,23 @@ fun catchException(exception: Exception, random: Random = Random) {
  * @param T is the return type of the process
  * @param silent if set to false, the exception will be printed
  * @param process the process to execute, returning the normal value as [T]
+ * @param catch executes the code if an exception is thrown, even if it is successfully caught and avoided
  * @return the value returned by the [process] as a [Result]
  * @author Fruxz
  * @since 1.0
  */
-inline fun <A, T> A.tryWithResult(silent: Boolean = true, process: A.() -> T): Result<T> {
-	return try {
-		Result.success(process())
-	} catch (e: Exception) {
-		if (!silent) catchException(e)
-		Result.failure(e)
+inline fun <A, T> A.tryWithResult(
+	silent: Boolean = true,
+	catch: ExceptionCatch = { _, _ -> },
+	process: A.() -> T
+): Result<T> = try {
+	Result.success(process())
+} catch (e: Exception) {
+	when {
+		!silent -> catchException(e)
+		else -> catch.invoke(e, emptyString())
 	}
+	Result.failure(e)
 }
 
 /**
@@ -45,12 +61,17 @@ inline fun <A, T> A.tryWithResult(silent: Boolean = true, process: A.() -> T): R
  * @param T is the return type of the process
  * @param silent if returns false, the exception will be printed
  * @param process the process to execute, returning the normal value as [T]
+ * @param catch executes the code if an exception is thrown, even if it is successfully caught and avoided
  * @return the value returned by the [process] as a [Result]
  * @author Fruxz
  * @since 1.0
  */
-inline fun <A, T> A.tryWithResult(silent: () -> Boolean, process: A.() -> T): Result<T> =
-	tryWithResult(silent = silent(), process = process)
+inline fun <A, T> A.tryWithResult(
+	silent: () -> Boolean,
+	catch: ExceptionCatch = { _, _ -> },
+	process: A.() -> T
+): Result<T> = tryWithResult(silent = silent(), catch = catch, process = process)
+
 
 /**
  * Try return the value returning of the [process] or returns the [other].
@@ -61,13 +82,17 @@ inline fun <A, T> A.tryWithResult(silent: () -> Boolean, process: A.() -> T): Re
  * @param silent if set to false, the exception will be printed
  * @param other the value to return if the process throws an [Exception]
  * @param process the process to execute, returning the normal value as [R]
+ * @param catch executes the code if an exception is thrown, even if it is successfully caught and avoided
  * @return the value returned by the [process] or the [other]
  * @author Fruxz
  * @since 1.0
  */
-inline fun <A, R, T : R> A.tryOrElse(silent: Boolean = true, other: T, process: A.() -> R): R {
-	return tryWithResult(silent = silent, process = process).getOrElse { other }
-}
+inline fun <A, R, T : R> A.tryOrElse(
+	silent: Boolean = true,
+	other: T,
+	catch: ExceptionCatch = { _, _ -> },
+	process: A.() -> R
+): R = tryWithResult(silent = silent, catch = catch, process = process).getOrElse { other }
 
 /**
  * Try return the value returning of the [process] or returns the [other].
@@ -78,12 +103,18 @@ inline fun <A, R, T : R> A.tryOrElse(silent: Boolean = true, other: T, process: 
  * @param silent if returns false, the exception will be printed
  * @param other the value to return if the process throws an [Exception]
  * @param process the process to execute, returning the normal value as [R]
+ * @param catch executes the code if an exception is thrown, even if it is successfully caught and avoided
  * @return the value returned by the [process] or the [other]
  * @author Fruxz
  * @since 1.0
  */
-inline fun <A, R, T : R> A.tryOrElse(silent: () -> Boolean, other: T, process: A.() -> R): R =
-	tryOrElse(silent = silent(), other = other, process = process)
+inline fun <A, R, T : R> A.tryOrElse(
+	silent: () -> Boolean,
+	other: T,
+	catch: ExceptionCatch = { _, _ -> },
+	process: A.() -> R
+): R = tryOrElse(silent = silent(), other = other, catch = catch, process = process)
+
 
 /**
  * Try return the value returning of the [process] or returns null.
@@ -92,12 +123,16 @@ inline fun <A, R, T : R> A.tryOrElse(silent: () -> Boolean, other: T, process: A
  * @param T is the return type of the process
  * @param silent if set to false, the exception will be printed
  * @param process the process to execute, returning the normal value as [T]
+ * @param catch executes the code if an exception is thrown, even if it is successfully caught and avoided
  * @return the value returned by the [process] or null
  * @author Fruxz
  * @since 1.0
  */
-inline fun <A, T> A.tryOrNull(silent: Boolean = true, process: A.() -> T): T? =
-	tryWithResult(silent = silent, process = process).getOrNull()
+inline fun <A, T> A.tryOrNull(
+	silent: Boolean = true,
+	catch: ExceptionCatch = { _, _ -> },
+	process: A.() -> T
+): T? = tryWithResult(silent = silent, catch = catch, process = process).getOrNull()
 
 /**
  * Try return the value returning of the [process] or returns null.
@@ -106,41 +141,55 @@ inline fun <A, T> A.tryOrNull(silent: Boolean = true, process: A.() -> T): T? =
  * @param T is the return type of the process
  * @param silent if returns false, the exception will be printed
  * @param process the process to execute, returning the normal value as [T]
+ * @param catch executes the code if an exception is thrown, even if it is successfully caught and avoided
  * @return the value returned by the [process] or null
  * @author Fruxz
  * @since 1.0
  */
-inline fun <A, T> A.tryOrNull(silent: () -> Boolean, process: A.() -> T): T? =
-	tryOrNull(silent = silent(), process = process)
+inline fun <A, T> A.tryOrNull(
+	silent: () -> Boolean,
+	catch: ExceptionCatch = { _, _ -> },
+	process: A.() -> T
+): T? = tryOrNull(silent = silent(), catch = catch, process = process)
+
 
 /**
  * Try to execute the code specified inside the [process] function.
  * if an exception is thrown, nothing happens after the exception.
  * @param silent if set to false, the exception will be printed
+ * @param catch executes the code if an exception is thrown, even if it is successfully caught and avoided
  * @author Fruxz
  * @since 1.0
  */
-inline fun <A> A.tryOrIgnore(silent: Boolean = true, process: A.() -> Unit) {
-	tryWithResult(silent = silent, process = process)
-}
+inline fun <A> A.tryOrIgnore(
+	silent: Boolean = true,
+	catch: ExceptionCatch = { _, _ -> },
+	process: A.() -> Unit
+): Unit = tryWithResult(silent = silent, catch = catch, process = process).dump()
 
 /**
  * Try to execute the code specified inside the [process] function.
  * if an exception is thrown, nothing happens after the exception.
  * @param silent if returns false, the exception will be printed
+ * @param catch executes the code if an exception is thrown, even if it is successfully caught and avoided
  * @author Fruxz
  * @since 1.0
  */
-inline fun <A> A.tryOrIgnore(silent: () -> Boolean, process: A.() -> Unit): Unit =
-	tryOrIgnore(silent = silent(), process = process)
+inline fun <A> A.tryOrIgnore(
+	silent: () -> Boolean,
+	catch: ExceptionCatch = { _, _ -> },
+	process: A.() -> Unit
+): Unit = tryOrIgnore(silent = silent(), catch = catch, process = process)
+
 
 /**
  * Try to execute the code specified inside the [process] function.
  * if an exception is thrown, the stack trace will be printed.
- * @param silent if set to false, the exception will be printed
+ * @param catch executes the code if an exception is thrown, even if it is successfully caught and avoided
  * @author Fruxz
  * @since 1.0
  */
-inline fun <A> A.tryOrPrint(process: A.() -> Unit) {
-	tryWithResult(process = process).exceptionOrNull()?.printStackTrace()
-}
+inline fun <A> A.tryOrPrint(
+	catch: ExceptionCatch = { _, _ -> },
+	process: A.() -> Unit
+) = tryWithResult(catch = catch, process = process).exceptionOrNull()?.printStackTrace().dump()
