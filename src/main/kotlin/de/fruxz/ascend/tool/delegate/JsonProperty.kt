@@ -24,23 +24,7 @@ data class JsonProperty<T : Any>(
 ) {
 
 	private fun JsonElement.toRequested(): T? {
-		return when (this) {
-			is JsonPrimitive -> {
-				val content = this.contentOrNull ?: return null
-
-				val asString = content.takeIf { this.isString }?.forceCastOrNull<T>()
-				val asBoolean = content.toBooleanStrictOrNull()?.takeIfCastableTo<T>()
-				val asInt = content.toIntOrNull()?.takeIfCastableTo<T>()
-				val asLong = content.toLongOrNull()?.takeIfCastableTo<T>()
-				val asFloat = content.toFloatOrNull()?.takeIfCastableTo<T>()
-				val asDouble = content.toDoubleOrNull()?.takeIfCastableTo<T>()
-
-				asString ?: asBoolean ?: asInt ?: asLong ?: asFloat ?: asDouble ?: throw IllegalStateException("Primitive json type has no content, which met the requirements")
-
-			}
-			is JsonArray -> this.toList().takeIfCastableTo()
-			is JsonObject -> json.decodeFromJsonElement(json.serializersModule.serializer(type).forceCast<KSerializer<T>>(), this).takeIfCastableTo()
-		}
+		return json.decodeFromJsonElement(json.serializersModule.serializer(type), this)?.takeIfCastableTo()
 	}
 
 	private fun fromProvided(data: T): JsonElement =
@@ -74,7 +58,10 @@ data class JsonProperty<T : Any>(
 		set(value) {
 			val currentObject = file.readJsonObjectOrNull(json = json) ?: JsonObject(emptyMap())
 			val newObject = buildJsonObject(currentObject) {
-				put(key, element = fromProvided(value))
+				put(
+					key = key,
+					element = fromProvided(value).also { println("result: $it") }
+				)
 			}
 
 			file.writeJson(newObject)
