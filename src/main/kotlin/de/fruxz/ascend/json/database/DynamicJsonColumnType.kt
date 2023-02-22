@@ -1,9 +1,9 @@
-package de.fruxz.ascend.json
+package de.fruxz.ascend.json.database
 
-import de.fruxz.ascend.extension.data.jsonBase
-import de.fruxz.ascend.extension.data.toJsonString
 import de.fruxz.ascend.extension.forceCast
 import de.fruxz.ascend.extension.forceCastOrNull
+import de.fruxz.ascend.json.jsonBase
+import de.fruxz.ascend.json.toJsonString
 import kotlinx.serialization.serializer
 import org.jetbrains.exposed.sql.Column
 import org.jetbrains.exposed.sql.ColumnType

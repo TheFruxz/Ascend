@@ -1,4 +1,4 @@
-package de.fruxz.ascend.json
+package de.fruxz.ascend.json.serializer
 
 import de.fruxz.ascend.extension.forceCast
 import kotlinx.serialization.*

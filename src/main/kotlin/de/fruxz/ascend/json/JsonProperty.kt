@@ -1,11 +1,7 @@
-package de.fruxz.ascend.tool.delegate
+package de.fruxz.ascend.json
 
 import de.fruxz.ascend.annotation.ExperimentalAscendApi
 import de.fruxz.ascend.annotation.LanguageFeature
-import de.fruxz.ascend.extension.data.buildJsonObject
-import de.fruxz.ascend.extension.data.jsonBase
-import de.fruxz.ascend.extension.data.readJsonObjectOrNull
-import de.fruxz.ascend.extension.data.writeJson
 import de.fruxz.ascend.extension.objects.takeIfCastableTo
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
@@ -93,7 +89,7 @@ inline fun <reified T : Any> property(
 	key: String,
 	json: Json = jsonBase,
 	noinline defaultValue: () -> T,
-): JsonProperty<T> =JsonProperty(
+): JsonProperty<T> = JsonProperty(
 	file = file.absolute(),
 	key = key,
 	type = typeOf<T>(),

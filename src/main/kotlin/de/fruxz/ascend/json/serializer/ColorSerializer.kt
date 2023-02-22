@@ -1,4 +1,4 @@
-package de.fruxz.ascend.json
+package de.fruxz.ascend.json.serializer
 
 import kotlinx.serialization.ContextualSerializer
 import kotlinx.serialization.KSerializer
