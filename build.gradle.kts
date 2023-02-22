@@ -14,7 +14,7 @@ repositories {
     mavenCentral()
 }
 
-version = "21.0.0"
+version = "22.0.0"
 group = "de.fruxz"
 
 dependencies {
