@@ -75,7 +75,7 @@ publishing {
         artifact(source)
 
         artifactId = "ascend"
-        version = version.toLowerCase()
+        version = version.lowercase()
 
     }
 
