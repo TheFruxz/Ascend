@@ -8,7 +8,7 @@ import de.fruxz.ascend.annotation.LanguageFeature
  * @since 1.0
  */
 @LanguageFeature
-fun <T> all(vararg objects: T, check: T.() -> Boolean) = objects.all(check)
+fun <T> all(vararg objects: T, check: (T) -> Boolean) = objects.all(check)
 
 /**
  * Executes a check, if none of the [objects] are passing the [check] check.
@@ -16,7 +16,7 @@ fun <T> all(vararg objects: T, check: T.() -> Boolean) = objects.all(check)
  * @since 1.0
  */
 @LanguageFeature
-fun <T> none(vararg objects: T, check: T.() -> Boolean) = objects.none(check)
+fun <T> none(vararg objects: T, check: (T) -> Boolean) = objects.none(check)
 
 /**
  * Executes a check, if at least one of the [objects] is passing the [check] check.
@@ -24,7 +24,7 @@ fun <T> none(vararg objects: T, check: T.() -> Boolean) = objects.none(check)
  * @since 1.0
  */
 @LanguageFeature
-fun <T> any(vararg objects: T, check: T.() -> Boolean) = objects.any(check)
+fun <T> any(vararg objects: T, check: (T) -> Boolean) = objects.any(check)
 
 /**
  * Returning the [this]<[T]> modified with the [modification] if [modifyIf] is true,
