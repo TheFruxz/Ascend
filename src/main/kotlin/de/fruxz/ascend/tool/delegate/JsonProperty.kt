@@ -87,7 +87,6 @@ data class JsonProperty<T : Any>(
  * @author Fruxz
  * @since 1.0
  */
-@ExperimentalAscendApi
 @LanguageFeature
 inline fun <reified T : Any> property(
 	file: Path,
