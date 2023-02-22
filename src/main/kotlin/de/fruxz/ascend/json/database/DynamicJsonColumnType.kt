@@ -2,7 +2,7 @@ package de.fruxz.ascend.json.database
 
 import de.fruxz.ascend.extension.forceCast
 import de.fruxz.ascend.extension.forceCastOrNull
-import de.fruxz.ascend.json.jsonBase
+import de.fruxz.ascend.json.globalJson
 import de.fruxz.ascend.json.toJsonString
 import kotlinx.serialization.serializer
 import org.jetbrains.exposed.sql.Column
@@ -17,7 +17,7 @@ import kotlin.reflect.typeOf
 
 /**
  * This class defines a column type, which transform its value via
- * the [jsonBase] of ascends json system.
+ * the [globalJson] of ascends json system.
  * The sql type for this column is 'TEXT' be default, but can vary by the dialect.
  * @author Fruxz
  * @since 1.0
@@ -40,18 +40,18 @@ class DynamicJsonColumnType<T : Any>(private val type: KType) : ColumnType() {
 		"'${value.toJsonString()}'"
 
 	override fun valueFromDB(value: Any): T = when (value) {
-		is String -> jsonBase.decodeFromString(jsonBase.serializersModule.serializer(type), "$value".removeSurrounding("'")).forceCast()
+		is String -> globalJson.decodeFromString(globalJson.serializersModule.serializer(type), "$value".removeSurrounding("'")).forceCast()
 		else -> value.forceCast()
 	}
 
 	override fun notNullValueToDB(value: Any): String =
-		"'${jsonBase.encodeToString(jsonBase.serializersModule.serializer(type), value.forceCastOrNull<T?>())}'"
+		"'${globalJson.encodeToString(globalJson.serializersModule.serializer(type), value.forceCastOrNull<T?>())}'"
 
 }
 
 /**
  * This function defines a column type, which transforms via the json system,
- * provided by [jsonBase] and [DynamicJsonColumnType].
+ * provided by [globalJson] and [DynamicJsonColumnType].
  * @author Fruxz
  * @since 1.0
  */
@@ -61,7 +61,7 @@ fun <T : Any> Table.dynamicJson(name: String, type: KType): Column<T> = register
 
 /**
  * This function defines a column type, which transforms via the json system,
- * provided by [jsonBase] and [DynamicJsonColumnType].
+ * provided by [globalJson] and [DynamicJsonColumnType].
  * @author Fruxz
  * @since 1.0
  */

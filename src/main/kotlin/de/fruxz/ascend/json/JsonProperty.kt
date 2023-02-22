@@ -14,11 +14,11 @@ import kotlin.reflect.KType
 import kotlin.reflect.typeOf
 
 data class JsonProperty<T : Any>(
-	val file: Path,
-	val key: String,
-	val type: KType,
-	val json: Json = jsonBase,
-	val default: () -> T,
+    val file: Path,
+    val key: String,
+    val type: KType,
+    val json: Json = globalJson,
+    val default: () -> T,
 ) {
 
 	private fun JsonElement.toRequested(): T? =
@@ -85,10 +85,10 @@ data class JsonProperty<T : Any>(
  */
 @LanguageFeature
 inline fun <reified T : Any> property(
-	file: Path,
-	key: String,
-	json: Json = jsonBase,
-	noinline defaultValue: () -> T,
+    file: Path,
+    key: String,
+    json: Json = globalJson,
+    noinline defaultValue: () -> T,
 ): JsonProperty<T> = JsonProperty(
 	file = file.absolute(),
 	key = key,

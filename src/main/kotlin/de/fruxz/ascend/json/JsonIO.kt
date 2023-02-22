@@ -13,7 +13,7 @@ import kotlin.io.path.*
 // write JSON
 
 /**
- * This function writes the given [this] object to a JSON file via the [jsonBase]
+ * This function writes the given [this] object to a JSON file via the [globalJson]
  * and [toJsonString] function from the Kotlinx serialization library.
  * This process can throw exceptions if something goes wrong!
  * @see toJsonString
@@ -22,10 +22,10 @@ import kotlin.io.path.*
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> Path.writeJson(content: T, charset: Charset = Charsets.UTF_8, json: Json = jsonBase, vararg options: OpenOption) = apply { writeText(content.toJsonString(json = json), charset, *options) }
+inline fun <reified T> Path.writeJson(content: T, charset: Charset = Charsets.UTF_8, json: Json = globalJson, vararg options: OpenOption) = apply { writeText(content.toJsonString(json = json), charset, *options) }
 
 /**
- * This function writes the given [this] object to a JSON file via the [jsonBase]
+ * This function writes the given [this] object to a JSON file via the [globalJson]
  * and [toJsonString] function from the Kotlinx serialization library.
  * This process can throw exceptions if something goes wrong!
  * @see toJsonString
@@ -34,7 +34,7 @@ inline fun <reified T> Path.writeJson(content: T, charset: Charset = Charsets.UT
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> File.writeJson(content: T, charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = apply { writeText(content.toJsonString(json = json), charset) }
+inline fun <reified T> File.writeJson(content: T, charset: Charset = Charsets.UTF_8, json: Json = globalJson) = apply { writeText(content.toJsonString(json = json), charset) }
 
 /**
  * This function writes the given [content], to the file under [this] path, via the [writeJson]
@@ -47,7 +47,7 @@ inline fun <reified T> File.writeJson(content: T, charset: Charset = Charsets.UT
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> Path.writeJsonIfNotExists(content: T, createParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = jsonBase, vararg options: OpenOption) = apply {
+inline fun <reified T> Path.writeJsonIfNotExists(content: T, createParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = globalJson, vararg options: OpenOption) = apply {
     if (!exists()) {
         if (createParent) parent.createDirectories()
         writeJson(content, charset, json = json, *options)
@@ -65,7 +65,7 @@ inline fun <reified T> Path.writeJsonIfNotExists(content: T, createParent: Boole
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> File.writeJsonIfNotExists(content: T, createParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = apply {
+inline fun <reified T> File.writeJsonIfNotExists(content: T, createParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = globalJson) = apply {
     if (!exists()) {
         if (createParent) parentFile.mkdirs()
         writeJson(content, charset, json = json)
@@ -83,7 +83,7 @@ inline fun <reified T> File.writeJsonIfNotExists(content: T, createParent: Boole
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> Path.writeJsonIfEmpty(content: T, createParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = jsonBase, vararg options: OpenOption) = apply {
+inline fun <reified T> Path.writeJsonIfEmpty(content: T, createParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = globalJson, vararg options: OpenOption) = apply {
     if (readTextOrNull(charset)?.isBlank() != false) {
         if (createParent) parent.createDirectories()
         writeJson(content, charset, json = json, *options)
@@ -101,7 +101,7 @@ inline fun <reified T> Path.writeJsonIfEmpty(content: T, createParent: Boolean =
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> File.writeJsonIfEmpty(content: T, createParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = apply {
+inline fun <reified T> File.writeJsonIfEmpty(content: T, createParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = globalJson) = apply {
     if (readTextOrNull(charset)?.isBlank() != false) {
         if (createParent) parentFile.mkdirs()
         writeJson(content, charset, json = json)
@@ -119,14 +119,14 @@ inline fun <reified T> File.writeJsonIfEmpty(content: T, createParent: Boolean =
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> Path.writeJsonIfBlank(content: T, createParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = jsonBase, vararg options: OpenOption) = apply {
+inline fun <reified T> Path.writeJsonIfBlank(content: T, createParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = globalJson, vararg options: OpenOption) = apply {
     if (readTextOrNull(charset)?.isBlank() != false) {
         if (createParent) parent.createDirectories()
         writeJson(content, charset, json = json, *options)
     }
 }
 
-inline fun <reified T> File.writeJsonIfBlank(content: T, createParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = apply {
+inline fun <reified T> File.writeJsonIfBlank(content: T, createParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = globalJson) = apply {
     if (readTextOrNull(charset)?.isBlank() != false) {
         if (createParent) parentFile.mkdirs()
         writeJson(content, charset, json = json)
@@ -141,14 +141,14 @@ inline fun <reified T> File.writeJsonIfBlank(content: T, createParent: Boolean =
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> Path.readJson(charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = fromJsonFile<T>(charset, json = json)
+inline fun <reified T> Path.readJson(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = fromJsonFile<T>(charset, json = json)
 
 /**
  * This function returns the content of [this] File using the [fromJsonFileOrNull] function.
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> Path.readJsonOrNull(charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = fromJsonFileOrNull<T>(charset, json = json)
+inline fun <reified T> Path.readJsonOrNull(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = fromJsonFileOrNull<T>(charset, json = json)
 
 /**
  * This function reads the file content and parses it to a [JsonElement]
@@ -157,7 +157,7 @@ inline fun <reified T> Path.readJsonOrNull(charset: Charset = Charsets.UTF_8, js
  * @author Fruxz
  * @since 1.0
  */
-fun Path.readJsonElement(charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = readText(charset).parseToJsonElement(json = json)
+fun Path.readJsonElement(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = readText(charset).parseToJsonElement(json = json)
 
 /**
  * This function reads the file content and parses it to a [JsonElement]
@@ -166,7 +166,7 @@ fun Path.readJsonElement(charset: Charset = Charsets.UTF_8, json: Json = jsonBas
  * @author Fruxz
  * @since 1.0
  */
-fun Path.readJsonElementOrNull(charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = readTextOrNull(charset)?.parseToJsonElementOrNull(json = json)
+fun Path.readJsonElementOrNull(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = readTextOrNull(charset)?.parseToJsonElementOrNull(json = json)
 
 /**
  * This function reads, parses and converts the file content to an [JsonObject]
@@ -175,7 +175,7 @@ fun Path.readJsonElementOrNull(charset: Charset = Charsets.UTF_8, json: Json = j
  * @author Fruxz
  * @since 1.0
  */
-fun Path.readJsonObject(charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = readText(charset).parseToJsonObject(json = json)
+fun Path.readJsonObject(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = readText(charset).parseToJsonObject(json = json)
 
 /**
  * This function reads, parses and converts the file content to an [JsonObject]
@@ -184,21 +184,21 @@ fun Path.readJsonObject(charset: Charset = Charsets.UTF_8, json: Json = jsonBase
  * @author Fruxz
  * @since 1.0
  */
-fun Path.readJsonObjectOrNull(charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = readTextOrNull(charset)?.parseToJsonObjectOrNull(json = json)
+fun Path.readJsonObjectOrNull(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = readTextOrNull(charset)?.parseToJsonObjectOrNull(json = json)
 
 /**
  * This function returns the content of [this] File using the [fromJsonFile] function.
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> File.readJson(charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = fromJsonFile<T>(charset, json = json)
+inline fun <reified T> File.readJson(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = fromJsonFile<T>(charset, json = json)
 
 /**
  * This function returns the content of [this] File using the [fromJsonFileOrNull] function.
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> File.readJsonOrNull(charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = fromJsonFileOrNull<T>(charset, json = json)
+inline fun <reified T> File.readJsonOrNull(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = fromJsonFileOrNull<T>(charset, json = json)
 
 // read default
 
@@ -218,7 +218,7 @@ inline fun <reified T> File.readJsonOrNull(charset: Charset = Charsets.UTF_8, js
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> Path.readJsonOrDefault(default: T, writeIfBlank: Boolean = false, writeCreatesParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = jsonBase, vararg options: OpenOption) = if (writeIfBlank) {
+inline fun <reified T> Path.readJsonOrDefault(default: T, writeIfBlank: Boolean = false, writeCreatesParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = globalJson, vararg options: OpenOption) = if (writeIfBlank) {
     readJsonOrNull<T>(charset) ?: default.also {
         if (writeCreatesParent) parent.createDirectories()
         writeJson(default, charset, json = json, *options)
@@ -243,7 +243,7 @@ inline fun <reified T> Path.readJsonOrDefault(default: T, writeIfBlank: Boolean 
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> File.readJsonOrDefault(default: T, writeIfBlank: Boolean = false, writeCreatesParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = if (writeIfBlank) {
+inline fun <reified T> File.readJsonOrDefault(default: T, writeIfBlank: Boolean = false, writeCreatesParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = globalJson) = if (writeIfBlank) {
     readJsonOrNull<T>(charset) ?: default.also {
         if (writeCreatesParent) parentFile.mkdirs()
         writeJson(default, charset, json = json)

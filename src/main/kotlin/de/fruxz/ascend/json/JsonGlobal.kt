@@ -23,6 +23,32 @@ internal var lastKnownJsonModifications = listOf<JsonBuilder.() -> Unit>()
 internal var contextuals = setOf<SerializersModule>()
 internal var contextualUpdate = false
 
+private fun produceGlobalJson() = Json {
+    prettyPrint = true
+    isLenient = true
+    ignoreUnknownKeys = true
+    coerceInputValues = true
+    encodeDefaults = true
+    explicitNulls = true
+    allowStructuredMapKeys = true
+    allowSpecialFloatingPointValues = true
+
+    serializersModule = SerializersModule {
+        include(serializersModule)
+
+        contextuals.forEach { contextual ->
+            include(contextual)
+        }
+        runningJsonModuleModifications.forEach {
+            this.apply(it)
+        }
+    }
+
+    runningJsonModifications.forEach {
+        this.apply(it)
+    }
+
+}
 
 /**
  * This value returns the current [Json] from the cached value,
@@ -32,83 +58,60 @@ internal var contextualUpdate = false
  * @since 1.0
  */
 @Suppress("JSON_FORMAT_REDUNDANT")
-var jsonBase: Json
+var globalJson: Json
     get() {
-        if (backingJsonBase == null
+        if (globalJsonCache == null
             || lastKnownJsonModuleModifications != runningJsonModuleModifications
             || lastKnownJsonModifications != runningJsonModifications
             || contextualUpdate
         ) {
             contextualUpdate = false
-            Json {
-                prettyPrint = true
-                isLenient = true
-                ignoreUnknownKeys = true
-                coerceInputValues = true
-                encodeDefaults = true
-                explicitNulls = true
-                allowStructuredMapKeys = true
-                allowSpecialFloatingPointValues = true
 
-                serializersModule = SerializersModule {
-                    include(serializersModule)
-
-                    contextuals.forEach { contextual ->
-                        include(contextual)
-                    }
-                    runningJsonModuleModifications.forEach {
-                        this.apply(it)
-                    }
-                }
-
-                runningJsonModifications.forEach {
-                    this.apply(it)
-                }
-
-            }.let { constructed ->
-                backingJsonBase = constructed
-                return constructed
+            produceGlobalJson().let {
+                globalJsonCache = it
+                return it
             }
+
         } else
-            return backingJsonBase!!
+            return globalJsonCache!!
     }
-    set(value) { backingJsonBase = value }
+    set(value) { globalJsonCache = value }
 
 /**
  * The current cached state of the json base,
  * can change, if modification-list updates!
- * @see jsonBase
+ * @see globalJson
  * @author Fruxz
  * @since 1.0
  */
-private var backingJsonBase: Json? = null
+private var globalJsonCache: Json? = null
 
 /**
  * Adds a custom modification to the [SerializersModule] during its build process
- * for the [Json] object, used at the [toJson] and [fromJson] functions.
+ * for the [Json] object, used at the toJson and fromJson functions.
  * @param process the modification to the [SerializersModuleBuilder] in the building process
  * @author Fruxz
  * @since 1.0
  */
-fun addAscendJsonModuleModification(process: SerializersModuleBuilder.() -> Unit) {
+fun appendGlobalJsonModuleModification(process: SerializersModuleBuilder.() -> Unit) {
     runningJsonModuleModifications += process
 }
 
-fun <T : Any> addJsonContextualConfiguration(clazz: KClass<T>, serializer: KSerializer<T>) {
+fun <T : Any> appendGlobalJsonContextual(clazz: KClass<T>, serializer: KSerializer<T>) {
     contextuals += SerializersModule {
         contextual(clazz, serializer)
     }
     contextualUpdate = true
-    jsonBase.dump() // trigger update of module
+    globalJson.dump() // trigger update of module
 }
 
 /**
  * Adds a custom modification to the [Json] during its build process
- * for the [jsonBase], used at the [toJson] and [fromJson] functions.
+ * for the [globalJson], used at the toJson and fromJson functions.
  * @param process the modification to the [JsonBuilder] in the building process
  * @author Fruxz
  * @since 1.0
  */
-fun addAscendJsonModification(process: JsonBuilder.() -> Unit) {
+fun appendGlobalJsonModification(process: JsonBuilder.() -> Unit) {
     runningJsonModifications += process
 }

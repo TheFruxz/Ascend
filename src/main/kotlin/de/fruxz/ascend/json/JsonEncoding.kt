@@ -15,7 +15,7 @@ import kotlin.io.path.readText
 // to json string
 
 /**
- * This function converts [this] object to a json string via the [jsonBase]
+ * This function converts [this] object to a json string via the [globalJson]
  * and [Json.encodeToString] function from the Kotlinx serialization library.
  * This process can throw exceptions if something goes wrong!
  * @see Json.encodeToString
@@ -23,7 +23,7 @@ import kotlin.io.path.readText
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> T.toJsonString(json: Json = jsonBase) = json.encodeToString(this)
+inline fun <reified T> T.toJsonString(json: Json = globalJson) = json.encodeToString(this)
 
 /**
  * This function tries to return the result of executing the [toJsonString] function,
@@ -33,17 +33,17 @@ inline fun <reified T> T.toJsonString(json: Json = jsonBase) = json.encodeToStri
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> T.toJsonStringOrNull(json: Json = jsonBase) = tryOrNull { toJsonString(json = json) }
+inline fun <reified T> T.toJsonStringOrNull(json: Json = globalJson) = tryOrNull { toJsonString(json = json) }
 
 /**
  * This function converts [this] object as a json stream into the [stream] via the
- * [jsonBase] and [Json.encodeToStream] function from the Kotlinx serialization library.
+ * [globalJson] and [Json.encodeToStream] function from the Kotlinx serialization library.
  * This process can throw exceptions if something goes wrong!
  * @see Json.encodeToStream
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> T.toJsonStream(stream: OutputStream, json: Json = jsonBase) = json.encodeToStream(this, stream)
+inline fun <reified T> T.toJsonStream(stream: OutputStream, json: Json = globalJson) = json.encodeToStream(this, stream)
 
 /**
  * This function tries to return the result of executing the [toJsonStream] function,
@@ -53,10 +53,10 @@ inline fun <reified T> T.toJsonStream(stream: OutputStream, json: Json = jsonBas
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> T.toJsonStreamOrNull(stream: OutputStream, json: Json = jsonBase) = tryOrNull { toJsonStream(stream, json = json) }
+inline fun <reified T> T.toJsonStreamOrNull(stream: OutputStream, json: Json = globalJson) = tryOrNull { toJsonStream(stream, json = json) }
 
 /**
- * This function converts [this] object to a [JsonElement] via the [jsonBase]
+ * This function converts [this] object to a [JsonElement] via the [globalJson]
  * and [Json.encodeToJsonElement] function from the Kotlinx serialization library.
  * This process can throw exceptions if something goes wrong!
  * @see Json.encodeToJsonElement
@@ -64,7 +64,7 @@ inline fun <reified T> T.toJsonStreamOrNull(stream: OutputStream, json: Json = j
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> T.toJsonElement(json: Json = jsonBase) = json.encodeToJsonElement(this)
+inline fun <reified T> T.toJsonElement(json: Json = globalJson) = json.encodeToJsonElement(this)
 
 /**
  * This function tries to return the result of executing the [toJsonElement] function,
@@ -74,22 +74,22 @@ inline fun <reified T> T.toJsonElement(json: Json = jsonBase) = json.encodeToJso
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> T.toJsonElementOrNull(json: Json = jsonBase) = tryOrNull { toJsonElement(json = json) }
+inline fun <reified T> T.toJsonElementOrNull(json: Json = globalJson) = tryOrNull { toJsonElement(json = json) }
 
 /**
- * This function parses this string into a [JsonElement] using the [jsonBase]
+ * This function parses this string into a [JsonElement] using the [globalJson]
  * @author Fruxz
  * @since 1.0
  */
-fun String.parseToJsonElement(json: Json = jsonBase) = json.parseToJsonElement(this)
+fun String.parseToJsonElement(json: Json = globalJson) = json.parseToJsonElement(this)
 
 /**
- * This function parses this string into a [JsonElement] using the [jsonBase]
+ * This function parses this string into a [JsonElement] using the [globalJson]
  * or null if it fails
  * @author Fruxz
  * @since 1.0
  */
-fun String.parseToJsonElementOrNull(json: Json = jsonBase) = tryOrNull { parseToJsonElement(json = json) }
+fun String.parseToJsonElementOrNull(json: Json = globalJson) = tryOrNull { parseToJsonElement(json = json) }
 
 /**
  * This function parses this string into a [JsonObject] using the
@@ -97,7 +97,7 @@ fun String.parseToJsonElementOrNull(json: Json = jsonBase) = tryOrNull { parseTo
  * @author Fruxz
  * @since 1.0
  */
-fun String.parseToJsonObject(json: Json = jsonBase) = parseToJsonElement(json = json).jsonObject
+fun String.parseToJsonObject(json: Json = globalJson) = parseToJsonElement(json = json).jsonObject
 
 /**
  * This function parses this string into a [JsonObject] using the
@@ -105,12 +105,12 @@ fun String.parseToJsonObject(json: Json = jsonBase) = parseToJsonElement(json = 
  * @author Fruxz
  * @since 1.0
  */
-fun String.parseToJsonObjectOrNull(json: Json = jsonBase) = tryOrNull { parseToJsonObject(json = json) }
+fun String.parseToJsonObjectOrNull(json: Json = globalJson) = tryOrNull { parseToJsonObject(json = json) }
 
 // from json string
 
 /**
- * This function converts [this] JSON string to an object type [T] via the [jsonBase]
+ * This function converts [this] JSON string to an object type [T] via the [globalJson]
  * and [Json.decodeFromString] function from the Kotlinx serialization library.
  * This process can throw exceptions if something goes wrong!
  * @see Json.decodeFromString
@@ -118,7 +118,7 @@ fun String.parseToJsonObjectOrNull(json: Json = jsonBase) = tryOrNull { parseToJ
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> String.fromJsonString(json: Json = jsonBase) = json.decodeFromString<T>(this)
+inline fun <reified T> String.fromJsonString(json: Json = globalJson) = json.decodeFromString<T>(this)
 
 /**
  * This function tries to return the result of executing the [fromJsonString] function,
@@ -128,10 +128,10 @@ inline fun <reified T> String.fromJsonString(json: Json = jsonBase) = json.decod
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> String.fromJsonStringOrNull(json: Json = jsonBase) = tryOrNull { fromJsonString<T>(json = json) }
+inline fun <reified T> String.fromJsonStringOrNull(json: Json = globalJson) = tryOrNull { fromJsonString<T>(json = json) }
 
 /**
- * This function converts [this] JSON stream to an object type [T] via the [jsonBase]
+ * This function converts [this] JSON stream to an object type [T] via the [globalJson]
  * and [Json.decodeFromStream] function from the Kotlinx serialization library.
  * This process can throw exceptions if something goes wrong!
  * @see Json.decodeFromStream
@@ -139,7 +139,7 @@ inline fun <reified T> String.fromJsonStringOrNull(json: Json = jsonBase) = tryO
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> InputStream.fromJsonStream(json: Json = jsonBase) = json.decodeFromStream<T>(this)
+inline fun <reified T> InputStream.fromJsonStream(json: Json = globalJson) = json.decodeFromStream<T>(this)
 
 /**
  * This function tries to return the result of executing the [fromJsonStream] function,
@@ -149,10 +149,10 @@ inline fun <reified T> InputStream.fromJsonStream(json: Json = jsonBase) = json.
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> InputStream.fromJsonStreamOrNull(json: Json = jsonBase) = tryOrNull { fromJsonStream<T>(json = json) }
+inline fun <reified T> InputStream.fromJsonStreamOrNull(json: Json = globalJson) = tryOrNull { fromJsonStream<T>(json = json) }
 
 /**
- * This function converts [this] [JsonElement] to an object type [T] via the [jsonBase]
+ * This function converts [this] [JsonElement] to an object type [T] via the [globalJson]
  * and [Json.decodeFromJsonElement] function from the Kotlinx serialization library.
  * This process can throw exceptions if something goes wrong!
  * @see Json.decodeFromJsonElement
@@ -160,7 +160,7 @@ inline fun <reified T> InputStream.fromJsonStreamOrNull(json: Json = jsonBase) =
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> JsonElement.fromJsonElement(json: Json = jsonBase) = json.decodeFromJsonElement<T>(this)
+inline fun <reified T> JsonElement.fromJsonElement(json: Json = globalJson) = json.decodeFromJsonElement<T>(this)
 
 /**
  * This function tries to return the result of executing the [fromJsonElement] function,
@@ -170,7 +170,7 @@ inline fun <reified T> JsonElement.fromJsonElement(json: Json = jsonBase) = json
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> JsonElement.fromJsonElementOrNull(json: Json = jsonBase) = tryOrNull { fromJsonElement<T>(json = json) }
+inline fun <reified T> JsonElement.fromJsonElementOrNull(json: Json = globalJson) = tryOrNull { fromJsonElement<T>(json = json) }
 
 /**
  * This function reads the content of [this] Path using the [readText] function and
@@ -183,7 +183,7 @@ inline fun <reified T> JsonElement.fromJsonElementOrNull(json: Json = jsonBase) 
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> Path.fromJsonFile(charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = readText(charset).fromJsonString<T>(json = json)
+inline fun <reified T> Path.fromJsonFile(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = readText(charset).fromJsonString<T>(json = json)
 
 /**
  * This function tries to return the result of executing the [fromJsonFile] function,
@@ -193,7 +193,7 @@ inline fun <reified T> Path.fromJsonFile(charset: Charset = Charsets.UTF_8, json
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> Path.fromJsonFileOrNull(charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = tryOrNull { fromJsonFile<T>(charset, json = json) }
+inline fun <reified T> Path.fromJsonFileOrNull(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = tryOrNull { fromJsonFile<T>(charset, json = json) }
 
 /**
  * This function reads the content of [this] File using the [readText] function and
@@ -205,7 +205,7 @@ inline fun <reified T> Path.fromJsonFileOrNull(charset: Charset = Charsets.UTF_8
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> File.fromJsonFile(charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = readText(charset).fromJsonString<T>(json = json)
+inline fun <reified T> File.fromJsonFile(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = readText(charset).fromJsonString<T>(json = json)
 
 /**
  * This function tries to return the result of executing the [fromJsonFile] function,
@@ -215,4 +215,4 @@ inline fun <reified T> File.fromJsonFile(charset: Charset = Charsets.UTF_8, json
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> File.fromJsonFileOrNull(charset: Charset = Charsets.UTF_8, json: Json = jsonBase) = tryOrNull { fromJsonFile<T>(charset, json = json) }
+inline fun <reified T> File.fromJsonFileOrNull(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = tryOrNull { fromJsonFile<T>(charset, json = json) }
