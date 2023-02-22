@@ -2,12 +2,14 @@ package de.fruxz.ascend.tool.delegate
 
 import de.fruxz.ascend.annotation.ExperimentalAscendApi
 import de.fruxz.ascend.annotation.LanguageFeature
-import de.fruxz.ascend.extension.data.*
-import de.fruxz.ascend.extension.forceCast
-import de.fruxz.ascend.extension.forceCastOrNull
+import de.fruxz.ascend.extension.data.buildJsonObject
+import de.fruxz.ascend.extension.data.jsonBase
+import de.fruxz.ascend.extension.data.readJsonObjectOrNull
+import de.fruxz.ascend.extension.data.writeJson
 import de.fruxz.ascend.extension.objects.takeIfCastableTo
-import kotlinx.serialization.KSerializer
-import kotlinx.serialization.json.*
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.serializer
 import java.nio.file.Path
 import kotlin.io.path.absolute
@@ -23,16 +25,11 @@ data class JsonProperty<T : Any>(
 	val default: () -> T,
 ) {
 
-	private fun JsonElement.toRequested(): T? {
-		return json.decodeFromJsonElement(json.serializersModule.serializer(type), this)?.takeIfCastableTo()
-	}
+	private fun JsonElement.toRequested(): T? =
+		json.decodeFromJsonElement(json.serializersModule.serializer(type), this)?.takeIfCastableTo()
 
 	private fun fromProvided(data: T): JsonElement =
-		json.also { println("$type") }
-			.encodeToJsonElement<T>(
-				serializer = json.serializersModule.serializer(type).also { println("test ${it.descriptor.serialName}") },
-				value = data.also { println("test2 $it ${it::class.qualifiedName}") },
-			) // TODO serializer was casted to .forceCast<KSerializer<T>>() but was removed with the type introduction, still required? I dont think so
+		json.encodeToJsonElement(serializer = json.serializersModule.serializer(type), value = data)
 
 	var content: T
 		get() {
@@ -58,14 +55,10 @@ data class JsonProperty<T : Any>(
 		set(value) {
 			val currentObject = file.readJsonObjectOrNull(json = json) ?: JsonObject(emptyMap())
 			val newObject = buildJsonObject(currentObject) {
-				put(
-					key = key,
-					element = fromProvided(value).also { println("result: $it") }
-				)
+				put(key = key, element = fromProvided(value))
 			}
 
 			file.writeJson(newObject)
-
 			cache[file] = newObject
 
 		}
@@ -101,10 +94,10 @@ inline fun <reified T : Any> property(
 	key: String,
 	json: Json = jsonBase,
 	noinline defaultValue: () -> T,
-): JsonProperty<T> = println("T:: is -> ${T::class.qualifiedName}").let { JsonProperty<T>(
+): JsonProperty<T> =JsonProperty(
 	file = file.absolute(),
 	key = key,
 	type = typeOf<T>(),
 	json = json,
 	default = defaultValue
-) }
+)
