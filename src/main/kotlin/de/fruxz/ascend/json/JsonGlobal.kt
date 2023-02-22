@@ -51,6 +51,7 @@ private fun produceGlobalJson() = Json {
 }
 
 /**
+ * This is the base json, which Ascend provides for you.
  * This value returns the current [Json] from the cached value,
  * or creates a new one, if no Json exists, or its modifications
  * are outdated.
