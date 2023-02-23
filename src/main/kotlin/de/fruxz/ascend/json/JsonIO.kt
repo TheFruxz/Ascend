@@ -10,7 +10,7 @@ import java.nio.file.OpenOption
 import java.nio.file.Path
 import kotlin.io.path.*
 
-// write JSON
+// output JSON to file
 
 /**
  * This function writes the given [this] object to a JSON file via the [globalJson]
@@ -134,21 +134,21 @@ inline fun <reified T> File.writeJsonIfBlank(content: T, createParent: Boolean =
 }
 
 
-// read JSON
+// input json from file
 
 /**
  * This function returns the content of [this] Path using the [fromJsonFile] function.
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> Path.readJson(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = fromJsonFile<T>(charset, json = json)
+inline fun <reified T> Path.readJson(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = readText(charset).fromJsonString<T>(json = json)
 
 /**
  * This function returns the content of [this] File using the [fromJsonFileOrNull] function.
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> Path.readJsonOrNull(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = fromJsonFileOrNull<T>(charset, json = json)
+inline fun <reified T> Path.readJsonOrNull(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = readTextOrNull(charset)?.fromJsonStringOrNull<T>(json = json)
 
 /**
  * This function reads the file content and parses it to a [JsonElement]
@@ -191,14 +191,14 @@ fun Path.readJsonObjectOrNull(charset: Charset = Charsets.UTF_8, json: Json = gl
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> File.readJson(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = fromJsonFile<T>(charset, json = json)
+inline fun <reified T> File.readJson(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = readText(charset).fromJsonString<T>(json = json)
 
 /**
  * This function returns the content of [this] File using the [fromJsonFileOrNull] function.
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T> File.readJsonOrNull(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = fromJsonFileOrNull<T>(charset, json = json)
+inline fun <reified T> File.readJsonOrNull(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = readTextOrNull(charset)?.fromJsonStringOrNull<T>(json = json)
 
 // read default
 
