@@ -51,6 +51,15 @@ private fun produceGlobalJson() = Json {
 }
 
 /**
+ * The current cached state of the json base,
+ * can change, if modification-list updates!
+ * @see globalJson
+ * @author Fruxz
+ * @since 1.0
+ */
+private var globalJsonCache: Json? = null
+
+/**
  * This is the base json, which Ascend provides for you.
  * This value returns the current [Json] from the cached value,
  * or creates a new one, if no Json exists, or its modifications
@@ -58,7 +67,6 @@ private fun produceGlobalJson() = Json {
  * @author Fruxz
  * @since 1.0
  */
-@Suppress("JSON_FORMAT_REDUNDANT")
 var globalJson: Json
     get() {
         if (globalJsonCache == null
@@ -77,15 +85,6 @@ var globalJson: Json
             return globalJsonCache!!
     }
     set(value) { globalJsonCache = value }
-
-/**
- * The current cached state of the json base,
- * can change, if modification-list updates!
- * @see globalJson
- * @author Fruxz
- * @since 1.0
- */
-private var globalJsonCache: Json? = null
 
 /**
  * Adds a custom modification to the [SerializersModule] during its build process
