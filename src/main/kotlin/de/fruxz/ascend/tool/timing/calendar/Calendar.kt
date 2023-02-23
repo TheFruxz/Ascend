@@ -22,7 +22,7 @@ import java.io.Serializable as JavaIoSerializable
 import java.util.Calendar as JavaUtilCalendar
 
 /**
- * This class is a calendar, which can be from & to a [JavaUtilCalendar] transformed.
+ * This class is a calendar, which can be transformed from & to a [JavaUtilCalendar].
  * @param timeInMillis the milliseconds stored in the calendar
  * @param timeZoneId the id of the used timezone
  * @author Fruxz
