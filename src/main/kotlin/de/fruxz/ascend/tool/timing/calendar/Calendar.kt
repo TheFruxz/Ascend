@@ -482,8 +482,3 @@ data class Calendar constructor(
 	}
 
 }
-
-@Deprecated("Use the native store instead this json store",
-	ReplaceWith("calendar(name, TimeZone.getDefault())", "java.util.TimeZone")
-)
-fun Table.calendar(name: String): Column<Calendar> = dynamicJson(name, Calendar::class)
