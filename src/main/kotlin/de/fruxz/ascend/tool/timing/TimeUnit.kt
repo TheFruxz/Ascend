@@ -1,4 +1,4 @@
-package de.fruxz.ascend.tool.timing.calendar.timeUnit
+package de.fruxz.ascend.tool.timing
 
 import java.util.Calendar as JavaUtilCalendar
 
