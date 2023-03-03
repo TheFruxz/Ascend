@@ -27,7 +27,7 @@ import java.util.Calendar as JavaUtilCalendar
  * @since 1.0
  */
 @Serializable
-data class Calendar constructor(
+data class Calendar(
 	private var timeInMillis: Long,
 	private var timeZoneId: String,
 ) : Producible<JavaUtilCalendar>, Cloneable, Comparable<Calendar>, JavaIoSerializable, TimeState {
