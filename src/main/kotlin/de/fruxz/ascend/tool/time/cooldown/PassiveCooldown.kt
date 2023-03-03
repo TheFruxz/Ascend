@@ -1,6 +1,6 @@
-package de.fruxz.ascend.tool.timing.cooldown
+package de.fruxz.ascend.tool.time.cooldown
 
-import de.fruxz.ascend.tool.timing.TimeState
+import de.fruxz.ascend.tool.time.TimeState
 
 open class PassiveCooldown(var destination: TimeState) {
 

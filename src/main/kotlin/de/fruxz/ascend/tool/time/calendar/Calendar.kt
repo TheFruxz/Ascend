@@ -1,12 +1,12 @@
-package de.fruxz.ascend.tool.timing.calendar
+package de.fruxz.ascend.tool.time.calendar
 
 import de.fruxz.ascend.extension.dump
 import de.fruxz.ascend.tool.smart.composition.Producible
-import de.fruxz.ascend.tool.timing.TimeState
-import de.fruxz.ascend.tool.timing.calendar.Calendar.FormatStyle.FULL
-import de.fruxz.ascend.tool.timing.calendar.Calendar.FormatStyle.MEDIUM
-import de.fruxz.ascend.tool.timing.TimeUnit
-import de.fruxz.ascend.tool.timing.TimeUnit.Companion.SECOND
+import de.fruxz.ascend.tool.time.TimeState
+import de.fruxz.ascend.tool.time.calendar.Calendar.FormatStyle.FULL
+import de.fruxz.ascend.tool.time.calendar.Calendar.FormatStyle.MEDIUM
+import de.fruxz.ascend.tool.time.TimeUnit
+import de.fruxz.ascend.tool.time.TimeUnit.Companion.SECOND
 import kotlinx.serialization.Serializable
 import java.text.SimpleDateFormat
 import java.time.Instant

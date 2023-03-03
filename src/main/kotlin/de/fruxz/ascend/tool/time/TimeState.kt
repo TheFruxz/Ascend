@@ -1,4 +1,4 @@
-package de.fruxz.ascend.tool.timing
+package de.fruxz.ascend.tool.time
 
 /**
  * A time state is only defining, if it is already expired [inPast],

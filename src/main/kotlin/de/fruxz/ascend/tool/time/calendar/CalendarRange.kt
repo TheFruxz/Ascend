@@ -1,4 +1,4 @@
-package de.fruxz.ascend.tool.timing.calendar
+package de.fruxz.ascend.tool.time.calendar
 
 import kotlinx.serialization.Serializable
 

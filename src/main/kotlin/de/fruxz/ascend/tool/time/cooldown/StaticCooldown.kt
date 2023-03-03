@@ -1,6 +1,6 @@
-package de.fruxz.ascend.tool.timing.cooldown
+package de.fruxz.ascend.tool.time.cooldown
 
-import de.fruxz.ascend.tool.timing.calendar.Calendar
+import de.fruxz.ascend.tool.time.calendar.Calendar
 import kotlin.time.Duration
 
 object StaticCooldown {

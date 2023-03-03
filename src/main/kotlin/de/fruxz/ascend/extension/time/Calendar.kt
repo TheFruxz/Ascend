@@ -1,14 +1,14 @@
 package de.fruxz.ascend.extension.time
 
-import de.fruxz.ascend.tool.timing.calendar.Calendar
-import de.fruxz.ascend.tool.timing.calendar.CalendarRange
-import de.fruxz.ascend.tool.timing.TimeUnit.Companion.ERA
-import de.fruxz.ascend.tool.timing.TimeUnit.Companion.HOUR
-import de.fruxz.ascend.tool.timing.TimeUnit.Companion.MILLISECOND
-import de.fruxz.ascend.tool.timing.TimeUnit.Companion.MINUTE
-import de.fruxz.ascend.tool.timing.TimeUnit.Companion.MONTH
-import de.fruxz.ascend.tool.timing.TimeUnit.Companion.SECOND
-import de.fruxz.ascend.tool.timing.TimeUnit.Companion.YEAR
+import de.fruxz.ascend.tool.time.calendar.Calendar
+import de.fruxz.ascend.tool.time.calendar.CalendarRange
+import de.fruxz.ascend.tool.time.TimeUnit.Companion.ERA
+import de.fruxz.ascend.tool.time.TimeUnit.Companion.HOUR
+import de.fruxz.ascend.tool.time.TimeUnit.Companion.MILLISECOND
+import de.fruxz.ascend.tool.time.TimeUnit.Companion.MINUTE
+import de.fruxz.ascend.tool.time.TimeUnit.Companion.MONTH
+import de.fruxz.ascend.tool.time.TimeUnit.Companion.SECOND
+import de.fruxz.ascend.tool.time.TimeUnit.Companion.YEAR
 import java.util.Calendar as JavaUtilCalendar
 
 /**

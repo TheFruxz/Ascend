@@ -1,6 +1,6 @@
-package de.fruxz.ascend.tool.timing.clock
+package de.fruxz.ascend.tool.time.clock
 
-import de.fruxz.ascend.tool.timing.clock.DisplayTime.Format.*
+import de.fruxz.ascend.tool.time.clock.DisplayTime.Format.*
 import kotlinx.serialization.Serializable
 import kotlin.math.floor
 import kotlin.math.roundToInt

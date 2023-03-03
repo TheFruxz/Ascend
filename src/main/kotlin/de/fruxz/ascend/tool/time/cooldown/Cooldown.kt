@@ -1,6 +1,6 @@
-package de.fruxz.ascend.tool.timing.cooldown
+package de.fruxz.ascend.tool.time.cooldown
 
-import de.fruxz.ascend.tool.timing.calendar.Calendar
+import de.fruxz.ascend.tool.time.calendar.Calendar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
