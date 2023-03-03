@@ -84,7 +84,6 @@ publishing {
 tasks {
 
     withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = "17"
         kotlinOptions.freeCompilerArgs += "-opt-in=kotlinx.serialization.ExperimentalSerializationApi"
     }
 
@@ -92,6 +91,10 @@ tasks {
         outputDirectory.set(buildDir.resolve("../docs/"))
     }
 
+}
+
+kotlin {
+    jvmToolchain(17)
 }
 
 java {
