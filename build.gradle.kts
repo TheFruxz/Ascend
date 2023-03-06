@@ -45,6 +45,11 @@ val dokkaJavadocJar by tasks.register<Jar>("dokkaJavadocJar") {
     archiveClassifier.set("javadoc")
 }
 
+val sourceJar by tasks.register<Jar>("sourceJar") {
+    archiveClassifier.set("sources")
+    from(sourceSets.main.get().allSource)
+}
+
 publishing {
 
     repositories {
@@ -63,15 +68,14 @@ publishing {
     }
 
     publications.create("Ascend", MavenPublication::class) {
-
-        from(components["kotlin"])
+        artifactId = "ascend"
+        version = version.lowercase()
 
         artifact(dokkaJavadocJar)
         artifact(dokkaHtmlJar)
-        artifact(tasks.kotlinSourcesJar)
+        artifact(sourceJar)
 
-        artifactId = "ascend"
-        version = version.lowercase()
+        from(components["kotlin"])
 
     }
 
