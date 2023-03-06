@@ -20,7 +20,7 @@ suspend fun Job.await() = this.join()
  * @author Fruxz
  * @since 1.0
  */
-fun <I, O> Deferred<I>.mapOnCompletion(process: (I) -> O) = deferred { deferred ->
+fun <I, O> Deferred<I>.letOnCompletion(process: (I) -> O) = deferred { deferred ->
 
 	@OptIn(ExperimentalCoroutinesApi::class)
 	invokeOnCompletion { exception ->
@@ -29,6 +29,7 @@ fun <I, O> Deferred<I>.mapOnCompletion(process: (I) -> O) = deferred { deferred 
 			else -> deferred.completeExceptionally(exception)
 		}
 	}
+
 }
 
 /**
