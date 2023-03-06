@@ -1,4 +1,3 @@
-import org.gradle.api.JavaVersion.VERSION_17
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -46,7 +45,6 @@ val dokkaJavadocJar by tasks.register<Jar>("dokkaJavadocJar") {
 }
 
 val sourceJar by tasks.register<Jar>("sourceJar") {
-    dependsOn(tasks.kotlinSourcesJar)
     archiveClassifier.set("sources")
     from(sourceSets.main.get().allSource)
 }
@@ -98,4 +96,9 @@ tasks {
 
 kotlin {
     jvmToolchain(17)
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
