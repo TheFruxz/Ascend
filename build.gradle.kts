@@ -73,7 +73,9 @@ publishing {
 
         artifact(dokkaJavadocJar)
         artifact(dokkaHtmlJar)
-        artifact(sourceJar)
+        artifact(sourceJar) {
+            classifier = "sources"
+        }
 
         from(components["kotlin"])
 
