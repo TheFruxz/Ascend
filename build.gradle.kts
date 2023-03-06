@@ -23,6 +23,7 @@ dependencies {
 
     testImplementation(kotlin("test"))
     implementation(kotlin("reflect"))
+
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
@@ -67,6 +68,7 @@ publishing {
 
         artifact(dokkaJavadocJar)
         artifact(dokkaHtmlJar)
+        artifact(tasks.kotlinSourcesJar)
 
         artifactId = "ascend"
         version = version.lowercase()
