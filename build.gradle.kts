@@ -46,6 +46,7 @@ val dokkaJavadocJar by tasks.register<Jar>("dokkaJavadocJar") {
 }
 
 val sourceJar by tasks.register<Jar>("sourceJar") {
+    dependsOn(tasks.kotlinSourcesJar)
     archiveClassifier.set("sources")
     from(sourceSets.main.get().allSource)
 }
@@ -97,11 +98,4 @@ tasks {
 
 kotlin {
     jvmToolchain(17)
-}
-
-java {
-    sourceCompatibility = VERSION_17
-    targetCompatibility = VERSION_17
-    withJavadocJar()
-    withSourcesJar()
 }
