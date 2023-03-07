@@ -130,7 +130,8 @@ inline fun getHomePath(absolute: Boolean = true): Path = Paths.get("").let {
 }
 
 /**
- * This computational value returns the result of invoking the [getHomePath].
+ * This computational value returns the result of invoking the [getHomePath],
+ * with the parameter `absolute` set to true.
  * @author Fruxz
  * @since 1.0
  */
