@@ -2,10 +2,7 @@ package de.fruxz.ascend.extension.container
 
 import de.fruxz.ascend.annotation.ExperimentalAscendApi
 import de.fruxz.ascend.extension.math.ceilToInt
-import de.fruxz.ascend.extension.math.floorToInt
-import de.fruxz.ascend.extension.math.maxTo
-import de.fruxz.ascend.extension.math.minTo
-import de.fruxz.ascend.tool.collection.PagedIterable
+import de.fruxz.ascend.tool.collection.Paged
 import kotlin.random.Random
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
@@ -218,16 +215,8 @@ fun <T> Array<T>.take(intRange: IntRange): List<T> =
  * @author Fruxz
  * @since 1.0
  */
-fun <T, C : Iterable<T>> C.paged(pageIndex: Int, pageSize: Int): PagedIterable<T> {
-	if (pageSize < 1) throw IllegalArgumentException("Page size must be greater than 0!")
-	if (pageIndex < 0) throw IllegalArgumentException("Page must be greater than or equals 0!")
-	if (none()) return PagedIterable(1, 1..1, emptyList())
-
-	val pages = ceilToInt(count().toDouble() / pageSize)
-	val actualPage = (pageIndex + 1).maxTo(pages)
-
-	return PagedIterable(actualPage, 1..pages, toList().subList(((1+pageSize*(actualPage-1)-1)..(pageSize*actualPage).maxTo(count()))))
-}
+fun <T, C : List<T>> C.paged(pageSize: Int): Paged<T> =
+	Paged(pageSize, this)
 
 /**
  * This function returns a small list of [T] objects, that
@@ -240,8 +229,8 @@ fun <T, C : Iterable<T>> C.paged(pageIndex: Int, pageSize: Int): PagedIterable<T
  * @author Fruxz
  * @since 1.0
  */
-fun <T> Array<T>.paged(page: Int, pageSize: Int): PagedIterable<T> =
-	toList().paged(page, pageSize)
+fun <T> Array<T>.paged(pageSize: Int): Paged<T> =
+	toList().paged(pageSize)
 
 /**
  * This function returns, if the current [Collection]
