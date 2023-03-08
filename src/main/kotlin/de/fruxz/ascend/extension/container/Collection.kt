@@ -352,25 +352,11 @@ fun <C : Iterable<String>> C.containsAll(elements: Iterable<String>, ignoreCase:
  * @author Fruxz
  * @since 1.0
  */
-fun <T, C : Iterable<T>> C.fragmented(fragments: Int = 2, keepOverflow: Boolean = true): List<List<T>> {
-	if (fragments < 1 || none()) return emptyList()
-	if (fragments == count()) return listOf(toList())
-
-	val elementsPerFragment = floorToInt(count().toDouble() / fragments).minTo(1)
-
-	val output = mutableListOf<List<T>>()
-	var currentFragment = mutableListOf<T>()
-
-	forEach {
-		currentFragment.add(it)
-		if (currentFragment.size == elementsPerFragment || (keepOverflow && output.sumOf { entry -> entry.size } + currentFragment.size >= count())) {
-			output.add(currentFragment.toList())
-			currentFragment = mutableListOf()
-		}
+@Deprecated("Switch, using the chunked(...) function instead")
+fun <T, C : Iterable<T>> C.fragmented(fragments: Int = 2, keepOverflow: Boolean = true): List<List<T>> =
+	(this.count().toDouble() / fragments).ceilToInt().let { size ->
+		chunked(size).dropLastWhile { !keepOverflow && it.size < size }
 	}
-
-	return output
-}
 
 /**
  * This function applies the split function of strings to collections.
