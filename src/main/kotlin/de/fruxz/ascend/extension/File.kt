@@ -2,21 +2,13 @@
 
 package de.fruxz.ascend.extension
 
-import de.fruxz.ascend.tool.path.ArtificialPath
-import de.fruxz.ascend.tool.path.ArtificialReadOnlyResourcePathProcessor
 import java.io.File
 import java.nio.charset.Charset
 import java.nio.file.Files.createFile
 import java.nio.file.Path
 import java.nio.file.Paths
 import java.nio.file.attribute.FileAttribute
-import kotlin.io.path.absolute
-import kotlin.io.path.createDirectories
-import kotlin.io.path.createFile
-import kotlin.io.path.exists
-import kotlin.io.path.notExists
-import kotlin.io.path.pathString
-import kotlin.io.path.readText
+import kotlin.io.path.*
 
 /**
  * Returns the file inside the resource folder of the class, where the function is called from.
@@ -58,28 +50,6 @@ fun String.pathAsFile(): File =
  */
 fun String.pathAsFileFromRuntime() =
     File(System.getProperty("user.dir") + "/$this")
-
-/**
- * This value defines the basic, from Ascend created [ArtificialPath].
- * This [ArtificialPath] can be used, to easily access file in the
- * local directory & the resources.
- * @author Fruxz
- * @since 1.0
- */
-val ascendArtificialPath = ArtificialPath(arrayOf(
-    ArtificialReadOnlyResourcePathProcessor,
-))
-
-/**
- * This function uses the [ascendArtificialPath] and its [ArtificialPath.getFile]
- * function, to get access to the file behind the [path].
- * @param path is the path to the file
- * @return the file behind the path, or if the path is a '//readOnlyResource/:/',
- * than the file inside the resources.
- * @author Fruxz
- * @since 1.0
- */
-fun getFileViaArtificialPath(path: String) = ascendArtificialPath.getFile(path)
 
 /**
  * This function creates the parent directories and the
