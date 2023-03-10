@@ -33,7 +33,7 @@ open class TreeBranch<SUBBRANCH : TreeBranch<SUBBRANCH, CONTENT>, CONTENT>(
     fun content(content: CONTENT) = apply { this.content = content }
 
     /**
-     * This function returns every subbranch, and its subranches, and so on in a single list.
+     * This function returns every subbranch, and its subbranches, and so on in a single list.
      * @return the list of all subbranches, and their subbranches, and so on
      * @author Fruxz
      * @since 1.0
@@ -43,7 +43,7 @@ open class TreeBranch<SUBBRANCH : TreeBranch<SUBBRANCH, CONTENT>, CONTENT>(
     }
 
     /**
-     * This function returns every subbranch, and its subranches, and so on in a single list, additionally with this branch.
+     * This function returns every subbranch, and its subbranches, and so on in a single list, additionally with this branch.
      * @return the list of all subbranches, and their subbranches, and so on, additionally with this branch
      * @author Fruxz
      * @since 1.0

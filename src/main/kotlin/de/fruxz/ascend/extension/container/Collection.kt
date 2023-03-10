@@ -246,8 +246,7 @@ fun <T, C : Iterable<T>> C.hasDuplicates(): Boolean =
  * This function returns, if the current [Collection]
  * has some duplicates in it. The decision is made
  * by the [distinct] function.
- * @param process defines the value, with whic
- * object the differentiation is made
+ * @param process defines the value, with which object the differentiation is made
  * @author Fruxz
  * @since 1.0
  */
@@ -268,8 +267,7 @@ fun <T> Array<T>.hasDuplicates(): Boolean =
  * This function returns, if the current [Array]
  * has some duplicates in it. The decision is made
  * by the [distinct] function.
- * @param process defines the value, with whic
- * object the differentiation is made
+ * @param process defines the value, with which object the differentiation is made
  * @author Fruxz
  * @since 1.0
  */
