@@ -11,50 +11,24 @@ import java.nio.file.attribute.FileAttribute
 import kotlin.io.path.*
 
 /**
- * Returns the file inside the resource folder of the class, where the function is called from.
- * The file is returned by its content read by the [readText] function.
- * @param resource the file(+folder) path
- * @return the file content or null
- * @author Fruxz
- * @since 1.0
- */
-inline fun getResourceTextOrNull(resource: String) = object {}.javaClass.classLoader.getResource(resource)?.readText()
-
-/**
- * Returns the file inside the resource folder of the class, where the function is called from.
- * The file is returned by its content read by the [readText] function.
- * @param resource the file(+folder) path
- * @return the file content
- * @throws NoSuchElementException if the resource is not found
+ * This function returns the path to a project resource as a [Path].
+ * @param resource the path of the resource located inside the resources folder
+ * @return the path to the resource
+ * @throws NoSuchElementException if the resource cannot be found
  * @author Fruxz
  * @since 1.0
  */
 @Throws(NoSuchElementException::class)
-inline fun getResourceText(resource: String) =
-    getResourceTextOrNull(resource) ?: throw NoSuchElementException("Resource $resource not found")
+inline fun getResource(resource: String): Path = getResourceOrNull(resource) ?: throw NoSuchElementException("Resource $resource not found")
 
 /**
- * Returns the file inside the resource folder of the class, where the function is called from.
- * The file is returned by its content read by the [readBytes] function.
- * @param resource the file(+folder) path
- * @return the file content or null
+ * This function returns the path to a project resource as a [Path].
+ * @param resource the path of the resource located inside the resources folder
+ * @return the path to the resource or null if not found
  * @author Fruxz
  * @since 1.0
  */
-inline fun getResourceByteArrayOrNull(resource: String) = object {}.javaClass.classLoader.getResource(resource)?.readBytes()
-
-/**
- * Returns the file inside the resource folder of the class, where the function is called from.
- * The file is returned by its content read by the [readBytes] function.
- * @param resource the file(+folder) path
- * @return the file content
- * @throws NoSuchElementException if the resource is not found
- * @author Fruxz
- * @since 1.0
- */
-@Throws(NoSuchElementException::class)
-inline fun getResourceByteArray(resource: String) =
-    getResourceByteArrayOrNull(resource) ?: throw NoSuchElementException("Resource $resource not found")
+inline fun getResourceOrNull(resource: String): Path? = object {}.javaClass.classLoader.getResource(resource)?.toURI()?.let(Paths::get)
 
 /**
  * Converts the string [this] into a full [File] using [this] as a [Path],
