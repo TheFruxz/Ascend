@@ -26,6 +26,7 @@ data class Cooldown(val duration: Duration, var running: Boolean = false, var on
 
 	}
 
+	@Throws(IllegalStateException::class)
 	fun launchNative(coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.Default)) {
 		if (running) throw IllegalStateException("This cooldown is already running!")
 

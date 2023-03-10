@@ -17,6 +17,7 @@ import org.jetbrains.annotations.NotNull
  * @author Fruxz
  * @since 1.0
  */
+@Throws(Throwable::class)
 fun <T : Any> T?.trustOrThrow(throwable: Throwable): T = tryOrNull { this!! } ?: throw throwable
 
 /**
@@ -80,5 +81,4 @@ inline fun <reified T : Any> trust(o: T?) = o.trust()
  * @author Fruxz
  * @since 1.0
  */
-inline fun <reified T : Any> Iterable<T?>.trustAll(): List<T> =
-	map(::trust)
+inline fun <reified T : Any> Iterable<T?>.trustAll(): List<T> = map(::trust)

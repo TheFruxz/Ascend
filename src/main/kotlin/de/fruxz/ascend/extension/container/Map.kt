@@ -47,6 +47,7 @@ inline fun <F, S> Map<F, S>.firstOrNull(predicate: (Entry<F, S>) -> Boolean): En
  * @author Fruxz
  * @since 1.0
  */
+@Throws(NoSuchElementException::class)
 inline fun <F, S> Map<F, S>.first(predicate: (Entry<F, S>) -> Boolean): Entry<F, S> =
 	firstOrNull(predicate) ?: throw NoSuchElementException("No element found for the given predicate")
 
@@ -75,5 +76,6 @@ inline fun <K, V> Map<K, V>.lastOrNull(predicate: (Entry<K, V>) -> Boolean): Ent
  * @author Fruxz
  * @since 1.0
  */
+@Throws(NoSuchElementException::class)
 inline fun <K, V> Map<K, V>.last(predicate: (Entry<K, V>) -> Boolean): Entry<K, V> =
 	lastOrNull(predicate) ?: throw NoSuchElementException("No element found for the given predicate")

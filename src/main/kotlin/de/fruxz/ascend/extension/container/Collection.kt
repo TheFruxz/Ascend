@@ -180,6 +180,7 @@ val <T> Array<out T>.last: T
  * @author Fruxz
  * @since 1.0
  */
+@Throws(NoSuchElementException::class)
 fun <T, C : Iterable<T>> C.get(index: Int, overflow: Boolean = false): T {
 	return if (index in 0 until count()) elementAt(index) else if (overflow) elementAt(index % count()) else throw NoSuchElementException(
 		"Index $index is not inside lists 0..${count() - 1} content and overflow is disabled!"
