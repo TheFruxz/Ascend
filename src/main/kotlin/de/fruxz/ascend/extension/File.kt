@@ -14,25 +14,47 @@ import kotlin.io.path.*
  * Returns the file inside the resource folder of the class, where the function is called from.
  * The file is returned by its content read by the [readText] function.
  * @param resource the file(+folder) path
+ * @return the file content or null
+ * @author Fruxz
+ * @since 1.0
+ */
+inline fun getResourceTextOrNull(resource: String) = object {}.javaClass.classLoader.getResource(resource)?.readText()
+
+/**
+ * Returns the file inside the resource folder of the class, where the function is called from.
+ * The file is returned by its content read by the [readText] function.
+ * @param resource the file(+folder) path
  * @return the file content
+ * @throws NoSuchElementException if the resource is not found
  * @author Fruxz
  * @since 1.0
  */
 @Throws(NoSuchElementException::class)
 inline fun getResourceText(resource: String) =
-    object {}.javaClass.classLoader.getResource(resource)?.readText() ?: throw NoSuchElementException("Resource $resource not found")
+    getResourceTextOrNull(resource) ?: throw NoSuchElementException("Resource $resource not found")
+
+/**
+ * Returns the file inside the resource folder of the class, where the function is called from.
+ * The file is returned by its content read by the [readBytes] function.
+ * @param resource the file(+folder) path
+ * @return the file content or null
+ * @author Fruxz
+ * @since 1.0
+ */
+inline fun getResourceByteArrayOrNull(resource: String) = object {}.javaClass.classLoader.getResource(resource)?.readBytes()
 
 /**
  * Returns the file inside the resource folder of the class, where the function is called from.
  * The file is returned by its content read by the [readBytes] function.
  * @param resource the file(+folder) path
  * @return the file content
+ * @throws NoSuchElementException if the resource is not found
  * @author Fruxz
  * @since 1.0
  */
 @Throws(NoSuchElementException::class)
 inline fun getResourceByteArray(resource: String) =
-    object {}.javaClass.classLoader.getResource(resource)?.readBytes() ?: throw NoSuchElementException("Resource $resource not found")
+    getResourceByteArrayOrNull(resource) ?: throw NoSuchElementException("Resource $resource not found")
 
 /**
  * Converts the string [this] into a full [File] using [this] as a [Path],
