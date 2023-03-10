@@ -4,13 +4,8 @@ import de.fruxz.ascend.extension.tryOrNull
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.*
-import java.io.File
 import java.io.InputStream
 import java.io.OutputStream
-import java.nio.charset.Charset
-import java.nio.file.Path
-import kotlin.io.path.Path
-import kotlin.io.path.readText
 
 // to json string
 

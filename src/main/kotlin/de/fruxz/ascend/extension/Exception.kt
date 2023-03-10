@@ -2,7 +2,6 @@ package de.fruxz.ascend.extension
 
 import de.fruxz.ascend.extension.container.emptyString
 import de.fruxz.ascend.extension.data.randomInt
-import java.lang.invoke.MethodHandles.catchException
 import kotlin.random.Random
 
 private typealias ExceptionCatch = (Throwable, String) -> Unit

@@ -19,7 +19,7 @@ import org.jetbrains.exposed.sql.vendors.currentDialect
  * @author Fruxz
  * @since 1.0
  */
-data class Identity<T> constructor(
+data class Identity<T>(
 	override val identity: String,
 ) : Identifiable<T> {
 
