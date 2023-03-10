@@ -18,6 +18,7 @@ import kotlin.io.path.*
  * @author Fruxz
  * @since 1.0
  */
+@Throws(NoSuchElementException::class)
 inline fun getResourceText(resource: String) =
     object {}.javaClass.classLoader.getResource(resource)?.readText() ?: throw NoSuchElementException("Resource $resource not found")
 
@@ -29,6 +30,7 @@ inline fun getResourceText(resource: String) =
  * @author Fruxz
  * @since 1.0
  */
+@Throws(NoSuchElementException::class)
 inline fun getResourceByteArray(resource: String) =
     object {}.javaClass.classLoader.getResource(resource)?.readBytes() ?: throw NoSuchElementException("Resource $resource not found")
 
