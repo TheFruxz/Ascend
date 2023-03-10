@@ -2,8 +2,8 @@ package de.fruxz.ascend.extension.container
 
 /**
  * Replaces the content values of [this] with the contents
- * of the [collection] collection (type [T]).
- * @param collection The new entries of [this] collection
+ * of the [iterable] (type [T]).
+ * @param iterable The new entries of [this] collection
  * @author Fruxz
  * @since 1.0
  */

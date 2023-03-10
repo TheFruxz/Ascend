@@ -137,14 +137,14 @@ inline fun <reified T> File.writeJsonIfBlank(content: T, createParent: Boolean =
 // input json from file
 
 /**
- * This function returns the content of [this] Path using the [fromJsonFile] function.
+ * This function returns the content of [this] Path using the [readText] and [fromJsonString] function.
  * @author Fruxz
  * @since 1.0
  */
 inline fun <reified T> Path.readJson(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = readText(charset).fromJsonString<T>(json = json)
 
 /**
- * This function returns the content of [this] File using the [fromJsonFileOrNull] function.
+ * This function returns the content of [this] File using the [readTextOrNull] and [fromJsonStringOrNull] function.
  * @author Fruxz
  * @since 1.0
  */
@@ -187,14 +187,14 @@ fun Path.readJsonObject(charset: Charset = Charsets.UTF_8, json: Json = globalJs
 fun Path.readJsonObjectOrNull(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = readTextOrNull(charset)?.parseToJsonObjectOrNull(json = json)
 
 /**
- * This function returns the content of [this] File using the [fromJsonFile] function.
+ * This function returns the content of [this] File using the [readText] and [fromJsonString] function.
  * @author Fruxz
  * @since 1.0
  */
 inline fun <reified T> File.readJson(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = readText(charset).fromJsonString<T>(json = json)
 
 /**
- * This function returns the content of [this] File using the [fromJsonFileOrNull] function.
+ * This function returns the content of [this] File using the [readTextOrNull] and [fromJsonStringOrNull] function.
  * @author Fruxz
  * @since 1.0
  */

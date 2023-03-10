@@ -210,7 +210,6 @@ fun <T> Array<T>.take(intRange: IntRange): List<T> =
  * are in a simulated page, which is created by the [pageSize]
  * and the [paged] number.
  * If the requested page is out of range, it will return the last non-empty page.
- * @param page the page, where the list should be
  * @param pageSize the size of each individual page
  * @return the list of [T] objects contained in the page
  * @author Fruxz

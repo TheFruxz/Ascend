@@ -6,7 +6,6 @@ package de.fruxz.ascend.tool.time
  * This interface was created, to simply define an infinite future,
  * or an infinite past. This can be used to define something like
  * "this stays forever" or "never happened".
- * Static templates for this is available at [Calendar.Companion]!
  * @author Fruxz
  * @since 1.0
  */
