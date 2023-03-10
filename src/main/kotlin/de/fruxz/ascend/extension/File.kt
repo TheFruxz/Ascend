@@ -57,7 +57,7 @@ fun String.pathAsFileFromRuntime() =
  * @author Fruxz
  * @since 1.0
  */
-fun File.createFileAndDirectories(ignoreIfExists: Boolean = true) {
+fun File.createFileAndDirectories(ignoreIfExists: Boolean = true) = apply {
     if (tryOrNull { parentFile } != null && (!parentFile.exists() || !ignoreIfExists)) parentFile.mkdirs()
     if (!exists() || !ignoreIfExists) createNewFile()
 }
@@ -68,7 +68,7 @@ fun File.createFileAndDirectories(ignoreIfExists: Boolean = true) {
  * @author Fruxz
  * @since 1.0
  */
-fun Path.createParentDirectories(ignoreIfExists: Boolean = true, vararg attributes: FileAttribute<*>) {
+fun Path.createParentDirectories(ignoreIfExists: Boolean = true, vararg attributes: FileAttribute<*>) = apply {
     if (tryOrNull { parent } != null && (parent.notExists() || !ignoreIfExists)) parent.createDirectories(*attributes)
 }
 
@@ -79,7 +79,7 @@ fun Path.createParentDirectories(ignoreIfExists: Boolean = true, vararg attribut
  * @author Fruxz
  * @since 1.0
  */
-fun Path.createFileAndDirectories(ignoreIfExists: Boolean = true, directoryAttributes: List<FileAttribute<*>> = emptyList(), fileAttributes: List<FileAttribute<*>> = listOf()) {
+fun Path.createFileAndDirectories(ignoreIfExists: Boolean = true, directoryAttributes: List<FileAttribute<*>> = emptyList(), fileAttributes: List<FileAttribute<*>> = listOf()) = apply {
     createParentDirectories(ignoreIfExists, *directoryAttributes.toTypedArray())
     if (notExists() || !ignoreIfExists) createFile(*fileAttributes.toTypedArray())
 }
