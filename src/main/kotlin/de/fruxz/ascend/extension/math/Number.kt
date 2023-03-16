@@ -63,12 +63,30 @@ infix fun Number.format(pattern: String): String = DecimalFormat(pattern).format
 
 /**
  * Formats the number to the '##.##' pattern using the [Number.format] function.
- * @return the formatted number as a string.
+ * @return the formatted number as a [String].
  * @author Fruxz
  * @since 1.0
  */
 val Number.shorter: String
 	get() = this.format("##.##")
+
+/**
+ * Formats the number to the '##.##' pattern using the [Number.format] function.
+ * @return the formatted number as a double, using [String.toDouble] on the [String].
+ * @author Fruxz
+ * @since 1.0
+ */
+val Number.shorterDouble: Double
+	get() = shorter.toDouble()
+
+/**
+ * Formats the number to the '##.##' pattern using the [Number.format] function.
+ * @return the formatted number as a float, using [String.toFloat] on the [String].
+ * @author Fruxz
+ * @since 1.0
+ */
+val Number.shorterFloat: Float
+	get() = shorter.toFloat()
 
 /**
  * Adds the [intArray] to the [this] [IntArray] merging into a new array containing both.
