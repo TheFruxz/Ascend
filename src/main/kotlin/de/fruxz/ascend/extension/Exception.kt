@@ -2,9 +2,8 @@ package de.fruxz.ascend.extension
 
 import de.fruxz.ascend.extension.container.emptyString
 import de.fruxz.ascend.extension.data.randomInt
+import de.fruxz.ascend.tool.exception.ExceptionCatch
 import kotlin.random.Random
-
-private typealias ExceptionCatch = (Throwable, String) -> Unit
 
 /**
  * Gets the exception [exception] and prints a beautiful stack trace & message.
@@ -14,14 +13,14 @@ private typealias ExceptionCatch = (Throwable, String) -> Unit
  */
 fun catchException(
 	exception: Exception,
-	catch: ExceptionCatch = { _, _ -> },
+	catch: ExceptionCatch<Exception> = ExceptionCatch.ignore(),
 	random: Random = Random,
 ) {
 
 	val tag = "#${randomInt(10_000..99_999, random)}"
 	val exceptionShort = exception.stackTrace.firstOrNull()?.className ?: "Unknown exception!"
 
-	catch.invoke(exception, tag)
+	catch(exception, tag)
 
 	println(" > $tag - $exceptionShort")
 	exception.printStackTrace()
@@ -42,7 +41,7 @@ fun catchException(
  */
 inline fun <A, T> A.tryWithResult(
 	silent: Boolean = true,
-	catch: ExceptionCatch = { _, _ -> },
+	catch: ExceptionCatch<Exception> = ExceptionCatch.ignore(),
 	process: A.() -> T
 ): Result<T> = try {
 	Result.success(process())
@@ -67,7 +66,7 @@ inline fun <A, T> A.tryWithResult(
  */
 inline fun <A, T> A.tryWithResult(
 	silent: () -> Boolean,
-	catch: ExceptionCatch = { _, _ -> },
+	catch: ExceptionCatch<Exception> = ExceptionCatch.ignore(),
 	process: A.() -> T
 ): Result<T> = tryWithResult(silent = silent(), catch = catch, process = process)
 
@@ -89,7 +88,7 @@ inline fun <A, T> A.tryWithResult(
 inline fun <A, R, T : R> A.tryOrElse(
 	silent: Boolean = true,
 	other: T,
-	catch: ExceptionCatch = { _, _ -> },
+	catch: ExceptionCatch<Exception> = ExceptionCatch.ignore(),
 	process: A.() -> R
 ): R = tryWithResult(silent = silent, catch = catch, process = process).getOrElse { other }
 
@@ -110,7 +109,7 @@ inline fun <A, R, T : R> A.tryOrElse(
 inline fun <A, R, T : R> A.tryOrElse(
 	silent: () -> Boolean,
 	other: T,
-	catch: ExceptionCatch = { _, _ -> },
+	catch: ExceptionCatch<Exception> = ExceptionCatch.ignore(),
 	process: A.() -> R
 ): R = tryOrElse(silent = silent(), other = other, catch = catch, process = process)
 
@@ -129,7 +128,7 @@ inline fun <A, R, T : R> A.tryOrElse(
  */
 inline fun <A, T> A.tryOrNull(
 	silent: Boolean = true,
-	catch: ExceptionCatch = { _, _ -> },
+	catch: ExceptionCatch<Exception> = ExceptionCatch.ignore(),
 	process: A.() -> T
 ): T? = tryWithResult(silent = silent, catch = catch, process = process).getOrNull()
 
@@ -147,7 +146,7 @@ inline fun <A, T> A.tryOrNull(
  */
 inline fun <A, T> A.tryOrNull(
 	silent: () -> Boolean,
-	catch: ExceptionCatch = { _, _ -> },
+	catch: ExceptionCatch<Exception> = ExceptionCatch.ignore(),
 	process: A.() -> T
 ): T? = tryOrNull(silent = silent(), catch = catch, process = process)
 
@@ -162,7 +161,7 @@ inline fun <A, T> A.tryOrNull(
  */
 inline fun <A> A.tryOrIgnore(
 	silent: Boolean = true,
-	catch: ExceptionCatch = { _, _ -> },
+	catch: ExceptionCatch<Exception> = ExceptionCatch.ignore(),
 	process: A.() -> Unit
 ): Unit = tryWithResult(silent = silent, catch = catch, process = process).dump()
 
@@ -176,7 +175,7 @@ inline fun <A> A.tryOrIgnore(
  */
 inline fun <A> A.tryOrIgnore(
 	silent: () -> Boolean,
-	catch: ExceptionCatch = { _, _ -> },
+	catch: ExceptionCatch<Exception> = ExceptionCatch.ignore(),
 	process: A.() -> Unit
 ): Unit = tryOrIgnore(silent = silent(), catch = catch, process = process)
 
@@ -189,6 +188,6 @@ inline fun <A> A.tryOrIgnore(
  * @since 1.0
  */
 inline fun <A> A.tryOrPrint(
-	catch: ExceptionCatch = { _, _ -> },
+	catch: ExceptionCatch<Exception> = ExceptionCatch.ignore(),
 	process: A.() -> Unit
 ) = tryWithResult(catch = catch, process = process).exceptionOrNull()?.printStackTrace().dump()
