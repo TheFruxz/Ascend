@@ -28,6 +28,9 @@ implementation("com.github.TheFruxz:Ascend:$ascendVersion")
 ```
 
 #### Using GitHub Packages
+
+> Currently not recommended, due to the complexity and type of authorization
+
 ##### Repository 
 ```kotlin
 maven("https://maven.pkg.github.com/TheFruxz/Ascend") {
