@@ -13,7 +13,7 @@ repositories {
     mavenCentral()
 }
 
-version = "2023.1"
+version = "2023.2"
 group = "dev.fruxz"
 
 dependencies {
