@@ -520,3 +520,11 @@ fun <T : Iterable<String>> T.joinedFirst(n: Int, spliterator: String = ", ", tra
 fun <T : Iterable<String>> T.joinedLast(n: Int, spliterator: String = ", ", transform: (String) -> String = { it }) = modified {
 	joinLast(n, spliterator, transform)
 }
+
+/**
+ * This function returns a new list of the current [Iterable], with the values
+ * from the indexes between [IntRange.first] and [IntRange.last] (inclusive).
+ * @author Fruxz
+ * @since 1.0
+ */
+operator fun <T> List<T>.get(indexes: IntRange) = subList(indexes.first, indexes.last)
