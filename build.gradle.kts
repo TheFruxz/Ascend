@@ -14,7 +14,7 @@ repositories {
 }
 
 version = "2023.1"
-group = "de.fruxz"
+group = "dev.fruxz"
 
 dependencies {
 
