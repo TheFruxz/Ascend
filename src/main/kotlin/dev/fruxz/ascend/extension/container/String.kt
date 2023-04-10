@@ -160,7 +160,7 @@ fun String.replaceSurrounding(oldValue: String, newValue: String, ignoreCase: Bo
  */
 fun String.mixedCase(randomized: Boolean = true, random: Random = Random(Random.nextLong())) =
 	toCharArray().withIndex().joinToString(separator = "") { (index, char) ->
-		if (randomized && randomBoolean(random) || index % 2 == 0) { // More forced uniqueness, because of next seed
+		if (randomized && randomBoolean(random) || index % 2 == 0) { // More forced uniqueness because of next seed
 			char.uppercase()
 		} else
 			char.lowercase()
@@ -220,21 +220,37 @@ fun String.splitZones(
 }
 
 /**
- * This function takes [this] string as the input and splits it
- * by their ' ' (space) characters, using the [split] function.
- * But instead of only split the spaces, this function does something,
- * before the space splits, it splits by blocks. A block can be
- * defined via quotes like "...".
- * Quotes override the need, to break at spaces, so a text like
- * 'This is "a small" test!' produces a result of ["This", "is",
- * "a small", "test!"]
+ * This function splits the string by " " and joins the arguments, which are surrounded by the [spliterator].
+ * Example: 'This is "a demo" string' -> ['This', 'is', 'a demo', 'string']
  * @author Fruxz
  * @since 1.0
  */
-@dev.fruxz.ascend.annotation.ExperimentalAscendApi
-fun String.splitArguments() = split("\"")
-	.let { it.takeIf { it.size % 2 != 0 } ?: it.joinedLast(1, "\"") }
-	.flatMapIndexed { index: Int, value: String ->
-		if (index % 2 == 0) value.split(" ") else listOf(value)
+fun String.joinArgumentChunks(spliterator: String = "\""): List<String> {
+	val splitted = this.split(" ").takeIf { this.isNotBlank() } ?: emptyList()
+
+	return buildList {
+		var isQuoted = false
+		val current = StringBuilder()
+
+		for (string in splitted) {
+			if (string.startsWith(spliterator)) {
+				isQuoted = true
+				current.append(string.removePrefix(spliterator))
+			} else if (string.endsWith(spliterator)) {
+				if (isQuoted) current.append(" ")
+
+				isQuoted = false
+				current.append(string.removeSuffix(spliterator))
+				add(current.toString())
+				current.clear()
+			} else if (isQuoted) {
+				current.append(" ").append(string)
+			} else {
+				add(string)
+			}
+		}
+
+		if (current.isNotEmpty()) addAll((spliterator + current).split(" "))
+
 	}
-	.filterNot { it.isBlank() }
+}
