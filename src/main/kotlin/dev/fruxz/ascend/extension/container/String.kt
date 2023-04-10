@@ -1,6 +1,5 @@
 package dev.fruxz.ascend.extension.container
 
-import dev.fruxz.ascend.annotation.ExperimentalAscendApi
 import dev.fruxz.ascend.extension.data.randomBoolean
 import java.util.*
 import kotlin.random.Random
@@ -220,37 +219,34 @@ fun String.splitZones(
 }
 
 /**
- * This function splits the string by " " and joins the arguments, which are surrounded by the [spliterator].
+ * This function splits the string by [argumentSpliterator] and joins the arguments, which are surrounded by the [chunkMarker].
  * Example: 'This is "a demo" string' -> ['This', 'is', 'a demo', 'string']
  * @author Fruxz
  * @since 1.0
  */
-fun String.joinArgumentChunks(spliterator: String = "\""): List<String> {
-	val splitted = this.split(" ").takeIf { this.isNotBlank() } ?: emptyList()
+fun String.joinArgumentChunks(chunkMarker: String = "\"", argumentSpliterator: String = " "): List<String> = buildList {
+	var isQuoted = false
+	val current = StringBuilder()
+	val strings = (this@joinArgumentChunks.split(argumentSpliterator).takeIf { this@joinArgumentChunks.isNotBlank() }.orEmpty())
 
-	return buildList {
-		var isQuoted = false
-		val current = StringBuilder()
+	for (string in strings) {
+		if (string.startsWith(chunkMarker)) {
+			isQuoted = true
+			current.append(string.removePrefix(chunkMarker))
+		} else if (string.endsWith(chunkMarker)) {
+			if (isQuoted) current.append(" ")
 
-		for (string in splitted) {
-			if (string.startsWith(spliterator)) {
-				isQuoted = true
-				current.append(string.removePrefix(spliterator))
-			} else if (string.endsWith(spliterator)) {
-				if (isQuoted) current.append(" ")
-
-				isQuoted = false
-				current.append(string.removeSuffix(spliterator))
-				add(current.toString())
-				current.clear()
-			} else if (isQuoted) {
-				current.append(" ").append(string)
-			} else {
-				add(string)
-			}
+			isQuoted = false
+			current.append(string.removeSuffix(chunkMarker))
+			add(current.toString())
+			current.clear()
+		} else if (isQuoted) {
+			current.append(" ").append(string)
+		} else {
+			add(string)
 		}
-
-		if (current.isNotEmpty()) addAll((spliterator + current).split(" "))
-
 	}
+
+	if (current.isNotEmpty()) addAll((chunkMarker + current).split(" "))
+
 }
