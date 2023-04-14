@@ -3,6 +3,9 @@ package dev.fruxz.ascend.extension.container
 import dev.fruxz.ascend.annotation.ExperimentalAscendApi
 import dev.fruxz.ascend.extension.math.ceilToInt
 import dev.fruxz.ascend.tool.collection.Paged
+import java.util.*
+import kotlin.NoSuchElementException
+import kotlin.collections.ArrayList
 import kotlin.random.Random
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
@@ -536,3 +539,25 @@ operator fun <T> List<T>.get(indexesRange: IntRange) = subList(indexesRange.firs
  * @since 1.0
  */
 operator fun <T> List<T>.get(indexes: Iterable<Int>) = indexes.map { this[it] }
+
+/**
+ * This function returns a new [SortedSet] of the current [Iterable], with the
+ * indexes matching the indexes of [this].
+ * @author Fruxz
+ * @since 1.0
+ */
+fun <T> Iterable<T>.toSortedSet(): SortedSet<T> {
+	return when (this) {
+		is SortedSet -> this
+		else -> toSortedSet(compareBy { this.indexOf(it) })
+	}
+}
+
+/**
+ * This function returns a new [SortedSet] of the current [Array], with the
+ * indexes matching the indexes of [this].
+ * @author Fruxz
+ * @since 1.0
+ */
+fun <T> Array<T>.toSortedSet(): SortedSet<T> =
+	toSortedSet(compareBy { this.indexOf(it) })
