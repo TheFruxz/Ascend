@@ -527,4 +527,12 @@ fun <T : Iterable<String>> T.joinedLast(n: Int, spliterator: String = ", ", tran
  * @author Fruxz
  * @since 1.0
  */
-operator fun <T> List<T>.get(indexes: IntRange) = subList(indexes.first, indexes.last)
+operator fun <T> List<T>.get(indexesRange: IntRange) = subList(indexesRange.first, indexesRange.last)
+
+/**
+ * This function returns a new list of all entries, which are at the indexes
+ * specified in the [indexes].
+ * @author Fruxz
+ * @since 1.0
+ */
+operator fun <T> List<T>.get(indexes: Iterable<Int>) = indexes.map { this[it] }
