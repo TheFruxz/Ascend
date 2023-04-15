@@ -39,10 +39,10 @@ fun catchException(
  * @author Fruxz
  * @since 1.0
  */
-inline fun <A, T> A.tryWithResult(
+inline fun <T> tryWithResult(
 	silent: Boolean = true,
 	catch: ExceptionCatch<Exception> = ExceptionCatch.ignore(),
-	process: A.() -> T
+	process: () -> T
 ): Result<T> = try {
 	Result.success(process())
 } catch (e: Exception) {
@@ -64,10 +64,10 @@ inline fun <A, T> A.tryWithResult(
  * @author Fruxz
  * @since 1.0
  */
-inline fun <A, T> A.tryWithResult(
+inline fun <T> tryWithResult(
 	silent: () -> Boolean,
 	catch: ExceptionCatch<Exception> = ExceptionCatch.ignore(),
-	process: A.() -> T
+	process: () -> T
 ): Result<T> = tryWithResult(silent = silent(), catch = catch, process = process)
 
 
@@ -85,11 +85,11 @@ inline fun <A, T> A.tryWithResult(
  * @author Fruxz
  * @since 1.0
  */
-inline fun <A, R, T : R> A.tryOrElse(
+inline fun <R, T : R> tryOrElse(
 	silent: Boolean = true,
 	other: T,
 	catch: ExceptionCatch<Exception> = ExceptionCatch.ignore(),
-	process: A.() -> R
+	process: () -> R
 ): R = tryWithResult(silent = silent, catch = catch, process = process).getOrElse { other }
 
 /**
@@ -106,11 +106,11 @@ inline fun <A, R, T : R> A.tryOrElse(
  * @author Fruxz
  * @since 1.0
  */
-inline fun <A, R, T : R> A.tryOrElse(
+inline fun <R, T : R> tryOrElse(
 	silent: () -> Boolean,
 	other: T,
 	catch: ExceptionCatch<Exception> = ExceptionCatch.ignore(),
-	process: A.() -> R
+	process: () -> R
 ): R = tryOrElse(silent = silent(), other = other, catch = catch, process = process)
 
 
@@ -126,10 +126,10 @@ inline fun <A, R, T : R> A.tryOrElse(
  * @author Fruxz
  * @since 1.0
  */
-inline fun <A, T> A.tryOrNull(
+inline fun <T> tryOrNull(
 	silent: Boolean = true,
 	catch: ExceptionCatch<Exception> = ExceptionCatch.ignore(),
-	process: A.() -> T
+	process: () -> T
 ): T? = tryWithResult(silent = silent, catch = catch, process = process).getOrNull()
 
 /**
@@ -144,10 +144,10 @@ inline fun <A, T> A.tryOrNull(
  * @author Fruxz
  * @since 1.0
  */
-inline fun <A, T> A.tryOrNull(
+inline fun <T> tryOrNull(
 	silent: () -> Boolean,
 	catch: ExceptionCatch<Exception> = ExceptionCatch.ignore(),
-	process: A.() -> T
+	process: () -> T
 ): T? = tryOrNull(silent = silent(), catch = catch, process = process)
 
 
@@ -159,10 +159,10 @@ inline fun <A, T> A.tryOrNull(
  * @author Fruxz
  * @since 1.0
  */
-inline fun <A> A.tryOrIgnore(
+inline fun tryOrIgnore(
 	silent: Boolean = true,
 	catch: ExceptionCatch<Exception> = ExceptionCatch.ignore(),
-	process: A.() -> Unit
+	process: () -> Unit
 ): Unit = tryWithResult(silent = silent, catch = catch, process = process).dump()
 
 /**
@@ -173,10 +173,10 @@ inline fun <A> A.tryOrIgnore(
  * @author Fruxz
  * @since 1.0
  */
-inline fun <A> A.tryOrIgnore(
+inline fun tryOrIgnore(
 	silent: () -> Boolean,
 	catch: ExceptionCatch<Exception> = ExceptionCatch.ignore(),
-	process: A.() -> Unit
+	process: () -> Unit
 ): Unit = tryOrIgnore(silent = silent(), catch = catch, process = process)
 
 
@@ -187,7 +187,7 @@ inline fun <A> A.tryOrIgnore(
  * @author Fruxz
  * @since 1.0
  */
-inline fun <A> A.tryOrPrint(
+inline fun tryOrPrint(
 	catch: ExceptionCatch<Exception> = ExceptionCatch.ignore(),
-	process: A.() -> Unit
+	process: () -> Unit
 ) = tryWithResult(catch = catch, process = process).exceptionOrNull()?.printStackTrace().dump()
