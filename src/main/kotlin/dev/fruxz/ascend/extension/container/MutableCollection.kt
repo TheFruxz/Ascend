@@ -7,7 +7,7 @@ package dev.fruxz.ascend.extension.container
  * @author Fruxz
  * @since 1.0
  */
-fun <T> MutableCollection<T>.mutableReplaceWith(iterable: Iterable<T>) {
+fun <T> MutableCollection<T>.reduceTo(iterable: Iterable<T>) {
 	clear()
 	addAll(iterable)
 }
