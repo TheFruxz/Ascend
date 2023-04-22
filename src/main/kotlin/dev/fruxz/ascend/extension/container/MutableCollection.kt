@@ -56,7 +56,8 @@ fun <T> MutableList<T>.toggle(o: T, addToContainer: Boolean = !contains(o)) {
  * @author Fruxz
  * @since 1.0
  */
-fun <C : Collection<T>, T> C?.orEmptyList() = this?.toList() ?: listOf()
+@Deprecated("Kotlin has a built-in function for this, called orEmpty()", ReplaceWith("this.orEmpty()"))
+fun <C : Collection<T>, T> C?.orEmptyList() = this.orEmpty()
 
 /**
  * This function takes a nullable [C] (which is a mutable-collection-based object) and
