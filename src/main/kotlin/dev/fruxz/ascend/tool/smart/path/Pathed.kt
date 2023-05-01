@@ -1,4 +1,4 @@
-package dev.fruxz.ascend.tool.smart.positioning
+package dev.fruxz.ascend.tool.smart.path
 
 /**
  * This interface represents an object, which has a specific

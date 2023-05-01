@@ -1,4 +1,4 @@
-package dev.fruxz.ascend.tool.math
+package dev.fruxz.ascend.tool.math.decimal
 
 import kotlin.math.roundToInt
 

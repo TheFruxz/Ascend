@@ -1,4 +1,4 @@
-package dev.fruxz.ascend.tool.smart.positioning
+package dev.fruxz.ascend.tool.smart.path
 
 import dev.fruxz.ascend.tool.smart.identification.Identifiable
 import kotlinx.serialization.SerialName

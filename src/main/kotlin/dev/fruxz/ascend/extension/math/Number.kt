@@ -1,6 +1,6 @@
 package dev.fruxz.ascend.extension.math
 
-import dev.fruxz.ascend.tool.math.Percentage
+import dev.fruxz.ascend.tool.math.decimal.Percentage
 import java.text.DecimalFormat
 
 /**

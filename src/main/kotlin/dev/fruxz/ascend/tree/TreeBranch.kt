@@ -2,8 +2,8 @@ package dev.fruxz.ascend.tree
 
 import dev.fruxz.ascend.extension.forceCast
 import dev.fruxz.ascend.tool.smart.identification.Identifiable
-import dev.fruxz.ascend.tool.smart.positioning.Address
-import dev.fruxz.ascend.tool.smart.positioning.Pathed
+import dev.fruxz.ascend.tool.smart.path.Address
+import dev.fruxz.ascend.tool.smart.path.Pathed
 
 /**
  * This open class represents a branch of a tree, containing and based on another branches.

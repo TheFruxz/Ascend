@@ -1,4 +1,4 @@
-package dev.fruxz.ascend.tool.smart.positioning
+package dev.fruxz.ascend.tool.smart.path
 
 /**
  * Interface for objects that can be addressed by a [Address].
