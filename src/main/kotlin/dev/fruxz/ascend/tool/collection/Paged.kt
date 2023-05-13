@@ -1,6 +1,5 @@
 package dev.fruxz.ascend.tool.collection
 
-import dev.fruxz.ascend.extension.container.listOf
 import dev.fruxz.ascend.extension.math.ceilToInt
 
 /**
@@ -16,7 +15,7 @@ import dev.fruxz.ascend.extension.math.ceilToInt
  */
 data class Paged<T>(
     val size: Int,
-    val content: List<T>,
+    val content: Iterable<T>,
 ) : Iterable<List<T>>, Comparable<Paged<T>>, Cloneable {
 
     /**
@@ -27,7 +26,10 @@ data class Paged<T>(
     fun getPage(page: Int) = PageIterable(
         page = page,
         content = (size * (page + 1)).let { end ->
-            listOf(size = size) { content[end - size + it] }
+            content.toList().subList(
+                fromIndex = size * page,
+                toIndex = end.coerceAtMost(content.count())
+            )
         }
     )
 
@@ -44,13 +46,13 @@ data class Paged<T>(
      * @author Fruxz
      * @since 1.0
      */
-    val pages = ceilToInt(content.size.toDouble() / size)
+    val pages by lazy { ceilToInt(content.count().toDouble() / size) }
 
     override fun iterator(): ListIterator<List<T>> = content
         .chunked(size)
         .listIterator()
 
-    override fun compareTo(other: Paged<T>) = content.size - other.content.size
+    override fun compareTo(other: Paged<T>) = content.count() - other.content.count()
 
     /**
      * This class represents a part of an iterable, which represents itself a page (for e.g. page 3 of 10).

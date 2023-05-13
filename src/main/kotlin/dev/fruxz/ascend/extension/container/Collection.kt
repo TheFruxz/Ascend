@@ -218,7 +218,7 @@ fun <T> Array<T>.take(intRange: IntRange): List<T> =
  * @author Fruxz
  * @since 1.0
  */
-fun <T, C : List<T>> C.paged(pageSize: Int): Paged<T> =
+fun <T, C : Iterable<T>> C.paged(pageSize: Int): Paged<T> =
 	Paged(pageSize, this)
 
 /**
