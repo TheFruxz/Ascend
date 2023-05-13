@@ -1,5 +1,7 @@
 package dev.fruxz.ascend.tool.collection
 
+import dev.fruxz.ascend.extension.container.subList
+import dev.fruxz.ascend.extension.container.subListOrEmpty
 import dev.fruxz.ascend.extension.math.ceilToInt
 
 /**
@@ -26,10 +28,11 @@ data class Paged<T>(
     fun getPage(page: Int) = PageIterable(
         page = page,
         content = (size * (page + 1)).let { end ->
-            content.toList().subList(
-                fromIndex = size * page,
-                toIndex = end.coerceAtMost(content.count())
-            )
+            val from = size * page
+            val to = end.coerceAtMost(content.count())
+
+            content.toList().subListOrEmpty(from..to)
+
         }
     )
 

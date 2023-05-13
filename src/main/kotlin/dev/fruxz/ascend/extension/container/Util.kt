@@ -1,5 +1,7 @@
 package dev.fruxz.ascend.extension.container
 
+import dev.fruxz.ascend.extension.tryOrNull
+
 /**
  * Creates a sublist of [this] List<[T]> using the [subList] function
  * but accept a [IntRange] as range instead.
@@ -9,6 +11,21 @@ package dev.fruxz.ascend.extension.container
  * @since 1.0
  */
 fun <T> List<T>.subList(values: IntRange) = subList(values.first, values.last)
+
+/**
+ * Creates a sublist of [this] List<[T]> using the [subList] function
+ * but accept a [IntRange] as range instead.
+ * @param values the [IntRange] to use as take parameter
+ * @return the sublist of [this] List<[T]> or an empty list if the range is invalid or empty
+ * @see subList
+ * @see tryOrNull
+ * @see emptyList
+ * @author Fruxz
+ * @since 2023.2
+ */
+fun <T> List<T>.subListOrEmpty(values: IntRange) = tryOrNull {
+    if (values.first > values.last) emptyList() else subList(values.first, values.last)
+} ?: emptyList()
 
 /**
  * [forEach] a [Collection] but instead of a 'it' lambda it uses a 'this' lambda,
