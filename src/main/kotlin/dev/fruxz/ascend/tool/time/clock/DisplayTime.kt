@@ -39,7 +39,7 @@ data class DisplayTime(
 		val remainingSeconds = floor(ticks / 20).roundToInt() - (remainingYears * 60*60*24*365) - (remainingDays * 60*60*24) - (remainingHours * 60*60) - (remainingMinutes * 60)
 		val remainingTicks = ticks - (remainingYears * 20*60*60*24*365) - (remainingDays * 20*60*60*24) - (remainingHours * 20*60*60) - (remainingMinutes * 20*60) - (remainingSeconds * 20)
 
-		Format.values()
+		Format.entries
 			.filter { views.contains(it) }
 			.forEach { timeFormat ->
 
