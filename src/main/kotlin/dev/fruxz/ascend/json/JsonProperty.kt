@@ -1,7 +1,5 @@
 package dev.fruxz.ascend.json
 
-import dev.fruxz.ascend.annotation.ExperimentalAscendApi
-import dev.fruxz.ascend.annotation.LanguageFeature
 import dev.fruxz.ascend.extension.objects.takeIfCastableTo
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
@@ -79,11 +77,9 @@ data class JsonProperty<T : Any>(
  * to initialize the file with all its possible properties.
  * This has the benefit, that for example, properties can be directly edited with its full potential, without
  * having to call every code snipped to fully initialize the file.
- * **Currently there is an issue with specific types (e.g. lists is having problems), because of that [ExperimentalAscendApi]**
  * @author Fruxz
  * @since 1.0
  */
-@dev.fruxz.ascend.annotation.LanguageFeature
 inline fun <reified T : Any> property(
     file: Path,
     key: String,
