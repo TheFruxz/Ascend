@@ -10,7 +10,7 @@ import kotlin.math.absoluteValue
  * @author Fruxz
  * @since 1.0
  */
-@dev.fruxz.ascend.annotation.LanguageFeature
+@LanguageFeature
 fun IntRange.skip(vararg ints: Int) =
 	toMutableList().apply { removeAll(ints.toList().toSet()) }
 
@@ -21,7 +21,7 @@ fun IntRange.skip(vararg ints: Int) =
  * @author Fruxz
  * @since 1.0
  */
-@dev.fruxz.ascend.annotation.LanguageFeature
+@LanguageFeature
 infix fun IntRange.skip(int: Int) =
 	skip(ints = intArrayOf(int))
 
