@@ -480,7 +480,7 @@ inline fun <T, C> Array<T>.isUnique(process: (T) -> C) = groupBy { process(it) }
  * @author Fruxz
  * @since 1.0
  */
-@dev.fruxz.ascend.annotation.ExperimentalAscendApi
+@ExperimentalAscendApi
 fun <T : MutableList<String>> T.joinFirst(n: Int, spliterator: String = ", ", transform: (String) -> String = { it }) {
 	repeat(n) {
 		this[1] = (transform("${removeFirstOrNull()}") + spliterator + this[1])
@@ -493,7 +493,7 @@ fun <T : MutableList<String>> T.joinFirst(n: Int, spliterator: String = ", ", tr
  * @author Fruxz
  * @since 1.0
  */
-@dev.fruxz.ascend.annotation.ExperimentalAscendApi
+@ExperimentalAscendApi
 fun <T : MutableList<String>> T.joinLast(n: Int, spliterator: String = ", ", transform: (String) -> String = { it }) {
 	repeat(n) {
 		this[lastIndex - 1] = (this[lastIndex - 1] + spliterator + transform("${removeLastOrNull()}"))
@@ -507,7 +507,7 @@ fun <T : MutableList<String>> T.joinLast(n: Int, spliterator: String = ", ", tra
  * @author Fruxz
  * @since 1.0
  */
-@dev.fruxz.ascend.annotation.ExperimentalAscendApi
+@ExperimentalAscendApi
 fun <T : Iterable<String>> T.joinedFirst(n: Int, spliterator: String = ", ", transform: (String) -> String = { it }) = modified {
 	joinFirst(n, spliterator, transform)
 }
@@ -519,7 +519,7 @@ fun <T : Iterable<String>> T.joinedFirst(n: Int, spliterator: String = ", ", tra
  * @author Fruxz
  * @since 1.0
  */
-@dev.fruxz.ascend.annotation.ExperimentalAscendApi
+@ExperimentalAscendApi
 fun <T : Iterable<String>> T.joinedLast(n: Int, spliterator: String = ", ", transform: (String) -> String = { it }) = modified {
 	joinLast(n, spliterator, transform)
 }

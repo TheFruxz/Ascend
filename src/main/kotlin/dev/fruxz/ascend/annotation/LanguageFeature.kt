@@ -6,4 +6,4 @@ package dev.fruxz.ascend.annotation
  * @since 1.0
  */
 @DslMarker
-annotation class LanguageFeature
+internal annotation class LanguageFeature
