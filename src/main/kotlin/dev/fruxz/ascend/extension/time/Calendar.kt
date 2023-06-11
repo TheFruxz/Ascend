@@ -16,7 +16,7 @@ import java.util.Calendar as JavaUtilCalendar
  * @author Fruxz
  * @since 1.0
  */
-val JavaUtilCalendar.ascendCalendar: Calendar
+val JavaUtilCalendar.asAscendCalendar: Calendar
 	get() = Calendar.fromLegacy(this)
 
 /**
@@ -29,7 +29,7 @@ val JavaUtilCalendar.ascendCalendar: Calendar
  * @author Fruxz
  * @since 1.0
  */
-fun JavaUtilCalendar.editInKotlinEnvironment(action: Calendar.() -> Unit) = ascendCalendar.apply(action).produce()
+fun JavaUtilCalendar.editInAscendCalendar(action: Calendar.() -> Unit) = asAscendCalendar.apply(action).produce()
 
 /**
  * This value returns the value of the [Calendar.get] function
