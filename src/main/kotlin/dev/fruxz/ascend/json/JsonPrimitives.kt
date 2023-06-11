@@ -8,7 +8,7 @@ import kotlinx.serialization.json.JsonPrimitive
  * @author Fruxz
  * @since 1.0
  */
-val Boolean.primitive
+val Boolean.asJsonPrimitive
     get() = JsonPrimitive(this)
 
 /**
@@ -17,7 +17,7 @@ val Boolean.primitive
  * @author Fruxz
  * @since 1.0
  */
-val Number.primitive
+val Number.asJsonPrimitive
     get() = JsonPrimitive(this)
 
 /**
@@ -26,5 +26,5 @@ val Number.primitive
  * @author Fruxz
  * @since 1.0
  */
-val String.primitive
+val String.asJsonPrimitive
     get() = JsonPrimitive(this)
