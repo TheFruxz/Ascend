@@ -1,5 +1,6 @@
 package dev.fruxz.ascend.tool.exception
 
+import dev.fruxz.ascend.annotation.RefactoringCandidate
 import dev.fruxz.ascend.extension.data.buildRandomTag
 
 /**
@@ -9,6 +10,7 @@ import dev.fruxz.ascend.extension.data.buildRandomTag
  * @author Fruxz
  * @since 1.0
  */
+@RefactoringCandidate
 fun interface ExceptionCatch<E : Throwable> {
 
     /**
