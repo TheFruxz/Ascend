@@ -1,11 +1,13 @@
 package dev.fruxz.ascend.extension
 
+import dev.fruxz.ascend.annotation.LanguageFeature
+
 /**
  * Executes a check, if all [objects] are passing the [check] check.
  * @author Fruxz
  * @since 1.0
  */
-@dev.fruxz.ascend.annotation.LanguageFeature
+@LanguageFeature
 fun <T> all(vararg objects: T, check: (T) -> Boolean) = objects.all(check)
 
 /**
@@ -13,7 +15,7 @@ fun <T> all(vararg objects: T, check: (T) -> Boolean) = objects.all(check)
  * @author Fruxz
  * @since 1.0
  */
-@dev.fruxz.ascend.annotation.LanguageFeature
+@LanguageFeature
 fun <T> none(vararg objects: T, check: (T) -> Boolean) = objects.none(check)
 
 /**
@@ -21,7 +23,7 @@ fun <T> none(vararg objects: T, check: (T) -> Boolean) = objects.none(check)
  * @author Fruxz
  * @since 1.0
  */
-@dev.fruxz.ascend.annotation.LanguageFeature
+@LanguageFeature
 fun <T> any(vararg objects: T, check: (T) -> Boolean) = objects.any(check)
 
 /**
@@ -58,7 +60,7 @@ fun <T> T.modifiedIfSuccess(modification: T.() -> T): T = tryOrNull { modificati
  * @author Fruxz
  * @since 1.0
  */
-@dev.fruxz.ascend.annotation.LanguageFeature
+@LanguageFeature
 val Any?.isNull: Boolean
 	get() = this == null
 
@@ -67,7 +69,7 @@ val Any?.isNull: Boolean
  * @author Fruxz
  * @since 1.0
  */
-@dev.fruxz.ascend.annotation.LanguageFeature
+@LanguageFeature
 val Any?.isNotNull: Boolean
 	get() = !isNull
 
