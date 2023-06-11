@@ -22,6 +22,7 @@ import kotlin.reflect.typeOf
  * @author Fruxz
  * @since 1.0
  */
+@Deprecated("Bad design")
 class DynamicJsonColumnType<T : Any>(private val type: KType) : ColumnType() {
 
 	constructor(clazz: KClass<T>) : this(clazz.createType())
