@@ -1,6 +1,6 @@
 package dev.fruxz.ascend.extension.future
 
-import dev.fruxz.ascend.extension.switchResult
+import dev.fruxz.ascend.extension.switch
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -21,7 +21,7 @@ suspend fun List<Job>.awaitAll(printOut: Boolean) = when (printOut) {
 		map { job ->
 			job.invokeOnCompletion { error ->
 				currentState++
-				println("Job [$size/$currentState] ${(error == null).switchResult("finished", "failed")}!")
+				println("Job [$size/$currentState] ${(error == null).switch("finished", "failed")}!")
 			}
 		}
 

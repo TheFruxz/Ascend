@@ -5,7 +5,7 @@ import dev.fruxz.ascend.extension.container.mixedCase
 import dev.fruxz.ascend.extension.container.stackRandom
 import dev.fruxz.ascend.extension.data.RandomTagType.MIXED_CASE
 import dev.fruxz.ascend.extension.data.RandomTagType.ONLY_UPPERCASE
-import dev.fruxz.ascend.extension.switchResult
+import dev.fruxz.ascend.extension.switch
 import kotlin.random.Random
 import kotlin.random.nextInt
 
@@ -77,7 +77,7 @@ fun buildRandomTag(size: Int = 5, hashtag: Boolean = true, tagType: RandomTagTyp
 	if (tagType == ONLY_UPPERCASE) letters = letters.uppercase()
 	if (tagType == MIXED_CASE) letters = letters.mixedCase()
 
-	return hashtag.switchResult("#", "") + (letters.toCharArray().toList() + (0..9))
+	return hashtag.switch("#", "") + (letters.toCharArray().toList() + (0..9))
 		.mapToString()
 		.stackRandom(size, stackRandomizer)
 }

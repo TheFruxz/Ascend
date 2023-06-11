@@ -8,4 +8,4 @@ package dev.fruxz.ascend.extension
  * @author Fruxz
  * @since 1.0
  */
-fun <T> Boolean.switchResult(match: T, mismatch: T) = if (this) match else mismatch
+fun <T> Boolean.switch(match: T, mismatch: T) = if (this) match else mismatch

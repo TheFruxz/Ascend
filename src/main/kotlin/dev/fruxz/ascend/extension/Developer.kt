@@ -1,7 +1,5 @@
 package dev.fruxz.ascend.extension
 
-import dev.fruxz.ascend.annotation.LanguageFeature
-
 /**
  * Executes a check, if all [objects] are passing the [check] check.
  * @author Fruxz
@@ -121,4 +119,4 @@ inline fun <T> T?.ifNotNull(process: () -> Unit) = if (isNotNull) process() else
  * @author Fruxz
  * @since 1.0
  */
-fun <T, D> Pair<T?, D>.asDefaultNullDodge() = first.isNull.switchResult(first, second)
+fun <T, D> Pair<T?, D>.asDefaultNullDodge() = first.isNull.switch(first, second)
