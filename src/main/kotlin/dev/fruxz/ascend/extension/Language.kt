@@ -11,5 +11,5 @@ import dev.fruxz.ascend.annotation.LanguageFeature
  * @author Fruxz
  * @since 1.0
  */
-@dev.fruxz.ascend.annotation.LanguageFeature
+@LanguageFeature
 fun <T, I, O> T.alsoWith(it: I, block: I.(T) -> O): O = it.block(this)
