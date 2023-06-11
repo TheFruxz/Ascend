@@ -10,8 +10,6 @@ import java.nio.file.OpenOption
 import java.nio.file.Path
 import kotlin.io.path.*
 
-// output JSON to file
-
 /**
  * This function writes the given [this] object to a JSON file via the [globalJson]
  * and [toJsonString] function from the Kotlinx serialization library.
