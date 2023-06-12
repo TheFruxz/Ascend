@@ -1,6 +1,7 @@
 package dev.fruxz.ascend.json
 
 import dev.fruxz.ascend.extension.dump
+import dev.fruxz.ascend.extension.forceCast
 import dev.fruxz.ascend.json.serializer.AdaptiveSerializer
 import dev.fruxz.ascend.json.serializer.ColorSerializer
 import kotlinx.serialization.KSerializer
@@ -97,9 +98,9 @@ fun appendGlobalJsonModuleModification(process: SerializersModuleBuilder.() -> U
     runningJsonModuleModifications += process
 }
 
-fun <T : Any> appendGlobalJsonContextual(clazz: KClass<T>, serializer: KSerializer<T>) {
+fun <T : Any> appendGlobalJsonContextual(clazz: KClass<T>, serializer: KSerializer<out T>) {
     contextuals += SerializersModule {
-        contextual(clazz, serializer)
+        contextual(clazz, serializer = serializer.forceCast())
     }
     contextualUpdate = true
     globalJson.dump() // trigger update of module
