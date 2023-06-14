@@ -3,52 +3,52 @@ package dev.fruxz.ascend.extension.security
 import java.security.MessageDigest
 
 /**
- * Hashing Utils
- * @author Sam Clarke <www.samclarke.com>
- * @license MIT
+ * The HashUtils object provides functions to hash [ByteArray]s
+ * and [String]s with the given algorithm.
+ * @author Fruxz
  * @since 1.0
  */
 object HashUtils {
 
-	fun md5(input: String) = hashString("MD5", input)
-
-	fun sha512(input: String) = hashString("SHA-512", input)
-
-	fun sha256(input: String) = hashString("SHA-256", input)
-
-	fun sha1(input: String) = hashString("SHA-1", input)
+	/**
+	 * Uses the [hash] function to hash the given [ByteArray] with the md5 algorithm.
+	 */
+	fun md5(input: String) = hash("MD5", input)
 
 	/**
-	 * Supported algorithms on Android:
-	 *
-	 * Algorithm	Supported API Levels
-	 * MD5          1+
-	 * SHA-1	    1+
-	 * SHA-224	    1-8,22+
-	 * SHA-256	    1+
-	 * SHA-384	    1+
-	 * SHA-512	    1+
+	 * Uses the [hash] function to hash the given [ByteArray] with the sha512 algorithm.
 	 */
-	private fun hashString(type: String, input: String): String {
-		val HEX_CHARS = "0123456789ABCDEF"
-		val bytes = MessageDigest
-			.getInstance(type)
-			.digest(input.toByteArray())
-		val result = StringBuilder(bytes.size * 2)
+	fun sha512(input: String) = hash("SHA-512", input)
 
-		bytes.forEach {
-			val i = it.toInt()
-			result.append(HEX_CHARS[i shr 4 and 0x0f])
-			result.append(HEX_CHARS[i and 0x0f])
-		}
+	/**
+	 * Uses the [hash] function to hash the given [ByteArray] with the sha256 algorithm.
+	 */
+	fun sha256(input: String) = hash("SHA-256", input)
 
-		return result.toString()
-	}
+	/**
+	 * Uses the [hash] function to hash the given [ByteArray] with the sha1 algorithm.
+	 */
+	fun sha1(input: String) = hash("SHA-1", input)
+
+	/**
+	 * Hashes the given [ByteArray] with the given [algorithm].
+	 */
+	fun hash(algorithm: String, input: ByteArray): ByteArray =
+		MessageDigest
+			.getInstance(algorithm)
+			.digest(input)
+
+	/**
+	 * Hashes the given [String] with the given [algorithm].
+	 */
+	fun hash(algorithm: String, input: String) =
+		hash(algorithm, input.encodeToByteArray())
+			.joinToString("") { byte -> "%02x".format(byte) }
 
 }
 
 /**
- * This enum class defines the supported hash types.
+ * This enum class defines some supported hash types.
  * @author Fruxz
  * @since 1.0
  */
@@ -63,5 +63,10 @@ enum class HashType {
 			SHA256 -> HashUtils::sha256
 			SHA512 -> HashUtils::sha512
 		}
+
+	/**
+	 * Hashes the given [String] with this [HashType]s [hash] process.
+	 */
+	infix fun on(input: String) = hash(input)
 
 }
