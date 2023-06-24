@@ -46,20 +46,6 @@ fun <T> MutableList<T>.toggle(o: T, addToContainer: Boolean = !contains(o)) {
 }
 
 /**
- * This function takes a nullable [C] (which is a collection-based object) and
- * returns an empty list, if it is actually null, or itself, if itself was not
- * null. This function makes it easy to create new collections, if there is a
- * nullable collection.
- * @param C The type of the collection-based object
- * @param T The type of the elements of the collection-based object
- * @return An empty list, if [C] was null, or [C] itself, if it was not null
- * @author Fruxz
- * @since 1.0
- */
-@Deprecated("Kotlin has a built-in function for this, called orEmpty()", ReplaceWith("this.orEmpty()"))
-fun <C : Collection<T>, T> C?.orEmptyList() = this.orEmpty()
-
-/**
  * This function takes a nullable [C] (which is a mutable-collection-based object) and
  * returns an empty mutable list, if it is actually null, or itself, if itself was not
  * null. This function makes it easy to create new mutable collections, if there is a
