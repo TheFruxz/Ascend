@@ -46,7 +46,7 @@ fun String.pathAsFile(): File =
  * @author Fruxz
  * @since 1.0
  */
-@Deprecated(message = "Path from runtime is not recommended, use pathAsFile instead", replaceWith = ReplaceWith("pathAsFile()"))
+@Deprecated(message = "Path from runtime will be removed, use pathAsFile instead", replaceWith = ReplaceWith("pathAsFile()"))
 fun String.pathAsFileFromRuntime() =
     File(System.getProperty("user.dir") + "/$this")
 
