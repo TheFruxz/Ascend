@@ -332,23 +332,6 @@ fun <C : Iterable<String>> C.containsAll(elements: Iterable<String>, ignoreCase:
 	elements.all { contains(it, ignoreCase) }
 
 /**
- * This function creates a list of fragments of the origin list.
- * Example:
- * - (1, 2, 3).fragmented(2, true) -> [(1, 2), (3)]
- * - (1, 2, 3).fragmented(2, false) -> [(1, 2)]
- * @param fragments the number of fragments
- * @param keepOverflow if the last incomplete fragment should be kept
- * @return the list of fragments
- * @author Fruxz
- * @since 1.0
- */
-@Deprecated("Switch, using the chunked(...) function instead")
-fun <T, C : Iterable<T>> C.fragmented(fragments: Int = 2, keepOverflow: Boolean = true): List<List<T>> =
-	(this.count().toDouble() / fragments).ceilToInt().let { size ->
-		chunked(size).dropLastWhile { !keepOverflow && it.size < size }
-	}
-
-/**
  * This function applies the split function of strings to collections.
  * A list contains every element, until the [predicate] is true. If it is
  * true, the list is stored, a new list for the following elements is created
