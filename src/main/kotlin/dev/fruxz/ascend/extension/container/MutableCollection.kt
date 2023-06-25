@@ -56,7 +56,7 @@ fun <T> MutableList<T>.toggle(o: T, addToContainer: Boolean = !contains(o)) {
  * @author Fruxz
  * @since 1.0
  */
-fun <C : MutableCollection<T>, T> C?.orEmptyMutableList() = this?.toMutableList() ?: mutableListOf()
+fun <C : MutableCollection<T>, T> C?.orEmptyMutable() = this?.toMutableList() ?: mutableListOf()
 
 /**
  * This function allows to get a mutable list of a collection-based object, that
