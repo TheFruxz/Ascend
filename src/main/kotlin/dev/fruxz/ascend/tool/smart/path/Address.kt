@@ -13,53 +13,59 @@ import kotlinx.serialization.Serializable
 @Serializable
 @SerialName("smartAddress")
 data class Address<T> internal constructor(
-	@SerialName("path") override val addressString: String,
-	@SerialName("divider") val divider: String,
+    @SerialName("path") override val addressString: String,
+    @SerialName("divider") val divider: String,
 ) : Addressable<T>, Identifiable<T> {
 
-	override val identity = addressString
+    override val identity = addressString
 
-	/**
-	 * Returns the [addressString]
-	 * @return the [addressString]
-	 * @author Fruxz
-	 * @since 1.0
-	 */
-	override fun toString() = addressString
+    /**
+     * Returns the [addressString]
+     * @return the [addressString]
+     * @author Fruxz
+     * @since 1.0
+     */
+    override fun toString() = addressString
 
-	override val addressObject: Address<T>
-		get() = address(addressString)
+    override val addressObject: Address<T>
+        get() = address(addressString)
 
-	operator fun div(addition: String) = copy(addressString = "$addressString$divider$addition")
+    operator fun div(addition: String) = copy(addressString = "$addressString$divider$addition")
 
-	companion object {
+    companion object {
 
-		/**
-		 * Generates an [Addressed]<[T]> from the [Address]'s class
-		 * internal constructor.
-		 * @param path the path as a string
-		 * @param divider the divider as a string
-		 * @return the [Address]<[T]>
-		 * @author Fruxz
-		 * @since 1.0
-		 */
-		@JvmStatic
-		fun <T> address(path: String, divider: String = "/") =
-			Address<T>(path, divider)
+        /**
+         * Generates an [Addressed]<[T]> from the [Address]'s class
+         * internal constructor.
+         * @param path the path as a string
+         * @param divider the divider as a string
+         * @return the [Address]<[T]>
+         * @author Fruxz
+         * @since 1.0
+         */
+        @JvmStatic
+        fun <T> address(path: String, divider: String = "/") =
+            Address<T>(path, divider)
 
-		/**
-		 * Generates an [Address]<[T]> from the [Address]'s class internal constructor,
-		 * like the [addressObject] companion function, but uses a '.' as the divider.
-		 * @param path the path as a string
-		 * @param divider the divider as a string
-		 * @return the [Address]<[T]>
-		 * @author Fruxz
-		 * @since 1.0
-		 */
-		@JvmStatic
-		fun <T> packagedAddress(path: String, divider: String = ".") =
-			Address<T>(path, divider)
+        /**
+         * Generates an [Address]<[T]> from the [Address]'s class internal constructor,
+         * like the [addressObject] companion function, but uses a '.' as the divider.
+         * @param path the path as a string
+         * @param divider the divider as a string
+         * @return the [Address]<[T]>
+         * @author Fruxz
+         * @since 1.0
+         */
+        @JvmStatic
+        @Deprecated(
+            "Use address() directly", ReplaceWith(
+                "address<T>(path = path, divider = divider)",
+                "dev.fruxz.ascend.tool.smart.path.Address.Companion.address"
+            )
+        )
+        fun <T> packagedAddress(path: String, divider: String = ".") =
+            address<T>(path = path, divider = divider)
 
-	}
+    }
 
 }
