@@ -30,7 +30,6 @@ fun catchException(
 
 /**
  * Try return the value and returns the result inside a [Result] object.
- * @param A (short for air) is the type of the surrounding block or the object, where it is called from
  * @param T is the return type of the process
  * @param silent if set to false, the exception will be printed
  * @param process the process to execute, returning the normal value as [T]
@@ -55,7 +54,6 @@ inline fun <T> tryWithResult(
 
 /**
  * Try return the value and returns the result inside a [Result] object.
- * @param A (short for air) is the type of the surrounding block or the object, where it is called from
  * @param T is the return type of the process
  * @param silent if returns false, the exception will be printed
  * @param process the process to execute, returning the normal value as [T]
@@ -74,7 +72,6 @@ inline fun <T> tryWithResult(
 /**
  * Try return the value returning of the [process] or returns the [other].
  * [other]-return is triggered by a thrown [Exception]
- * @param A (short for air) is the type of the surrounding block or the object, where it is called from
  * @param R is the return type of the process
  * @param T is the [other] type
  * @param silent if set to false, the exception will be printed
@@ -95,7 +92,6 @@ inline fun <R, T : R> tryOrElse(
 /**
  * Try return the value returning of the [process] or returns the [other].
  * [other]-return is triggered by a thrown [Exception]
- * @param A (short for air) is the type of the surrounding block or the object, where it is called from
  * @param R is the return type of the process
  * @param T is the [other] type
  * @param silent if returns false, the exception will be printed
@@ -117,7 +113,6 @@ inline fun <R, T : R> tryOrElse(
 /**
  * Try return the value returning of the [process] or returns null.
  * null-return is triggered by a thrown [Exception]
- * @param A (short for air) is the type of the surrounding block or the object, where it is called from
  * @param T is the return type of the process
  * @param silent if set to false, the exception will be printed
  * @param process the process to execute, returning the normal value as [T]
@@ -135,7 +130,6 @@ inline fun <T> tryOrNull(
 /**
  * Try return the value returning of the [process] or returns null.
  * null-return is triggered by a thrown [Exception]
- * @param A (short for air) is the type of the surrounding block or the object, where it is called from
  * @param T is the return type of the process
  * @param silent if returns false, the exception will be printed
  * @param process the process to execute, returning the normal value as [T]

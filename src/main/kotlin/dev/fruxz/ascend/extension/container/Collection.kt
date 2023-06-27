@@ -220,12 +220,11 @@ fun <T, C : Iterable<T>> C.paged(pageSize: Int): Paged<T> =
 
 /**
  * This function returns a small list of [T] objects, that
- * are in a simulated page, which is created by the [pageSize]
- * and the [page] number.
- * If the requested page is out of range, it will return the last non-empty page.
- * @param page the page, where the list should be
- * @param pageSize the size of each individual page
- * @return the list of [T] objects contained in the page
+ * are in a simulated segment (chunk) of the data, which is determined by the [pageSize].
+ * The function will return the first chunk of size [pageSize].
+ * If the requested [pageSize] is larger than the total size of the list, it will return the whole list.
+ * @param pageSize the size of the desired output list segment
+ * @return the list segment of [T] objects with the specified [pageSize]
  * @author Fruxz
  * @since 1.0
  */
