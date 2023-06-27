@@ -82,6 +82,7 @@ fun String.replaceVariables(pairs: Collection<Pair<Any?, Any?>>, ignoreCase: Boo
  * @author Fruxz
  * @since 1.0
  */
+@Suppress("SameReturnValue")
 fun emptyString() = ""
 
 /**
