@@ -3,6 +3,7 @@ package dev.fruxz.ascend.extension.container
 import dev.fruxz.ascend.annotation.ExperimentalAscendApi
 import dev.fruxz.ascend.tool.collection.Paged
 import java.util.*
+import kotlin.NoSuchElementException
 import kotlin.random.Random
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
@@ -168,6 +169,34 @@ val <T> Array<out T>.last: T
 	get() = last()
 
 /**
+ * This function returns the item at the [index] position in an Iterable collection of type [T],
+ * or null if the index is out of bounds. When the [overflow] parameter is set to true,
+ * and the index is out of bounds, the function calculates the modulus of the index and the size
+ * of the collection to return an item from the start.
+ *
+ * @param T The generic type indicating the type of elements in this Iterable.
+ *
+ * @param index The target index in the Iterable. It determines the item to return.
+ *
+ * @param overflow A boolean flag setting the behavior when [index] is out of bounds.
+ * When set to true, it adjusts the index to fit into the collection bounds.
+ * When set to false or not provided, it returns null when [index] is out of bounds.
+ *
+ * @return The element at the [index] in the Iterable of type [T] or null when the index is out of bounds
+ * and [overflow] is false.
+ *
+ * @author Fruxz
+ * @since 1.0
+ */
+fun <T> Iterable<T>.getOrNull(index: Int, overflow: Boolean = false): T? {
+	return when {
+		index in 0 until count() -> elementAtOrNull(index)
+		overflow -> elementAtOrNull(index % count())
+		else -> null
+	}
+}
+
+/**
  * This function returns the object at the [index] of the collection [C]<[T]>,
  * or if the index is out of bounds and [overflow] is true, it will go back to
  * the start of the collection and return the object at the [index] minus the
@@ -181,11 +210,8 @@ val <T> Array<out T>.last: T
  * @since 1.0
  */
 @Throws(NoSuchElementException::class)
-fun <T, C : Iterable<T>> C.get(index: Int, overflow: Boolean = false): T {
-	return if (index in 0 until count()) elementAt(index) else if (overflow) elementAt(index % count()) else throw NoSuchElementException(
-		"Index $index is not inside lists 0..${count() - 1} content and overflow is disabled!"
-	)
-}
+fun <T, C : Iterable<T>> C.get(index: Int, overflow: Boolean = false): T =
+	getOrNull(index, overflow) ?: throw NoSuchElementException("Index $index is not inside lists 0..${count() - 1} content and overflow is disabled!")
 
 /**
  * Creates a sublist of the [intRange]
