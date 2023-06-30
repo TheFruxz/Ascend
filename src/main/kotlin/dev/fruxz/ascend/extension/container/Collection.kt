@@ -468,7 +468,18 @@ fun <K, V> Map.Entry<K, V>?.takeOrEmpty() = this ?: emptyMap<K, V>().entries.fir
  * @author Fruxz
  * @since 1.0
  */
-inline fun <T, C> Iterable<T>.isUnique(process: (T) -> C) = groupBy { process(it) }.all { it.value.size == 1 }
+inline fun <T, C> Iterable<T>.isUnique(process: (T) -> C): Boolean {
+	val results = mutableSetOf<Int>()
+
+	this.forEach { item ->
+		process(item).hashCode().also { hash ->
+			if (hash in results) return false
+			results.add(hash)
+		}
+	}
+
+	return true
+}
 
 /**
  * This function returns, if every element, produced by [process] is unique.
@@ -477,8 +488,18 @@ inline fun <T, C> Iterable<T>.isUnique(process: (T) -> C) = groupBy { process(it
  * @author Fruxz
  * @since 1.0
  */
-inline fun <T, C> Array<T>.isUnique(process: (T) -> C) = groupBy { process(it) }.all { it.value.size == 1 }
+inline fun <T, C> Array<T>.isUnique(process: (T) -> C): Boolean {
+	val results = mutableSetOf<Int>()
 
+	this.forEach { item ->
+		process(item).hashCode().also { hash ->
+			if (hash in results) return false
+			results.add(hash)
+		}
+	}
+
+	return true
+}
 /**
  * This function modifies the current [MutableList] so, that the first [n] strings
  * are being merged together, with the [spliterator] and [transform] used.
