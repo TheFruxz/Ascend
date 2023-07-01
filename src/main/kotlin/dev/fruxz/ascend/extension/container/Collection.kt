@@ -212,28 +212,22 @@ fun <T, C : Iterable<T>> C.take(intRange: IntRange): List<T> =
 fun <T> Array<T>.take(intRange: IntRange): List<T> =
 	toList().subList(intRange)
 
+
 /**
- * This function returns a small list of [T] objects, that
- * are in a simulated page, which is created by the [chunkSize]
- * and the [paged] number.
- * If the requested page is out of range, it will return the last non-empty page.
- * @param chunkSize the size of each individual page
- * @return the list of [T] objects contained in the page
- * @author Fruxz
- * @since 1.0
+ * Partitions the elements of the iterable into pages of a given size.
+ *
+ * @param chunkSize The maximum number of elements per page.
+ * @return A [Paged] instance containing the partitioned pages.
  */
 fun <T, C : Iterable<T>> C.partitionByPage(chunkSize: Int): Paged<T> =
 	Paged(chunkSize, this)
 
+
 /**
- * This function returns a small list of [T] objects, that
- * are in a simulated segment (chunk) of the data, which is determined by the [chunkSize].
- * The function will return the first chunk of size [chunkSize].
- * If the requested [chunkSize] is larger than the total size of the list, it will return the whole list.
- * @param chunkSize the size of the desired output list segment
- * @return the list segment of [T] objects with the specified [chunkSize]
- * @author Fruxz
- * @since 1.0
+ * Partitions the elements of the array into pages of the specified chunk size.
+ *
+ * @param chunkSize the size of each page/chunk
+ * @return a [Paged] object containing the partitioned pages
  */
 fun <T> Array<T>.partitionByPage(chunkSize: Int): Paged<T> =
 	toList().partitionByPage(chunkSize)
