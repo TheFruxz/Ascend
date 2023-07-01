@@ -81,8 +81,8 @@ fun <C : MutableCollection<T>, T> C.addIfNot(element: T, check: (element: T, cur
 	addIf(element) { it, c -> !check(it, c) }
 
 fun <C : MutableCollection<T>, T> C.addIfContained(element: T) =
-	addIf(element) { _, currentState -> currentState.contains(element) }
+	addIf(element) { _, currentState -> element in currentState }
 
 fun <C : MutableCollection<T>, T> C.addIfNotContained(element: T) =
-	addIfNot(element) { _, currentState -> currentState.contains(element) }
+	addIfNot(element) { _, currentState -> element in currentState }
 
