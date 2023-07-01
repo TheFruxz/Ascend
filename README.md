@@ -2,22 +2,19 @@
 
 <br>
 
-## 👋 Welcome to Ascend
+##  Ascend: Elevating Your Coding Experience 🚀
 
-Ascend provides several small, but useful, features and tools, to help you get the most out of you code.
-It is a collection of tools that I have found useful in my own projects, and I hope you find them useful too.
-These tools are designed, to seamlessly integrate into your code, and to be as unobtrusive as possible.
-You can find most of them, by looking into your code completions, because a huge part of them are provided via extension functions.
+Welcome to Ascend, your one-stop utility belt to supercharge your code.
+This toolkit is an ensemble of various nifty features and tools I've found essential for my projects.
+The design of these tools aims to be seamless, unobtrusive, and easily discoverable via code completions thanks to extensive use of extension functions.
 
-## ⚙️ Setup
+## Setting the Stage - The Ascend Installation Guide 🔧
 
-### Repository
+Depending on the nature of your project, you may incorporate Ascend via `Gradle Kotlin`, `Gradle`, or `Maven`. However, we highly recommend `Gradle Kotlin` for a streamlined experience.
 
-How can I use Ascend in my own projects? For this you need to know what your project is based on, or should be based on.
-We ourselves recommend that you use `Gradle Kotlin` in all your projects, but you can also use other systems like `Gradle` and `Maven`!
+### Integration via JitPack
 
-#### Using JitPack
-##### Repository
+#### Repository
 ```kotlin
 maven("https://jitpack.io")
 ```
@@ -27,42 +24,9 @@ maven("https://jitpack.io")
 implementation("com.github.TheFruxz:Ascend:$ascendVersion")
 ```
 
-#### Using GitHub Packages
+# Collaboration - Together We Ascend! 💡
 
-> Currently not recommended, due to the complexity and type of authorization
-
-##### Repository 
-```kotlin
-maven("https://maven.pkg.github.com/TheFruxz/Ascend") {
-        credentials {
-            credentials {
-                username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
-            }
-        }
-    }
-```
-
-##### Dependency
-```kotlin
-implementation("de.fruxz:ascend:$ascendVersion")
-```
-
-#### 🔐 Auth
-
-You need to have set the system variables `USERNAME` and `TOKEN` to your GitHub-Username and GitHub-Personal-Access-Token,
-to access the packages via the GitHub-Packages Feature. You can also use the project variables `gpr.user` and `gpr.key`, but
-don't publish them to the web!
-
-## 🗞 Version
-
-Since we always try to use the latest versions as soon as possible, as already described in the point 'Version Policy', current versions quickly become obsolete, so we will soon release a list of versions, where it will be shown exactly how long a certain version is still being supported.
-
-## 👥 Contribution
-
-Of course, you can also participate in Ascend and contribute to the development. However, please follow all community and general guidelines of GitHub and the repositories. You also have to respect the licenses set in this repository as well as in other repositories.
-
-If you have any questions, suggestions or other items you would like to contribute to Ascend or just discuss, check out the Discussions' section of this repository, where you will find the respective areas where you can create your own questions or join in discussions on other things.
+Contribution to Ascend is deeply appreciated. When submitting pull requests, abide by the community guidelines of GitHub. Furthermore, respect licensing within this and all repositories you interact with. Feel free to initiate or engage in discussions in the repository's 'Discussions' section.
 
 ###### We build & use Ascend on Java 17 - [Eclipse Temurin](https://adoptium.net/).
 ###### Also build & run Ascend with [Eclipse Temurin](https://adoptium.net/) to get the best possible experience!
