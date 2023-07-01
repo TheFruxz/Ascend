@@ -9,51 +9,22 @@ import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
 
 /**
- * # `C.toArrayList()`
- * ## Info
- * This function creates a new [ArrayList]<[T]> object, which
- * contains the elements of the Collection<[T]> [C] (**this**-object)
+ * Creates a new [ArrayList]<[T]> object containing all elements from the calling Collection object.
  *
- * ## Use
- * This function can be easily used to get a set or list to an ArrayList,
- * but you can also use `ArrayList(yourList)`, that is the same, what is also
- * used in this function!
- *
- * ## Base
- * This function is globally available through the whole Ascend API and beyond!
- *
- * This function creates a new [ArrayList] object of containing-type [T], obtained
- * from the Collection [C], which has also the containing-type [T]. This [toArrayList]
- * function is attached as an extension function to the [C] object, which is based
- * on all [Collection] type [T]!
- *
- * @author Fruxz (@TheFruxz)
- * @since 1.0-BETA-5 (preview)
- * @param T the inner containing data type
- * @param C the actual base collection, which will be transformed
+ * @return the new [ArrayList] object containing all elements from the calling Collection object.
+ * @param T the type of elements in the calling Collection object
+ * @param C the type of calling Collection object, must be a subtype of Collection<[T]>
  */
 fun <T, C : Collection<T>> C.toArrayList(): ArrayList<T> = ArrayList(this)
 
 /**
- * # `Array<out T>.toArrayList()`
- * ## Info
- * This function creates a new [ArrayList]<[T]> object, which
- * contains the elements of the Array<out [T]> (**this**-object)
+ * Creates a new [ArrayList] object containing the elements of the array.
  *
- * ## Use
- * This function can be easily used tzo get an array to an ArrayList,
- * but you can also use `ArrayList(yourArray.toList())`, that is the same, what is also
- * used in this function!
+ * @return The [ArrayList] object created from the array.
  *
- * ## Base
- * This function is globally available through the whole Ascend API and beyond!
+ * @param T The type of elements in the array.
  *
- * This function creates a new [ArrayList] object of containing-type [T], obtained from the Array<out [T]>.
- * This [toArrayList] function is attached as an extension function to the Array<out [T]> object.
- *
- * @author Fruxz (@TheFruxz)
  * @since 1.0-BETA-5 (preview)
- * @param T the inner containing data type of both, input [Array] and output [ArrayList]
  */
 fun <T> Array<out T>.toArrayList(): ArrayList<out T> = toList().toArrayList()
 
@@ -441,6 +412,16 @@ inline fun <T, C : Iterable<T?>> C.forEachNotNull(process: (T & Any) -> Unit) = 
  */
 inline fun <T> Array<T?>.forEachNotNull(process: (T & Any) -> Unit) = forEach { if (it != null) process(it) }
 
+/**
+ * Applies the given [builder] function to each element in the collection and returns a new list
+ * containing the non-null results of the builder function.
+ *
+ * @param C the type of the collection.
+ * @param I the type of the input elements in the collection.
+ * @param O the type of the output elements in the resulting list.
+ * @param builder the function to apply to each element in the collection.
+ * @return a new list containing the non-null results of the builder function.
+ */
 inline fun <C : Iterable<I>, I, O> C.flatMapNotNull(builder: (I) -> Iterable<O?>): List<O & Any> = buildList {
 	this@flatMapNotNull.forEach { t ->
 		builder.invoke(t).forEachNotNull { o ->
@@ -449,8 +430,25 @@ inline fun <C : Iterable<I>, I, O> C.flatMapNotNull(builder: (I) -> Iterable<O?>
 	}
 }
 
+/**
+ * Flattens an iterable of iterables, removing any null values.
+ *
+ * @param T the type of the iterable of iterables
+ * @param O the type of the elements in the iterables
+ * @return a new iterable containing all non-null elements from the original iterables
+ */
 fun <T : Iterable<O>, O> Iterable<T>.flattenNotNull() = flatMapNotNull { it }
 
+/**
+ * Concatenates the results of applying the given transform function
+ * to each element of the original array and filters out any null values.
+ * The elements are flattened into a single list.
+ *
+ * @param builder the transform function to apply to each element.
+ *                It takes an element of the original array as input and returns
+ *                an Iterable of transformed elements.
+ * @return a List containing the non-null transformed elements.
+ */
 inline fun <I, O> Array<I>.flatMapNotNull(builder: (I) -> Iterable<O?>): List<O & Any> = buildList {
 	this@flatMapNotNull.forEach { t ->
 		builder.invoke(t).forEachNotNull { o ->
@@ -459,16 +457,60 @@ inline fun <I, O> Array<I>.flatMapNotNull(builder: (I) -> Iterable<O?>): List<O 
 	}
 }
 
+/**
+ * Flattens an array of iterables, removing any null values.
+ *
+ * This method takes an array of iterables and flattens it into a single list, discarding any null values along the way.
+ * The resulting list contains the non-null values from the original iterables in the same order as they appeared. If
+ * an iterable contains null elements, they are skipped and not included in the resulting list.
+ *
+ * @param T the type of iterable elements in the array
+ * @param O the type of elements in the iterables
+ * @return a list containing the non-null elements from the original iterables in the order they appeared
+ */
 fun <T : Iterable<O>, O> Array<T>.flattenNotNull() = flatMapNotNull { it }
 
+/**
+ * Returns a new list containing the elements of the original list if it is not null,
+ * or an empty list if the original list is null.
+ *
+ * @return a new list containing the elements of the original list or an empty list
+ *
+ * @param T the type of elements in the list
+ */
 fun <T> List<T>?.takeOrEmpty() = this ?: emptyList()
 
+/**
+ * Returns the given set if it is not null, otherwise returns an empty set.
+ *
+ * @param T the type of elements in the set
+ * @return the given set if not null, otherwise an empty set
+ */
 fun <T> Set<T>?.takeOrEmpty() = this ?: emptySet()
 
+/**
+ * Returns either the given array or an empty array if the given array is null.
+ *
+ * @return The given array if it is not null, otherwise an empty array.
+ * @param T The type of elements in the array.
+ */
 inline fun <reified T> Array<T>?.takeOrEmpty() = this ?: emptyArray()
 
+/**
+ * Returns the current map if not null, otherwise returns an empty map.
+ *
+ * @return The current map if not null, otherwise an empty map.
+ * @receiver The map to take or an empty map.
+ * @param K The type of the map keys.
+ * @param V The type of the map values.
+ */
 fun <K, V> Map<K, V>?.takeOrEmpty() = this ?: emptyMap()
 
+/**
+ * Returns this [Map.Entry] if it is not null, otherwise returns an empty [Map.Entry].
+ *
+ * @return The non-null [Map.Entry] if it is not null, otherwise an empty [Map.Entry].
+ */
 fun <K, V> Map.Entry<K, V>?.takeOrEmpty() = this ?: emptyMap<K, V>().entries.first()
 
 /**
