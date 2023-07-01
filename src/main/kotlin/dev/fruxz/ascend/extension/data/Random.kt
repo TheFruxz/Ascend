@@ -2,7 +2,7 @@ package dev.fruxz.ascend.extension.data
 
 import dev.fruxz.ascend.extension.container.mapToString
 import dev.fruxz.ascend.extension.container.mixedCase
-import dev.fruxz.ascend.extension.container.stackRandom
+import dev.fruxz.ascend.extension.container.repeatRandomElements
 import dev.fruxz.ascend.extension.data.RandomTagType.MIXED_CASE
 import dev.fruxz.ascend.extension.data.RandomTagType.ONLY_UPPERCASE
 import dev.fruxz.ascend.extension.switch
@@ -79,7 +79,7 @@ fun buildRandomTag(size: Int = 5, hashtag: Boolean = true, tagType: RandomTagTyp
 
 	return hashtag.switch("#", "") + (letters.toCharArray().toList() + (0..9))
 		.mapToString()
-		.stackRandom(size, stackRandomizer)
+		.repeatRandomElements(size, stackRandomizer)
 }
 
 enum class RandomTagType {

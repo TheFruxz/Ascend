@@ -57,40 +57,51 @@ fun <T, C : Collection<T>> C.toArrayList(): ArrayList<T> = ArrayList(this)
  */
 fun <T> Array<out T>.toArrayList(): ArrayList<out T> = toList().toArrayList()
 
-fun <T, C : Collection<T>> C.stackRandom(times: Int, random: Random = Random): String = buildString {
-	repeat(times) { append(this@stackRandom.random(random)) }
+/**
+ * Repeats the elements in the given collection a specified number of times,
+ * adding random elements from the original collection each time.
+ *
+ * @param times The number of times to repeat the elements.
+ * @param random The random number generator to use for selecting random elements.
+ *               If not provided, a default random number generator is used.
+ *
+ * @return A string that contains the repeated elements, including the randomly added elements.
+ */
+fun <T, C : Collection<T>> C.repeatRandomElements(times: Int, random: Random = Random): String = buildString {
+	repeat(times) { append(this@repeatRandomElements.random(random)) }
 }
 
 /**
- * Stacks the element randomized [times] times
- * @param times the amount of repeats
- * @return the randomized string
- * @author Fruxz
- * @since 1.0
+ * Generates a string by stacking the elements of the array randomized [times] times.
+ *
+ * @param times The amount of repeats.
+ * @param random (Optional) The random number generator to use. Default is a new instance of Random.
+ * @return The generated string with repeated random elements.
  */
-fun <T> Array<out T>.stackRandom(times: Int, random: Random = Random): String = buildString {
-	repeat(times) { append(this@stackRandom.random(random)) }
+fun <T> Array<out T>.repeatRandomElements(times: Int, random: Random = Random): String = buildString {
+	repeat(times) { append(this@repeatRandomElements.random(random)) }
 }
 
 /**
- * Stacks the element randomized [times] times
- * @param times the amount of repeats
- * @return the randomized string
- * @author Fruxz
- * @since 1.0
+ * Stacks the unique elements of the iterable [times] times in a random order.
+ *
+ * @param times the number of times to repeat the elements
+ * @param random the optional Random object to use for randomness
+ * @return a string representing the stacked unique elements in a random order
  */
-fun <T, C : Iterable<T>> C.stackUniqueRandom(times: Int, random: Random = Random): String =
+fun <T, C : Iterable<T>> C.repeatUniqueRandomElements(times: Int, random: Random = Random): String =
 	shuffled(random).take(times).joinToString(separator = "")
 
 /**
- * Stacks the element randomized [times] times
- * @param times the amount of repeats
- * @return the randomized string
- * @author Fruxz
- * @since 1.0
+ * Stacks the elements and generates a unique random string
+ * using the specified number of repeats.
+ *
+ * @param times the number of repeats
+ * @param random the random number generator
+ * @return the generated unique random string
  */
-fun <T> Array<out T>.stackUniqueRandom(times: Int, random: Random = Random): String =
-	toList().stackUniqueRandom(times, random)
+fun <T> Array<out T>.repeatUniqueRandomElements(times: Int, random: Random = Random): String =
+	toList().repeatUniqueRandomElements(times, random)
 
 /**
  * This function creates a list of objects of type [T],
