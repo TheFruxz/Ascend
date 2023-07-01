@@ -462,43 +462,25 @@ fun <K, V> Map<K, V>?.takeOrEmpty() = this ?: emptyMap()
 fun <K, V> Map.Entry<K, V>?.takeOrEmpty() = this ?: emptyMap<K, V>().entries.first()
 
 /**
- * This function returns, if every element, produced by [process] is unique.
- * @param process the function, which is used to get the value, which should be unique
- * @return true, if every element is unique, false otherwise
- * @author Fruxz
- * @since 1.0
+ * Returns true if every element produced by [process] is unique.
+ *
+ * @param process the function used to get the value which should be unique
+ * @return true if every element is unique, false otherwise
  */
 inline fun <T, C> Iterable<T>.isUnique(process: (T) -> C): Boolean {
-	val results = mutableSetOf<Int>()
-
-	this.forEach { item ->
-		process(item).hashCode().also { hash ->
-			if (hash in results) return false
-			results.add(hash)
-		}
-	}
-
-	return true
+	val results = mutableSetOf<C>()
+	return this.all { item -> results.add(process(item)) }
 }
 
 /**
- * This function returns, if every element, produced by [process] is unique.
- * @param process the function, which is used to get the value, which should be unique
- * @return true, if every element is unique, false otherwise
- * @author Fruxz
- * @since 1.0
+ * Check if every element, produced by the given function, is unique.
+ *
+ * @param process the function used to get the value for each element
+ * @return true if every element is unique, false otherwise
  */
 inline fun <T, C> Array<T>.isUnique(process: (T) -> C): Boolean {
-	val results = mutableSetOf<Int>()
-
-	this.forEach { item ->
-		process(item).hashCode().also { hash ->
-			if (hash in results) return false
-			results.add(hash)
-		}
-	}
-
-	return true
+	val results = mutableSetOf<C>()
+	return this.all { item -> results.add(process(item)) }
 }
 /**
  * This function modifies the current [MutableList] so, that the first [n] strings
