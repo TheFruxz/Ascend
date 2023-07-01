@@ -93,16 +93,15 @@ fun <T> Array<out T>.stackUniqueRandom(times: Int, random: Random = Random): Str
 	toList().stackUniqueRandom(times, random)
 
 /**
- * This function creates a list of [T] objects, created
- * by each entries [generator] function.
+ * This function creates a list of objects of type [T],
+ * by invoking the specified [generator] function for each entry.
+ *
  * @param T the inner containing data type
  * @param size the size of the list
- * @param generator the function, which will be used to generate an entry
+ * @param generator the function used to generate an entry
  * @return the list of [T] objects
- * @author Fruxz
- * @since 1.0
  */
-inline fun <T> listOf(size: Int, generator: (Int) -> T): List<T> = List(size) { generator(it) }
+inline fun <T> constructListOf(size: Int, generator: (Int) -> T): List<T> = List(size) { generator(it) }
 
 /**
  * Returning the first object of the collection [C]
