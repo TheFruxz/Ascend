@@ -86,3 +86,21 @@ fun <C : MutableCollection<T>, T> C.addIfContained(element: T) =
 fun <C : MutableCollection<T>, T> C.addIfNotContained(element: T) =
 	addIfNot(element) { _, currentState -> element in currentState }
 
+/**
+ * Adds the specified [element] to the collection and returns the same element.
+ *
+ * @param element the element to be added to the collection
+ * @return the added element
+ */
+fun <C : MutableCollection<T>, T> C.addAndReturn(element: T): T =
+	element.also { this.add(it) }
+
+/**
+ * Adds the specified element at the given index and returns the added element.
+ *
+ * @param index the index at which the element should be inserted
+ * @param element the element to be added
+ * @return the added element
+ */
+fun <C : MutableList<T>, T> C.addAndReturn(index: Int, element: T): T =
+	element.also { this.add(index, it) }
