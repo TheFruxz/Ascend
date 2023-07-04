@@ -123,8 +123,21 @@ enum class RandomTagType {
 	MIXED_CASE;
 }
 
-fun buildRandomSeeds(amount: Long, random: Random = Random) = buildSet {
-	for (i in 1..amount) {
+@Deprecated("Slightly change the process and updated the name",
+	ReplaceWith("generateSeedSet(amount = amount.toInt(), random = random)")
+)
+fun buildRandomSeeds(amount: Long, random: Random = Random) =
+	generateSeedSet(amount = amount.toInt(), random = random)
+
+/**
+ * Generates a seed set of random Long values.
+ *
+ * @param amount the number of random Long values to generate
+ * @param random the random number generator to use (defaults to a new instance of Random)
+ * @return a Set of random Long values
+ */
+fun generateSeedSet(amount: Int, random: Random = Random): Set<Long> = buildSet {
+	repeat(amount) {
 		add(random.nextLong())
 	}
 }
