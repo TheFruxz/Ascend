@@ -7,14 +7,14 @@ plugins {
     `maven-publish`
 }
 
-var host = "github.com/TheFruxz/Ascend"
+val host = "github.com/TheFruxz/Ascend"
+
+version = "2023.3-dev"
+group = "dev.fruxz"
 
 repositories {
     mavenCentral()
 }
-
-version = "2023.2"
-group = "dev.fruxz"
 
 dependencies {
 
