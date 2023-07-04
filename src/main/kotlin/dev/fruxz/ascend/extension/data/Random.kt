@@ -71,15 +71,50 @@ fun randomLong(progression: Iterable<Int>, random: Random = Random) = progressio
  * @author Fruxz
  * @since 1.0
  */
+@Deprecated(message = "This function have been slightly changed, to fit better into the Kotlin ecosystem and enable more customization",
+	replaceWith = ReplaceWith(
+		"generateRandomTag(size = size, prefix = hashtag.switch(\"#\", \"\"), case = tagType, randomizer = stackRandomizer,)",
+		"dev.fruxz.ascend.extension.switch"
+	)
+)
 fun buildRandomTag(size: Int = 5, hashtag: Boolean = true, tagType: RandomTagType = ONLY_UPPERCASE, stackRandomizer: Random = Random(Random.nextLong())): String {
+	return generateRandomTag(
+		size = size,
+		prefix = hashtag.switch("#", ""),
+		case = tagType,
+		randomizer = stackRandomizer,
+	)
+}
+
+/**
+ * Generates a random tag string.
+ *
+ * @param size The length of the tag string. Default is 5.
+ * @param prefix The prefix to be added to the tag. Default is "#".
+ * @param case The case of the tag letters. Default is ONLY_UPPERCASE.
+ * @param randomizer The random generator to be used for generating the tag. Default is a new Random instance.
+ *
+ * @return The generated random tag string.
+ */
+fun generateRandomTag(
+	size: Int = 5,
+	prefix: CharSequence = "#",
+	case: RandomTagType = ONLY_UPPERCASE,
+	randomizer: Random = Random(Random.nextLong())
+): String {
 	var letters = "abcdefghijklmnopqrstuvwxyz"
 
-	if (tagType == ONLY_UPPERCASE) letters = letters.uppercase()
-	if (tagType == MIXED_CASE) letters = letters.mixedCase()
+	if (case == ONLY_UPPERCASE) letters = letters.uppercase()
+	if (case == MIXED_CASE) letters = letters.mixedCase()
 
-	return hashtag.switch("#", "") + (letters.toCharArray().toList() + (0..9))
-		.mapToString()
-		.repeatRandomElements(size, stackRandomizer)
+	return buildString {
+		append(prefix)
+		append(
+			(letters.toCharArray().toList() + (0..9))
+				.mapToString()
+				.repeatRandomElements(size, randomizer)
+		)
+	}
 }
 
 enum class RandomTagType {
