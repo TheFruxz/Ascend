@@ -21,7 +21,7 @@ profile:
 #The following options are only applied in CI/CD environment
 #These options are ignored during local run
 
-projectJDK: "temurin-20"
+projectJDK: "17"
 
 #Execute shell command before Qodana execution
 #bootstrap: sh ./prepare-qodana.sh
