@@ -9,7 +9,10 @@ import kotlinx.serialization.encoding.Encoder
  * This serializer helps to serialize objects, which are
  * hidden behind an [Any] type, but are indeed of a specific
  * serializable type.
+ *
  * @throws IllegalArgumentException if no supported serializer is found
+ * @author Fruxz
+ * @since 2023.1
  */
 @ExperimentalSerializationApi
 class AdaptiveSerializer : KSerializer<Any> {

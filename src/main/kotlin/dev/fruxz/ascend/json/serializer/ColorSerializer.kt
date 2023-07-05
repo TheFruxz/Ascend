@@ -8,6 +8,13 @@ import kotlinx.serialization.encoding.Encoder
 import java.awt.Color
 import java.awt.Color as AwtColor
 
+/**
+ *  Serializes and deserializes `java.awt.Color` objects.
+ *
+ *  The `ColorSerializer` class implements the `KSerializer` interface for `AwtColor` objects.
+ *  It provides functionality to serialize `AwtColor` objects to an `Encoder` and deserialize them
+ *  from a `Decoder`.
+ */
 class ColorSerializer : KSerializer<AwtColor> {
     override val descriptor: SerialDescriptor = ContextualSerializer(AwtColor::class).descriptor
 
