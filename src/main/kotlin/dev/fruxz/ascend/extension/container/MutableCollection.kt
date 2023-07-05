@@ -60,16 +60,54 @@ fun <C : MutableCollection<T>, T> C?.orEmptyMutable() = this?.toMutableList() ?:
  */
 infix fun <C : MutableCollection<T>, T> C.and(element: T) = apply { add(element) }
 
+/**
+ * Adds the specified [element] to this mutable collection if the [check] function
+ * returns true when called with the [element] and the current state of this collection.
+ *
+ * @param element The element to be added.
+ * @param check A function that takes the [element] and the current state of this collection
+ * and returns true if the [element] should be added, false otherwise.
+ *
+ * @throws UnsupportedOperationException if this collection does not support adding elements.
+ */
 fun <C : MutableCollection<T>, T> C.addIf(element: T, check: (element: T, currentState: C) -> Boolean) {
 	if (check(element, this)) add(element)
 }
 
+/**
+ * Adds the specified [element] to the collection if it satisfies the given [check].
+ *
+ * @param element The element to be added to the collection.
+ * @param check A function that takes an element and the current state of the collection as parameters and returns a boolean
+ * indicating whether the element should be added based on the check.
+ * @return `true` if the element was added, `false` otherwise.
+ */
 fun <C : MutableCollection<T>, T> C.addIfNot(element: T, check: (element: T, currentState: C) -> Boolean) =
 	addIf(element) { it, c -> !check(it, c) }
 
+/**
+ * Adds the specified [element] to the collection if it is already contained in the collection.
+ *
+ * This method checks whether the [element] is present in the collection before adding it. If the [element] is already
+ * contained, it will not be added again. The check for containment is done using the `in` operator.
+ *
+ * @param element The element to be added to the collection if it is already contained.
+ * @return `true` if the [element] was added to the collection, `false` otherwise.
+ *
+ * @param C The type of the mutable collection.
+ * @param T The type of the elements in the collection.
+ *
+ * @see MutableCollection
+ */
 fun <C : MutableCollection<T>, T> C.addIfContained(element: T) =
 	addIf(element) { _, currentState -> element in currentState }
 
+/**
+ * Adds the specified element to the collection if it is not already contained in it.
+ *
+ * @param element the element to be added to the collection.
+ * @return `true` if the element was added to the collection, `false` if the element is already contained in the collection.
+ */
 fun <C : MutableCollection<T>, T> C.addIfNotContained(element: T) =
 	addIfNot(element) { _, currentState -> element in currentState }
 
