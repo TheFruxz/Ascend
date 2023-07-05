@@ -8,7 +8,7 @@ import dev.fruxz.ascend.extension.tryOrNull
  * @param values the [IntRange] to use as take parameter
  * @return the sublist of [this] List<[T]>
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T> List<T>.subList(values: IntRange) = subList(values.first, values.last)
 
@@ -32,7 +32,7 @@ fun <T> List<T>.subListOrEmpty(values: IntRange) = tryOrNull {
  * which is the same as [forEach] a [Collection] with the [with] function inside.
  * @param action the action in the 'this' perspective
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <O, T : Iterable<O>> T.withForEach(action: O.() -> Unit) = forEach(action)
 
@@ -41,7 +41,7 @@ inline fun <O, T : Iterable<O>> T.withForEach(action: O.() -> Unit) = forEach(ac
  * which is the same as [forEach] a [Array] with the [with] function inside.
  * @param action the action in the 'this' perspective
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <O> Array<O>.withForEach(action: O.() -> Unit) = forEach(action)
 
@@ -51,7 +51,7 @@ inline fun <O> Array<O>.withForEach(action: O.() -> Unit) = forEach(action)
  * @param action the action in the 'this' perspective
  * @return the mapped [List]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <I, O, T : Iterable<I>> T.withMap(action: I.() -> O) = map(action)
 
@@ -61,14 +61,14 @@ inline fun <I, O, T : Iterable<I>> T.withMap(action: I.() -> O) = map(action)
  * @param action the action in the 'this' perspective
  * @return the mapped [List]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <I, O> Array<I>.withMap(action: I.() -> O) = map(action)
 
 /**
  * Maps a [Map] using the [Map.map] function.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <K, V, O, T : Map<K, V>> T.withMap(action: Map.Entry<K, V>.() -> O) = map(action)
 
@@ -78,7 +78,7 @@ inline fun <K, V, O, T : Map<K, V>> T.withMap(action: Map.Entry<K, V>.() -> O) =
  * @param action the action in the 'this' perspective
  * @return the mapped [List] without null values
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <I, O, T : Iterable<I>> T.withMapNotNull(action: I.() -> O?) = mapNotNull(action)
 
@@ -88,13 +88,13 @@ inline fun <I, O, T : Iterable<I>> T.withMapNotNull(action: I.() -> O?) = mapNot
  * @param action the action in the 'this' perspective
  * @return the mapped [List] without null values
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <I, O> Array<I>.withMapNotNull(action: I.() -> O?) = mapNotNull(action)
 
 /**
  * Maps a [Map] using the [Map.mapNotNull] function.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <K, V, O, T : Map<K, V>> T.withMapNotNull(action: Map.Entry<K, V>.() -> O?) = mapNotNull(action)

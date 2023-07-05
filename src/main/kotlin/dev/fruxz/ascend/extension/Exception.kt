@@ -9,7 +9,7 @@ import kotlin.random.Random
  * Gets the exception [exception] and prints a beautiful stack trace & message.
  * @param exception the exception to print
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun catchException(
 	exception: Exception,
@@ -36,7 +36,7 @@ fun catchException(
  * @param catch executes the code if an exception is thrown, even if it is successfully caught and avoided
  * @return the value returned by the [process] as a [Result]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <T> tryWithResult(
 	silent: Boolean = true,
@@ -60,7 +60,7 @@ inline fun <T> tryWithResult(
  * @param catch executes the code if an exception is thrown, even if it is successfully caught and avoided
  * @return the value returned by the [process] as a [Result]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <T> tryWithResult(
 	silent: () -> Boolean,
@@ -80,7 +80,7 @@ inline fun <T> tryWithResult(
  * @param catch executes the code if an exception is thrown, even if it is successfully caught and avoided
  * @return the value returned by the [process] or the [other]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <R, T : R> tryOrElse(
 	silent: Boolean = true,
@@ -100,7 +100,7 @@ inline fun <R, T : R> tryOrElse(
  * @param catch executes the code if an exception is thrown, even if it is successfully caught and avoided
  * @return the value returned by the [process] or the [other]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <R, T : R> tryOrElse(
 	silent: () -> Boolean,
@@ -119,7 +119,7 @@ inline fun <R, T : R> tryOrElse(
  * @param catch executes the code if an exception is thrown, even if it is successfully caught and avoided
  * @return the value returned by the [process] or null
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <T> tryOrNull(
 	silent: Boolean = true,
@@ -136,7 +136,7 @@ inline fun <T> tryOrNull(
  * @param catch executes the code if an exception is thrown, even if it is successfully caught and avoided
  * @return the value returned by the [process] or null
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <T> tryOrNull(
 	silent: () -> Boolean,
@@ -151,7 +151,7 @@ inline fun <T> tryOrNull(
  * @param silent if set to false, the exception will be printed
  * @param catch executes the code if an exception is thrown, even if it is successfully caught and avoided
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun tryOrIgnore(
 	silent: Boolean = true,
@@ -165,7 +165,7 @@ inline fun tryOrIgnore(
  * @param silent if returns false, the exception will be printed
  * @param catch executes the code if an exception is thrown, even if it is successfully caught and avoided
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun tryOrIgnore(
 	silent: () -> Boolean,
@@ -179,7 +179,7 @@ inline fun tryOrIgnore(
  * if an exception is thrown, the stack trace will be printed.
  * @param catch executes the code if an exception is thrown, even if it is successfully caught and avoided
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun tryOrPrint(
 	catch: ExceptionCatch<Exception> = ExceptionCatch.ignore(),

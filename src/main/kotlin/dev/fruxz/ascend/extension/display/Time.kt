@@ -8,6 +8,6 @@ import kotlin.time.Duration
  * This function creates a [DisplayTime] from a [Duration] using its [Duration.inWholeSeconds] value.
  * @return [DisplayTime]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun Duration.display() = DisplayTime(SECONDS, this.inWholeSeconds.toDouble())

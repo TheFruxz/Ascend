@@ -6,7 +6,7 @@ import java.security.MessageDigest
  * The HashUtils object provides functions to hash [ByteArray]s
  * and [String]s with the given algorithm.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 object HashUtils {
 
@@ -50,7 +50,7 @@ object HashUtils {
 /**
  * This enum class defines some supported hash types.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 enum class HashType {
 

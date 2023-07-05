@@ -24,7 +24,7 @@ fun <T> MutableCollection<T>.replaceWith(iterable: Iterable<T>) {
  * @param addToContainer If true, add element to container; else remove element from container
  * @return if it has been added [MutableCollection.add] gets returned, or if it has been removed [MutableCollection.remove] gets returned
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T> MutableCollection<T>.toggle(element: T, addToContainer: Boolean = !contains(element)): Boolean = if (addToContainer) {
 	add(element)
@@ -41,7 +41,7 @@ fun <T> MutableCollection<T>.toggle(element: T, addToContainer: Boolean = !conta
  * @param T The type of the elements of the mutable-collection-based object
  * @return An empty mutable list, if [C] was null, or [C] itself, if it was not null
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <C : MutableCollection<T>, T> C?.orEmptyMutable() = this?.toMutableList() ?: mutableListOf()
 
@@ -56,7 +56,7 @@ fun <C : MutableCollection<T>, T> C?.orEmptyMutable() = this?.toMutableList() ?:
  * @param element The element to be added to the collection-based object
  * @return A mutable list, that contains the [element] added to the collection-based object
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 infix fun <C : MutableCollection<T>, T> C.and(element: T) = apply { add(element) }
 

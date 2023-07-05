@@ -7,7 +7,7 @@ package dev.fruxz.ascend.extension
  * @param O the type of the object to cast
  * @return the cast object
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <O> Any?.forceCast() = this as O
 
@@ -16,7 +16,7 @@ fun <O> Any?.forceCast() = this as O
  * @param O the type of the object to cast
  * @return the cast object
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <O> Any?.forceCastOrNull() = tryOrNull { this as O }
 
@@ -25,7 +25,7 @@ fun <O> Any?.forceCastOrNull() = tryOrNull { this as O }
  * @param O the type of the object to cast
  * @return the cast object
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <O> Any?.forceNullableCast() = this as O?
 
@@ -34,7 +34,7 @@ fun <O> Any?.forceNullableCast() = this as O?
  * @param O the type of the object to cast
  * @return the cast object
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <O> Any?.forceNullableCastOrNull() = tryOrNull { this as O? }
 
@@ -42,7 +42,7 @@ fun <O> Any?.forceNullableCastOrNull() = tryOrNull { this as O? }
  * Throws away the object by returning [Unit]
  * @return [Unit]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @Suppress("UnusedReceiverParameter")
 fun <T> T.dump(): Unit = Unit

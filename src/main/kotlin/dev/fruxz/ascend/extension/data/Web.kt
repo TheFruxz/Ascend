@@ -7,7 +7,7 @@ import java.nio.charset.Charset
  * @param url the url of the web page, which will be downloaded
  * @return the text of the web page
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun getWebText(url: String, charset: Charset = Charsets.UTF_8) = url(url).readText(charset)
 
@@ -16,6 +16,6 @@ fun getWebText(url: String, charset: Charset = Charsets.UTF_8) = url(url).readTe
  * @param url the url of the web page, which will be downloaded
  * @return the content of the web page as [ByteArray]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun readWebBytes(url: String) = url(url).readBytes()

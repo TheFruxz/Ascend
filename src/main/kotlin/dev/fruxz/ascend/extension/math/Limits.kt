@@ -8,7 +8,7 @@ package dev.fruxz.ascend.extension.math
  * @see minTo
  * @See maxTo
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 infix fun <C : Comparable<C>> C.limitTo(range: ClosedRange<C>) = this.minTo(range.start).maxTo(range.endInclusive)
 
@@ -20,7 +20,7 @@ infix fun <C : Comparable<C>> C.limitTo(range: ClosedRange<C>) = this.minTo(rang
  * @see minTo
  * @See maxTo
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 infix fun <C : Iterable<T>, T : Comparable<T>> T.limitToIterable(range: C) = this.minTo(range.min()).maxTo(range.max())
 
@@ -29,7 +29,7 @@ infix fun <C : Iterable<T>, T : Comparable<T>> T.limitToIterable(range: C) = thi
  * @param minimum the minimum to limit [this] to.
  * @return [this], or [minimum] if [this] is smaller than [minimum].
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 infix fun <C : Comparable<C>> C.minTo(minimum: C) = this.coerceAtLeast(minimum)
 
@@ -38,6 +38,6 @@ infix fun <C : Comparable<C>> C.minTo(minimum: C) = this.coerceAtLeast(minimum)
  * @param maximum the maximum to limit [this] to.
  * @return [this], or [maximum] if [this] is bigger than [maximum].
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 infix fun <C : Comparable<C>> C.maxTo(maximum: C) = this.coerceAtMost(maximum)

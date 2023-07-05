@@ -8,7 +8,7 @@ import kotlinx.serialization.json.buildJsonObject
 /**
  * This function puts every item from the [jsonObject] int the current [JsonObjectBuilder].
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun JsonObjectBuilder.putAll(jsonObject: JsonObject) = jsonObject.entries.forEach {
     this.put(it.key, it.value)
@@ -19,7 +19,7 @@ fun JsonObjectBuilder.putAll(jsonObject: JsonObject) = jsonObject.entries.forEac
  * [JsonObjectBuilder.putAll] the [base] (if not-null) as the first action, to be used
  * as the base.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun buildJsonObject(base: JsonObject?, builderAction: JsonObjectBuilder.() -> Unit): JsonObject = buildJsonObject {
     base?.let { putAll(it) }

@@ -24,7 +24,7 @@ fun <T, C : Collection<T>> C.toArrayList(): ArrayList<T> = ArrayList(this)
  *
  * @param T The type of elements in the array.
  *
- * @since 1.0-BETA-5 (preview)
+ * @since 2023.1-BETA-5 (preview)
  */
 fun <T> Array<out T>.toArrayList(): ArrayList<out T> = toList().toArrayList()
 
@@ -88,7 +88,7 @@ inline fun <T> constructListOf(size: Int, generator: (Int) -> T): List<T> = List
 /**
  * Returning the first object of the collection [C]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val <T, C : Iterable<T>> C.first: T
 	get() = first()
@@ -96,7 +96,7 @@ val <T, C : Iterable<T>> C.first: T
 /**
  * Returning the first object of the array
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val <T> Array<out T>.first: T
 	get() = first()
@@ -104,7 +104,7 @@ val <T> Array<out T>.first: T
 /**
  * Returning the second object of the collection [C]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val <T, C : Iterable<T>> C.second: T
 	get() = elementAt(1)
@@ -112,7 +112,7 @@ val <T, C : Iterable<T>> C.second: T
 /**
  * Returning the second object of the array
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val <T> Array<out T>.second: T
 	get() = elementAt(1)
@@ -120,7 +120,7 @@ val <T> Array<out T>.second: T
 /**
  * Returning the third object of the collection [C]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val <T, C : Iterable<T>> C.third: T
 	get() = elementAt(2)
@@ -128,7 +128,7 @@ val <T, C : Iterable<T>> C.third: T
 /**
  * Returning the third object of the array
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val <T> Array<out T>.third: T
 	get() = elementAt(2)
@@ -136,7 +136,7 @@ val <T> Array<out T>.third: T
 /**
  * Returning the last object of the collection [C]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val <T, C : Iterable<T>> C.last: T
 	get() = last()
@@ -144,7 +144,7 @@ val <T, C : Iterable<T>> C.last: T
 /**
  * Returns the last object of the array
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val <T> Array<out T>.last: T
 	get() = last()
@@ -167,7 +167,7 @@ val <T> Array<out T>.last: T
  * and [overflow] is false.
  *
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T> Iterable<T>.getOrNull(index: Int, overflow: Boolean = false): T? {
 	return when {
@@ -188,7 +188,7 @@ fun <T> Iterable<T>.getOrNull(index: Int, overflow: Boolean = false): T? {
  * @param overflow if the index is out of bounds, should it go back to the start of the collection
  * @return the object at the [index] of the collection [C]<[T]>
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @Throws(NoSuchElementException::class)
 fun <T, C : Iterable<T>> C.get(index: Int, overflow: Boolean = false): T =
@@ -198,7 +198,7 @@ fun <T, C : Iterable<T>> C.get(index: Int, overflow: Boolean = false): T =
  * Creates a sublist of the [intRange]
  * @return a new sublist of the [C]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T, C : Iterable<T>> C.take(intRange: IntRange): List<T> =
 	toList().subList(intRange)
@@ -207,7 +207,7 @@ fun <T, C : Iterable<T>> C.take(intRange: IntRange): List<T> =
  * Creates a sublist of the [intRange]
  * @return a new sublist of the [Array]<[T]>
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T> Array<T>.take(intRange: IntRange): List<T> =
 	toList().subList(intRange)
@@ -237,7 +237,7 @@ fun <T> Array<T>.partitionByPage(chunkSize: Int): Paged<T> =
  * has some duplicates in it. The decision is made
  * by the [distinct] function.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T, C : Iterable<T>> C.hasDuplicates(): Boolean =
 	count() > distinct().size
@@ -248,7 +248,7 @@ fun <T, C : Iterable<T>> C.hasDuplicates(): Boolean =
  * by the [distinct] function.
  * @param process defines the value, with which object the differentiation is made
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <T, C : Iterable<T>, K> C.hasDuplicates(process: (T) -> K): Boolean =
 	count() > distinctBy(process).size
@@ -258,7 +258,7 @@ inline fun <T, C : Iterable<T>, K> C.hasDuplicates(process: (T) -> K): Boolean =
  * has some duplicates in it. The decision is made
  * by the [distinct] function.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T> Array<T>.hasDuplicates(): Boolean =
 	size > distinct().size
@@ -269,7 +269,7 @@ fun <T> Array<T>.hasDuplicates(): Boolean =
  * by the [distinct] function.
  * @param process defines the value, with which object the differentiation is made
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <T, K> Array<T>.hasDuplicates(process: (T) -> K): Boolean =
 	size > distinctBy(process).size
@@ -279,7 +279,7 @@ inline fun <T, K> Array<T>.hasDuplicates(process: (T) -> K): Boolean =
  * provided by the [Collection].
  * @return the average duration, determined by milliseconds
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <C : Iterable<Duration>> C.average(): Duration =
 	map(Duration::inWholeMilliseconds).sum().div(count()).milliseconds
@@ -289,7 +289,7 @@ fun <C : Iterable<Duration>> C.average(): Duration =
  * provided by the [Collection].
  * @return the summary duration, determined by milliseconds
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <C : Iterable<Duration>> C.sum(): Duration =
 	map(Duration::inWholeMilliseconds).sum().milliseconds
@@ -299,7 +299,7 @@ fun <C : Iterable<Duration>> C.sum(): Duration =
  * provided by the [Collection].
  * @return the largest duration, determined by milliseconds
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <C : Iterable<Duration>> C.max(): Duration =
 	map(Duration::inWholeMilliseconds).maxOf { it }.milliseconds
@@ -309,7 +309,7 @@ fun <C : Iterable<Duration>> C.max(): Duration =
  * provided by the [Collection].
  * @return the smallest duration, determined by milliseconds
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <C : Iterable<Duration>> C.min(): Duration =
 	map(Duration::inWholeMilliseconds).minOf { it }.milliseconds
@@ -338,7 +338,7 @@ fun <C : Iterable<String>> C.containsAll(elements: Iterable<String>, ignoreCase:
  * should be dropped and the list should be stored
  * @return the list of lists, which are created by the [predicate]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <T, C : Iterable<T>> C.splitBy(predicate: (T) -> Boolean): List<List<T>> {
 	val output = mutableListOf<List<T>>()
@@ -362,7 +362,7 @@ inline fun <T, C : Iterable<T>> C.splitBy(predicate: (T) -> Boolean): List<List<
  * This function uses the [Collection.distinct] function and
  * returns the result-list as a [Set], by using the [toSet] function.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T, C : Iterable<T>> C.distinctSet() = distinct().toSet()
 
@@ -370,7 +370,7 @@ fun <T, C : Iterable<T>> C.distinctSet() = distinct().toSet()
  * This function uses the [Array.distinct] function and
  * returns the result-list as a [Set], by using the [toSet] function.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T> Array<T>.distinctSet() = distinct().toSet()
 
@@ -378,7 +378,7 @@ fun <T> Array<T>.distinctSet() = distinct().toSet()
  * This function uses the [Collection.distinctBy] function and
  * returns the result-list as a [List], by using the [toList] function.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <T, C : Iterable<T>, O> C.distinctSetBy(process: (T) -> O) = distinctBy(process).toSet()
 
@@ -386,7 +386,7 @@ inline fun <T, C : Iterable<T>, O> C.distinctSetBy(process: (T) -> O) = distinct
  * This function uses the [Array.distinctBy] function and
  * returns the result-list as a [List], by using the [toList] function.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <T, O> Array<T>.distinctSetBy(process: (T) -> O) = distinctBy(process).toSet()
 
@@ -394,7 +394,7 @@ inline fun <T, O> Array<T>.distinctSetBy(process: (T) -> O) = distinctBy(process
  * This function uses the [Collection.forEach] function, but only on every
  * element, which is not null.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <T, C : Iterable<T?>> C.forEachNotNull(process: (T & Any) -> Unit) = forEach { if (it != null) process(it) }
 
@@ -402,7 +402,7 @@ inline fun <T, C : Iterable<T?>> C.forEachNotNull(process: (T & Any) -> Unit) = 
  * This function uses the [Array.forEach] function, but only on every
  * element, which is not null.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <T> Array<T?>.forEachNotNull(process: (T & Any) -> Unit) = forEach { if (it != null) process(it) }
 
@@ -532,7 +532,7 @@ inline fun <T, C> Array<T>.isUnique(process: (T) -> C): Boolean {
  * This function modifies the current [MutableList] so, that the first [n] strings
  * are being merged together, with the [spliterator] and [transform] used.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @ExperimentalAscendApi
 fun <T : MutableList<String>> T.joinFirst(n: Int, spliterator: String = ", ", transform: (String) -> String = { it }) {
@@ -545,7 +545,7 @@ fun <T : MutableList<String>> T.joinFirst(n: Int, spliterator: String = ", ", tr
  * This function modifies the current [MutableList] so, that the last [n] strings
  * are being merged together, with the [spliterator] and [transform] used.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @ExperimentalAscendApi
 fun <T : MutableList<String>> T.joinLast(n: Int, spliterator: String = ", ", transform: (String) -> String = { it }) {
@@ -559,7 +559,7 @@ fun <T : MutableList<String>> T.joinLast(n: Int, spliterator: String = ", ", tra
  * entries merged together with the [spliterator] and [transform] used.
  * This does not modify the originally used [Iterable].
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @ExperimentalAscendApi
 fun <T : Iterable<String>> T.joinedFirst(n: Int, spliterator: String = ", ", transform: (String) -> String = { it }) = modified {
@@ -571,7 +571,7 @@ fun <T : Iterable<String>> T.joinedFirst(n: Int, spliterator: String = ", ", tra
  * entries merged together with the [spliterator] and [transform] used.
  * This does not modify the originally used [Iterable].
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @ExperimentalAscendApi
 fun <T : Iterable<String>> T.joinedLast(n: Int, spliterator: String = ", ", transform: (String) -> String = { it }) = modified {
@@ -582,7 +582,7 @@ fun <T : Iterable<String>> T.joinedLast(n: Int, spliterator: String = ", ", tran
  * This function returns a new list of the current [Iterable], with the values
  * from the indexes between [IntRange.first] and [IntRange.last] (inclusive).
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 operator fun <T> List<T>.get(indexesRange: IntRange) = subList(indexesRange.first, indexesRange.last)
 
@@ -590,7 +590,7 @@ operator fun <T> List<T>.get(indexesRange: IntRange) = subList(indexesRange.firs
  * This function returns a new list of all entries, which are at the indexes
  * specified in the [indexes].
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 operator fun <T> List<T>.get(indexes: Iterable<Int>) = indexes.map { this[it] }
 
@@ -598,7 +598,7 @@ operator fun <T> List<T>.get(indexes: Iterable<Int>) = indexes.map { this[it] }
  * This function returns a new [SortedSet] of the current [Iterable], with the
  * indexes matching the indexes of [this].
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T> Iterable<T>.toSortedSet(): SortedSet<T> {
 	return when (this) {
@@ -611,7 +611,7 @@ fun <T> Iterable<T>.toSortedSet(): SortedSet<T> {
  * This function returns a new [SortedSet] of the current [Array], with the
  * indexes matching the indexes of [this].
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T> Array<T>.toSortedSet(): SortedSet<T> =
 	toSortedSet(compareBy { this.indexOf(it) })

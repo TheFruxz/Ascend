@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
  * This class represents an address (inside a path-structure).
  * @param addressString the address as string
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @Serializable
 @SerialName("smartAddress")
@@ -23,7 +23,7 @@ data class Address<T> internal constructor(
      * Returns the [addressString]
      * @return the [addressString]
      * @author Fruxz
-     * @since 1.0
+     * @since 2023.1
      */
     override fun toString() = addressString
 
@@ -41,7 +41,7 @@ data class Address<T> internal constructor(
          * @param divider the divider as a string
          * @return the [Address]<[T]>
          * @author Fruxz
-         * @since 1.0
+         * @since 2023.1
          */
         @JvmStatic
         fun <T> address(path: String, divider: String = "/") =
@@ -54,7 +54,7 @@ data class Address<T> internal constructor(
          * @param divider the divider as a string
          * @return the [Address]<[T]>
          * @author Fruxz
-         * @since 1.0
+         * @since 2023.1
          */
         @JvmStatic
         @Deprecated(

@@ -8,7 +8,7 @@ import dev.fruxz.ascend.extension.data.buildRandomTag
  * This api is to keep try-catches away from other kotlin api, but this comes at the cost
  * of a lack of some try-catch-features.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @RefactoringCandidate
 fun interface ExceptionCatch<E : Throwable> {

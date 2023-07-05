@@ -4,7 +4,7 @@ package dev.fruxz.ascend.tool.smart.path
  * This interface represents an object, which has a specific
  * path inside a pathed structure.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @Suppress("SpellCheckingInspection")
 interface Pathed<T> : Addressable<T> {
@@ -14,7 +14,7 @@ interface Pathed<T> : Addressable<T> {
 	 * represents the address of the object
 	 * inside the pathed structure.
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	override val addressObject: Address<T>
 		get() = address
@@ -24,7 +24,7 @@ interface Pathed<T> : Addressable<T> {
 	 * represents the address of the object
 	 * inside the pathed structure.
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	val address: Address<T>
 
@@ -32,7 +32,7 @@ interface Pathed<T> : Addressable<T> {
 	 * This value represents the different parts
 	 * of the paths of this object.
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	val pathParts: List<String>
 		get() {

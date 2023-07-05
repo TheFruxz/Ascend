@@ -3,7 +3,7 @@ package dev.fruxz.ascend.extension.data
 /**
  * Returning the currently used kotlin runtime version.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val kotlinVersion = KotlinVersion.CURRENT
 
@@ -11,7 +11,7 @@ val kotlinVersion = KotlinVersion.CURRENT
  * Returning the currently used java version, which the
  * [System].getProperty("java.version") returns.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val javaVersion = "" + System.getProperty("java.version")
 
@@ -19,7 +19,7 @@ val javaVersion = "" + System.getProperty("java.version")
  * Returning the currently used java jvm version, which the
  * [System].getProperty("java.jvm.version") returns.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val javaVmVersion = "" + System.getProperty("java.vm.version")
 
@@ -27,7 +27,7 @@ val javaVmVersion = "" + System.getProperty("java.vm.version")
  * Returning the currently used java jvm vendor, which the
  * [System].getProperty("java.jvm.vendor") returns.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val javaVmVendor = "" + System.getProperty("java.vm.vendor")
 
@@ -35,7 +35,7 @@ val javaVmVendor = "" + System.getProperty("java.vm.vendor")
  * Returning the currently used java jvm name, which the
  * [System].getProperty("java.jvm.name") returns.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val javaVmName = "" + System.getProperty("java.vm.name")
 
@@ -43,7 +43,7 @@ val javaVmName = "" + System.getProperty("java.vm.name")
  * Returning the currently used java vm specification version, which the
  * [System].getProperty("java.vm.specification.version") returns.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val javaVmSpecificationVersion = "" + System.getProperty("java.vm.specification.version")
 
@@ -57,7 +57,7 @@ val javaLevel = javaVmSpecificationVersion.toIntOrNull() ?: 0
  * Returning the currently used java vm specification vendor, which the
  * [System].getProperty("java.vm.specification.vendor") returns.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val javaVmSpecificationVendor = "" + System.getProperty("java.vm.specification.vendor")
 
@@ -65,7 +65,7 @@ val javaVmSpecificationVendor = "" + System.getProperty("java.vm.specification.v
  * Returning the currently used java vm specification name, which the
  * [System].getProperty("java.vm.specification.name") returns.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val javaVmSpecificationName = "" + System.getProperty("java.vm.specification.name")
 
@@ -73,7 +73,7 @@ val javaVmSpecificationName = "" + System.getProperty("java.vm.specification.nam
  * Returning the currently used java specification version, which the
  * [System].getProperty("java.specification.version") returns.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val javaRuntimeSpecificationVersion = "" + System.getProperty("java.specification.version")
 
@@ -81,7 +81,7 @@ val javaRuntimeSpecificationVersion = "" + System.getProperty("java.specificatio
  * Returning the currently used java specification vendor, which the
  * [System].getProperty("java.specification.vendor") returns.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val javaRuntimeSpecificationVendor = "" + System.getProperty("java.specification.vendor")
 
@@ -89,6 +89,6 @@ val javaRuntimeSpecificationVendor = "" + System.getProperty("java.specification
  * Returning the currently used java specification name, which the
  * [System].getProperty("java.specification.name") returns.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val javaRuntimeSpecificationName = "" + System.getProperty("java.specification.name")

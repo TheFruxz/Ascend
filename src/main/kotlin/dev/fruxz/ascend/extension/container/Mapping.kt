@@ -11,7 +11,7 @@ import java.util.*
  * @param T the type of the original elements
  * @return the list of [String]s
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T> Iterable<T>.mapToString() =
 	map { "$it" }
@@ -22,7 +22,7 @@ fun <T> Iterable<T>.mapToString() =
  * @param T the type of the original elements
  * @return the list of [String]s
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T> Array<T>.mapToString() =
 	map { "$it" }
@@ -36,7 +36,7 @@ fun <T> Array<T>.mapToString() =
  * @param T the type of the original elements
  * @return the list of [Int]s
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T> Iterable<T>.mapToInt() =
 	map { "$it".toInt() }
@@ -48,7 +48,7 @@ fun <T> Iterable<T>.mapToInt() =
  * @param T the type of the original elements
  * @return the list of [Int]s
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T> Array<T>.mapToInt() =
 	map { "$it".toInt() }
@@ -62,7 +62,7 @@ fun <T> Array<T>.mapToInt() =
  * @param T the type of the original elements
  * @return the list of [Double]s
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T> Iterable<T>.mapToDouble() =
 	map { "$it".toDouble() }
@@ -74,7 +74,7 @@ fun <T> Iterable<T>.mapToDouble() =
  * @param T the type of the original elements
  * @return the list of [Double]s
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T> Array<T>.mapToDouble() =
 	map { "$it".toDouble() }
@@ -88,7 +88,7 @@ fun <T> Array<T>.mapToDouble() =
  * @param T the type of the original elements
  * @return the list of [Long]s
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T> Iterable<T>.mapToLong() =
 	map { "$it".toLong() }
@@ -100,7 +100,7 @@ fun <T> Iterable<T>.mapToLong() =
  * @param T the type of the original elements
  * @return the list of [Long]s
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T> Array<T>.mapToLong() =
 	map { "$it".toLong() }
@@ -114,7 +114,7 @@ fun <T> Array<T>.mapToLong() =
  * @param T the type of the original elements
  * @return the list of [Byte]s
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T> Iterable<T>.mapToByte() =
 	map { "$it".toByte() }
@@ -126,7 +126,7 @@ fun <T> Iterable<T>.mapToByte() =
  * @param T the type of the original elements
  * @return the list of [Byte]s
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T> Array<T>.mapToByte() =
 	map { "$it".toByte() }
@@ -140,7 +140,7 @@ fun <T> Array<T>.mapToByte() =
  * @param T the type of the original elements
  * @return the list of [Boolean]s
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T> Iterable<T>.mapToBoolean() =
 	map { "$it".toBoolean() }
@@ -152,7 +152,7 @@ fun <T> Iterable<T>.mapToBoolean() =
  * @param T the type of the original elements
  * @return the list of [Boolean]s
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T> Array<T>.mapToBoolean() =
 	map { "$it".toBoolean() }
@@ -162,7 +162,7 @@ fun <T> Array<T>.mapToBoolean() =
  * @param O the type of the result elements
  * @return the list of [O] elements
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @Suppress("UNCHECKED_CAST")
 fun <O> Iterable<*>.mapCast() =
@@ -173,7 +173,7 @@ fun <O> Iterable<*>.mapCast() =
  * @param O the type of the result elements
  * @return the list of [O] elements
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <O> Array<*>.mapCast() =
 	map { it.forceCast<O>() }
@@ -182,7 +182,7 @@ fun <O> Array<*>.mapCast() =
  * This function returns a list of lowercase strings
  * of the original [Iterable]<[String]>
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun Iterable<String>.mapToLowercase(locale: Locale = Locale.ROOT) =
 	map { it.lowercase(locale) }
@@ -191,7 +191,7 @@ fun Iterable<String>.mapToLowercase(locale: Locale = Locale.ROOT) =
  * This function returns a list of lowercase strings
  * of the original [Array]<[String]>
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun Array<String>.mapToLowercase(locale: Locale = Locale.ROOT) =
 	map { it.lowercase(locale) }
@@ -200,7 +200,7 @@ fun Array<String>.mapToLowercase(locale: Locale = Locale.ROOT) =
  * This function returns a list of uppercase strings
  * of the original [Iterable]<[String]>
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun Iterable<String>.mapToUppercase(locale: Locale = Locale.ROOT) =
 	map { it.uppercase(locale) }
@@ -209,7 +209,7 @@ fun Iterable<String>.mapToUppercase(locale: Locale = Locale.ROOT) =
  * This function returns a list of uppercase strings
  * of the original [Array]<[String]>
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun Array<String>.mapToUppercase(locale: Locale = Locale.ROOT) =
 	map { it.uppercase(locale) }

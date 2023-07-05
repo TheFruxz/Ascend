@@ -7,7 +7,7 @@ package dev.fruxz.ascend.tool.time
  * or an infinite past. This can be used to define something like
  * "this stays forever" or "never happened".
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 interface TimeState {
 

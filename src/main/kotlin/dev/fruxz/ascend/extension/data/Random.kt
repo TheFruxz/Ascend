@@ -14,7 +14,7 @@ import kotlin.random.nextInt
  * @param random the randomizer to use.
  * @return a random boolean
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun randomBoolean(random: Random = Random) = (randomInt(1..2, random) == 1)
 
@@ -25,7 +25,7 @@ fun randomBoolean(random: Random = Random) = (randomInt(1..2, random) == 1)
  * @param random the randomizer to use
  * @return a random integer
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun randomInt(range: IntRange, random: Random = Random) = random.nextInt(range)
 
@@ -35,7 +35,7 @@ fun randomInt(range: IntRange, random: Random = Random) = random.nextInt(range)
  * @param random the randomizer to use
  * @return a random integer
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun randomInt(progression: Iterable<Int>, random: Random = Random) = progression.shuffled(random).first()
 
@@ -45,7 +45,7 @@ fun randomInt(progression: Iterable<Int>, random: Random = Random) = progression
  * @param random the randomizer to use
  * @return a random long
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun randomLong(range: LongRange, random: Random = Random) = range.shuffled(random).first()
 
@@ -55,7 +55,7 @@ fun randomLong(range: LongRange, random: Random = Random) = range.shuffled(rando
  * @param random the randomizer to use
  * @return a random long
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun randomLong(progression: Iterable<Int>, random: Random = Random) = progression.shuffled(random).first()
 
@@ -69,7 +69,7 @@ fun randomLong(progression: Iterable<Int>, random: Random = Random) = progressio
  * @param stackRandomizer the randomizer, which is used to shuffle the characters of the Tag
  * @return a random Tag with the # at the start of the generated Tag
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @Deprecated(message = "This function have been slightly changed, to fit better into the Kotlin ecosystem and enable more customization",
 	replaceWith = ReplaceWith(

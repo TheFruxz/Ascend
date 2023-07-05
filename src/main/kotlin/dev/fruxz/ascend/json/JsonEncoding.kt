@@ -16,7 +16,7 @@ import java.io.OutputStream
  * @see Json.encodeToString
  * @return The object represented as a JSON string.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <reified T> T.toJsonString(json: Json = globalJson) = json.encodeToString(this)
 
@@ -26,7 +26,7 @@ inline fun <reified T> T.toJsonString(json: Json = globalJson) = json.encodeToSt
  * @see toJsonString
  * @return The object represented as a JSON string, or null if it failed.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <reified T> T.toJsonStringOrNull(json: Json = globalJson) = tryOrNull { toJsonString(json = json) }
 
@@ -36,7 +36,7 @@ inline fun <reified T> T.toJsonStringOrNull(json: Json = globalJson) = tryOrNull
  * This process can throw exceptions if something goes wrong!
  * @see Json.encodeToStream
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <reified T> T.toJsonStream(stream: OutputStream, json: Json = globalJson) = json.encodeToStream(this, stream)
 
@@ -46,7 +46,7 @@ inline fun <reified T> T.toJsonStream(stream: OutputStream, json: Json = globalJ
  * @see toJsonStream
  * @return The unit if it succeeded, or null if it failed.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <reified T> T.toJsonStreamOrNull(stream: OutputStream, json: Json = globalJson) = tryOrNull { toJsonStream(stream, json = json) }
 
@@ -57,7 +57,7 @@ inline fun <reified T> T.toJsonStreamOrNull(stream: OutputStream, json: Json = g
  * @see Json.encodeToJsonElement
  * @return The object represented as a [JsonElement].
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <reified T> T.toJsonElement(json: Json = globalJson) = json.encodeToJsonElement(this)
 
@@ -67,14 +67,14 @@ inline fun <reified T> T.toJsonElement(json: Json = globalJson) = json.encodeToJ
  * @see toJsonElement
  * @return The object represented as a [JsonElement], or null if it failed.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <reified T> T.toJsonElementOrNull(json: Json = globalJson) = tryOrNull { toJsonElement(json = json) }
 
 /**
  * This function parses this string into a [JsonElement] using the [globalJson]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun String.parseToJsonElement(json: Json = globalJson) = json.parseToJsonElement(this)
 
@@ -82,7 +82,7 @@ fun String.parseToJsonElement(json: Json = globalJson) = json.parseToJsonElement
  * This function parses this string into a [JsonElement] using the [globalJson]
  * or null if it fails
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun String.parseToJsonElementOrNull(json: Json = globalJson) = tryOrNull { parseToJsonElement(json = json) }
 
@@ -90,7 +90,7 @@ fun String.parseToJsonElementOrNull(json: Json = globalJson) = tryOrNull { parse
  * This function parses this string into a [JsonObject] using the
  * [parseToJsonElement] function.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun String.parseToJsonObject(json: Json = globalJson) = parseToJsonElement(json = json).jsonObject
 
@@ -98,7 +98,7 @@ fun String.parseToJsonObject(json: Json = globalJson) = parseToJsonElement(json 
  * This function parses this string into a [JsonObject] using the
  * [parseToJsonElementOrNull] function, or null if it fails.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun String.parseToJsonObjectOrNull(json: Json = globalJson) = tryOrNull { parseToJsonObject(json = json) }
 
@@ -111,7 +111,7 @@ fun String.parseToJsonObjectOrNull(json: Json = globalJson) = tryOrNull { parseT
  * @see Json.decodeFromString
  * @return The object represented as a [T].
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <reified T> String.fromJsonString(json: Json = globalJson) = json.decodeFromString<T>(this)
 
@@ -121,7 +121,7 @@ inline fun <reified T> String.fromJsonString(json: Json = globalJson) = json.dec
  * @see fromJsonString
  * @return The object represented as a [T], or null if it failed.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <reified T> String.fromJsonStringOrNull(json: Json = globalJson) = tryOrNull { fromJsonString<T>(json = json) }
 
@@ -132,7 +132,7 @@ inline fun <reified T> String.fromJsonStringOrNull(json: Json = globalJson) = tr
  * @see Json.decodeFromStream
  * @return The object represented as a [T].
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <reified T> InputStream.fromJsonStream(json: Json = globalJson) = json.decodeFromStream<T>(this)
 
@@ -142,7 +142,7 @@ inline fun <reified T> InputStream.fromJsonStream(json: Json = globalJson) = jso
  * @see InputStream.fromJsonStream
  * @return The object represented as a [T]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <reified T> InputStream.fromJsonStreamOrNull(json: Json = globalJson) = tryOrNull { fromJsonStream<T>(json = json) }
 
@@ -153,7 +153,7 @@ inline fun <reified T> InputStream.fromJsonStreamOrNull(json: Json = globalJson)
  * @see Json.decodeFromJsonElement
  * @return The object represented as a [T]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <reified T> JsonElement.fromJsonElement(json: Json = globalJson) = json.decodeFromJsonElement<T>(this)
 
@@ -163,6 +163,6 @@ inline fun <reified T> JsonElement.fromJsonElement(json: Json = globalJson) = js
  * @see JsonElement.fromJsonElement
  * @return The object represented as a [T]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <reified T> JsonElement.fromJsonElementOrNull(json: Json = globalJson) = tryOrNull { fromJsonElement<T>(json = json) }

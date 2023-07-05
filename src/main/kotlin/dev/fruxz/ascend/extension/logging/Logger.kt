@@ -9,7 +9,7 @@ import java.util.logging.Logger as JavaUtilLogger
  * @return the logger
  * @see JavaUtilLogger.getLogger
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun getLogger(name: String): JavaUtilLogger = JavaUtilLogger.getLogger(name)
 
@@ -20,7 +20,7 @@ fun getLogger(name: String): JavaUtilLogger = JavaUtilLogger.getLogger(name)
  * @return the logger
  * @see JavaUtilLogger.getLogger
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun getLogger(name: String, resourceBundleName: String): JavaUtilLogger = JavaUtilLogger.getLogger(name, resourceBundleName)
 
@@ -30,7 +30,7 @@ fun getLogger(name: String, resourceBundleName: String): JavaUtilLogger = JavaUt
  * @return the logger
  * @see JavaUtilLogger.getLogger
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun getLogger(clazz: KClass<*>) =
 	getLogger(clazz.simpleName ?: "generic")
@@ -40,6 +40,6 @@ fun getLogger(clazz: KClass<*>) =
  * @return the logger
  * @see getLogger
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T : Any> T.getItsLogger() = getLogger(this::class)

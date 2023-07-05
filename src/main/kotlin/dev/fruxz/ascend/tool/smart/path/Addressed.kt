@@ -6,7 +6,7 @@ package dev.fruxz.ascend.tool.smart.path
  * @param address the address of the element
  * @param value the value of the element
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 data class Addressed<T>(
     val address: Address<T>,

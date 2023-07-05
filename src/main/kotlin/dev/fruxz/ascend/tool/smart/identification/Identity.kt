@@ -17,7 +17,7 @@ import org.jetbrains.exposed.sql.vendors.currentDialect
  * @param T The owner type of the identity.
  * @param identity The identity itself.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 data class Identity<T>(
 	override val identity: String,
@@ -26,7 +26,7 @@ data class Identity<T>(
 	/**
 	 * Returns the [identity] (in the form of a [String])
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	override fun toString() = identity
 
@@ -36,7 +36,7 @@ data class Identity<T>(
 	 * the [identity] itself.
 	 * @return The [Identity] with the [O] type instead of [T].
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	fun <O> change() = Identity<O>(identity)
 

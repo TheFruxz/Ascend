@@ -9,7 +9,7 @@ import dev.fruxz.ascend.annotation.LanguageFeature
  * In short and simple: uses the [it] as the current context, by also keeping
  * the current one, but as an own parameter
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @LanguageFeature
 fun <T, I, O> T.alsoWith(it: I, block: I.(T) -> O): O = it.block(this)

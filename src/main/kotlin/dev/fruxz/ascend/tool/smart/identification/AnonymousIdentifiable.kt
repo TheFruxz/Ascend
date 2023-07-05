@@ -5,7 +5,7 @@ interface AnonymousIdentifiable {
 	/**
 	 * Represents the identity of the object as a [String].
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	val identity: String
 

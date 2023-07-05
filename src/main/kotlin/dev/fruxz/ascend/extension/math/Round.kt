@@ -12,7 +12,7 @@ import kotlin.math.round
  * @return The rounded up value.
  * @see ceil
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun ceilToInt(x: Double) = ceil(x).toInt()
 
@@ -23,7 +23,7 @@ fun ceilToInt(x: Double) = ceil(x).toInt()
  * @return The rounded up value.
  * @see ceil
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun ceilToInt(x: Float) = ceil(x).toInt()
 
@@ -33,7 +33,7 @@ fun ceilToInt(x: Float) = ceil(x).toInt()
  * @return The rounded up value.
  * @see ceil
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @JvmName("ceilToIntThis")
 fun Double.ceilToInt() = ceil(this).toInt()
@@ -44,7 +44,7 @@ fun Double.ceilToInt() = ceil(this).toInt()
  * @return The rounded up value.
  * @see ceil
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @JvmName("ceilToIntThis")
 fun Float.ceilToInt() = ceil(this).toInt()
@@ -55,7 +55,7 @@ fun Float.ceilToInt() = ceil(this).toInt()
  * @return The rounded up value.
  * @see ceil
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun Double.ceil() = ceil(this)
 
@@ -65,7 +65,7 @@ fun Double.ceil() = ceil(this)
  * @return The rounded up value.
  * @see ceil
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun Float.ceil() = ceil(this)
 
@@ -76,7 +76,7 @@ fun Float.ceil() = ceil(this)
  * @return The rounded down value.
  * @see floor
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun floorToInt(x: Double) = floor(x).toInt()
 
@@ -87,7 +87,7 @@ fun floorToInt(x: Double) = floor(x).toInt()
  * @return The rounded down value.
  * @see floor
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun floorToInt(x: Float) = floor(x).toInt()
 
@@ -97,7 +97,7 @@ fun floorToInt(x: Float) = floor(x).toInt()
  * @return The rounded down value.
  * @see floor
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @JvmName("floorToIntThis")
 fun Double.floorToInt() = floor(this).toInt()
@@ -108,7 +108,7 @@ fun Double.floorToInt() = floor(this).toInt()
  * @return The rounded down value.
  * @see floor
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @JvmName("floorToIntThis")
 fun Float.floorToInt() = floor(this).toInt()
@@ -119,7 +119,7 @@ fun Float.floorToInt() = floor(this).toInt()
  * @return The rounded down value.
  * @see floor
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun Double.floor() = floor(this)
 
@@ -129,7 +129,7 @@ fun Double.floor() = floor(this)
  * @return The rounded down value.
  * @see floor
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun Float.floor() = floor(this)
 
@@ -139,7 +139,7 @@ fun Float.floor() = floor(this)
  * @param decimals The amount of decimals to round to.
  * @return The rounded value.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun round(x: Double, decimals: Int): Double = 10.0.pow(decimals).let { factor -> round(x * factor) / factor }
 
@@ -148,7 +148,7 @@ fun round(x: Double, decimals: Int): Double = 10.0.pow(decimals).let { factor ->
  * @param decimals The amount of decimals to round to.
  * @return The rounded value.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @JvmName("roundWithDecimalsThis")
 infix fun Double.round(decimals: Int): Double = round(this, decimals)
@@ -159,7 +159,7 @@ infix fun Double.round(decimals: Int): Double = round(this, decimals)
  * @param decimals The amount of decimals to round to.
  * @return The rounded value.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun round(x: Float, decimals: Int): Float = 10.0.pow(decimals).toFloat().let { factor -> round(x * factor) / factor }
 
@@ -168,7 +168,7 @@ fun round(x: Float, decimals: Int): Float = 10.0.pow(decimals).toFloat().let { f
  * @param decimals The amount of decimals to round to.
  * @return The rounded value.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @JvmName("roundWithDecimalsThis")
 infix fun Float.round(decimals: Int): Float = round(this, decimals)

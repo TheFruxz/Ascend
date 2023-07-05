@@ -8,7 +8,7 @@ import kotlin.collections.Map.Entry
  * element as the key of the MapEntry and the [second] as the
  * value of the MapEntry.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <F, S> Pair<Collection<F>, Collection<S>>.toMap() = first.zip(second).toMap()
 
@@ -17,7 +17,7 @@ fun <F, S> Pair<Collection<F>, Collection<S>>.toMap() = first.zip(second).toMap(
  * but the keys are now the values and the values
  * are now the keys.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <F, S> Map<F, S>.flipped() = (values to keys).toMap()
 
@@ -27,7 +27,7 @@ fun <F, S> Map<F, S>.flipped() = (values to keys).toMap()
  * @param predicate the [predicate] to match
  * @return the first [Map.Entry] matching the given [predicate] or null
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <F, S> Map<F, S>.firstOrNull(predicate: (Entry<F, S>) -> Boolean): Entry<F, S>? {
 
@@ -45,7 +45,7 @@ inline fun <F, S> Map<F, S>.firstOrNull(predicate: (Entry<F, S>) -> Boolean): En
  * @return the first [Map.Entry] matching the given [predicate]
  * @throws NoSuchElementException if no element matches the given [predicate]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @Throws(NoSuchElementException::class)
 inline fun <F, S> Map<F, S>.first(predicate: (Entry<F, S>) -> Boolean): Entry<F, S> =
@@ -56,7 +56,7 @@ inline fun <F, S> Map<F, S>.first(predicate: (Entry<F, S>) -> Boolean): Entry<F,
  * @param predicate the predicate to match
  * @return the last [Map.Entry] matching the given [predicate] or null
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <K, V> Map<K, V>.lastOrNull(predicate: (Entry<K, V>) -> Boolean): Entry<K, V>? {
 	var last: Entry<K, V>? = null
@@ -74,7 +74,7 @@ inline fun <K, V> Map<K, V>.lastOrNull(predicate: (Entry<K, V>) -> Boolean): Ent
  * @return the last [Map.Entry] matching the given [predicate]
  * @throws NoSuchElementException if no element matches the given [predicate]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @Throws(NoSuchElementException::class)
 inline fun <K, V> Map<K, V>.last(predicate: (Entry<K, V>) -> Boolean): Entry<K, V> =

@@ -29,7 +29,7 @@ suspend fun Job.await() = this.join()
  *
  * @see Job.await
  *
- * @since 1.0.0
+ * @since 2023.1.0
  */
 suspend fun List<Job>.awaitAll() = this.map { it.await() }
 
@@ -64,7 +64,7 @@ suspend fun List<Job>.awaitAll(printOut: Boolean) = when (printOut) {
  * on them.
  * @param process is the process, to transform/map the result, like [Deferred.invokeOnCompletion], it is executed synchronously.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <I, O> Deferred<I>.letOnCompletion(process: (I) -> O) = deferred { deferred ->
 

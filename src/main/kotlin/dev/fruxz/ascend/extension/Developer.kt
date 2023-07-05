@@ -5,7 +5,7 @@ import dev.fruxz.ascend.annotation.LanguageFeature
 /**
  * Executes a check, if all [objects] are passing the [check] check.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @LanguageFeature
 fun <T> all(vararg objects: T, check: (T) -> Boolean) = objects.all(check)
@@ -13,7 +13,7 @@ fun <T> all(vararg objects: T, check: (T) -> Boolean) = objects.all(check)
 /**
  * Executes a check, if none of the [objects] are passing the [check] check.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @LanguageFeature
 fun <T> none(vararg objects: T, check: (T) -> Boolean) = objects.none(check)
@@ -21,7 +21,7 @@ fun <T> none(vararg objects: T, check: (T) -> Boolean) = objects.none(check)
 /**
  * Executes a check, if at least one of the [objects] is passing the [check] check.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @LanguageFeature
 fun <T> any(vararg objects: T, check: (T) -> Boolean) = objects.any(check)
@@ -33,7 +33,7 @@ fun <T> any(vararg objects: T, check: (T) -> Boolean) = objects.any(check)
  * @param modification the modification to apply
  * @return the [this]<[T]> modified with the [modification] if [modifyIf] is true, otherwise returning the [this]<[T]> directly.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T> T.modifiedIf(modifyIf: Boolean, modification: T.() -> T) = if (!modifyIf) { this } else modification(this)
 
@@ -43,7 +43,7 @@ fun <T> T.modifiedIf(modifyIf: Boolean, modification: T.() -> T) = if (!modifyIf
  * @param modifyIf if true modification is applied, else keep original
  * @param modification the modification to apply
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T> T.modifyIf(modifyIf: Boolean, modification: T.() -> Unit) = if (!modifyIf) { this } else apply(modification)
 
@@ -51,14 +51,14 @@ fun <T> T.modifyIf(modifyIf: Boolean, modification: T.() -> Unit) = if (!modifyI
  * This function returns the modified version of [this] via [modification], or
  * if an exception gets thrown by the [modification] process, the original [this] is returned.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T> T.modifiedIfSuccess(modification: T.() -> T): T = tryOrNull { modification.invoke(this) } ?: this
 
 /**
  * Returns true if this [Any]? is null, otherwise false.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @LanguageFeature
 val Any?.isNull: Boolean
@@ -67,7 +67,7 @@ val Any?.isNull: Boolean
 /**
  * Returns true if this [Any]? is not null, otherwise false.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @LanguageFeature
 val Any?.isNotNull: Boolean
@@ -76,7 +76,7 @@ val Any?.isNotNull: Boolean
 /**
  * Only an empty body function.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun empty() { }
 
@@ -85,7 +85,7 @@ fun empty() { }
  * else return the unmodified state
  * @param process is the optional modification process
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T> T?.applyIfNull(process: (T?) -> Unit) = modifyIf(isNull, process)
 
@@ -94,7 +94,7 @@ fun <T> T?.applyIfNull(process: (T?) -> Unit) = modifyIf(isNull, process)
  * else return the unmodified state
  * @param process is the optional modification process
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <T> T?.applyIfNotNull(crossinline process: (T & Any) -> Unit) = modifyIf(isNotNull) {
 	process(this!!)
@@ -104,7 +104,7 @@ inline fun <T> T?.applyIfNotNull(crossinline process: (T & Any) -> Unit) = modif
  * Executes the [process], if the [T] (nullable) is null ([isNull])
  * @param process is the optional execution process
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <T> T?.ifNull(process: () -> Unit) = if (isNull) process() else empty()
 
@@ -112,13 +112,13 @@ inline fun <T> T?.ifNull(process: () -> Unit) = if (isNull) process() else empty
  * Executes the [process], if the [T] (nullable) is notNull ([isNotNull])
  * @param process is the optional execution process
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <T> T?.ifNotNull(process: () -> Unit) = if (isNotNull) process() else empty()
 
 /**
  * Returns [Pair.first] if [T]? [isNotNull], else use [Pair.second]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T, D> Pair<T?, D>.asDefaultNullDodge() = first.isNull.switch(first, second)

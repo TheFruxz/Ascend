@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull
  * @return the non-null object
  * @throws NoSuchElementException if null
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @Throws(Throwable::class)
 fun <T : Any> T?.trustOrThrow(throwable: Throwable): T = tryOrNull { this!! } ?: throw throwable
@@ -37,7 +37,7 @@ fun <T : Any> T?.trustOrThrow(throwable: Throwable): T = tryOrNull { this!! } ?:
  * @throws NoSuchElementException if null
  * @return the non-null object
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @Throws(NoSuchElementException::class)
 @NotNull
@@ -59,7 +59,7 @@ inline fun <reified T : Any> T?.trust() = trustOrThrow(
  * @see trust
  * @throws NoSuchElementException if null
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @JvmName("trustByParameter")
 inline fun <reified T : Any> trust(o: T?) = o.trust()
@@ -73,12 +73,12 @@ inline fun <reified T : Any> trust(o: T?) = o.trust()
  * @return a [List]<[T]> of the trusted objects
  * @throws NoSuchElementException if one element is null
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  * @see trust
  * @see Iterable
  * @see List
  * @see map
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <reified T : Any> Iterable<T?>.trustAll(): List<T> = map(::trust)

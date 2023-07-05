@@ -56,7 +56,7 @@ private fun produceGlobalJson() = Json {
  * can change, if modification-list updates!
  * @see globalJson
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 private var globalJsonCache: Json? = null
 
@@ -66,7 +66,7 @@ private var globalJsonCache: Json? = null
  * or creates a new one, if no Json exists, or its modifications
  * are outdated.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 var globalJson: Json
     get() {
@@ -92,7 +92,7 @@ var globalJson: Json
  * for the [Json] object, used at the toJson and fromJson functions.
  * @param process the modification to the [SerializersModuleBuilder] in the building process
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun appendGlobalJsonModuleModification(process: SerializersModuleBuilder.() -> Unit) {
     runningJsonModuleModifications += process
@@ -111,7 +111,7 @@ fun <T : Any> appendGlobalJsonContextual(clazz: KClass<T>, serializer: KSerializ
  * for the [globalJson], used at the toJson and fromJson functions.
  * @param process the modification to the [JsonBuilder] in the building process
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun appendGlobalJsonModification(process: JsonBuilder.() -> Unit) {
     runningJsonModifications += process

@@ -14,7 +14,7 @@ import dev.fruxz.ascend.tool.smart.path.Pathed
  * @param subBranches the subbranches of the branch, that is a list of [SUBBRANCH]es
  * @param content the content of the branch, which is a [CONTENT]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 open class TreeBranch<SUBBRANCH : TreeBranch<SUBBRANCH, CONTENT>, CONTENT>(
     override var identity: String,
@@ -28,7 +28,7 @@ open class TreeBranch<SUBBRANCH : TreeBranch<SUBBRANCH, CONTENT>, CONTENT>(
      * @param content the new content of the branch
      * @return the new state of the branch
      * @author Fruxz
-     * @since 1.0
+     * @since 2023.1
      */
     fun content(content: CONTENT) = apply { this.content = content }
 
@@ -36,7 +36,7 @@ open class TreeBranch<SUBBRANCH : TreeBranch<SUBBRANCH, CONTENT>, CONTENT>(
      * This function returns every subbranch, and its subbranches, and so on in a single list.
      * @return the list of all subbranches, and their subbranches, and so on
      * @author Fruxz
-     * @since 1.0
+     * @since 2023.1
      */
     fun flatSubBranches(): List<SUBBRANCH> {
         return subBranches.flatMap { it.flatSubBranches() }
@@ -46,7 +46,7 @@ open class TreeBranch<SUBBRANCH : TreeBranch<SUBBRANCH, CONTENT>, CONTENT>(
      * This function returns every subbranch, and its subbranches, and so on in a single list, additionally with this branch.
      * @return the list of all subbranches, and their subbranches, and so on, additionally with this branch
      * @author Fruxz
-     * @since 1.0
+     * @since 2023.1
      */
     fun allKnownBranches(): List<SUBBRANCH> {
         return ((subBranches.flatMap { it.allKnownBranches() } + this.forceCast<SUBBRANCH>()).distinctBy { it.address })
@@ -57,7 +57,7 @@ open class TreeBranch<SUBBRANCH : TreeBranch<SUBBRANCH, CONTENT>, CONTENT>(
      * if there is no branch with the given [identity], that fits correctly at all.
      * @param path the path of the branch searched with the parameters used on top.
      * @author Fruxz
-     * @since 1.0
+     * @since 2023.1
      */
     fun getBestMatchFromPath(path: Address<TreeBranch<SUBBRANCH, CONTENT>>): SUBBRANCH? {
         return allKnownBranches()
@@ -71,7 +71,7 @@ open class TreeBranch<SUBBRANCH : TreeBranch<SUBBRANCH, CONTENT>, CONTENT>(
      * Additionally, this function returns the not used / remaining parts of the given [path].
      * @param path the path of the branch searched with the parameters used on top.
      * @author Fruxz
-     * @since 1.0
+     * @since 2023.1
      */
     fun getBestMatchFromPathWithRemaining(path: Address<TreeBranch<SUBBRANCH, CONTENT>>): Pair<SUBBRANCH?, Address<TreeBranch<SUBBRANCH, CONTENT>>> {
         val bestMatch = getBestMatchFromPath(path)

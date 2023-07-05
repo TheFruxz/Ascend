@@ -24,7 +24,7 @@ import java.util.Calendar as JavaUtilCalendar
  * @param timeInMillis the milliseconds stored in the calendar
  * @param timeZoneId the id of the used timezone
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @Serializable
 data class Calendar(
@@ -69,7 +69,7 @@ data class Calendar(
 	 * @param duration the amount of time which should be added
 	 * @return the calendar itself
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	fun add(duration: Duration) = apply {
 		origin = origin.apply {
@@ -85,7 +85,7 @@ data class Calendar(
 	 * @param amount the amount of time which should be set
 	 * @return the calendar itself
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	fun set(timeField: TimeUnit, amount: Int) = apply {
 		origin = origin.apply {
@@ -100,7 +100,7 @@ data class Calendar(
 	 * @param duration the amount of time which should be taken
 	 * @return the calendar itself
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	fun take(duration: Duration) = apply {
 		origin = origin.apply {
@@ -114,7 +114,7 @@ data class Calendar(
 	 * @param timeField the unit of time which should be returned
 	 * @return the time using the unit of time
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	fun get(timeField: TimeUnit) = origin.get(timeField.javaField)
 
@@ -122,7 +122,7 @@ data class Calendar(
 	 * This function returns the time of the calendar in Minecraft-Ticks.
 	 * @return the time in Minecraft-Ticks
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	fun getTicks() = get(SECOND).toLong() * 20L
 
@@ -132,7 +132,7 @@ data class Calendar(
 	 * @param it the calendar which should be compared
 	 * @return if this calendar is after the [it] calendar
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	fun isAfter(it: Calendar) = origin.after(it.origin)
 
@@ -142,7 +142,7 @@ data class Calendar(
 	 * @param it the calendar which should be compared
 	 * @return if this calendar is before the [it] calendar
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	fun isBefore(it: Calendar) = !isAfter(it)
 
@@ -155,7 +155,7 @@ data class Calendar(
 	 * @param latest the calendar which should be compared
 	 * @return if this calendar is after the [latest] calendar
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	fun isInputExpired(latest: Calendar) = isAfter(latest)
 
@@ -166,7 +166,7 @@ data class Calendar(
 	 * and [now] is the current date, to check,
 	 * if the expiration data (this) is expired.
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	val isExpired: Boolean
 		get() = isBefore(now())
@@ -183,7 +183,7 @@ data class Calendar(
 	 * This computational value returns this calendar as a [Date]
 	 * object.
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	val javaDate: Date
 		get() = origin.time
@@ -192,7 +192,7 @@ data class Calendar(
 	 * This computational value returns the timezone of this
 	 * calendar, using the [javaCalendar].
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	val timeZone: TimeZone
 		get() = javaCalendar.timeZone
@@ -201,7 +201,7 @@ data class Calendar(
 	 * This computational value returns this calendar as a [JavaUtilCalendar]
 	 * object.
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	val javaCalendar: JavaUtilCalendar
 		get() = produce()
@@ -209,7 +209,7 @@ data class Calendar(
 	/**
 	 * This computational value returns this calendar as a [Instant].
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	val javaInstant: Instant
 		get() = Instant.ofEpochMilli(origin.timeInMillis)
@@ -217,7 +217,7 @@ data class Calendar(
 	/**
 	 * This computational value returns this calendar as a [LocalDateTime].
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	val javaLocalDateTime: LocalDateTime
 		get() = LocalDateTime.ofInstant(javaInstant, timeZone.toZoneId())
@@ -227,7 +227,7 @@ data class Calendar(
 	 * the time in milliseconds.
 	 * This value uses the [JavaUtilCalendar.getTimeInMillis] function.
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	val timeInMilliseconds: Long
 		get() = origin.timeInMillis
@@ -240,7 +240,7 @@ data class Calendar(
 	 * @param action the edit process, which is executed in the [JavaUtilCalendar]-Environment
 	 * @return the [Calendar] with the new values
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	fun editInJavaEnvironment(action: JavaUtilCalendar.() -> Unit) {
 		origin = origin.apply(action)
@@ -251,7 +251,7 @@ data class Calendar(
 	 * @param javaCalendar the calendar which should be compared
 	 * @return the duration from this to the [javaCalendar]
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	fun durationTo(javaCalendar: JavaUtilCalendar) = (javaCalendar.timeInMillis-origin.timeInMillis).milliseconds
 
@@ -260,7 +260,7 @@ data class Calendar(
 	 * @param ascendCalendar the calendar which should be compared
 	 * @return the duration from this to the [ascendCalendar]
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	fun durationTo(ascendCalendar: Calendar) = durationTo(ascendCalendar.origin)
 
@@ -268,7 +268,7 @@ data class Calendar(
 	 * Gets the duration from this to the current time.
 	 * @return the duration from this to the current time
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	fun durationToNow() = durationTo(now())
 
@@ -277,7 +277,7 @@ data class Calendar(
 	 * @param javaCalendar the calendar which should be compared
 	 * @return the duration from the [javaCalendar] to this
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	fun durationFrom(javaCalendar: JavaUtilCalendar) = (origin.timeInMillis-javaCalendar.timeInMillis).milliseconds
 
@@ -286,7 +286,7 @@ data class Calendar(
 	 * @param ascendCalendar the calendar which should be compared
 	 * @return the duration from the [ascendCalendar] to this
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	fun durationFrom(ascendCalendar: Calendar) = durationFrom(ascendCalendar.origin)
 
@@ -294,7 +294,7 @@ data class Calendar(
 	 * Gets the duration from the current time to this.
 	 * @return the duration from the current time to this
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	fun durationFromNow() = durationFrom(now())
 
@@ -315,7 +315,7 @@ data class Calendar(
 	 * same values as this calendar.
 	 * @return a new [Calendar] with the same values
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	override fun clone(): Calendar {
 		return Calendar(origin.clone() as JavaUtilCalendar)
@@ -325,7 +325,7 @@ data class Calendar(
 	 * This function returns the result of the [toString] function
 	 * of the [origin] object.
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	override fun toString(): String = getFormatted()
 
@@ -340,7 +340,7 @@ data class Calendar(
 	 * @param timeStyle the style & length of the time
 	 * @return A locale-based formatted [String] of the [javaDate]
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	fun getFormatted(locale: Locale = Locale.getDefault(), dateStyle: FormatStyle = FULL, timeStyle: FormatStyle = MEDIUM): String =
 		SimpleDateFormat
@@ -351,7 +351,7 @@ data class Calendar(
 	 * This function returns, if the [JavaUtilCalendar.getTimeInMillis] of this == [other].
 	 * @param other the calendar which should be compared
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	override fun equals(other: Any?) = if (other is JavaUtilCalendar) {
 		other.timeInMillis == origin.timeInMillis
@@ -367,7 +367,7 @@ data class Calendar(
 	 * with their [JavaUtilCalendar.getTimeInMillis] values.
 	 * @param other is the calendar which should be compared
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	override operator fun compareTo(other: Calendar): Int {
 		if (origin.timeInMillis < other.origin.timeInMillis)
@@ -383,7 +383,7 @@ data class Calendar(
 		 * This function returns the current date and time.
 		 * @return the current date and time
 		 * @author Fruxz
-		 * @since 1.0
+		 * @since 2023.1
 		 */
 		@JvmStatic
 		fun now() = Calendar(JavaUtilCalendar.getInstance())
@@ -392,7 +392,7 @@ data class Calendar(
 		 * This function returns the current date and time.
 		 * @return the current date and time
 		 * @author Fruxz
-		 * @since 1.0
+		 * @since 2023.1
 		 */
 		@JvmStatic
 		fun now(instance: JavaUtilCalendar) = Calendar(instance)
@@ -402,7 +402,7 @@ data class Calendar(
 		 * @param timeZone the time zone which should be used
 		 * @return the current date and time of [timeZone]
 		 * @author Fruxz
-		 * @since 1.0
+		 * @since 2023.1
 		 */
 		@JvmStatic
 		fun now(timeZone: TimeZone) = now(instance = JavaUtilCalendar.getInstance(timeZone))
@@ -412,7 +412,7 @@ data class Calendar(
 		 * @param locale the locale which should be used
 		 * @return the current date and time of [locale]
 		 * @author Fruxz
-		 * @since 1.0
+		 * @since 2023.1
 		 */
 		@JvmStatic
 		fun now(locale: Locale) = now(instance = JavaUtilCalendar.getInstance(locale))
@@ -432,7 +432,7 @@ data class Calendar(
 		 * @param duration the duration which should be added
 		 * @return the current date and time plus the [duration]
 		 * @author Fruxz
-		 * @since 1.0
+		 * @since 2023.1
 		 */
 		@JvmStatic
 		fun fromNow(duration: Duration) = now().plus(duration)
@@ -442,7 +442,7 @@ data class Calendar(
 		 * @param duration the duration which should be added
 		 * @return the current date and time plus the [duration]
 		 * @author Fruxz
-		 * @since 1.0
+		 * @since 2023.1
 		 */
 		@ExperimentalTime
 		@JvmStatic
@@ -454,7 +454,7 @@ data class Calendar(
 		 * @param calendar the calendar which should be cloned
 		 * @return a new [Calendar] with the same values
 		 * @author Fruxz
-		 * @since 1.0
+		 * @since 2023.1
 		 */
 		@JvmStatic
 		fun fromLegacy(calendar: JavaUtilCalendar) = now(instance = calendar)

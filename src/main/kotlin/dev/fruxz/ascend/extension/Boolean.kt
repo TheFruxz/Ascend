@@ -6,6 +6,6 @@ package dev.fruxz.ascend.extension
  * @param mismatch the result if [this] is false
  * @return [match] if [this] is true, otherwise [mismatch]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T> Boolean.switch(match: T, mismatch: T) = if (this) match else mismatch

@@ -14,7 +14,7 @@ import java.util.Calendar as JavaUtilCalendar
 /**
  * Converts a [JavaUtilCalendar] to a [Calendar] from Ascend, but keeps it contents.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val JavaUtilCalendar.asAscendCalendar: Calendar
 	get() = Calendar.fromLegacy(this)
@@ -27,7 +27,7 @@ val JavaUtilCalendar.asAscendCalendar: Calendar
  * @param action the edit process, which is executed in the Ascend-[Calendar]-Environment
  * @return the [JavaUtilCalendar] with the new values
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun JavaUtilCalendar.editInAscendCalendar(action: Calendar.() -> Unit) = asAscendCalendar.apply(action).produce()
 
@@ -36,7 +36,7 @@ fun JavaUtilCalendar.editInAscendCalendar(action: Calendar.() -> Unit) = asAscen
  * with the TimeUnit [ERA].
  * @return the value of the [Calendar.get] function with the TimeUnit [ERA].
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val Calendar.era: Int
 	get() = get(ERA)
@@ -46,7 +46,7 @@ val Calendar.era: Int
  * with the TimeUnit [YEAR].
  * @return the value of the [Calendar.get] function with the TimeUnit [YEAR].
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val Calendar.year: Int
 	get() = get(YEAR)
@@ -57,7 +57,7 @@ val Calendar.year: Int
  * used displayed time format.
  * ***Format: ####***
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val Calendar.styledYear: String
 	get() = "$year".padStart(4, '0')
@@ -67,7 +67,7 @@ val Calendar.styledYear: String
  * with the TimeUnit [MONTH] plus 1.
  * @return the value of the [Calendar.get] function with the TimeUnit [MONTH] plus 1.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val Calendar.month: Int
 	get() = get(MONTH)+1
@@ -78,7 +78,7 @@ val Calendar.month: Int
  * used displayed time format.
  * ***Format: ##***
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val Calendar.styledMonth: String
 	get() = "$month".padStart(2, '0')
@@ -88,7 +88,7 @@ val Calendar.styledMonth: String
  * with the TimeUnit [JavaUtilCalendar.DAY_OF_MONTH].
  * @return the value of the [JavaUtilCalendar.get] function with the TimeUnit [JavaUtilCalendar.DAY_OF_MONTH].
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val Calendar.day: Int
 	get() = javaCalendar.get(JavaUtilCalendar.DAY_OF_MONTH)
@@ -99,7 +99,7 @@ val Calendar.day: Int
  * used displayed time format.
  * ***Format: ##***
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val Calendar.styledDay: String
 	get() = "$day".padStart(2, '0')
@@ -119,7 +119,7 @@ val Calendar.hour: Int
  * used displayed time format.
  * ***Format: ##***
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val Calendar.styledHour: String
 	get() = "$hour".padStart(2, '0')
@@ -129,7 +129,7 @@ val Calendar.styledHour: String
  * with the TimeUnit [MINUTE].
  * @return the value of the [Calendar.get] function with the TimeUnit [MINUTE].
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val Calendar.minute: Int
 	get() = get(MINUTE)
@@ -140,7 +140,7 @@ val Calendar.minute: Int
  * used displayed time format.
  * ***Format: ##***
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val Calendar.styledMinute: String
 	get() = "$minute".padStart(2, '0')
@@ -150,7 +150,7 @@ val Calendar.styledMinute: String
  * with the TimeUnit [SECOND].
  * @return the value of the [Calendar.get] function with the TimeUnit [SECOND].
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val Calendar.second: Int
 	get() = get(SECOND)
@@ -161,7 +161,7 @@ val Calendar.second: Int
  * used displayed time format.
  * ***Format: ##***
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val Calendar.styledSecond: String
 	get() = "$second".padStart(2, '0')
@@ -171,7 +171,7 @@ val Calendar.styledSecond: String
  * with the TimeUnit [MILLISECOND].
  * @return the value of the [Calendar.get] function with the TimeUnit [MILLISECOND].
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val Calendar.millisecond: Int
 	get() = get(MILLISECOND)
@@ -182,7 +182,7 @@ val Calendar.millisecond: Int
  * used displayed time format.
  * ***Format: ###***
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val Calendar.styledMillisecond: String
 	get() = "$millisecond".padStart(3, '0')
@@ -190,7 +190,7 @@ val Calendar.styledMillisecond: String
 /**
  * This value returns the current state of the [Calendar] object, as a YYYY MM DD HH MM SS SSS format.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val Calendar.prettyPrint: String
 	get() = "y: $styledYear; m: $styledMonth; d: $styledDay; h: $styledHour; m: $styledMinute; s: $styledSecond; ms: $styledMillisecond"
@@ -199,6 +199,6 @@ val Calendar.prettyPrint: String
  * This function creates a [CalendarRange] object from [this] to the [other] Calendar.
  * @param other the other Calendar to create the [CalendarRange] object.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 operator fun Calendar.rangeTo(other: Calendar) = CalendarRange(this, other)

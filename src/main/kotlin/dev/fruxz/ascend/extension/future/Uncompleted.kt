@@ -8,7 +8,7 @@ import java.util.*
  * throws an exception.
  * @return the value of the [Optional] or null
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T> Optional<T>.getOrNull() = tryOrNull { get() }
 
@@ -17,7 +17,7 @@ fun <T> Optional<T>.getOrNull() = tryOrNull { get() }
  * is null or if the [Optional] throws an exception.
  * @return the value of the [Optional] or null
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @JvmName("nullableGetOrNullT")
 fun <T> Optional<T>?.getOrNull() = tryOrNull { this?.get() }
@@ -28,7 +28,7 @@ fun <T> Optional<T>?.getOrNull() = tryOrNull { this?.get() }
  * @param default the default value that gets returned if the [Optional] throws the [NoSuchElementException]
  * @return the value of the [Optional] or [default]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T> Optional<T>.getOrDefault(default: T) = getOrNull() ?: default
 
@@ -38,7 +38,7 @@ fun <T> Optional<T>.getOrDefault(default: T) = getOrNull() ?: default
  * @param default the default value that gets returned if null or if the [Optional] throws the [NoSuchElementException]
  * @return the value of the [Optional] or [default]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @JvmName("nullableGetOrDefaultT")
 fun <T> Optional<T>?.getOrDefault(default: T) = getOrNull() ?: default

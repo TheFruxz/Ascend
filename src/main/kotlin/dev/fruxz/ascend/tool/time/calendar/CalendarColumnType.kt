@@ -13,7 +13,7 @@ import java.util.TimeZone
  * The [timeZone] is defined as a property inside this column object,
  * which is by default [TimeZone.getDefault].
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 class CalendarColumnType(
     private val timeZone: TimeZone = TimeZone.getDefault(),
@@ -43,7 +43,7 @@ class CalendarColumnType(
  * This function registers a column using [CalendarColumnType], which
  * allows database native storage of [Calendar] objects.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun Table.calendar(name: String, timeZone: TimeZone): Column<Calendar> =
     registerColumn(name, CalendarColumnType(timeZone))

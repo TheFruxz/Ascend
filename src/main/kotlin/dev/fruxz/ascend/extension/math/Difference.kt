@@ -9,7 +9,7 @@ import kotlin.math.abs
  * @param o the other number
  * @return the non-negative difference between [this] and [o]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 infix fun Int.differenceTo(o: Int) = abs(o - this)
 
@@ -19,7 +19,7 @@ infix fun Int.differenceTo(o: Int) = abs(o - this)
  * @param o the other number
  * @return the non-negative difference between [this] and [o]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 infix fun Long.differenceTo(o: Long) = abs(o - this)
 
@@ -29,7 +29,7 @@ infix fun Long.differenceTo(o: Long) = abs(o - this)
  * @param o the other number
  * @return the non-negative difference between [this] and [o]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 infix fun Double.differenceTo(o: Double) = abs(o - this)
 
@@ -39,7 +39,7 @@ infix fun Double.differenceTo(o: Double) = abs(o - this)
  * @param o the other number
  * @return the non-negative difference between [this] and [o]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 infix fun Float.differenceTo(o: Float) = abs(o - this)
 
@@ -49,7 +49,7 @@ infix fun Float.differenceTo(o: Float) = abs(o - this)
  * @param o the other number
  * @return the non-negative difference between [this] and [o]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 infix fun Byte.differenceTo(o: Byte) = abs(o - this)
 
@@ -59,6 +59,6 @@ infix fun Byte.differenceTo(o: Byte) = abs(o - this)
  * @param o the other number
  * @return the non-negative difference between [this] and [o]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 infix fun Short.differenceTo(o: Short) = abs(o - this)

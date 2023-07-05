@@ -20,7 +20,7 @@ fun <T, E, M : MutableMap<T, E>> M.copy() =
 /**
  * This function removes every element from this [MutableMap], which matches the [condition].
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <T, E, M : MutableMap<T, E>> M.removeAll(condition: (key: T, value: E) -> Boolean) = copy().forEach { (key, value) ->
 	if (condition(key, value)) {

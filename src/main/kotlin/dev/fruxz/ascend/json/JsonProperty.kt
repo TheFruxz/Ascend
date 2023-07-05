@@ -11,6 +11,24 @@ import kotlin.reflect.KProperty
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
 
+/**
+ * Represents a JSON property that can be read from and written to a file.
+ * The property value is of type [T].
+ *
+ * @param file The file path to read from and write to.
+ * @param key The key of the property in the JSON file.
+ * @param type The type of the property value.
+ * @param json The [Json] object used for JSON serialization and deserialization.
+ * @param default A lambda function that returns the default value of the property.
+ *
+ * @property content The current value of the JSON property.
+ *
+ * @constructor Creates a new instance of the [JsonProperty] class and initializes the [content] property.
+ *
+ * @throws IllegalStateException If the cached content is invalid or corrupted.
+ *
+ * @since 2023.1
+ */
 data class JsonProperty<T : Any>(
     val file: Path,
     val key: String,
@@ -78,7 +96,7 @@ data class JsonProperty<T : Any>(
  * This has the benefit, that for example, properties can be directly edited with its full potential, without
  * having to call every code snipped to fully initialize the file.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <reified T : Any> property(
     file: Path,

@@ -13,7 +13,7 @@ import kotlin.time.Duration
  * exceptions, it returns null instead.
  * @return the value or null
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T> CompletableFuture<T>.getOrNull() = tryOrNull { get() }
 
@@ -22,7 +22,7 @@ fun <T> CompletableFuture<T>.getOrNull() = tryOrNull { get() }
  * exceptions, it returns the [default] instead.
  * @return the value or [default]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun <T> CompletableFuture<T>.getOrDefault(default: T): T = getOrNull() ?: default
 
@@ -32,7 +32,7 @@ fun <T> CompletableFuture<T>.getOrDefault(default: T): T = getOrNull() ?: defaul
  * @param T the type of the result
  * @return the result
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  * @see CompletableFuture.join
  */
 suspend fun <T> CompletableFuture<T>.await(context: CoroutineContext = Dispatchers.Default): T =
@@ -46,7 +46,7 @@ suspend fun <T> CompletableFuture<T>.await(context: CoroutineContext = Dispatche
  * @param block the block to apply on the result
  * @return the result
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 suspend fun <T> CompletableFuture<T>.await(context: CoroutineContext = Dispatchers.Default, block: (T) -> Unit) =
 	await(context).apply(block)
@@ -59,7 +59,7 @@ suspend fun <T> CompletableFuture<T>.await(context: CoroutineContext = Dispatche
  * @param timeout the timeout
  * @return the result or null
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 suspend fun <T> CompletableFuture<T>.await(context: CoroutineContext = Dispatchers.Default, timeout: Duration) = withTimeoutOrNull(timeout) { await(context) }
 
@@ -72,6 +72,6 @@ suspend fun <T> CompletableFuture<T>.await(context: CoroutineContext = Dispatche
  * @param block the block to apply on the result
  * @return the result or null
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 suspend fun <T> CompletableFuture<T>.await(context: CoroutineContext = Dispatchers.Default, timeout: Duration, block: (T) -> Unit) = withTimeoutOrNull(timeout) { await(context, block) }

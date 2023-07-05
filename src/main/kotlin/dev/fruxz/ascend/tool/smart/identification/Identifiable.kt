@@ -5,7 +5,7 @@ package dev.fruxz.ascend.tool.smart.identification
  * using the [Identity] object and an identity [String].
  * @param T the type of the object that is identifiable
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 interface Identifiable<T> : AnonymousIdentifiable {
 
@@ -15,7 +15,7 @@ interface Identifiable<T> : AnonymousIdentifiable {
 	 * Represents the identity of the object as an [Identity]
 	 * type [T].
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	val identityObject: Identity<T>
 		get() = Identity(identity)
@@ -27,7 +27,7 @@ interface Identifiable<T> : AnonymousIdentifiable {
 		 * has an empty [String] as the identity.
 		 * @return the new [Identifiable]<[Any]> object
 		 * @author Fruxz
-		 * @since 1.0
+		 * @since 2023.1
 		 */
 		@JvmStatic
 		fun empty() = object : Identifiable<Any> {
@@ -41,7 +41,7 @@ interface Identifiable<T> : AnonymousIdentifiable {
 		 * @param T the type of the object that is identifiable
 		 * @return the new [Identifiable]<[T]> object
 		 * @author Fruxz
-		 * @since 1.0
+		 * @since 2023.1
 		 */
 		@JvmStatic
 		fun <T> custom(id: String) = object : Identifiable<T> {

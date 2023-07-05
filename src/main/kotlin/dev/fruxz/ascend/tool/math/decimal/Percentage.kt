@@ -8,7 +8,7 @@ import kotlin.math.roundToInt
  * which can be used to calculate a value from a given base value.
  * @param decimal the percentage value in decimal notation *(0.2 = 20%)*
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 @RefactoringCandidate
 data class Percentage(
@@ -20,7 +20,7 @@ data class Percentage(
      * @param percentage the percentage value (20 = 20%)
      * @return the new [Percentage] object
      * @author Fruxz
-     * @since 1.0
+     * @since 2023.1
      */
     constructor(percentage: Int) : this(percentage.toDouble() / 100)
 
@@ -29,7 +29,7 @@ data class Percentage(
      * @param percentage the percentage value (20 = 20%)
      * @return the new [Percentage] object
      * @author Fruxz
-     * @since 1.0
+     * @since 2023.1
      */
     constructor(percentage: Long) : this(percentage.toDouble() / 100)
 
@@ -38,7 +38,7 @@ data class Percentage(
      * @param percentage the percentage value (20 = 20%)
      * @return the new [Percentage] object
      * @author Fruxz
-     * @since 1.0
+     * @since 2023.1
      */
     constructor(percentage: Short) : this(percentage.toDouble() / 100)
 
@@ -47,14 +47,14 @@ data class Percentage(
      * @param percentage the percentage value (20 = 20%)
      * @return the new [Percentage] object
      * @author Fruxz
-     * @since 1.0
+     * @since 2023.1
      */
     constructor(percentage: Byte) : this(percentage.toDouble() / 100)
 
     /**
      * Computes the percentage value directly *(e.g.: 20%; 25.5%; ...)*
      * @author Fruxz
-     * @since 1.0
+     * @since 2023.1
      */
     val percentage: Double
         get() = (decimal * 100)
@@ -69,7 +69,7 @@ data class Percentage(
      * @param displaySize the size of the bar
      * @return the percentage bar
      * @author Fruxz
-     * @since 1.0
+     * @since 2023.1
      */
     fun displayString(filled: CharSequence, empty: CharSequence, displaySize: Int): String {
         val filledLength = (decimal * displaySize).roundToInt()
@@ -87,7 +87,7 @@ data class Percentage(
      * @param percentSuffix the suffix to append after the percentage
      * @return the percentage bar with the percentage amount
      * @author Fruxz
-     * @since 1.0
+     * @since 2023.1
      */
     fun displayPercentageString(filled: CharSequence, empty: CharSequence, displaySize: Int, percentPrefix: String = " ", percentSuffix: String = "%") =
         "${displayString(filled, empty, displaySize)}$percentPrefix$percentage$percentSuffix"
@@ -97,7 +97,7 @@ data class Percentage(
      * with an % symbol at the end.
      * @return "[percentage]%"
      * @author Fruxz
-     * @since 1.0
+     * @since 2023.1
      */
     fun percentageString(): String {
         return "$percentage%"
@@ -107,7 +107,7 @@ data class Percentage(
      * This function returns the [percentageString] as a string.
      * @return the percentage as a string
      * @author Fruxz
-     * @since 1.0
+     * @since 2023.1
      */
     override fun toString() = percentageString()
 

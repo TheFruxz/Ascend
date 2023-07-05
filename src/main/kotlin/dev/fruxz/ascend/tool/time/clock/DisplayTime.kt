@@ -29,7 +29,7 @@ data class DisplayTime(
 	 * @param views the displaying time units
 	 * @return the view-string
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	fun getClockDisplay(vararg views: Format): String {
 		var out = ""
@@ -65,7 +65,7 @@ data class DisplayTime(
 	 * The time formats
 	 * ***CALENDAR UNITS IN FUTURE***
 	 * @author Fruxz
-	 * @since 1.0
+	 * @since 2023.1
 	 */
 	enum class Format {
 		TICKS, SECONDS, MINUTES, HOURS, DAYS, YEARS;

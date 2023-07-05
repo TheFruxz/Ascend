@@ -12,7 +12,7 @@ import java.awt.Color as AwtColor
  * is possible.
  * The format #%%%%%% is supported, but #%%% is only partially compatible.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun Color(hex: String) = AwtColor(hex.removePrefix("#").let {
     when (it.length) {
@@ -26,7 +26,7 @@ fun Color(hex: String) = AwtColor(hex.removePrefix("#").let {
  * [red], [green], [blue] and [alpha] parameters, wich are by default
  * the values of [this] color object.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun AwtColor.copy(red: Int = getRed(), green: Int = getGreen(), blue: Int = getBlue(), alpha: Int = getAlpha()) =
     AwtColor(red, green, blue, alpha)
@@ -36,7 +36,7 @@ fun AwtColor.copy(red: Int = getRed(), green: Int = getGreen(), blue: Int = getB
  * The parameter [withHash] defines, if the string starts with, or without
  * the # as the prefix.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun AwtColor.hexString(withHash: Boolean = true) = when (withHash) {
     true -> "#"
@@ -49,7 +49,7 @@ fun AwtColor.hexString(withHash: Boolean = true) = when (withHash) {
  * This computational value creates a hex-color string, using the
  * [hexString] function. The property withHash is set to true.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val AwtColor.hexString: String
     get() = hexString(withHash = true)
@@ -58,7 +58,7 @@ val AwtColor.hexString: String
  * This computational value creates a rgb-css string, using the
  * [String.format] function.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 val AwtColor.rgbString: String
     get() = String.format("rgb(%d, %d, %d)", red, green, blue)
@@ -71,7 +71,7 @@ val AwtColor.rgbString: String
  * the new color is now [other].
  * @param strength (0.0..1.0) How strong should be the [other] color
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun AwtColor.mix(other: AwtColor, strength: Double = .5): AwtColor = copy(
     red = (this.red + (other.red - this.red) * strength).roundToInt(),
@@ -88,7 +88,7 @@ fun AwtColor.mix(other: AwtColor, strength: Double = .5): AwtColor = copy(
  * via the [type], which stores the formula used to compute it.
  * @exception IllegalArgumentException if [steps] is negative (coming from [buildList])
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun AwtColor.mix(other: AwtColor, steps: Int, type: TransitionType): List<AwtColor> = buildList(capacity = steps) {
     repeat(steps - 1) { index ->
@@ -110,14 +110,14 @@ fun AwtColor.mix(other: AwtColor, steps: Int, type: TransitionType): List<AwtCol
 /**
  * This function interface defines a formula for a transition.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun interface TransitionType {
 
     /**
      * The formula to compute the progress of the transition
      * @author Fruxz
-     * @since 1.0
+     * @since 2023.1
      */
     fun formula(x: Double): Double
 
@@ -126,7 +126,7 @@ fun interface TransitionType {
      * of x = -1 and x = 1. Due to the fact, that transitions
      * used from ascend are computed between x = -1 and 1
      * @author Fruxz
-     * @since 1.0
+     * @since 2023.1
      */
     val maxYDeflection: Double
         get() = max(

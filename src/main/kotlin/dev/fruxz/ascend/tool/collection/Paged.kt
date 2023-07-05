@@ -13,7 +13,7 @@ import dev.fruxz.ascend.extension.math.ceilToInt
  * So we use [List.subList] instead of [List.chunked].
  * @see List.subList
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 data class Paged<T>(
     val size: Int,
@@ -23,7 +23,7 @@ data class Paged<T>(
     /**
      * This function returns the page of the [page] index as an [PageIterable].
      * @author Fruxz
-     * @since 1.0
+     * @since 2023.1
      */
     fun getPage(page: Int) = PageIterable(
         page = page,
@@ -40,14 +40,14 @@ data class Paged<T>(
      * This function returns the pages of the [pages] indexes as a list of [PageIterable]s.
      * @see getPage
      * @author Fruxz
-     * @since 1.0
+     * @since 2023.1
      */
     fun getPages(pages: Iterable<Int>) = pages.map { page -> getPage(page) }
 
     /**
      * This computational value represents the amount of pages, that this [Paged] object has.
      * @author Fruxz
-     * @since 1.0
+     * @since 2023.1
      */
     val pages by lazy { ceilToInt(content.count().toDouble() / size) }
 
@@ -64,7 +64,7 @@ data class Paged<T>(
      * @param content The content of this exact page
      * @see Paged
      * @author Fruxz
-     * @since 1.0
+     * @since 2023.1
      */
     data class PageIterable<T>(
         val page: Int,
@@ -75,7 +75,7 @@ data class Paged<T>(
          * This property represents the amount of items inside this page.
          * @see List.size
          * @author Fruxz
-         * @since 1.0
+         * @since 2023.1
          */
         val size: Int = content.size
 

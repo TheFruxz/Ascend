@@ -18,7 +18,7 @@ import kotlin.io.path.*
  * @see writeText
  * @return The path itself.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <reified T> Path.writeJson(content: T, charset: Charset = Charsets.UTF_8, json: Json = globalJson, vararg options: OpenOption) = apply { writeText(content.toJsonString(json = json), charset, *options) }
 
@@ -30,7 +30,7 @@ inline fun <reified T> Path.writeJson(content: T, charset: Charset = Charsets.UT
  * @see writeText
  * @return The file itself.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <reified T> File.writeJson(content: T, charset: Charset = Charsets.UTF_8, json: Json = globalJson) = apply { writeText(content.toJsonString(json = json), charset) }
 
@@ -43,7 +43,7 @@ inline fun <reified T> File.writeJson(content: T, charset: Charset = Charsets.UT
  * @see writeJson
  * @return the path itself.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <reified T> Path.writeJsonIfNotExists(content: T, createParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = globalJson, vararg options: OpenOption) = apply {
     if (!exists()) {
@@ -61,7 +61,7 @@ inline fun <reified T> Path.writeJsonIfNotExists(content: T, createParent: Boole
  * @see writeJson
  * @return the file itself
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <reified T> File.writeJsonIfNotExists(content: T, createParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = globalJson) = apply {
     if (!exists()) {
@@ -79,7 +79,7 @@ inline fun <reified T> File.writeJsonIfNotExists(content: T, createParent: Boole
  * @see writeJson
  * @return the path itself.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <reified T> Path.writeJsonIfEmpty(content: T, createParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = globalJson, vararg options: OpenOption) = apply {
     if (readTextOrNull(charset)?.isBlank() != false) {
@@ -97,7 +97,7 @@ inline fun <reified T> Path.writeJsonIfEmpty(content: T, createParent: Boolean =
  * @see writeJson
  * @return the file itself.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <reified T> File.writeJsonIfEmpty(content: T, createParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = globalJson) = apply {
     if (readTextOrNull(charset)?.isBlank() != false) {
@@ -115,7 +115,7 @@ inline fun <reified T> File.writeJsonIfEmpty(content: T, createParent: Boolean =
  * @see writeJson
  * @return the path itself
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <reified T> Path.writeJsonIfBlank(content: T, createParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = globalJson, vararg options: OpenOption) = apply {
     if (readTextOrNull(charset)?.isBlank() != false) {
@@ -137,14 +137,14 @@ inline fun <reified T> File.writeJsonIfBlank(content: T, createParent: Boolean =
 /**
  * This function returns the content of [this] Path using the [readText] and [fromJsonString] function.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <reified T> Path.readJson(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = readText(charset).fromJsonString<T>(json = json)
 
 /**
  * This function returns the content of [this] File using the [readTextOrNull] and [fromJsonStringOrNull] function.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <reified T> Path.readJsonOrNull(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = readTextOrNull(charset)?.fromJsonStringOrNull<T>(json = json)
 
@@ -153,7 +153,7 @@ inline fun <reified T> Path.readJsonOrNull(charset: Charset = Charsets.UTF_8, js
  * using the [parseToJsonElement] function.
  * @return the parsed [JsonElement]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun Path.readJsonElement(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = readText(charset).parseToJsonElement(json = json)
 
@@ -162,7 +162,7 @@ fun Path.readJsonElement(charset: Charset = Charsets.UTF_8, json: Json = globalJ
  * using the [parseToJsonElementOrNull] function.
  * @return the parsed [JsonElement] or null if failed
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun Path.readJsonElementOrNull(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = readTextOrNull(charset)?.parseToJsonElementOrNull(json = json)
 
@@ -171,7 +171,7 @@ fun Path.readJsonElementOrNull(charset: Charset = Charsets.UTF_8, json: Json = g
  * using the [parseToJsonObject] function.
  * @return the parsed [JsonObject]
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun Path.readJsonObject(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = readText(charset).parseToJsonObject(json = json)
 
@@ -180,21 +180,21 @@ fun Path.readJsonObject(charset: Charset = Charsets.UTF_8, json: Json = globalJs
  * using the [parseToJsonObjectOrNull] function.
  * @return the parsed [JsonObject] or null if failed
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 fun Path.readJsonObjectOrNull(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = readTextOrNull(charset)?.parseToJsonObjectOrNull(json = json)
 
 /**
  * This function returns the content of [this] File using the [readText] and [fromJsonString] function.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <reified T> File.readJson(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = readText(charset).fromJsonString<T>(json = json)
 
 /**
  * This function returns the content of [this] File using the [readTextOrNull] and [fromJsonStringOrNull] function.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <reified T> File.readJsonOrNull(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = readTextOrNull(charset)?.fromJsonStringOrNull<T>(json = json)
 
@@ -214,7 +214,7 @@ inline fun <reified T> File.readJsonOrNull(charset: Charset = Charsets.UTF_8, js
  * @see Path.createDirectories
  * @see writeJson
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <reified T> Path.readJsonOrDefault(default: T, writeIfBlank: Boolean = false, writeCreatesParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = globalJson, vararg options: OpenOption) = if (writeIfBlank) {
     readJsonOrNull<T>(charset) ?: default.also {
@@ -239,7 +239,7 @@ inline fun <reified T> Path.readJsonOrDefault(default: T, writeIfBlank: Boolean 
  * @see Path.createDirectories
  * @see writeJson
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 inline fun <reified T> File.readJsonOrDefault(default: T, writeIfBlank: Boolean = false, writeCreatesParent: Boolean = true, charset: Charset = Charsets.UTF_8, json: Json = globalJson) = if (writeIfBlank) {
     readJsonOrNull<T>(charset) ?: default.also {

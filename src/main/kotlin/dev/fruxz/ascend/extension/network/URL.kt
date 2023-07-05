@@ -14,7 +14,7 @@ import java.nio.file.StandardCopyOption
  * @param options The [CopyOption]s to use when copying the content.
  * @return The number of bytes that have been copied.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 suspend inline fun URL.copyTo(destination: Path, vararg options: CopyOption) =
 	withContext(Dispatchers.IO) {
@@ -27,7 +27,7 @@ suspend inline fun URL.copyTo(destination: Path, vararg options: CopyOption) =
  * @param destination The destination path to download the content to.
  * @return The number of bytes that have been copied.
  * @author Fruxz
- * @since 1.0
+ * @since 2023.1
  */
 suspend inline infix fun URL.downloadTo(destination: Path) =
 	copyTo(destination, StandardCopyOption.REPLACE_EXISTING)
