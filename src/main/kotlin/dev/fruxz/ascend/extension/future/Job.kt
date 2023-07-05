@@ -1,18 +1,46 @@
 package dev.fruxz.ascend.extension.future
 
 import dev.fruxz.ascend.extension.switch
-import kotlinx.coroutines.CompletableDeferred
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.*
 
 /**
- * This function is a wrapper for [Job.join]!
+ * Suspends the current coroutine until the completion of the [Job].
+ * This function is a convenient wrapper for [Job.join].
+ *
+ * @receiver The [Job] instance to await for.
+ * @throws CancellationException If the current coroutine was cancelled.
  */
 suspend fun Job.await() = this.join()
 
+/**
+ * Suspends execution until all the [Job] in the given list are completed.
+ *
+ * This method takes a list of [Job] and suspends the execution of the current coroutine
+ * until all the jobs are completed. It uses the `await` method on each job to wait for
+ * their completion. The method returns a new list containing the results of all the jobs
+ * in the same order as the input list.
+ *
+ * @return A new list containing the results of all the jobs in the same order as the input list.
+ *
+ * @throws CancellationException If any of the jobs in the list is canceled.
+ * @throws Exception If any of the jobs in the list throws an exception.
+ * @throws IllegalStateException If called from a non-UI thread and the list contains a job
+ * that is tied to the Android UI thread.
+ *
+ * @see Job.await
+ *
+ * @since 1.0.0
+ */
 suspend fun List<Job>.awaitAll() = this.map { it.await() }
 
+/**
+ * Awaits the completion of all jobs in the list.
+ *
+ * @param printOut Whether to print the progress of each job. If set to `true`, the method will print the current
+ * state of each job as it completes. If set to `false`, no progress will be printed.
+ *
+ * @return A [Job] that represents the completion of all the jobs in the list.
+ */
 suspend fun List<Job>.awaitAll(printOut: Boolean) = when (printOut) {
 	false -> this.awaitAll()
 	else -> {
@@ -56,5 +84,12 @@ fun <I, O> Deferred<I>.letOnCompletion(process: (I) -> O) = deferred { deferred 
  */
 fun <T> deferred(job: Job? = null, builder: (CompletableDeferred<T>) -> Unit = { }) = CompletableDeferred<T>(job).apply(builder)
 
+/**
+ * Suspends the current coroutine until all the deferred tasks in the given list have completed,
+ * and returns a list of the results.
+ *
+ * @param T the type of the deferred tasks' results
+ * @return a list, of the results, of the completed deferred tasks
+ */
 @JvmName("awaitAllDeferred")
 suspend fun <T> List<Deferred<T>>.awaitAll() = this.map { it.await() }
