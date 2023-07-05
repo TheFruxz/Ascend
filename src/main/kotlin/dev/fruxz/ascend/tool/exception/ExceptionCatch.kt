@@ -28,8 +28,20 @@ fun interface ExceptionCatch<E : Throwable> {
 
     companion object {
 
+        /**
+         * A utility method that ignores the occurrence of a specific type of throwable.
+         * It creates an [ExceptionCatch] instance for the given throwable type [E] with empty catch block.
+         *
+         * @return An [ExceptionCatch] instance that ignores the occurrence of throwable [E].
+         */
         fun <E : Throwable> ignore() = ExceptionCatch<E> { _, _ -> return@ExceptionCatch }
 
+        /**
+         * Logs the provided error message with the given tag.
+         *
+         * @param E the type of throwable to catch.
+         * @return an instance of [ExceptionCatch] with the specified error logging behavior.
+         */
         fun <E : Throwable> log() = ExceptionCatch<E> { error, tag -> println("Error: ($tag) '${error.message}'") }
 
     }
