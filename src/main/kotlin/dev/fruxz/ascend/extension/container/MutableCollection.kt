@@ -19,36 +19,17 @@ fun <T> MutableCollection<T>.replaceWith(iterable: Iterable<T>) {
 }
 
 /**
- * If contained, remove; or if not contained add element!
- * @param o The element to be added or removed
+ * If contained, remove; or if not contained, add the element.
+ * @param element The element to be added or removed
  * @param addToContainer If true, add element to container; else remove element from container
+ * @return if it has been added [MutableCollection.add] gets returned, or if it has been removed [MutableCollection.remove] gets returned
  * @author Fruxz
  * @since 1.0
  */
-fun <T> MutableCollection<T>.toggle(o: T, addToContainer: Boolean = !contains(o)) {
-	if (addToContainer) add(o) else remove(o)
-}
-
-/**
- * If contained, remove; or if not contained add element!
- * @param o The element to be added or removed
- * @param addToContainer If true, add element to container; else remove element from container
- * @author Fruxz
- * @since 1.0
- */
-fun <T> MutableSet<T>.toggle(o: T, addToContainer: Boolean = !contains(o)) {
-	if (addToContainer) add(o) else remove(o)
-}
-
-/**
- * If contained, remove; or if not contained add element!
- * @param o The element to be added or removed
- * @param addToContainer If true, add element to container; else remove element from container
- * @author Fruxz
- * @since 1.0
- */
-fun <T> MutableList<T>.toggle(o: T, addToContainer: Boolean = !contains(o)) {
-	if (addToContainer) add(o) else remove(o)
+fun <T> MutableCollection<T>.toggle(element: T, addToContainer: Boolean = !contains(element)): Boolean = if (addToContainer) {
+	add(element)
+} else {
+	remove(element)
 }
 
 /**
