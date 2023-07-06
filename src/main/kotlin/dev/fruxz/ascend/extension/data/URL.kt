@@ -13,7 +13,7 @@ import java.net.URL
  * @throws URISyntaxException If the URL syntax is invalid.
  */
 @Throws(URISyntaxException::class)
-fun url(@Language("url") url: String) = uri(url).toURL() // create URL(...) is deprecated since Java 20
+fun url(@Language("url") url: String): URL = uri(url).toURL() // create URL(...) is deprecated since Java 20
 
 /**
  * Creates a [URI] object from the given URI string.
