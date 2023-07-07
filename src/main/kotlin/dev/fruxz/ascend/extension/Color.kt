@@ -1,5 +1,7 @@
 package dev.fruxz.ascend.extension
 
+import dev.fruxz.ascend.extension.security.HashType
+import kotlin.enums.EnumEntries
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.pow
@@ -135,7 +137,7 @@ fun interface TransitionType {
         )
 
     companion object {
-        val entries: Array<TransitionType> by lazy { arrayOf(LINEAR, STRONG_IN_OUT, EASY_IN_OUT) }
+        val entries: List<TransitionType> by lazy { listOf(LINEAR, STRONG_IN_OUT, EASY_IN_OUT) }
 
         val LINEAR = TransitionType { x -> x }
         val STRONG_IN_OUT = TransitionType { x -> x.pow(3) }
