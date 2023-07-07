@@ -15,7 +15,6 @@ import java.time.ZonedDateTime
 import java.util.*
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
-import kotlin.time.ExperimentalTime
 import java.io.Serializable as JavaIoSerializable
 import java.util.Calendar as JavaUtilCalendar
 
@@ -444,7 +443,6 @@ data class Calendar(
 		 * @author Fruxz
 		 * @since 2023.1
 		 */
-		@ExperimentalTime
 		@JvmStatic
 		fun durationSince(duration: Duration) = now().minus(duration)
 
