@@ -14,6 +14,7 @@ package dev.fruxz.ascend.extension.container
  * @see MutableMap
  * @see MutableMap.toMutableMap
  */
+@JvmName("copyMutableMap")
 fun <T, E, M : MutableMap<T, E>> M.copy() =
 	this.toMutableMap()
 
