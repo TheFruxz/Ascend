@@ -68,6 +68,9 @@ fun File.createFileAndDirectories(ignoreIfExists: Boolean = true) = apply {
  * @author Fruxz
  * @since 2023.1
  */
+@Deprecated(message = "Since Kotlin 1.9.0 this function is essentially provided by Kotlin",
+    replaceWith = ReplaceWith("createParentDirectories(*attributes)", "kotlin.io.path.createParentDirectories")
+)
 fun Path.createParentDirectories(ignoreIfExists: Boolean = true, vararg attributes: FileAttribute<*>) = apply {
     if (tryOrNull { parent } != null && (parent.notExists() || !ignoreIfExists)) parent.createDirectories(*attributes)
 }
@@ -80,7 +83,7 @@ fun Path.createParentDirectories(ignoreIfExists: Boolean = true, vararg attribut
  * @since 2023.1
  */
 fun Path.createFileAndDirectories(ignoreIfExists: Boolean = true, directoryAttributes: List<FileAttribute<*>> = emptyList(), fileAttributes: List<FileAttribute<*>> = listOf()) = apply {
-    createParentDirectories(ignoreIfExists, *directoryAttributes.toTypedArray())
+    createParentDirectories(*directoryAttributes.toTypedArray())
     if (notExists() || !ignoreIfExists) createFile(*fileAttributes.toTypedArray())
 }
 
