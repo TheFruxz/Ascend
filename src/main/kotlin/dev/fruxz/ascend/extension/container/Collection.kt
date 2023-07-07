@@ -427,11 +427,11 @@ inline fun <C : Iterable<I>, I, O> C.flatMapNotNull(builder: (I) -> Iterable<O?>
 }
 
 /**
- * Flattens an iterable of iterables, removing any null values.
+ * Flattens this iterable of iterables, removing any null values.
  *
  * @param T the type of the iterable of iterables
  * @param O the type of the elements in the iterables
- * @return a new iterable containing all non-null elements from the original iterables
+ * @return an new iterable containing all non-null elements from the original iterables
  */
 fun <T : Iterable<O>, O> Iterable<T>.flattenNotNull() = flatMapNotNull { it }
 
@@ -474,7 +474,8 @@ fun <T : Iterable<O>, O> Array<T>.flattenNotNull() = flatMapNotNull { it }
  *
  * @param T the type of elements in the list
  */
-fun <T> List<T>?.takeOrEmpty() = this ?: emptyList()
+@Deprecated(message = "Simply use orEmpty() extension function", replaceWith = ReplaceWith("orEmpty()"))
+fun <T> List<T>?.takeOrEmpty() = orEmpty()
 
 /**
  * Returns the given set if it is not null, otherwise returns an empty set.
@@ -482,7 +483,8 @@ fun <T> List<T>?.takeOrEmpty() = this ?: emptyList()
  * @param T the type of elements in the set
  * @return the given set if not null, otherwise an empty set
  */
-fun <T> Set<T>?.takeOrEmpty() = this ?: emptySet()
+@Deprecated(message = "Simply use orEmpty() extension function", replaceWith = ReplaceWith("orEmpty()"))
+fun <T> Set<T>?.takeOrEmpty() = orEmpty()
 
 /**
  * Returns either the given array or an empty array if the given array is null.
@@ -490,7 +492,8 @@ fun <T> Set<T>?.takeOrEmpty() = this ?: emptySet()
  * @return The given array if it is not null, otherwise an empty array.
  * @param T The type of elements in the array.
  */
-inline fun <reified T> Array<T>?.takeOrEmpty() = this ?: emptyArray()
+@Deprecated(message = "Simply use orEmpty() extension function", replaceWith = ReplaceWith("orEmpty()"))
+inline fun <reified T> Array<T>?.takeOrEmpty() = orEmpty()
 
 /**
  * Returns the current map if not null, otherwise returns an empty map.
@@ -500,7 +503,8 @@ inline fun <reified T> Array<T>?.takeOrEmpty() = this ?: emptyArray()
  * @param K The type of the map keys.
  * @param V The type of the map values.
  */
-fun <K, V> Map<K, V>?.takeOrEmpty() = this ?: emptyMap()
+@Deprecated(message = "Simply use orEmpty() extension function", replaceWith = ReplaceWith("orEmpty()"))
+fun <K, V> Map<K, V>?.takeOrEmpty() = orEmpty()
 
 /**
  * Returns this [Map.Entry] if it is not null, otherwise returns an empty [Map.Entry].
