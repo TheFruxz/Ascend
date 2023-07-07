@@ -125,7 +125,7 @@ fun String.replacePrefix(oldValue: String, newValue: String, ignoreCase: Boolean
  */
 fun String.replaceSuffix(oldValue: String, newValue: String, ignoreCase: Boolean = false) =
 	if (endsWith(oldValue, ignoreCase)) {
-		split(oldValue).dropLast(1).joinToString(oldValue) + newValue
+		this.substringBeforeLast(oldValue) + newValue
 	} else
 		this
 
