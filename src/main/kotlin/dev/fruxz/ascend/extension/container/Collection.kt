@@ -171,7 +171,7 @@ val <T> Array<out T>.last: T
  */
 fun <T> Iterable<T>.getOrNull(index: Int, overflow: Boolean = false): T? {
 	return when {
-		index in 0 until count() -> elementAtOrNull(index)
+		index in 0..< count() -> elementAtOrNull(index)
 		overflow -> elementAtOrNull(index % count())
 		else -> null
 	}
