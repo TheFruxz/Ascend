@@ -5,7 +5,9 @@ import dev.fruxz.ascend.extension.container.mixedCase
 import dev.fruxz.ascend.extension.container.repeatRandomElements
 import dev.fruxz.ascend.extension.data.RandomTagType.MIXED_CASE
 import dev.fruxz.ascend.extension.data.RandomTagType.ONLY_UPPERCASE
+import dev.fruxz.ascend.extension.hexString
 import dev.fruxz.ascend.extension.switch
+import java.awt.Color
 import kotlin.random.Random
 import kotlin.random.nextInt
 
@@ -58,6 +60,18 @@ fun randomLong(range: LongRange, random: Random = Random) = range.shuffled(rando
  * @since 2023.1
  */
 fun randomLong(progression: Iterable<Int>, random: Random = Random) = progression.shuffled(random).first()
+
+/**
+ * Generates a random color.
+ *
+ * @param random The random number generator to use. Default is a new instance of Random.
+ * @param red The range of possible values for the red component. Default is 0..255.
+ * @param green The range of possible values for the green component. Default is 0..255.
+ * @param blue The range of possible values for the blue component. Default is 0..255.
+ * @return A randomly generated Color object.
+ */
+fun randomColor(random: Random = Random, red: Iterable<Int> = 0..255, green: Iterable<Int> = 0..255, blue: Iterable<Int> = 0..255): Color =
+	Color(randomInt(red, random), randomInt(green, random), randomInt(blue, random))
 
 /**
  * Creates a random Tag, which is a combination of a '#' and some
