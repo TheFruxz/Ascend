@@ -1,5 +1,6 @@
 package dev.fruxz.ascend.json
 
+import dev.fruxz.ascend.annotation.RefactoringCandidate
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonObjectBuilder
 import kotlinx.serialization.json.buildJsonObject
@@ -10,6 +11,7 @@ import kotlinx.serialization.json.buildJsonObject
  * @author Fruxz
  * @since 2023.1
  */
+@RefactoringCandidate(message = "As discussed in Kotlin/kotlinx.serialization#2308, this may be native in the future!")
 fun JsonObjectBuilder.putAll(jsonObject: JsonObject) = jsonObject.entries.forEach {
     this.put(it.key, it.value)
 }
