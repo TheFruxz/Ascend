@@ -121,8 +121,9 @@ val Float.decimalAsPercent: Percentage
  * @author Fruxz
  * @since 2023.1
  */
-val INT_RANGE: IntRange
-	get() = Int.MIN_VALUE..Int.MAX_VALUE
+val INT_RANGE: IntRange by lazy {
+	Int.MIN_VALUE..Int.MAX_VALUE
+}
 
 /**
  * This computational value represents the range from the [Long.MIN_VALUE] to [Long.MAX_VALUE]
@@ -130,8 +131,9 @@ val INT_RANGE: IntRange
  * @author Fruxz
  * @since 2023.1
  */
-val LONG_RANGE: LongRange
-	get() = Long.MIN_VALUE..Long.MAX_VALUE
+val LONG_RANGE: LongRange by lazy {
+	Long.MIN_VALUE..Long.MAX_VALUE
+}
 
 /**
  * This value represents the computational output of [INT_RANGE]
