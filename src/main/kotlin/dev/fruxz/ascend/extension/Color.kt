@@ -136,12 +136,30 @@ fun interface TransitionType {
             b = abs(formula(1.0)),
         )
 
-    companion object {
-        val entries: List<TransitionType> by lazy { listOf(LINEAR, STRONG_IN_OUT, EASY_IN_OUT) }
+    enum class Default(private val process: (Double) -> Double) : TransitionType {
 
-        val LINEAR = TransitionType { x -> x }
-        val STRONG_IN_OUT = TransitionType { x -> x.pow(3) }
-        val EASY_IN_OUT = TransitionType { x -> x.pow(3) + x }
+        LINEAR({ x -> x }),
+        STRONG_IN_OUT({ x -> x.pow(3) }),
+        EASY_IN_OUT({ x -> x.pow(3) + x });
+
+        override fun formula(x: Double): Double =
+            this.process.invoke(x)
+
+    }
+
+    companion object {
+
+        @Deprecated("Use Default instead", ReplaceWith("Default"))
+        val entries: EnumEntries<Default> = Default.entries
+
+        @Deprecated("Use Default.LINEAR instead", ReplaceWith("Default.LINEAR"))
+        val LINEAR = Default.LINEAR
+
+        @Deprecated("Use Default.STRONG_IN_OUT instead", ReplaceWith("Default.STRONG_IN_OUT"))
+        val STRONG_IN_OUT = Default.STRONG_IN_OUT
+
+        @Deprecated("Use Default.EASY_IN_OUT instead", ReplaceWith("Default.EASY_IN_OUT"))
+        val EASY_IN_OUT = Default.EASY_IN_OUT
 
     }
 
