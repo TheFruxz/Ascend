@@ -12,6 +12,8 @@ import kotlinx.serialization.modules.SerializersModuleBuilder
 import java.awt.Color
 import kotlin.reflect.KClass
 
+// TODO create own manager for this, instead of writing global variables
+
 internal val runningJsonModuleModifications = mutableListOf<SerializersModuleBuilder.() -> Unit>({
     contextual(Any::class, AdaptiveSerializer())
     contextual(Color::class, ColorSerializer())
