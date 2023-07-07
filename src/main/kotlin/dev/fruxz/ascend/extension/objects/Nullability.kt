@@ -39,8 +39,8 @@ fun <T : Any> T?.trustOrThrow(throwable: Throwable): T = tryOrNull { this!! } ?:
  * @author Fruxz
  * @since 2023.1
  */
-@Throws(NoSuchElementException::class)
 @NotNull
+@Throws(NoSuchElementException::class)
 inline fun <reified T : Any> T?.trust() = trustOrThrow(
 	NoSuchElementException("""
 		

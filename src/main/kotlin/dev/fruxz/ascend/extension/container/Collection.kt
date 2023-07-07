@@ -364,7 +364,8 @@ inline fun <T, C : Iterable<T>> C.splitBy(predicate: (T) -> Boolean): List<List<
  * @author Fruxz
  * @since 2023.1
  */
-fun <T, C : Iterable<T>> C.distinctSet() = distinct().toSet()
+@Deprecated(message = "Simply use toSet() extension function", replaceWith = ReplaceWith("toSet()"))
+fun <T, C : Iterable<T>> C.distinctSet() = toSet()
 
 /**
  * This function uses the [Array.distinct] function and
@@ -372,7 +373,8 @@ fun <T, C : Iterable<T>> C.distinctSet() = distinct().toSet()
  * @author Fruxz
  * @since 2023.1
  */
-fun <T> Array<T>.distinctSet() = distinct().toSet()
+@Deprecated(message = "Simply use toSet() extension function", replaceWith = ReplaceWith("toSet()"))
+fun <T> Array<T>.distinctSet() = toSet()
 
 /**
  * This function uses the [Collection.distinctBy] function and
