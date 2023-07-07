@@ -18,6 +18,17 @@ fun <T, E, M : MutableMap<T, E>> M.copy() =
 	this.toMutableMap()
 
 /**
+ * Creates a shallow copy of the current map.
+ *
+ * @return A new map that is a shallow copy of the current map.
+ * @param T The type of the keys in the map.
+ * @param E The type of the values in the map.
+ * @param M The type of the current map.
+ */
+fun <T, E, M : Map<T, E>> M.copy() =
+	this.toMap()
+
+/**
  * This function removes every element from this [MutableMap], which matches the [condition].
  * @author Fruxz
  * @since 2023.1
