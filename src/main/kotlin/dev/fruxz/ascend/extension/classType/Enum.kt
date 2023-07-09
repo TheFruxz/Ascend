@@ -11,11 +11,10 @@ import dev.fruxz.ascend.extension.math.limitTo
  */
 inline fun <reified T : Enum<T>> Enum<T>.next(overflow: Boolean = true): T =
 	enumValues<T>()[
-			if (overflow) {
-				(ordinal + 1) % enumValues<T>().size
-			} else {
-				(ordinal + 1).limitTo(0..enumValues<T>().lastIndex)
-			}]
+		when {
+			overflow -> (ordinal + 1) % enumValues<T>().size
+			else -> (ordinal + 1).limitTo(0..enumValues<T>().lastIndex)
+		}]
 
 /**
  * Returns the previous enum in the ordinal order. If the current enum is the first one, the last
@@ -25,10 +24,9 @@ inline fun <reified T : Enum<T>> Enum<T>.next(overflow: Boolean = true): T =
  * @since 2023.1
  */
 inline fun <reified T : Enum<T>> Enum<T>.previous(overflow: Boolean = true): T =
-	if (overflow) {
-		enumValues<T>()[(ordinal - 1).let { if (it < 0) enumValues<T>().lastIndex else it }]
-	} else {
-		enumValues<T>()[(ordinal - 1).limitTo(0..enumValues<T>().lastIndex)]
+	when {
+		overflow -> enumValues<T>()[(ordinal - 1).let { if (it < 0) enumValues<T>().lastIndex else it }]
+		else -> enumValues<T>()[(ordinal - 1).limitTo(0..enumValues<T>().lastIndex)]
 	}
 
 /**

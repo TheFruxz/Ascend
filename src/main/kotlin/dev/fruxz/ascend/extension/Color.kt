@@ -1,6 +1,5 @@
 package dev.fruxz.ascend.extension
 
-import dev.fruxz.ascend.extension.security.HashType
 import kotlin.enums.EnumEntries
 import kotlin.math.abs
 import kotlin.math.max
