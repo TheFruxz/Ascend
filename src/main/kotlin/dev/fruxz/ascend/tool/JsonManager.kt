@@ -26,14 +26,14 @@ import dev.fruxz.ascend.json.globalJson
  */
 object JsonManager {
 
-    private val runningJsonModuleModifications = mutableListOf<Modification<SerializersModuleBuilder>>(modification {
+    private val moduleModifications = mutableListOf<Modification<SerializersModuleBuilder>>(modification {
         contextual(Any::class, AdaptiveSerializer())
         contextual(Color::class, ColorSerializer())
     })
-    private var moduleModificationsHash: String = runningJsonModuleModifications.hashCode().toString(16)
+    private var moduleStateHash: String = moduleModifications.hashCode().toString(16)
 
-    private val runningJsonModifications = mutableListOf<Modification<JsonBuilder>>()
-    private var jsonModificationsHash: String = runningJsonModifications.hashCode().toString(16)
+    private val jsonModifications = mutableListOf<Modification<JsonBuilder>>()
+    private var jsonStateHash: String = jsonModifications.hashCode().toString(16)
 
     private var contextuals = setOf<SerializersModule>()
     private var contextualUpdate = false
@@ -45,8 +45,8 @@ object JsonManager {
      * @since 2023.3
      */
     private fun pushUpdate() {
-        moduleModificationsHash = runningJsonModuleModifications.hashCode().toString(16)
-        jsonModificationsHash = runningJsonModifications.hashCode().toString(16)
+        moduleStateHash = moduleModifications.hashCode().toString(16)
+        jsonStateHash = jsonModifications.hashCode().toString(16)
         contextualUpdate = false
     }
 
@@ -66,12 +66,12 @@ object JsonManager {
             contextuals.forEach { contextual ->
                 include(contextual)
             }
-            runningJsonModuleModifications.forEach {
+            moduleModifications.forEach {
                 this.apply(it::modify)
             }
         }
 
-        runningJsonModifications.forEach {
+        jsonModifications.forEach {
             this.apply(it::modify)
         }
 
@@ -97,8 +97,8 @@ object JsonManager {
     var json: Json
         get() {
             if (cachedJson == null
-                || moduleModificationsHash != runningJsonModuleModifications.hashCode().toString(16)
-                || jsonModificationsHash != runningJsonModifications.hashCode().toString(16)
+                || moduleStateHash != moduleModifications.hashCode().toString(16)
+                || jsonStateHash != jsonModifications.hashCode().toString(16)
                 || contextualUpdate
             ) {
 
@@ -122,7 +122,7 @@ object JsonManager {
      * @since 2023.1
      */
     fun addModuleModification(process: Modification<SerializersModuleBuilder>) {
-        runningJsonModuleModifications += process
+        moduleModifications += process
     }
 
     fun <T : Any> addContextual(clazz: KClass<T>, serializer: KSerializer<out T>) {
@@ -141,7 +141,7 @@ object JsonManager {
      * @since 2023.1
      */
     fun addJsonModification(process: Modification<JsonBuilder>) {
-        runningJsonModifications += process
+        jsonModifications += process
     }
 
 }
