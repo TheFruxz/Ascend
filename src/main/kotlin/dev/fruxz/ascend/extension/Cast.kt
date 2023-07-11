@@ -9,6 +9,7 @@ package dev.fruxz.ascend.extension
  * @author Fruxz
  * @since 2023.1
  */
+@Suppress("UNCHECKED_CAST")
 fun <O> Any?.forceCast() = this as O
 
 /**
@@ -18,7 +19,8 @@ fun <O> Any?.forceCast() = this as O
  * @author Fruxz
  * @since 2023.1
  */
-fun <O> Any?.forceCastOrNull() = tryOrNull { this as O }
+@Suppress("UNCHECKED_CAST")
+fun <O> Any?.forceCastOrNull() = tryOrNull { this as? O }
 
 /**
  * Cast the given object to the given type and not highlight risky casts in the IDE.
@@ -27,6 +29,7 @@ fun <O> Any?.forceCastOrNull() = tryOrNull { this as O }
  * @author Fruxz
  * @since 2023.1
  */
+@Suppress("UNCHECKED_CAST")
 fun <O> Any?.forceNullableCast() = this as O?
 
 /**
@@ -36,7 +39,8 @@ fun <O> Any?.forceNullableCast() = this as O?
  * @author Fruxz
  * @since 2023.1
  */
-fun <O> Any?.forceNullableCastOrNull() = tryOrNull { this as O? }
+@Suppress("UNCHECKED_CAST")
+fun <O> Any?.forceNullableCastOrNull() = tryOrNull { this as? O? }
 
 /**
  * Throws away the object by returning [Unit]
