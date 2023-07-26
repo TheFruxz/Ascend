@@ -5,7 +5,6 @@ import dev.fruxz.ascend.extension.container.mixedCase
 import dev.fruxz.ascend.extension.container.repeatRandomElements
 import dev.fruxz.ascend.extension.data.RandomTagType.MIXED_CASE
 import dev.fruxz.ascend.extension.data.RandomTagType.ONLY_UPPERCASE
-import dev.fruxz.ascend.extension.hexString
 import dev.fruxz.ascend.extension.switch
 import java.awt.Color
 import kotlin.random.Random

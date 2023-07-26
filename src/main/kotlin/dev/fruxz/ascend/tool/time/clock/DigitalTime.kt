@@ -1,7 +1,6 @@
 package dev.fruxz.ascend.tool.time.clock
 
 import dev.fruxz.ascend.tool.time.clock.DigitalTime.Format.*
-import kotlinx.serialization.Serializable
 import kotlin.time.Duration
 import kotlin.time.toKotlinDuration
 import java.time.Duration as JavaTimeDuration
