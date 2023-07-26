@@ -431,7 +431,7 @@ inline fun <C : Iterable<I>, I, O> C.flatMapNotNull(builder: (I) -> Iterable<O?>
  *
  * @param T the type of the iterable of iterables
  * @param O the type of the elements in the iterables
- * @return an new iterable containing all non-null elements from the original iterables
+ * @return a new iterable containing all non-null elements from the original iterables
  */
 fun <T : Iterable<O>, O> Iterable<T>.flattenNotNull() = flatMapNotNull { it }
 
