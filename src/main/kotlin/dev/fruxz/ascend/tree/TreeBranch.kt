@@ -16,6 +16,7 @@ import dev.fruxz.ascend.tool.smart.path.Pathed
  * @author Fruxz
  * @since 2023.1
  */
+@Deprecated(message = "This class is deprecated and will be removed in the future.")
 open class TreeBranch<SUBBRANCH : TreeBranch<SUBBRANCH, CONTENT>, CONTENT>(
     override var identity: String,
     override var address: Address<SUBBRANCH> = Address.address(identity),
