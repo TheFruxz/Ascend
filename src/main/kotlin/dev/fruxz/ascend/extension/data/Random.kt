@@ -6,6 +6,7 @@ import dev.fruxz.ascend.extension.container.repeatRandomElements
 import dev.fruxz.ascend.extension.data.RandomTagType.MIXED_CASE
 import dev.fruxz.ascend.extension.data.RandomTagType.ONLY_UPPERCASE
 import dev.fruxz.ascend.extension.switch
+import dev.fruxz.ascend.tool.lang.Letter
 import java.awt.Color
 import kotlin.random.Random
 import kotlin.random.nextInt
@@ -115,10 +116,11 @@ fun generateRandomTag(
 	case: RandomTagType = ONLY_UPPERCASE,
 	randomizer: Random = Random(Random.nextLong())
 ): String {
-	var letters = "abcdefghijklmnopqrstuvwxyz"
-
-	if (case == ONLY_UPPERCASE) letters = letters.uppercase()
-	if (case == MIXED_CASE) letters = letters.mixedCase()
+	val letters = when (case) {
+		ONLY_UPPERCASE -> Letter.joinToString().uppercase()
+		MIXED_CASE -> Letter.joinToString().mixedCase()
+		else -> Letter.joinToString().lowercase()
+	}
 
 	return buildString {
 		append(prefix)
