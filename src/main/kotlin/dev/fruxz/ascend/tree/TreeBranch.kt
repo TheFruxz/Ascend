@@ -8,8 +8,8 @@ import dev.fruxz.ascend.tool.smart.path.Address
 import dev.fruxz.ascend.tool.smart.path.Pathed
 
 /**
- * This open class represents a branch of a tree, containing and based on another branches.
- * @param SUBBRANCH the type of the subbranches, have to be the same as this origin branch type!
+ * This open class represents a branch of a tree, containing and based on other branches.
+ * @param SUBBRANCH the type of the subbranches, have to be the same as this origin branch type
  * @param CONTENT the content, contained & stored in each branch
  * @param identity the name of the branch
  * @param address the path of the branch (have to contain the whole path, like 'this/is/a/path')
