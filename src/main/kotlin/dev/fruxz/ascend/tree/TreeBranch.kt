@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package dev.fruxz.ascend.tree
 
 import dev.fruxz.ascend.extension.forceCast
