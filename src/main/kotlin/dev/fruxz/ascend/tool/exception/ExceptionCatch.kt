@@ -1,6 +1,7 @@
 package dev.fruxz.ascend.tool.exception
 
 import dev.fruxz.ascend.annotation.RefactoringCandidate
+import dev.fruxz.ascend.extension.data.generateRandomTag
 
 /**
  * This function-interface helps to add custom-crafted exception catches through api's.
@@ -16,7 +17,7 @@ fun interface ExceptionCatch<E : Throwable> {
      * This function handles the exception [throwable].
      * If the exception got through a helper, a [tag] will
      * be provided in the form of '#xxxxxx' generated with
-     * [buildRandomTag].
+     * [generateRandomTag].
      */
     fun handleException(throwable: E, tag: String)
 
