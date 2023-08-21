@@ -34,7 +34,7 @@ enum class Digit(val number: Byte) {
          * @return The resulting string after joining the elements of `Digit` enum.
          */
         fun joinToString(separator: CharSequence = "", prefix: CharSequence = "", postfix: CharSequence = "") =
-            Digit.values().joinToString(separator, prefix, postfix) { it.number.toString() }
+            Digit.entries.joinToString(separator, prefix, postfix) { it.number.toString() }
 
         /**
          * Concatenates the current Letter object with another Letter object
