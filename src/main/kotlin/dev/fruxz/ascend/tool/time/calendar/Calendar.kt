@@ -103,7 +103,7 @@ data class Calendar(
 	 */
 	fun take(duration: Duration) = apply {
 		origin = origin.apply {
-			timeInMillis += duration.inWholeMilliseconds
+			timeInMillis -= duration.inWholeMilliseconds
 		}
 	}
 
