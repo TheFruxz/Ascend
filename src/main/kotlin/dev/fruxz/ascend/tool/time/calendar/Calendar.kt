@@ -122,6 +122,9 @@ data class Calendar(
 	 * @author Fruxz
 	 * @since 2023.1
 	 */
+	@Deprecated("This function will be removed, because it does not fit into the concept of this class.",
+		ReplaceWith("timeInMilliseconds / 50")
+	)
 	fun getTicks() = get(SECOND).toLong() * 20L
 
 	/**
