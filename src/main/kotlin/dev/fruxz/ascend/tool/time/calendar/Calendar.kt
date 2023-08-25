@@ -14,7 +14,9 @@ import java.time.LocalDateTime
 import java.time.ZonedDateTime
 import java.util.*
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.measureTime
 import java.io.Serializable as JavaIoSerializable
 import java.util.Calendar as JavaUtilCalendar
 
@@ -61,22 +63,8 @@ data class Calendar(
 
 	override fun produce() = origin
 
-	/**
-	 * This function adds some time to the calendar.
-	 * It takes the time from the [duration] and adds
-	 * it to the calendar using the internal units.
-	 * @param duration the amount of time which should be added
-	 * @return the calendar itself
-	 * @author Fruxz
-	 * @since 2023.1
-	 */
-	fun add(duration: Duration) = apply {
-		origin = origin.apply {
-			timeInMillis += duration.inWholeMilliseconds
-		}
-	}
 
-		/**
+	/**
 	 * This function sets the time of the calendar.
 	 * It takes the [amount], takes the time unit
 	 * [timeField] and sets it to the calendar.
@@ -93,6 +81,19 @@ data class Calendar(
 	}
 
 	/**
+	 * This function adds some time to the calendar.
+	 * It takes the time from the [duration] and adds
+	 * it to the calendar using the internal units.
+	 * @param duration the amount of time which should be added
+	 * @return the calendar itself
+	 * @author Fruxz
+	 * @since 2023.1
+	 */
+	fun add(duration: Duration) = apply {
+		timeInMillis += duration.inWholeMilliseconds
+	}
+
+	/**
 	 * This function takes some time from the calendar.
 	 * It takes the time from the [duration] and takes
 	 * it from the calendar using the internal units.
@@ -102,9 +103,7 @@ data class Calendar(
 	 * @since 2023.1
 	 */
 	fun take(duration: Duration) = apply {
-		origin = origin.apply {
-			timeInMillis -= duration.inWholeMilliseconds
-		}
+		timeInMillis -= duration.inWholeMilliseconds
 	}
 
 	/**
