@@ -6,6 +6,13 @@ import kotlinx.serialization.Serializable
 data class CalendarRange(override val start: Calendar, override val endInclusive: Calendar) : Iterable<Calendar>, ClosedRange<Calendar>, Comparable<Calendar> {
 
 	/**
+	 * This function computes the duration between [start] and [endInclusive].
+	 * @author Fruxz
+	 * @since 2023.3.2
+	 */
+	fun asDuration() = start.durationTo(endInclusive)
+
+	/**
 	 * This function returns, if [value] is (time wise) in the range between [start] and [endInclusive].
 	 * @param value
 	 * @author Fruxz
