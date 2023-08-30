@@ -99,11 +99,19 @@ object Zip {
     }
 
     /**
+     * This function reads the [zip] file and returns a [ZipFile] instance.
+     * @param zip the zip file to read
+     * @return a [ZipFile] instance
+     * @throws Exception if something goes wrong while reading the zip file
+     */
+    fun read(zip: Path): ZipFile = ZipFile(zip.toFile())
+
+    /**
      * This function reads the [zip] file and returns a list of all entries.
      * @param zip the zip file to read
      * @return a list of all entries
      * @throws Exception if something goes wrong while reading the zip file
      */
-    fun read(zip: Path): List<ZipEntry> = ZipFile(zip.toFile()).entries().asSequence().toList()
+    fun listContent(zip: Path): List<ZipEntry> = read(zip).entries().asSequence().toList()
 
 }
