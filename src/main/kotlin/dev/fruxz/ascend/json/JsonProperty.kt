@@ -7,6 +7,8 @@ import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.serializer
 import java.nio.file.Path
 import kotlin.io.path.absolute
+import kotlin.io.path.createDirectories
+import kotlin.io.path.createParentDirectories
 import kotlin.reflect.KProperty
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
@@ -70,6 +72,7 @@ data class JsonProperty<T : Any>(
 				put(key = key, element = fromProvided(value))
 			}
 
+			file.createParentDirectories()
 			file.writeJson(newObject)
 			cache[file] = newObject
 
