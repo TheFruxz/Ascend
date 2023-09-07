@@ -74,33 +74,6 @@ fun randomColor(random: Random = Random, red: Iterable<Int> = 0..255, green: Ite
 	Color(randomInt(red, random), randomInt(green, random), randomInt(blue, random))
 
 /**
- * Creates a random Tag, which is a combination of a '#' and some
- * random letters & numbers.
- * The template of the Tag is '#[letters & numbers]'.
- * @param size the amount of mixed letters & numbers, which the Tag should have ([size]+1 == tag.length)
- * @param hashtag if true, the Tag will start with a '#'
- * @param tagType the type of the Tag creation (if uppercase, lowercase or mixed-case)
- * @param stackRandomizer the randomizer, which is used to shuffle the characters of the Tag
- * @return a random Tag with the # at the start of the generated Tag
- * @author Fruxz
- * @since 2023.1
- */
-@Deprecated(message = "This function have been slightly changed, to fit better into the Kotlin ecosystem and enable more customization",
-	replaceWith = ReplaceWith(
-		"generateRandomTag(size = size, prefix = hashtag.switch(\"#\", \"\"), case = tagType, randomizer = stackRandomizer,)",
-		"dev.fruxz.ascend.extension.switch"
-	)
-)
-fun buildRandomTag(size: Int = 5, hashtag: Boolean = true, tagType: RandomTagType = ONLY_UPPERCASE, stackRandomizer: Random = Random(Random.nextLong())): String {
-	return generateRandomTag(
-		size = size,
-		prefix = hashtag.switch("#", ""),
-		case = tagType,
-		randomizer = stackRandomizer,
-	)
-}
-
-/**
  * Generates a random tag string.
  *
  * @param size The length of the tag string. Default is 5.
@@ -137,12 +110,6 @@ enum class RandomTagType {
 	ONLY_LOWERCASE,
 	MIXED_CASE;
 }
-
-@Deprecated("Slightly change the process and updated the name",
-	ReplaceWith("generateSeedSet(amount = amount.toInt(), random = random)")
-)
-fun buildRandomSeeds(amount: Long, random: Random = Random) =
-	generateSeedSet(amount = amount.toInt(), random = random)
 
 /**
  * Generates a seed set of random Long values.

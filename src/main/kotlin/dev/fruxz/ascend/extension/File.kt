@@ -40,17 +40,6 @@ fun String.pathAsFile(): File =
     Path.of(this).absolute().toFile()
 
 /**
- * Converts the string [this] into a base-based [File] using [this] as a [Path],
- * through the [Path.of] and the [Path.toFile] functions additionally the
- * [System.getProperty]("user.dir") process.
- * @author Fruxz
- * @since 2023.1
- */
-@Deprecated(message = "Path from runtime will be removed, use pathAsFile instead", replaceWith = ReplaceWith("pathAsFile()"))
-fun String.pathAsFileFromRuntime() =
-    File(System.getProperty("user.dir") + "/$this")
-
-/**
  * This function creates the parent directories and the
  * file itself. This utilizes the [File.mkdirs]
  * and the [File.createNewFile] function.
@@ -60,19 +49,6 @@ fun String.pathAsFileFromRuntime() =
 fun File.createFileAndDirectories(ignoreIfExists: Boolean = true) = apply {
     if (tryOrNull { parentFile } != null && (!parentFile.exists() || !ignoreIfExists)) parentFile.mkdirs()
     if (!exists() || !ignoreIfExists) createNewFile()
-}
-
-/**
- * This function uses the [Path.getParent] of this [Path] to
- * generate the directories, to which this path points to.
- * @author Fruxz
- * @since 2023.1
- */
-@Deprecated(message = "Since Kotlin 1.9.0 this function is essentially provided by Kotlin",
-    replaceWith = ReplaceWith("createParentDirectories(*attributes)", "kotlin.io.path.createParentDirectories")
-)
-fun Path.createParentDirectories(ignoreIfExists: Boolean = true, vararg attributes: FileAttribute<*>) = apply {
-    if (tryOrNull { parent } != null && (parent.notExists() || !ignoreIfExists)) parent.createDirectories(*attributes)
 }
 
 /**

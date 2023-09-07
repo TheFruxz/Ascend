@@ -359,24 +359,6 @@ inline fun <T, C : Iterable<T>> C.splitBy(predicate: (T) -> Boolean): List<List<
 }
 
 /**
- * This function uses the [Collection.distinct] function and
- * returns the result-list as a [Set], by using the [toSet] function.
- * @author Fruxz
- * @since 2023.1
- */
-@Deprecated(message = "Simply use toSet() extension function", replaceWith = ReplaceWith("toSet()"))
-fun <T, C : Iterable<T>> C.distinctSet() = toSet()
-
-/**
- * This function uses the [Array.distinct] function and
- * returns the result-list as a [Set], by using the [toSet] function.
- * @author Fruxz
- * @since 2023.1
- */
-@Deprecated(message = "Simply use toSet() extension function", replaceWith = ReplaceWith("toSet()"))
-fun <T> Array<T>.distinctSet() = toSet()
-
-/**
  * This function uses the [Collection.distinctBy] function and
  * returns the result-list as a [List], by using the [toList] function.
  * @author Fruxz
@@ -465,46 +447,6 @@ inline fun <I, O> Array<I>.flatMapNotNull(builder: (I) -> Iterable<O?>): List<O 
  * @return a list containing the non-null elements from the original iterables in the order they appeared
  */
 fun <T : Iterable<O>, O> Array<T>.flattenNotNull() = flatMapNotNull { it }
-
-/**
- * Returns a new list containing the elements of the original list if it is not null,
- * or an empty list if the original list is null.
- *
- * @return a new list containing the elements of the original list or an empty list
- *
- * @param T the type of elements in the list
- */
-@Deprecated(message = "Simply use orEmpty() extension function", replaceWith = ReplaceWith("orEmpty()"))
-fun <T> List<T>?.takeOrEmpty() = orEmpty()
-
-/**
- * Returns the given set if it is not null, otherwise returns an empty set.
- *
- * @param T the type of elements in the set
- * @return the given set if not null, otherwise an empty set
- */
-@Deprecated(message = "Simply use orEmpty() extension function", replaceWith = ReplaceWith("orEmpty()"))
-fun <T> Set<T>?.takeOrEmpty() = orEmpty()
-
-/**
- * Returns either the given array or an empty array if the given array is null.
- *
- * @return The given array if it is not null, otherwise an empty array.
- * @param T The type of elements in the array.
- */
-@Deprecated(message = "Simply use orEmpty() extension function", replaceWith = ReplaceWith("orEmpty()"))
-inline fun <reified T> Array<T>?.takeOrEmpty() = orEmpty()
-
-/**
- * Returns the current map if not null, otherwise returns an empty map.
- *
- * @return The current map if not null, otherwise an empty map.
- * @receiver The map to take or an empty map.
- * @param K The type of the map keys.
- * @param V The type of the map values.
- */
-@Deprecated(message = "Simply use orEmpty() extension function", replaceWith = ReplaceWith("orEmpty()"))
-fun <K, V> Map<K, V>?.takeOrEmpty() = orEmpty()
 
 /**
  * Returns this [Map.Entry] if it is not null, otherwise returns an empty [Map.Entry].

@@ -146,20 +146,4 @@ fun interface TransitionType {
 
     }
 
-    companion object {
-
-        @Deprecated("Use Default instead", ReplaceWith("Default"))
-        val entries: EnumEntries<Default> = Default.entries
-
-        @Deprecated("Use Default.LINEAR instead", ReplaceWith("Default.LINEAR"))
-        val LINEAR = Default.LINEAR
-
-        @Deprecated("Use Default.STRONG_IN_OUT instead", ReplaceWith("Default.STRONG_IN_OUT"))
-        val STRONG_IN_OUT = Default.STRONG_IN_OUT
-
-        @Deprecated("Use Default.EASY_IN_OUT instead", ReplaceWith("Default.EASY_IN_OUT"))
-        val EASY_IN_OUT = Default.EASY_IN_OUT
-
-    }
-
 }

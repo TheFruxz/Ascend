@@ -1,11 +1,5 @@
 package dev.fruxz.ascend.extension.container
 
-@Deprecated(message = "Name changed to better reflect the functionality",
-	replaceWith = ReplaceWith("this.replaceWith(iterable)")
-)
-fun <T> MutableCollection<T>.reduceTo(iterable: Iterable<T>) =
-	this.replaceWith(iterable)
-
 /**
  * Replaces the content values of [this] with the contents
  * of the [iterable].

@@ -117,17 +117,6 @@ data class Calendar(
 	fun get(timeField: TimeUnit) = origin.get(timeField.javaField)
 
 	/**
-	 * This function returns the time of the calendar in Minecraft-Ticks.
-	 * @return the time in Minecraft-Ticks
-	 * @author Fruxz
-	 * @since 2023.1
-	 */
-	@Deprecated("This function will be removed, because it does not fit into the concept of this class.",
-		ReplaceWith("timeInMilliseconds / 50")
-	)
-	fun getTicks() = get(SECOND).toLong() * 20L
-
-	/**
 	 * This function returns, if this calendar is
 	 * after the [it] calendar.
 	 * @param it the calendar which should be compared

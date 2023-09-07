@@ -47,25 +47,6 @@ data class Address<T> internal constructor(
         fun <T> address(path: String, divider: String = "/") =
             Address<T>(path, divider)
 
-        /**
-         * Generates an [Address]<[T]> from the [Address]'s class internal constructor,
-         * like the [addressObject] companion function, but uses a '.' as the divider.
-         * @param path the path as a string
-         * @param divider the divider as a string
-         * @return the [Address]<[T]>
-         * @author Fruxz
-         * @since 2023.1
-         */
-        @JvmStatic
-        @Deprecated(
-            "Use address() directly", ReplaceWith(
-                "address<T>(path = path, divider = divider)",
-                "dev.fruxz.ascend.tool.smart.path.Address.Companion.address"
-            )
-        )
-        fun <T> packagedAddress(path: String, divider: String = ".") =
-            address<T>(path = path, divider = divider)
-
     }
 
 }
