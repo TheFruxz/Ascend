@@ -1,6 +1,7 @@
 package dev.fruxz.ascend.extension.classType
 
 import dev.fruxz.ascend.extension.math.limitTo
+import kotlin.enums.enumEntries
 
 /**
  * Returns the next enum in the ordinal order. If the current enum is the last one, the first
@@ -10,10 +11,10 @@ import dev.fruxz.ascend.extension.math.limitTo
  * @since 2023.1
  */
 inline fun <reified T : Enum<T>> Enum<T>.next(overflow: Boolean = true): T =
-	enumValues<T>()[
+	@OptIn(ExperimentalStdlibApi::class) enumEntries<T>()[
 		when {
-			overflow -> (ordinal + 1) % enumValues<T>().size
-			else -> (ordinal + 1).limitTo(0..enumValues<T>().lastIndex)
+			overflow -> (ordinal + 1) % enumEntries<T>().size
+			else -> (ordinal + 1).limitTo(0..enumEntries<T>().lastIndex)
 		}]
 
 /**
@@ -24,9 +25,9 @@ inline fun <reified T : Enum<T>> Enum<T>.next(overflow: Boolean = true): T =
  * @since 2023.1
  */
 inline fun <reified T : Enum<T>> Enum<T>.previous(overflow: Boolean = true): T =
-	when {
-		overflow -> enumValues<T>()[(ordinal - 1).let { if (it < 0) enumValues<T>().lastIndex else it }]
-		else -> enumValues<T>()[(ordinal - 1).limitTo(0..enumValues<T>().lastIndex)]
+	@OptIn(ExperimentalStdlibApi::class) when {
+		overflow -> enumEntries<T>()[(ordinal - 1).let { if (it < 0) enumEntries<T>().lastIndex else it }]
+		else -> enumEntries<T>()[(ordinal - 1).limitTo(0..enumEntries<T>().lastIndex)]
 	}
 
 /**
@@ -34,7 +35,10 @@ inline fun <reified T : Enum<T>> Enum<T>.previous(overflow: Boolean = true): T =
  * @author Fruxz
  * @since 2023.1
  */
-inline fun <reified T : Enum<T>> Enum<T>.nextOrNull(): T? = if (ordinal == enumValues<T>().lastIndex) null else next()
+inline fun <reified T : Enum<T>> Enum<T>.nextOrNull(): T? = when (ordinal) {
+	@OptIn(ExperimentalStdlibApi::class) enumEntries<T>().lastIndex -> null
+	else -> next()
+}
 
 /**
  * Returns the previous enum in the ordinal order, or null, if this is already the first enum.
@@ -48,11 +52,11 @@ inline fun <reified T : Enum<T>> Enum<T>.previousOrNull(): T? = if (ordinal == 0
  * @author Fruxz
  * @since 2023.1
  */
-inline fun <reified T : Enum<T>> Enum<T>.nextOrFirst(): T = nextOrNull() ?: enumValues<T>().first()
+inline fun <reified T : Enum<T>> Enum<T>.nextOrFirst(): T = nextOrNull() ?: @OptIn(ExperimentalStdlibApi::class) enumEntries<T>().first()
 
 /**
  * Returns the previous enum in the ordinal order, or if this enum is already the first enum, returns the last enum
  * @author Fruxz
  * @since 2023.1
  */
-inline fun <reified T : Enum<T>> Enum<T>.previousOrLast(): T = previousOrNull() ?: enumValues<T>().last()
+inline fun <reified T : Enum<T>> Enum<T>.previousOrLast(): T = previousOrNull() ?: @OptIn(ExperimentalStdlibApi::class) enumEntries<T>().last()
