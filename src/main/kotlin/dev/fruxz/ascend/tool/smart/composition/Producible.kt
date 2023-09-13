@@ -8,10 +8,8 @@ package dev.fruxz.ascend.tool.smart.composition
 interface Producible<T : Any> {
 
 	/**
-	 * Produces the product [T]
-	 * @return the product [T]
-	 * @author Fruxz
-	 * @since 2023.1
+	 * This function computes the end result of type [T]
+	 * @return the result [T]
 	 */
 	fun produce(): T
 
