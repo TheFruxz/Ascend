@@ -19,7 +19,7 @@ import kotlin.random.nextInt
  * @author Fruxz
  * @since 2023.1
  */
-fun randomBoolean(random: Random = Random) = (randomInt(1..2, random) == 1) // TODO <- 0..1 please
+fun randomBoolean(random: Random = Random) = (randomInt(0..1, random) == 1)
 
 /**
  * Creates a new random integer, which is inside the given
