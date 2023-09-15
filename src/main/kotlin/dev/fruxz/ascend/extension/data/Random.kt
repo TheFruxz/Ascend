@@ -2,6 +2,7 @@ package dev.fruxz.ascend.extension.data
 
 import dev.fruxz.ascend.extension.container.mapToString
 import dev.fruxz.ascend.extension.container.mixedCase
+import dev.fruxz.ascend.extension.container.random
 import dev.fruxz.ascend.extension.container.repeatRandomElements
 import dev.fruxz.ascend.extension.data.RandomTagType.MIXED_CASE
 import dev.fruxz.ascend.extension.data.RandomTagType.ONLY_UPPERCASE
@@ -18,7 +19,7 @@ import kotlin.random.nextInt
  * @author Fruxz
  * @since 2023.1
  */
-fun randomBoolean(random: Random = Random) = (randomInt(1..2, random) == 1)
+fun randomBoolean(random: Random = Random) = (randomInt(1..2, random) == 1) // TODO <- 0..1 please
 
 /**
  * Creates a new random integer, which is inside the given
@@ -39,7 +40,7 @@ fun randomInt(range: IntRange, random: Random = Random) = random.nextInt(range)
  * @author Fruxz
  * @since 2023.1
  */
-fun randomInt(progression: Iterable<Int>, random: Random = Random) = progression.shuffled(random).first()
+fun randomInt(progression: Iterable<Int>, random: Random = Random) = progression.random(random = random)
 
 /**
  * Creates a new random long, which is inside the given [range].
@@ -49,7 +50,7 @@ fun randomInt(progression: Iterable<Int>, random: Random = Random) = progression
  * @author Fruxz
  * @since 2023.1
  */
-fun randomLong(range: LongRange, random: Random = Random) = range.shuffled(random).first()
+fun randomLong(range: LongRange, random: Random = Random) = range.random(random = random)
 
 /**
  * Creates a new random long, which is inside the given [progression]
@@ -59,7 +60,7 @@ fun randomLong(range: LongRange, random: Random = Random) = range.shuffled(rando
  * @author Fruxz
  * @since 2023.1
  */
-fun randomLong(progression: Iterable<Int>, random: Random = Random) = progression.shuffled(random).first()
+fun randomLong(progression: Iterable<Int>, random: Random = Random) = progression.random(random = random)
 
 /**
  * Generates a random color.
