@@ -1,6 +1,5 @@
 package dev.fruxz.ascend.extension
 
-import dev.fruxz.ascend.annotation.ExperimentalAscendApi
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.pow
@@ -10,18 +9,36 @@ import java.awt.Color as AwtColor
 /**
  * This Constructor-Like function creates a new [AwtColor], using the [hex]
  * as the color. The [hex] String does *not* have to start with an #, but it
- * is possible.
- * The format #%%%%%% is supported, but #%%% is only partially compatible.
+ * is possible and will be properly handled.
+ * Due to the use of [expandHexCode] internally, you can use normal 6-digit
+ * color codes, or even the short form with only three digits.
  * @author Fruxz
  * @since 2023.1
  */
-@ExperimentalAscendApi // because of the lack of full hex support
-fun Color(hex: String) = AwtColor(hex.removePrefix("#").let {
-    when (it.length) {
-        3 -> it.padEnd(6, it.last()) // Support for e.g. #333 color codes
-        else -> it
-    }.toInt(16)
-})
+fun Color(hex: String) = @OptIn(ExperimentalStdlibApi::class) AwtColor(hex
+        .removePrefix("#")
+        .expandHexCode()
+        .hexToInt(HexFormat.UpperCase)
+)
+
+/**
+ * This function transforms a short-code hex color string to a normal
+ * 6-digit hex color string, or returns the input if it already is
+ * a 6-digit hex color code.
+ * @author Fruxz
+ * @since 2023.4
+ */
+private fun String.expandHexCode() = when (this.length) {
+    6 -> this
+    3 -> buildString {
+        this@expandHexCode.forEach { char ->
+            repeat(2) { _ ->
+                append(char)
+            }
+        }
+    }
+    else -> throw IllegalArgumentException("Your input hex color code '$this' must be 3 (short-code) or 6 numbers long!")
+}
 
 /**
  * This function creates a new [AwtColor] object, using the provided
