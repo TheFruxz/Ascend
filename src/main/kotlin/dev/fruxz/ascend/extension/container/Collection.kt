@@ -563,3 +563,23 @@ fun <T> Iterable<T>.toSortedSet(): SortedSet<T> {
  */
 fun <T> Array<T>.toSortedSet(): SortedSet<T> =
 	toSortedSet(compareBy { this.indexOf(it) })
+
+/**
+ * This functions creates a copy of this iterable, shuffles it and
+ * returns the first entry. So its returning a random entry.
+ * @param random custom randomizer
+ * @throws NoSuchElementException if no [Collection.first] can be found (iterable empty)
+ * @author Fruxz
+ * @since 2023.4
+ */
+@Throws(NoSuchElementException::class)
+fun <T> Iterable<T>.random(random: Random = Random): T = this.shuffled(random = random).first()
+
+/**
+ * This function creates a copy of this iterable, shuffles it and
+ * returns the first entry, or null, if iterable is empty.
+ * @param random custom randomizer
+ * @author Fruxz
+ * @since 2023.4
+ */
+fun <T> Iterable<T>.randomOrNull(random: Random = Random): T? = this.shuffled(random = random).firstOrNull()
