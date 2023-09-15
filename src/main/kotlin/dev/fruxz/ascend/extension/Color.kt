@@ -1,6 +1,6 @@
 package dev.fruxz.ascend.extension
 
-import kotlin.enums.EnumEntries
+import dev.fruxz.ascend.annotation.ExperimentalAscendApi
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.pow
@@ -15,6 +15,7 @@ import java.awt.Color as AwtColor
  * @author Fruxz
  * @since 2023.1
  */
+@ExperimentalAscendApi // because of the lack of full hex support
 fun Color(hex: String) = AwtColor(hex.removePrefix("#").let {
     when (it.length) {
         3 -> it.padEnd(6, it.last()) // Support for e.g. #333 color codes
