@@ -577,7 +577,7 @@ fun <T> Iterable<T>.random(random: Random = Random): T = this.shuffled(random = 
 
 /**
  * This function creates a copy of this iterable, shuffles it and
- * returns the first entry, or null, if iterable is empty.
+ * returns the first entry, or null, if this iterable is empty.
  * @param random custom randomizer
  * @author Fruxz
  * @since 2023.4
