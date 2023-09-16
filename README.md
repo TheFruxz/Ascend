@@ -32,7 +32,7 @@ implementation("com.github.TheFruxz:Ascend:$ascendVersion")
 Contribution to Ascend is deeply appreciated. When submitting pull requests, abide by the community guidelines of GitHub. Furthermore, respect licensing within this and all repositories you interact with. Feel free to initiate or engage in discussions in the repository's 'Discussions' section.
 
 ###### We build & use Ascend on Java 17 - [Eclipse Temurin](https://adoptium.net/).
-###### Also build & run Ascend with [Eclipse Temurin](https://adoptium.net/) to get the best possible experience!
+###### Also build & run Ascend with [Eclipse Temurin](https://adoptium.net/) to get the best possible development experience!
 
 [![Open Source](https://raw.githubusercontent.com/BraveUX/for-the-badge/master/src/images/badges/open-source.svg)](https://github.com/TheFruxz/Sparkle/blob/main/LICENSE)
 [![Built by developers](https://raw.githubusercontent.com/BraveUX/for-the-badge/master/src/images/badges/built-by-developers.svg)](https://github.com/TheFruxz/Sparkle/graphs/contributors)
