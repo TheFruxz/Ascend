@@ -1,5 +1,6 @@
 package dev.fruxz.ascend.json
 
+import dev.fruxz.ascend.extension.forceCastOrNull
 import dev.fruxz.ascend.extension.objects.takeIfCastableTo
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
@@ -40,7 +41,7 @@ data class JsonProperty<T : Any>(
 ) {
 
 	private fun JsonElement.toRequested(): T? =
-		json.decodeFromJsonElement(json.serializersModule.serializer(type), this)?.takeIfCastableTo()
+		json.decodeFromJsonElement(json.serializersModule.serializer(type), this)?.forceCastOrNull()
 
 	private fun fromProvided(data: T): JsonElement =
 		json.encodeToJsonElement(serializer = json.serializersModule.serializer(type), value = data)
