@@ -1,7 +1,7 @@
 package dev.fruxz.ascend.tool.time.calendar
 
 import dev.fruxz.ascend.extension.dump
-import dev.fruxz.ascend.tool.smart.produce.Producible
+import dev.fruxz.ascend.tool.smart.generate.producible.Producible
 import dev.fruxz.ascend.tool.time.TimeState
 import dev.fruxz.ascend.tool.time.calendar.Calendar.FormatStyle.FULL
 import dev.fruxz.ascend.tool.time.calendar.Calendar.FormatStyle.MEDIUM

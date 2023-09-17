@@ -1,4 +1,4 @@
-package dev.fruxz.ascend.tool.smart.produce
+package dev.fruxz.ascend.tool.smart.generate.producible
 
 /**
  * This interface marks every class/object, that can produce an object type [T]
