@@ -1,7 +1,6 @@
 package dev.fruxz.ascend.tool.smart.generate.composable
 
 import dev.fruxz.ascend.tool.smart.generate.producible.ProducibleSuspended
-import kotlinx.coroutines.currentCoroutineContext
 import kotlin.coroutines.CoroutineContext
 
 /**
@@ -10,10 +9,12 @@ import kotlin.coroutines.CoroutineContext
  * @author Fruxz
  * @since 2023.4
  */
-fun interface SuspendComposable<T : Any> : ProducibleSuspended<T> {
+fun interface SuspendComposable<T : Any> {
 
     suspend fun compose(context: CoroutineContext): T
-    
-    override suspend fun produce(): T = compose(currentCoroutineContext())
+
+    fun asProducible(context: CoroutineContext) = object : ProducibleSuspended<T> {
+        override suspend fun produce(): T = compose(context = context)
+    }
 
 }

@@ -8,10 +8,12 @@ import dev.fruxz.ascend.tool.smart.generate.producible.Producible
  * @author Fruxz
  * @since 2023.4
  */
-fun interface Composable<T : Any> : Producible<T> {
+fun interface Composable<T : Any> {
 
     fun compose(): T
 
-    override fun produce(): T = compose()
+    fun asProducible() = object : Producible<T> {
+        override fun produce(): T = compose()
+    }
 
 }
