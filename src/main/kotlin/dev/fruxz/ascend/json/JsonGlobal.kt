@@ -12,4 +12,4 @@ import kotlinx.serialization.json.Json
  * @author Fruxz
  * @since 2023.1
  */
-var globalJson: Json = JsonManager.json
+var globalJson: Json by JsonManager::json
