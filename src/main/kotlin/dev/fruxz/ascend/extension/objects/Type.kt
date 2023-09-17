@@ -20,4 +20,7 @@ inline fun <reified O> Any.takeIfInstance(): O? = when (this) {
  * @author Fruxz
  * @since 2023.1
  */
+@Deprecated(message = "Duplicated function for no actual reason",
+	replaceWith = ReplaceWith("this.forceCastOrNull()", "dev.fruxz.ascend.extension.forceCastOrNull")
+)
 fun <O> Any.takeIfCastableTo(): O? = this.forceCastOrNull()
