@@ -1,7 +1,7 @@
 package dev.fruxz.ascend.tool.exception
 
-import dev.fruxz.ascend.annotation.RefactoringCandidate
 import dev.fruxz.ascend.extension.data.generateRandomTag
+import java.util.logging.Logger
 
 /**
  * This function-interface helps to add custom-crafted exception catches through api's.
@@ -10,7 +10,6 @@ import dev.fruxz.ascend.extension.data.generateRandomTag
  * @author Fruxz
  * @since 2023.1
  */
-@RefactoringCandidate
 fun interface ExceptionCatch<E : Throwable> {
 
     /**
@@ -42,7 +41,9 @@ fun interface ExceptionCatch<E : Throwable> {
          * @param E the type of throwable to catch.
          * @return an instance of [ExceptionCatch] with the specified error logging behavior.
          */
-        fun <E : Throwable> log() = ExceptionCatch<E> { error, tag -> println("Error: ($tag) '${error.message}'") }
+        fun <E : Throwable> log() = ExceptionCatch<E> { error, tag -> println("Exception: ($tag) '${error.message}'") }
+
+        fun <E : Throwable> log(logger: Logger) = ExceptionCatch<E> { error, tag -> logger.severe("Exception: ($tag) '${error.message}'") }
 
     }
 
