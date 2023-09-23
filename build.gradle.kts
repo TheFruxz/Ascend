@@ -89,7 +89,7 @@ tasks {
     }
 
     dokkaHtml.configure {
-        outputDirectory.set(buildDir.resolve("../docs/"))
+        outputDirectory.set(layout.projectDirectory.dir("docs"))
     }
 
 }
