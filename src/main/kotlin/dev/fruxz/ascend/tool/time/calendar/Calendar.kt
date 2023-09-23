@@ -340,10 +340,10 @@ data class Calendar(
 	 * @author Fruxz
 	 * @since 2023.1
 	 */
-	override fun equals(other: Any?) = if (other is JavaUtilCalendar) {
-		other.timeInMillis == origin.timeInMillis
-	} else
-		false
+	override fun equals(other: Any?) = when (other) {
+		is Calendar -> other.timeInMillis == origin.timeInMillis
+		else -> false
+	}
 
 	override fun hashCode(): Int {
 		return origin.hashCode()
