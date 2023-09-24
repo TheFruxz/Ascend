@@ -35,9 +35,10 @@ fun <T> Array<out T>.toArrayList(): ArrayList<out T> = toList().toArrayList()
  * @param times The number of times to repeat the elements.
  * @param random The random number generator to use for selecting random elements.
  *               If not provided, a default random number generator is used.
- *
  * @return A string that contains the repeated elements, including the randomly added elements.
+ * @throws NoSuchElementException if the collection is empty.
  */
+@Throws(NoSuchElementException::class)
 fun <T, C : Collection<T>> C.repeatRandomElements(times: Int, random: Random = Random): String = buildString {
 	repeat(times) { append(this@repeatRandomElements.random(random)) }
 }
@@ -402,9 +403,7 @@ inline fun <T> Array<T?>.forEachNotNull(process: (T & Any) -> Unit) = forEach { 
  */
 inline fun <C : Iterable<I>, I, O> C.flatMapNotNull(builder: (I) -> Iterable<O?>): List<O & Any> = buildList {
 	this@flatMapNotNull.forEach { t ->
-		builder.invoke(t).forEachNotNull { o ->
-			add(o)
-		}
+        builder.invoke(t).forEachNotNull(this::add)
 	}
 }
 
@@ -429,9 +428,7 @@ fun <T : Iterable<O>, O> Iterable<T>.flattenNotNull() = flatMapNotNull { it }
  */
 inline fun <I, O> Array<I>.flatMapNotNull(builder: (I) -> Iterable<O?>): List<O & Any> = buildList {
 	this@flatMapNotNull.forEach { t ->
-		builder.invoke(t).forEachNotNull { o ->
-			add(o)
-		}
+		builder.invoke(t).forEachNotNull(this::add)
 	}
 }
 
@@ -565,8 +562,9 @@ fun <T> Array<T>.toSortedSet(): SortedSet<T> =
 	toSortedSet(compareBy { this.indexOf(it) })
 
 /**
- * This functions creates a copy of this iterable, shuffles it and
- * returns the first entry. So its returning a random entry.
+ * This function creates a copy of this iterable, shuffles it, and
+ * returns the first entry.
+ * So it is returning a random entry.
  * @param random custom randomizer
  * @throws NoSuchElementException if no [Collection.first] can be found (iterable empty)
  * @author Fruxz

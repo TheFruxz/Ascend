@@ -44,12 +44,12 @@ fun String?.isLong() = this?.toLongOrNull() != null
 fun String?.isByte() = this?.toByteOrNull() != null
 
 /**
- * Returns if the string can be parsed to a [Boolean].
- * @return true if the string can be parsed to a [toBoolean], otherwise false.
+ * Returns if the string can be parsed to a [Boolean]. This function is *not* case sensitive.
+ * @return true if the string can be parsed to a [toBooleanStrict], otherwise false.
  * @author Fruxz
  * @since 2023.1
  */
-fun String?.isBoolean() = this?.toBooleanStrictOrNull() != null
+fun String?.isBoolean() = this?.lowercase()?.toBooleanStrictOrNull() != null
 
 /**
  * Formats the number to the specific [pattern] using a [DecimalFormat] with

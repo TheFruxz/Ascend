@@ -108,10 +108,10 @@ fun String.toUUID() = UUID.fromString(this)!!
  * @since 2023.1
  */
 fun String.replacePrefix(oldValue: String, newValue: String, ignoreCase: Boolean = false) =
-	if (startsWith(oldValue, ignoreCase)) {
-		replaceFirst(oldValue, newValue, ignoreCase)
-	} else
-		this
+	when {
+		startsWith(oldValue, ignoreCase) -> replaceFirst(oldValue, newValue, ignoreCase)
+		else -> this
+	}
 
 /**
  * Replaces the last [oldValue] with the [newValue] (respecting the [ignoreCase]),
@@ -124,10 +124,10 @@ fun String.replacePrefix(oldValue: String, newValue: String, ignoreCase: Boolean
  * @since 2023.1
  */
 fun String.replaceSuffix(oldValue: String, newValue: String, ignoreCase: Boolean = false) =
-	if (endsWith(oldValue, ignoreCase)) {
-		this.substringBeforeLast(oldValue) + newValue
-	} else
-		this
+	when {
+		endsWith(oldValue, ignoreCase) -> this.substringBeforeLast(oldValue) + newValue
+		else -> this
+	}
 
 /**
  * Replaces the first and last [oldValue] with the [newValue] (respecting the [ignoreCase]),
