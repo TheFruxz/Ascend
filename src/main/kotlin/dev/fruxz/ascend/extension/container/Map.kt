@@ -29,14 +29,8 @@ fun <F, S> Map<F, S>.flipped() = (values to keys).toMap()
  * @author Fruxz
  * @since 2023.1
  */
-inline fun <F, S> Map<F, S>.firstOrNull(predicate: (Entry<F, S>) -> Boolean): Entry<F, S>? {
-
-	forEach { mapEntry ->
-		if (predicate(mapEntry)) return mapEntry
-	}
-
-	return null
-}
+inline fun <F, S> Map<F, S>.firstOrNull(predicate: (Entry<F, S>) -> Boolean): Entry<F, S>? =
+	this.asSequence().firstOrNull(predicate)
 
 /**
  * Returns the first [Map.Entry] matching the given [predicate] or
@@ -58,15 +52,8 @@ inline fun <F, S> Map<F, S>.first(predicate: (Entry<F, S>) -> Boolean): Entry<F,
  * @author Fruxz
  * @since 2023.1
  */
-inline fun <K, V> Map<K, V>.lastOrNull(predicate: (Entry<K, V>) -> Boolean): Entry<K, V>? {
-	var last: Entry<K, V>? = null
-
-	forEach { mapEntry ->
-		if (predicate(mapEntry)) last = mapEntry
-	}
-
-	return last
-}
+inline fun <K, V> Map<K, V>.lastOrNull(predicate: (Entry<K, V>) -> Boolean): Entry<K, V>? =
+	this.asSequence().lastOrNull(predicate)
 
 /**
  * Returns the last [Map.Entry] matching the given [predicate] or throws an [NoSuchElementException] if no such element exists
