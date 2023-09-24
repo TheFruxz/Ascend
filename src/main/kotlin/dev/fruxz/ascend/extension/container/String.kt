@@ -160,10 +160,12 @@ fun String.replaceSurrounding(oldValue: String, newValue: String, ignoreCase: Bo
  */
 fun String.mixedCase(randomized: Boolean = true, random: Random = Random(Random.nextLong())) =
 	toCharArray().withIndex().joinToString(separator = "") { (index, char) ->
-		if (randomized && randomBoolean(random) || index % 2 == 0) { // More forced uniqueness because of next seed
-			char.uppercase()
-		} else
-			char.lowercase()
+		when {
+			randomized && randomBoolean(random) || index % 2 == 0 -> { // More forced uniqueness because of next seed
+				char.uppercase()
+			}
+			else -> char.lowercase()
+		}
 	}
 
 /**
@@ -231,20 +233,25 @@ fun String.joinArgumentChunks(chunkMarker: String = "\"", argumentSpliterator: S
 	val strings = (this@joinArgumentChunks.split(argumentSpliterator).takeIf { this@joinArgumentChunks.isNotBlank() }.orEmpty())
 
 	for (string in strings) {
-		if (string.startsWith(chunkMarker)) {
-			isQuoted = true
-			current.append(string.removePrefix(chunkMarker))
-		} else if (string.endsWith(chunkMarker)) {
-			if (isQuoted) current.append(" ")
+		when {
+			string.startsWith(chunkMarker) -> {
+				isQuoted = true
+				current.append(string.removePrefix(chunkMarker))
+			}
+			string.endsWith(chunkMarker) -> {
+				if (isQuoted) current.append(" ")
 
-			isQuoted = false
-			current.append(string.removeSuffix(chunkMarker))
-			add(current.toString())
-			current.clear()
-		} else if (isQuoted) {
-			current.append(" ").append(string)
-		} else {
-			add(string)
+				isQuoted = false
+				current.append(string.removeSuffix(chunkMarker))
+				add(current.toString())
+				current.clear()
+			}
+			isQuoted -> {
+				current.append(" ").append(string)
+			}
+			else -> {
+				add(string)
+			}
 		}
 	}
 

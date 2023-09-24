@@ -20,10 +20,9 @@ fun <T> MutableCollection<T>.replaceWith(iterable: Iterable<T>) {
  * @author Fruxz
  * @since 2023.1
  */
-fun <T> MutableCollection<T>.toggle(element: T, addToContainer: Boolean = !contains(element)): Boolean = if (addToContainer) {
-	add(element)
-} else {
-	remove(element)
+fun <T> MutableCollection<T>.toggle(element: T, addToContainer: Boolean = !contains(element)): Boolean = when {
+	addToContainer -> add(element)
+	else -> remove(element)
 }
 
 /**
