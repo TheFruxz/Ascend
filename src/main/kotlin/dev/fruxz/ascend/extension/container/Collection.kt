@@ -547,15 +547,20 @@ fun <T : Iterable<String>> T.joinedLast(
  * @author Fruxz
  * @since 2023.1
  */
-operator fun <T> List<T>.get(indexesRange: IntRange) = subList(indexesRange.first, indexesRange.last)
+operator fun <T> Iterable<T>.get(indexesRange: IntRange) = when (this) {
+	is List<T> -> this.subList(values = indexesRange)
+	else -> this.get(indexes = indexesRange.asIterable())
+}
 
 /**
- * This function returns a new list of all entries, which are at the indexes
- * specified in the [indexes].
+ * Returns a list of elements from the iterable based on the given indexes.
+ *
+ * @param indexes The indexes of the elements to fetch from the iterable.
+ * @return A list containing the elements at the specified indexes.
  * @author Fruxz
- * @since 2023.1
+ * @since 2023.4
  */
-operator fun <T> List<T>.get(indexes: Iterable<Int>) = indexes.map { this[it] }
+operator fun <T> Iterable<T>.get(indexes: Iterable<Int>): List<T> = indexes.map { this.elementAt(it) }
 
 /**
  * This function returns a new [SortedSet] of the current [Iterable], with the
@@ -599,13 +604,3 @@ fun <T> Iterable<T>.random(random: Random = Random): T = this.shuffled(random = 
  * @since 2023.4
  */
 fun <T> Iterable<T>.randomOrNull(random: Random = Random): T? = this.shuffled(random = random).firstOrNull()
-
-/**
- * Returns a list of elements from the iterable based on the given indexes.
- *
- * @param indexes The indexes of the elements to fetch from the iterable.
- * @return A list containing the elements at the specified indexes.
- * @author Fruxz
- * @since 2023.4
- */
-operator fun <T> Iterable<T>.get(indexes: Iterable<Int>): List<T> = indexes.map { this.elementAt(it) }
