@@ -5,7 +5,7 @@ import kotlin.test.Test
 class CollectionTest {
 
     @Test
-    fun joinFirst() {
+    fun `Check joinFirst() on mutable collections`() {
         val list = mutableListOf("a", "b", "c", "d", "e", "f", "g", "h")
 
         list.joinFirst(n = 2, spliterator = "-")
@@ -14,7 +14,7 @@ class CollectionTest {
     }
 
     @Test
-    fun joinLast() {
+    fun `Check joinLast() on mutable collections`() {
         val list = mutableListOf("a", "b", "c", "d", "e", "f", "g", "h")
 
         list.joinLast(n = 2, spliterator = "-")
