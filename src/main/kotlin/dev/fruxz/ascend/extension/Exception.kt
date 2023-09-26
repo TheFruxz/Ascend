@@ -18,7 +18,7 @@ fun catchException(
 	random: Random = Random,
 ) {
 
-	val tag = generateRandomTag()
+	val tag = generateRandomTag(randomizer = random)
 	val exceptionShort = exception.stackTrace.firstOrNull()?.className ?: "Unknown exception!"
 
 	catch(exception, tag)
