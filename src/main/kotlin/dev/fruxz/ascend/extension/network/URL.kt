@@ -2,6 +2,7 @@ package dev.fruxz.ascend.extension.network
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.io.IOException
 import java.net.URL
 import java.nio.file.CopyOption
 import java.nio.file.Files
@@ -16,9 +17,11 @@ import kotlin.io.path.createParentDirectories
  * @param destination The destination path to download the content to.
  * @param options The options to use when copying the content.
  * @return The number of bytes that have been copied.
+ * @throws IOException If an I/O error occurs during the copy of the stream into the file.
  * @author Fruxz
  * @since 2023.1
  */
+@Throws(IOException::class)
 suspend inline fun URL.copyTo(destination: Path, vararg options: CopyOption) =
 	withContext(Dispatchers.IO) {
 		destination.createParentDirectories()
@@ -30,8 +33,10 @@ suspend inline fun URL.copyTo(destination: Path, vararg options: CopyOption) =
  * If the file already exists, it will be replaced.
  * @param destination The destination path to download the content to.
  * @return The number of bytes that have been copied.
+ * @throws IOException If an I/O error occurs during the copy of the stream into the file.
  * @author Fruxz
  * @since 2023.1
  */
+@Throws(IOException::class)
 suspend inline infix fun URL.downloadTo(destination: Path) =
 	copyTo(destination, StandardCopyOption.REPLACE_EXISTING)
