@@ -24,7 +24,10 @@ fun <T> List<T>.subList(values: IntRange) = subList(values.first, values.last)
  * @since 2023.2
  */
 fun <T> List<T>.subListOrEmpty(values: IntRange) = tryOrNull {
-    if (values.first > values.last) emptyList() else subList(values.first, values.last)
+    when {
+        values.first > values.last -> emptyList()
+        else -> subList(values.first, values.last)
+    }
 } ?: emptyList()
 
 /**
