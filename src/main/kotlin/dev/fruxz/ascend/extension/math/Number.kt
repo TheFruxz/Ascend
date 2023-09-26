@@ -121,9 +121,8 @@ val Float.decimalAsPercent: Percentage
  * @author Fruxz
  * @since 2023.1
  */
-val INT_RANGE: IntRange by lazy {
-	Int.MIN_VALUE..Int.MAX_VALUE
-}
+@Deprecated("Will be removed from global scope", ReplaceWith("Int.Companion.RANGE"), DeprecationLevel.ERROR)
+val INT_RANGE: IntRange by lazy { Int.Companion.RANGE }
 
 /**
  * This computational value represents the range from the [Long.MIN_VALUE] to [Long.MAX_VALUE]
@@ -131,20 +130,21 @@ val INT_RANGE: IntRange by lazy {
  * @author Fruxz
  * @since 2023.1
  */
-val LONG_RANGE: LongRange by lazy {
-	Long.MIN_VALUE..Long.MAX_VALUE
-}
+@Deprecated("Will be removed from global scope", ReplaceWith("Long.Companion.RANGE"), DeprecationLevel.ERROR)
+val LONG_RANGE: LongRange by lazy { Long.Companion.RANGE }
 
 /**
- * This value represents the computational output of [INT_RANGE]
+ * This computational value represents the range from the [Int.MIN_VALUE] to [Int.MAX_VALUE]
+ * as a [IntRange]
  * @author Fruxz
  * @since 2023.1
  */
-val Int.Companion.RANGE: IntRange by lazy { INT_RANGE }
+val Int.Companion.RANGE: IntRange by lazy { Int.MIN_VALUE..Int.MAX_VALUE }
 
 /**
- * This value represents the computational output of [LONG_RANGE]
+ * This computational value represents the range from the [Long.MIN_VALUE] to [Long.MAX_VALUE]
+ * as a [LongRange]
  * @author Fruxz
  * @since 2023.1
  */
-val Long.Companion.RANGE: LongRange by lazy { LONG_RANGE }
+val Long.Companion.RANGE: LongRange by lazy { Long.MIN_VALUE..Long.MAX_VALUE }
