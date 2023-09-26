@@ -1,5 +1,7 @@
 package dev.fruxz.ascend.json.serializer
 
+import dev.fruxz.ascend.extension.Color
+import dev.fruxz.ascend.extension.hexString
 import kotlinx.serialization.ContextualSerializer
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.SerialDescriptor
@@ -19,9 +21,9 @@ class ColorSerializer : KSerializer<AwtColor> {
     override val descriptor: SerialDescriptor = ContextualSerializer(AwtColor::class).descriptor
 
     override fun serialize(encoder: Encoder, value: Color) =
-        encoder.encodeInt(value.rgb)
+        encoder.encodeString(value.hexString)
 
     override fun deserialize(decoder: Decoder): Color =
-        Color(decoder.decodeInt())
+        Color(decoder.decodeString())
 
 }
