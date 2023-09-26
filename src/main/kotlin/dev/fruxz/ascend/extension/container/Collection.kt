@@ -560,7 +560,7 @@ operator fun <T> Iterable<T>.get(indexesRange: IntRange) = when (this) {
  * @author Fruxz
  * @since 2023.4
  */
-operator fun <T> Iterable<T>.get(indexes: Iterable<Int>): List<T> = indexes.map { this.elementAt(it) }
+operator fun <T> Iterable<T>.get(indexes: Iterable<Int>): List<T> = indexes.map(this::elementAt)
 
 /**
  * This function returns a new [SortedSet] of the current [Iterable], with the
@@ -571,7 +571,7 @@ operator fun <T> Iterable<T>.get(indexes: Iterable<Int>): List<T> = indexes.map 
 fun <T> Iterable<T>.toSortedSet(): SortedSet<T> {
 	return when (this) {
 		is SortedSet -> this
-		else -> toSortedSet(compareBy { this.indexOf(it) })
+		else -> toSortedSet(compareBy(this::indexOf))
 	}
 }
 
@@ -582,7 +582,7 @@ fun <T> Iterable<T>.toSortedSet(): SortedSet<T> {
  * @since 2023.1
  */
 fun <T> Array<T>.toSortedSet(): SortedSet<T> =
-	toSortedSet(compareBy { this.indexOf(it) })
+	toSortedSet(compareBy(this::indexOf))
 
 /**
  * This function creates a copy of this iterable, shuffles it, and
