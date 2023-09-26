@@ -474,52 +474,72 @@ inline fun <T, C> Array<T>.isUnique(process: (T) -> C): Boolean {
 	return this.all { item -> results.add(process(item)) }
 }
 /**
- * This function modifies the current [MutableList] so, that the first [n] strings
- * are being merged together, with the [spliterator] and [transform] used.
+ * This function merges the first entries [n]-times together, using the [spliterator] and [transform] provided.
+ * This function modifies the current [MutableList] and does not return anything.
+ * @param n the number of merges performed
+ * @return the modified [MutableList] with the merged entries, e.g. {1, 2, 3, 4, 5}.joinFirst(2) -> {1-2-3, 4, 5}
  * @author Fruxz
  * @since 2023.1
  */
-@ExperimentalAscendApi
-fun <T : MutableList<String>> T.joinFirst(n: Int, spliterator: String = ", ", transform: (String) -> String = { it }) {
+fun <T : MutableList<String>> T.joinFirst(
+	n: Int = 1,
+	spliterator: String = "-",
+	transform: (String) -> String = { it }
+) {
 	repeat(n) {
-		this[1] = (transform("${removeFirstOrNull()}") + spliterator + this[1])
+		this[0] = (transform("${removeFirstOrNull()}") + spliterator + this.first()) // again first, because the first entry is already deleted by removeFirstOrNull()
 	}
 }
 
 /**
- * This function modifies the current [MutableList] so, that the last [n] strings
- * are being merged together, with the [spliterator] and [transform] used.
+ * This function merges the last entries [n]-times together, using the [spliterator] and [transform] provided.
+ * This function modifies the current [MutableList] and does not return anything.
+ * @param n the number of merges performed
+ * @return the modified [MutableList] with the merged entries, e.g. {1, 2, 3, 4, 5}.joinLast(2) -> {1, 2, 3-4-5}
  * @author Fruxz
  * @since 2023.1
  */
-@ExperimentalAscendApi
-fun <T : MutableList<String>> T.joinLast(n: Int, spliterator: String = ", ", transform: (String) -> String = { it }) {
+fun <T : MutableList<String>> T.joinLast(
+	n: Int = 1,
+	spliterator: String = ", ",
+	transform: (String) -> String = { it }
+) {
 	repeat(n) {
-		this[lastIndex - 1] = (this[lastIndex - 1] + spliterator + transform("${removeLastOrNull()}"))
+		this[lastIndex-1] = (this[lastIndex-1] + spliterator + transform("${removeLastOrNull()}"))
 	}
 }
 
 /**
- * This function returns a modified list of the current [Iterable], with the first [n]
- * entries merged together with the [spliterator] and [transform] used.
+ * This function returns a modified list of the current [Iterable], with the first entries
+ * merged together [n]-times with the [spliterator] and [transform] used.
  * This does not modify the originally used [Iterable].
+ * @param n the number of merges performed
+ * @return the modified [Iterable] with the merged entries, e.g. {1, 2, 3, 4, 5}.joinedFirst(2) -> {1-2-3, 4, 5}
  * @author Fruxz
  * @since 2023.1
  */
-@ExperimentalAscendApi
-fun <T : Iterable<String>> T.joinedFirst(n: Int, spliterator: String = ", ", transform: (String) -> String = { it }) = modified {
+fun <T : Iterable<String>> T.joinedFirst(
+	n: Int = 1,
+	spliterator: String = "-",
+	transform: (String) -> String = { it }
+) = modified {
 	joinFirst(n, spliterator, transform)
 }
 
 /**
- * This function returns a modified list of the current [Iterable], with the last [n]
- * entries merged together with the [spliterator] and [transform] used.
+ * This function returns a modified list of the current [Iterable], with the last entries
+ * merged together [n]-times with the [spliterator] and [transform] used.
  * This does not modify the originally used [Iterable].
+ * @param n the number of merges performed
+ * @return the modified [Iterable] with the merged entries, e.g. {1, 2, 3, 4, 5}.joinedLast(2) -> {1, 2, 3-4-5}
  * @author Fruxz
  * @since 2023.1
  */
-@ExperimentalAscendApi
-fun <T : Iterable<String>> T.joinedLast(n: Int, spliterator: String = ", ", transform: (String) -> String = { it }) = modified {
+fun <T : Iterable<String>> T.joinedLast(
+	n: Int = 1,
+	spliterator: String = "-",
+	transform: (String) -> String = { it }
+) = modified {
 	joinLast(n, spliterator, transform)
 }
 
