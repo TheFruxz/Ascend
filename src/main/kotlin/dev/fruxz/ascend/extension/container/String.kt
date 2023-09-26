@@ -1,5 +1,6 @@
 package dev.fruxz.ascend.extension.container
 
+import dev.fruxz.ascend.annotation.ExperimentalAscendApi
 import dev.fruxz.ascend.extension.data.randomBoolean
 import java.util.*
 import kotlin.random.Random
@@ -227,6 +228,7 @@ fun String.splitZones(
  * @author Fruxz
  * @since 2023.1
  */
+@ExperimentalAscendApi // TODO add tests for this function, so we can be sure, that it 100% works as expected
 fun String.joinArgumentChunks(chunkMarker: String = "\"", argumentSpliterator: String = " "): List<String> = buildList {
 	var isQuoted = false
 	val current = StringBuilder()
