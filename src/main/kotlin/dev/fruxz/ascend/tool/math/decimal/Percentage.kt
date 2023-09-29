@@ -1,6 +1,5 @@
 package dev.fruxz.ascend.tool.math.decimal
 
-import dev.fruxz.ascend.annotation.RefactoringCandidate
 import kotlin.math.roundToInt
 
 /**
@@ -10,7 +9,7 @@ import kotlin.math.roundToInt
  * @author Fruxz
  * @since 2023.1
  */
-@RefactoringCandidate
+@Deprecated(message = "Will be removed in the future")
 data class Percentage(
     val decimal: Double,
 ) {
