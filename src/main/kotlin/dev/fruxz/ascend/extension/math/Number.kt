@@ -103,6 +103,7 @@ operator fun IntArray.plus(intArray: IntArray) = asIterable().toList().toTypedAr
  * @author Fruxz
  * @since 2023.1
  */
+@Deprecated(message = "Dedicated percentage class will be removed in the future")
 val Double.decimalAsPercent: Percentage
 	get() = Percentage(this)
 
@@ -112,6 +113,7 @@ val Double.decimalAsPercent: Percentage
  * @author Fruxz
  * @since 2023.1
  */
+@Deprecated(message = "Dedicated percentage class will be removed in the future")
 val Float.decimalAsPercent: Percentage
 	get() = Percentage(this.toDouble())
 

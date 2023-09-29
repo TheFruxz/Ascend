@@ -112,9 +112,11 @@ data class Percentage(
 
     companion object {
 
+        @Deprecated(message = "Dedicated percentage class will be removed in the future")
         val Number.percent: Percentage
             get() = Percentage(toDouble() / 100)
 
+        @Deprecated(message = "Dedicated percentage class will be removed in the future")
         val Number.decimalAsPercent: Percentage
             get() = Percentage(toDouble())
 
