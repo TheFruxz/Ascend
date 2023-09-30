@@ -60,8 +60,6 @@ infix fun <C : MutableCollection<T>, T> C.and(element: T) = apply { add(element)
  * @param element The element to be added.
  * @param check A function that takes the [element] and the current state of this collection
  * and returns true if the [element] should be added, false otherwise.
- *
- * @throws UnsupportedOperationException if this collection does not support adding elements.
  */
 fun <C : MutableCollection<T>, T> C.addIf(element: T, check: (element: T, currentState: C) -> Boolean) {
 	if (check(element, this)) add(element)
