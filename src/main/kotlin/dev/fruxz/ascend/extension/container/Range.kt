@@ -2,6 +2,7 @@ package dev.fruxz.ascend.extension.container
 
 import dev.fruxz.ascend.annotation.LanguageFeature
 import kotlin.math.absoluteValue
+import kotlin.time.measureTime
 
 /**
  * Removes every element from this collection that is contained in the [ints] collection.
@@ -32,7 +33,7 @@ infix fun IntRange.skip(int: Int) =
  * @since 2023.1
  */
 val Iterable<Int>.span: Int
-	get() = (max() - min()).absoluteValue
+	get() = sorted().let { it.last() - it.first() }.absoluteValue
 
 /**
  * This computational value returns the span between the [min]
@@ -41,7 +42,7 @@ val Iterable<Int>.span: Int
  * @since 2023.1
  */
 val Iterable<Long>.span: Long
-	get() = (max() - min()).absoluteValue
+	get() = sorted().let { it.last() - it.first() }.absoluteValue
 
 /**
  * This computational value returns the span between the [min]
@@ -50,7 +51,7 @@ val Iterable<Long>.span: Long
  * @since 2023.1
  */
 val Iterable<Float>.span: Float
-	get() = (max() - min()).absoluteValue
+	get() = sorted().let { it.last() - it.first() }.absoluteValue
 
 /**
  * This computational value returns the span between the [min]
@@ -59,4 +60,4 @@ val Iterable<Float>.span: Float
  * @since 2023.1
  */
 val Iterable<Double>.span: Double
-	get() = (max() - min()).absoluteValue
+	get() = sorted().let { it.last() - it.first() }.absoluteValue
