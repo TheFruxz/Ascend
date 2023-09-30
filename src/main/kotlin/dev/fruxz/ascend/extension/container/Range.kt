@@ -13,7 +13,7 @@ import kotlin.time.measureTime
  */
 @LanguageFeature
 fun IntRange.skip(vararg ints: Int) =
-	toMutableList().apply { removeAll(ints.toList().toSet()) }
+	toMutableList().removeAll(ints.toSet())
 
 /**
  * Removes the [int] from this range.
