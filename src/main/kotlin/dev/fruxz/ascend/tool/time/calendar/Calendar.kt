@@ -447,15 +447,15 @@ data class Calendar(
 
 		/**
 		 * This function returns a new [Calendar] with the [milliseconds] and [timeZone].
-		 * @param milliseconds the milliseconds which should be used
+		 * @param timeInMillis the milliseconds which should be used
 		 * @param timeZone the time zone which should be used
 		 * @return a new [Calendar] with the [milliseconds] and [timeZone] values
 		 * @author Fruxz
 		 * @since 2023.4
 		 */
 		@JvmStatic
-		fun fromMilliseconds(milliseconds: Long, timeZone: TimeZone = TimeZone.getDefault()) =
-			Calendar(milliseconds, timeZone)
+		fun fromMilliseconds(timeInMillis: Long, timeZone: TimeZone = TimeZone.getDefault()) =
+			Calendar(timeInMillis, timeZone)
 
 	}
 
