@@ -12,7 +12,7 @@ import kotlin.time.measureTime
  * @since 2023.1
  */
 @LanguageFeature
-fun IntRange.skip(vararg ints: Int) =
+fun IntRange.skip(vararg ints: Int): List<Int> =
 	modified { removeAll(ints.toSet()) }
 
 /**
@@ -23,7 +23,7 @@ fun IntRange.skip(vararg ints: Int) =
  * @since 2023.1
  */
 @LanguageFeature
-infix fun IntRange.skip(int: Int) =
+infix fun IntRange.skip(int: Int): List<Int> =
 	skip(ints = intArrayOf(int))
 
 /**
