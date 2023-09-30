@@ -1,5 +1,6 @@
 package dev.fruxz.ascend.tool.time.cooldown
 
+import dev.fruxz.ascend.tool.time.TimeState
 import dev.fruxz.ascend.tool.time.calendar.Calendar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -8,7 +9,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.time.Duration
 
-data class Cooldown(val duration: Duration, var running: Boolean = false, var onFinish: List<CooldownDestination>, var onHeartbeat: List<CooldownHeartbeat>, val heartBeatDuration: Duration, val beatOnRemainingTime: Boolean, val beatOnLaunch: Boolean) : PassiveCooldown(Calendar.INFINITE_FUTURE) {
+data class Cooldown(val duration: Duration, var running: Boolean = false, var onFinish: List<CooldownDestination>, var onHeartbeat: List<CooldownHeartbeat>, val heartBeatDuration: Duration, val beatOnRemainingTime: Boolean, val beatOnLaunch: Boolean) : PassiveCooldown(TimeState.INFINITE_FUTURE) {
 
 	companion object {
 

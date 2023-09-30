@@ -20,4 +20,22 @@ interface TimeState {
 	val isNow: Boolean
 		get() = !inFuture && !inPast
 
+	companion object {
+
+		@JvmStatic
+		val INFINITE_FUTURE = object : TimeState {
+			override val inFuture = true
+			override val infinite = true
+			override val inPast = false
+		}
+
+		@JvmStatic
+		val INFINITE_PAST = object : TimeState {
+			override val inFuture = false
+			override val infinite = true
+			override val inPast = false
+		}
+
+	}
+
 }

@@ -445,20 +445,6 @@ data class Calendar(
 		@JvmStatic
 		fun fromLegacy(calendar: JavaUtilCalendar) = now(instance = calendar)
 
-		@JvmStatic
-		val INFINITE_FUTURE = object : TimeState {
-			override val inFuture = true
-			override val infinite = true
-			override val inPast = false
-		}
-
-		@JvmStatic
-		val INFINITE_PAST = object : TimeState {
-			override val inFuture = false
-			override val infinite = true
-			override val inPast = false
-		}
-
 	}
 
 	enum class FormatStyle {
