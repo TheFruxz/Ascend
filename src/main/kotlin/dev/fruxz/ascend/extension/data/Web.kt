@@ -9,6 +9,7 @@ import java.nio.charset.Charset
  * @author Fruxz
  * @since 2023.1
  */
+@Throws(java.net.URISyntaxException::class, java.net.MalformedURLException::class)
 fun getWebText(url: String, charset: Charset = Charsets.UTF_8) = url(url).readText(charset)
 
 /**
@@ -18,4 +19,5 @@ fun getWebText(url: String, charset: Charset = Charsets.UTF_8) = url(url).readTe
  * @author Fruxz
  * @since 2023.1
  */
+@Throws(java.net.URISyntaxException::class, java.net.MalformedURLException::class)
 fun readWebBytes(url: String) = url(url).readBytes()
