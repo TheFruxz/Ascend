@@ -17,7 +17,6 @@ import org.jetbrains.annotations.NotNull
  * @author Fruxz
  * @since 2023.1
  */
-@Throws(Throwable::class)
 fun <T : Any> T?.trustOrThrow(throwable: Throwable): T = tryOrNull { this!! } ?: throw throwable
 
 /**
@@ -41,13 +40,8 @@ fun <T : Any> T?.trustOrThrow(throwable: Throwable): T = tryOrNull { this!! } ?:
  */
 @NotNull
 @Throws(NoSuchElementException::class)
-inline fun <reified T : Any> T?.trust() = trustOrThrow(
-	NoSuchElementException("""
-		
-		Trust not available: Element of type [${T::class.simpleName}] (@Nullable) was null, but it can't be null and trusted at the same time!
-		You don't know, that the above means? see Ascend:Nullability.kt:trust()
-	""".trimIndent())
-)
+inline fun <reified T : Any> T?.trust() =
+	trustOrThrow(NoSuchElementException("Element of type [${T::class.simpleName}] was null. A null element of this type cannot be trusted. Please refer to Ascend:Nullability.kt:trust() for more information."))
 
 /**
  * This function calls the [trust] function and can result
