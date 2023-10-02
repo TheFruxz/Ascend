@@ -9,6 +9,8 @@ import kotlinx.coroutines.*
  *
  * @receiver The [Job] instance to await for.
  * @throws CancellationException If the current coroutine was cancelled.
+ * @author Fruxz
+ * @since 2023.1
  */
 suspend fun Job.await() = this.join()
 
@@ -21,15 +23,10 @@ suspend fun Job.await() = this.join()
  * in the same order as the input list.
  *
  * @return A new list containing the results of all the jobs in the same order as the input list.
- *
  * @throws CancellationException If any of the jobs in the list is canceled.
- * @throws Exception If any of the jobs in the list throws an exception.
- * @throws IllegalStateException If called from a non-UI thread and the list contains a job
- * that is tied to the Android UI thread.
- *
  * @see Job.await
- *
- * @since 2023.1.0
+ * @author Fruxz
+ * @since 2023.1
  */
 suspend fun List<Job>.awaitAll() = this.map { it.await() }
 
@@ -38,8 +35,9 @@ suspend fun List<Job>.awaitAll() = this.map { it.await() }
  *
  * @param printOut Whether to print the progress of each job. If set to `true`, the method will print the current
  * state of each job as it completes. If set to `false`, no progress will be printed.
- *
  * @return A [Job] that represents the completion of all the jobs in the list.
+ * @author Fruxz
+ * @since 2023.1
  */
 suspend fun List<Job>.awaitAll(printOut: Boolean) = when (printOut) {
 	false -> this.awaitAll()
@@ -81,6 +79,8 @@ fun <I, O> Deferred<I>.letOnCompletion(process: (I) -> O) = deferred { deferred 
 /**
  * This function creates a new [CompletableDeferred] of the type [T], optionally it is the child of [job].
  * Then it applies the [builder] function on it, so that you can easily edit it.
+ * @author Fruxz
+ * @since 2023.1
  */
 fun <T> deferred(job: Job? = null, builder: (CompletableDeferred<T>) -> Unit = { }) = CompletableDeferred<T>(job).apply(builder)
 
@@ -90,6 +90,8 @@ fun <T> deferred(job: Job? = null, builder: (CompletableDeferred<T>) -> Unit = {
  *
  * @param T the type of the deferred tasks' results
  * @return a list, of the results, of the completed deferred tasks
+ * @author Fruxz
+ * @since 2023.1
  */
 @JvmName("awaitAllDeferred")
 suspend fun <T> List<Deferred<T>>.awaitAll() = this.map { it.await() }
