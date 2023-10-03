@@ -13,7 +13,8 @@ The design of these tools aims to be seamless, unobtrusive, and easily discovera
 
 ## Setting the Stage - The Ascend Installation Guide 🔧
 
-Depending on the nature of your project, you may incorporate Ascend via `Gradle Kotlin`, `Gradle`, or `Maven`. However, we highly recommend `Gradle Kotlin` for a streamlined experience.
+Depending on the nature of your project, you may incorporate Ascend via `Gradle`, or `Maven`. However, we highly recommend `Gradle` for a streamlined experience.
+(Gradle standard was Groovy, now is Kotlin)
 
 ### Integration via JitPack
 
