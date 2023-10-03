@@ -1,4 +1,4 @@
-package dev.fruxz.ascend.tool
+package dev.fruxz.ascend.json
 
 import dev.fruxz.ascend.extension.dump
 import dev.fruxz.ascend.extension.forceCast
@@ -13,7 +13,6 @@ import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.SerializersModuleBuilder
 import java.awt.Color
 import kotlin.reflect.KClass
-import dev.fruxz.ascend.json.globalJson
 
 /**
  * This object manages a json instance, which can be used for every purpose.
