@@ -1,6 +1,5 @@
 package dev.fruxz.ascend.extension.math
 
-import dev.fruxz.ascend.tool.math.decimal.Percentage
 import java.text.DecimalFormat
 
 /**
@@ -96,44 +95,6 @@ val Number.shorterFloat: Float
  * @since 2023.1
  */
 operator fun IntArray.plus(intArray: IntArray) = asIterable().toList().toTypedArray() + intArray.toList()
-
-/**
- * Creates a [Percentage] object with the this [Double]
- * as a decimal number.
- * @author Fruxz
- * @since 2023.1
- */
-@Deprecated(message = "Dedicated percentage class will be removed in the future")
-val Double.decimalAsPercent: Percentage
-	get() = Percentage(this)
-
-/**
- * Creates a [Percentage] object with the this [Float]
- * as a decimal number.
- * @author Fruxz
- * @since 2023.1
- */
-@Deprecated(message = "Dedicated percentage class will be removed in the future")
-val Float.decimalAsPercent: Percentage
-	get() = Percentage(this.toDouble())
-
-/**
- * This computational value represents the range from the [Int.MIN_VALUE] to [Int.MAX_VALUE]
- * as a [IntRange]
- * @author Fruxz
- * @since 2023.1
- */
-@Deprecated("Will be removed from global scope", ReplaceWith("Int.Companion.RANGE"), DeprecationLevel.ERROR)
-val INT_RANGE: IntRange by lazy { Int.Companion.RANGE }
-
-/**
- * This computational value represents the range from the [Long.MIN_VALUE] to [Long.MAX_VALUE]
- * as a [LongRange]
- * @author Fruxz
- * @since 2023.1
- */
-@Deprecated("Will be removed from global scope", ReplaceWith("Long.Companion.RANGE"), DeprecationLevel.ERROR)
-val LONG_RANGE: LongRange by lazy { Long.Companion.RANGE }
 
 /**
  * This computational value represents the range from the [Int.MIN_VALUE] to [Int.MAX_VALUE]
