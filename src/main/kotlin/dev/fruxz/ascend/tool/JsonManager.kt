@@ -14,6 +14,7 @@ import kotlinx.serialization.modules.SerializersModuleBuilder
 import java.awt.Color
 import kotlin.reflect.KClass
 import dev.fruxz.ascend.json.globalJson
+import dev.fruxz.ascend.json.toJsonString
 
 /**
  * This object manages a json instance, which can be used for every purpose.
@@ -96,21 +97,25 @@ object JsonManager {
      */
     var json: Json
         get() {
-            if (cachedJson == null
-                || moduleStateHash != moduleModifications.hashCode().toString(16)
-                || jsonStateHash != jsonModifications.hashCode().toString(16)
-                || contextualUpdate
+
+            when (
+                cachedJson != null &&
+                moduleStateHash == moduleModifications.hashCode().toString(16) &&
+                jsonStateHash == jsonModifications.hashCode().toString(16) &&
+                !contextualUpdate
             ) {
+                true -> return cachedJson!!
+                else -> {
 
-                pushUpdate()
+                    pushUpdate()
 
-                computeJson().let {
-                    cachedJson = it
-                    return it
+                    return computeJson().also {
+                        cachedJson = it
+                    }
+
                 }
+            }
 
-            } else
-                return cachedJson!!
         }
         set(value) { cachedJson = value }
 
