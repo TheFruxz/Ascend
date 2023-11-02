@@ -8,6 +8,7 @@ import dev.fruxz.ascend.extension.data.RandomTagType.MIXED_CASE
 import dev.fruxz.ascend.extension.data.RandomTagType.ONLY_UPPERCASE
 import dev.fruxz.ascend.extension.switch
 import dev.fruxz.ascend.tool.lang.Letter
+import org.jetbrains.annotations.Range
 import java.awt.Color
 import kotlin.random.Random
 import kotlin.random.nextInt
@@ -74,6 +75,9 @@ fun randomLong(progression: Iterable<Int>, random: Random = Random) = progressio
 fun randomColor(random: Random = Random, red: Iterable<Int> = 0..255, green: Iterable<Int> = 0..255, blue: Iterable<Int> = 0..255): Color =
 	Color(randomInt(red, random), randomInt(green, random), randomInt(blue, random))
 
+@JvmInline value class TagSize(val length: Int)
+@JvmInline value class TagPrefix(val prefix: CharSequence)
+
 /**
  * Generates a random tag string.
  *
@@ -85,8 +89,8 @@ fun randomColor(random: Random = Random, red: Iterable<Int> = 0..255, green: Ite
  * @return The generated random tag string.
  */
 fun generateRandomTag(
-	size: Int = 5,
-	prefix: CharSequence = "#",
+	size: TagSize = TagSize(5),
+	prefix: TagPrefix = TagPrefix("#"),
 	case: RandomTagType = ONLY_UPPERCASE,
 	randomizer: Random = Random(Random.nextLong())
 ): String {
@@ -97,11 +101,11 @@ fun generateRandomTag(
 	}
 
 	return buildString {
-		append(prefix)
+		append(prefix.prefix)
 		append(
 			(letters.toCharArray().toList() + (0..9))
 				.mapToString()
-				.repeatRandomElements(size, randomizer)
+				.repeatRandomElements(size.length, randomizer)
 		)
 	}
 }
