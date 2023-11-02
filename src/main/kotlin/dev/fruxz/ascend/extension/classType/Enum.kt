@@ -26,7 +26,7 @@ inline fun <reified T : Enum<T>> Enum<T>.next(overflow: Boolean = true): T =
  */
 inline fun <reified T : Enum<T>> Enum<T>.previous(overflow: Boolean = true): T =
 	@OptIn(ExperimentalStdlibApi::class) when {
-		overflow -> enumEntries<T>()[(ordinal - 1).let { if (it < 0) enumEntries<T>().lastIndex else it }]
+		overflow -> enumEntries<T>()[(ordinal - 1).takeIf { it < 0 } ?: enumEntries<T>().lastIndex]
 		else -> enumEntries<T>()[(ordinal - 1).limitTo(0..enumEntries<T>().lastIndex)]
 	}
 
