@@ -2,6 +2,11 @@ package dev.fruxz.ascend.tool.time.calendar
 
 import kotlinx.serialization.Serializable
 
+/**
+ * This data class defines a range between two different [Calendar]s, which are each marking a specific time(stamp).
+ * @author Fruxz
+ * @since 2023.1
+ */
 @Serializable
 data class CalendarRange(override val start: Calendar, override val endInclusive: Calendar) : Iterable<Calendar>, ClosedRange<Calendar>, Comparable<Calendar> {
 
