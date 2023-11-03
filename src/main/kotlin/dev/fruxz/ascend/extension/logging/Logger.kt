@@ -33,7 +33,7 @@ fun getLogger(name: String, resourceBundleName: String): JavaUtilLogger = JavaUt
  * @since 2023.1
  */
 fun getLogger(clazz: KClass<*>) =
-	getLogger(clazz.simpleName ?: "generic")
+	getLogger(clazz.simpleName ?: "anonymous")
 
 /**
  * Creates a logger from the [JavaUtilLogger] using the class of the given object.
