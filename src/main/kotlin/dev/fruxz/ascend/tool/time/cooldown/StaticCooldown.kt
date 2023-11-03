@@ -1,8 +1,10 @@
 package dev.fruxz.ascend.tool.time.cooldown
 
+import dev.fruxz.ascend.annotation.RefactoringCandidate
 import dev.fruxz.ascend.tool.time.calendar.Calendar
 import kotlin.time.Duration
 
+@RefactoringCandidate
 object StaticCooldown {
 
 	var cooldownStats: Map<Any, Calendar> = emptyMap()
