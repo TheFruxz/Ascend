@@ -1,7 +1,9 @@
 package dev.fruxz.ascend.tool.time
 
+import dev.fruxz.ascend.annotation.RefactoringCandidate
 import java.util.Calendar as JavaUtilCalendar
 
+@RefactoringCandidate
 interface TimeUnit {
 
     val javaField: Int
