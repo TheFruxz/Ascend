@@ -73,9 +73,7 @@ fun Path.createFileAndDirectories(ignoreIfExists: Boolean = true, directoryAttri
  * @author Fruxz
  * @since 2023.1
  */
-inline fun getHomePath(absolute: Boolean = true): Path = Paths.get("").let {
-    if (absolute) it.toAbsolutePath() else it
-}
+inline fun getHomePath(absolute: Boolean = true): Path = Paths.get("").modifiedIf(absolute) { it.toAbsolutePath() }
 
 /**
  * This computational value returns the result of invoking the [getHomePath],
