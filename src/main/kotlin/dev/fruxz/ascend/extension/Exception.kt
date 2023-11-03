@@ -12,9 +12,9 @@ import kotlin.random.Random
  * @author Fruxz
  * @since 2023.1
  */
-fun catchException(
-	exception: Exception,
-	catch: ExceptionCatch<Exception> = ExceptionCatch.ignore(),
+fun <T : Exception> catchException(
+	exception: T,
+	catch: ExceptionCatch<T> = ExceptionCatch.ignore(),
 	random: Random = Random,
 ) {
 
