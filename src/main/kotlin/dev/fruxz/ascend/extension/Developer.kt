@@ -35,7 +35,7 @@ fun <T> any(vararg objects: T, check: (T) -> Boolean) = objects.any(check)
  * @author Fruxz
  * @since 2023.1
  */
-fun <T> T.modifiedIf(modifyIf: Boolean, modification: T.() -> T) = if (!modifyIf) { this } else modification(this)
+fun <T> T.modifiedIf(modifyIf: Boolean, modification: (T) -> T) = if (!modifyIf) { this } else modification(this)
 
 /**
  * Applying the [modification] to [this] if [modifyIf] is true,
@@ -53,7 +53,7 @@ fun <T> T.modifyIf(modifyIf: Boolean, modification: T.() -> Unit) = if (!modifyI
  * @author Fruxz
  * @since 2023.1
  */
-fun <T> T.modifiedIfSuccess(modification: T.() -> T): T = tryOrNull { modification.invoke(this) } ?: this
+fun <T> T.modifiedIfSuccess(modification: (T) -> T): T = tryOrNull { modification.invoke(this) } ?: this
 
 /**
  * Returns true if this [Any]? is null, otherwise false.
