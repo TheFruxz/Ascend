@@ -31,7 +31,7 @@ inline fun <reified T : Enum<T>> Enum<T>.previous(overflow: Boolean = true): T =
 	}
 
 /**
- * Returns the next enum in the ordinal order, or null, if this is already the last enum.
+ * Returns the next enum in the ordinal order, or null if this is already the last enum.
  * @author Fruxz
  * @since 2023.1
  */
@@ -41,7 +41,7 @@ inline fun <reified T : Enum<T>> Enum<T>.nextOrNull(): T? = when (ordinal) {
 }
 
 /**
- * Returns the previous enum in the ordinal order, or null, if this is already the first enum.
+ * Returns the previous enum in the ordinal order, or null if this is already the first enum.
  * @author Fruxz
  * @since 2023.1
  */
