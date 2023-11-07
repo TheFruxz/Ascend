@@ -1,5 +1,6 @@
 package dev.fruxz.ascend.tool.smart.path
 
+import dev.fruxz.ascend.tool.smart.identity.RelatedIdentity
 import dev.fruxz.ascend.tool.smart.identity.RelatedUniq
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -17,7 +18,7 @@ data class Address<T> internal constructor(
     @SerialName("divider") val divider: String,
 ) : Addressable<T>, RelatedUniq<Address<T>, String> {
 
-    override val identity = addressString
+    override val identity = RelatedIdentity<Address<T>, String>(addressString)
 
     /**
      * Returns the [addressString]
