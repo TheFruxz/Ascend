@@ -1,7 +1,8 @@
 package dev.fruxz.ascend.tool.smart.identity
 
 /**
- * A value class to mark something an identity of something identifiable
+ * A value class to mark something an identity of something identifiable.
+ * The relation of the identifiable is represented with [O].
  * @author Fruxz
  * @since 2023.5
  */
