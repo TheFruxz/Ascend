@@ -9,6 +9,8 @@ package dev.fruxz.ascend.tool.smart.identity
  */
 interface RelatedUniq<O, T> : Uniq<T> {
 
+    override val identity: RelatedIdentity<O, T>
+
     companion object {
 
         /**
@@ -19,8 +21,11 @@ interface RelatedUniq<O, T> : Uniq<T> {
          * @param T the type of the object that is identifiable
          * @return the new [RelatedUniq]<[O], [T]> object
          */
-        fun <O, T> of(identity: T) = object : RelatedUniq<O, T> {
-            override val identity = identity
+        fun <O, T> of(
+            identity: T,
+            identityObject: RelatedIdentity<O, T> = RelatedIdentity(identity),
+        ) = object : RelatedUniq<O, T> {
+            override val identity = identityObject
         }
 
     }

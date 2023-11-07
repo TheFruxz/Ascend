@@ -7,7 +7,7 @@ package dev.fruxz.ascend.tool.smart.identity
  * @since 2023.5
  */
 @JvmInline
-value class RelatedIdentity<O, T>(val value: T) {
+value class RelatedIdentity<O, T>(override val value: T) : IdentitySchematic<T> {
 
     fun <E> ofType() = RelatedIdentity<E, T>(value = value)
 

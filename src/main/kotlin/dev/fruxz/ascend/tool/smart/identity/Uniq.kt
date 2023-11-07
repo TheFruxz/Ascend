@@ -12,7 +12,7 @@ interface Uniq<T> {
     /**
      * The object's identity, to identify this object.
      */
-    val identity: T
+    val identity: IdentitySchematic<T>
 
     fun matchesIdentity(other: Uniq<T>) = identity == other.identity
 
@@ -25,8 +25,11 @@ interface Uniq<T> {
          * @param T the type of the object that is identifiable
          * @return the new [Uniq]<[T]> object
          */
-        fun <T> of(identity: T) = object : Uniq<T> {
-            override val identity = identity
+        fun <T> of(
+            identity: T,
+            identityObject: IdentitySchematic<T> = Identity(identity),
+        ) = object : Uniq<T> {
+            override val identity = identityObject
         }
 
     }

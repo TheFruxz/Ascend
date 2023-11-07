@@ -6,7 +6,7 @@ package dev.fruxz.ascend.tool.smart.identity
  * @since 2023.5
  */
 @JvmInline
-value class Identity<T>(val value: T) {
+value class Identity<T>(override val value: T): IdentitySchematic<T> {
 
     companion object {
 
