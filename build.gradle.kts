@@ -9,7 +9,7 @@ plugins {
 
 val host = "github.com/TheFruxz/Ascend"
 
-version = "2023.5-RC2"
+version = "2023.5-RC3"
 group = "dev.fruxz"
 
 repositories {
