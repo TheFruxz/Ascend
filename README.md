@@ -9,7 +9,7 @@ This toolkit is an ensemble of various nifty features and tools I've found essen
 The design of these tools aims to be seamless, unobtrusive, and easily discoverable via code completions thanks to extensive use of extension functions.
 
 > "Ascend is reshaping the coding landscape with its powerful suite of tools and extensions. Effortless to incorporate, intuitive to use, and transformative in effect, Ascend is an indispensable companion for the modern developer. It's more than just a toolkit: it's the launchpad for turning your coding dreams into reality."
-> ~ JetBrains AI Assistant
+~ JetBrains AI Assistant
 
 ## 🔧 Setting the Stage - The Ascend Installation Guide
 
