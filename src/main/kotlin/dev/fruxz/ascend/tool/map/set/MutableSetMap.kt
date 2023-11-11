@@ -1,6 +1,5 @@
 package dev.fruxz.ascend.tool.map.set
 
-import dev.fruxz.ascend.annotation.ExperimentalAscendApi
 import dev.fruxz.ascend.tool.map.MutableCollectionMap
 
 /**
@@ -12,7 +11,6 @@ import dev.fruxz.ascend.tool.map.MutableCollectionMap
  * @author Fruxz
  * @since 2023.5
  */
-@ExperimentalAscendApi
 class MutableSetMap<K, V>(data: MutableMap<K, Set<V>> = mutableMapOf()) : MutableCollectionMap<K, V, Set<V>>(data) {
 
     override fun addEntry(key: K, vararg value: V) {

@@ -1,7 +1,5 @@
 package dev.fruxz.ascend.tool.map
 
-import dev.fruxz.ascend.annotation.ExperimentalAscendApi
-
 /**
  * This class represents a mutable map of collections of type [C].
  * @param K the type of keys maintained by this map
@@ -12,7 +10,6 @@ import dev.fruxz.ascend.annotation.ExperimentalAscendApi
  * @author Fruxz
  * @since 2023.5
  */
-@ExperimentalAscendApi
 abstract class MutableCollectionMap<K, V, C : Collection<V>> internal constructor(data: MutableMap<K, C>) : CollectionMap<K, V, C, MutableMap<K, C>>(data), MutableMap<K, C> {
 
     override val entries: MutableSet<MutableMap.MutableEntry<K, C>> by data::entries

@@ -1,7 +1,5 @@
 package dev.fruxz.ascend.tool.map
 
-import dev.fruxz.ascend.annotation.ExperimentalAscendApi
-
 /**
  * This class represents a map of collections of type [C].
  * @param K the type of keys maintained by this map
@@ -13,7 +11,6 @@ import dev.fruxz.ascend.annotation.ExperimentalAscendApi
  * @author Fruxz
  * @since 2023.5
  */
-@ExperimentalAscendApi
 abstract class CollectionMap<K, V, C : Collection<V>, M : Map<K, C>>(
     val data: M,
 ) : Map<K, C> {

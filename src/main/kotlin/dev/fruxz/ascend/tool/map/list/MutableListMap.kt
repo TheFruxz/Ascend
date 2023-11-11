@@ -1,6 +1,5 @@
 package dev.fruxz.ascend.tool.map.list
 
-import dev.fruxz.ascend.annotation.ExperimentalAscendApi
 import dev.fruxz.ascend.tool.map.MutableCollectionMap
 
 /**
@@ -12,7 +11,6 @@ import dev.fruxz.ascend.tool.map.MutableCollectionMap
  * @author Fruxz
  * @since 2023.5
  */
-@ExperimentalAscendApi
 class MutableListMap<K, V>(data: MutableMap<K, List<V>> = mutableMapOf()) : MutableCollectionMap<K, V, List<V>>(data) {
 
     override fun addEntry(key: K, vararg value: V) {
