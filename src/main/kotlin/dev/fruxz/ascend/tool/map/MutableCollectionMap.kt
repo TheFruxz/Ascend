@@ -2,6 +2,16 @@ package dev.fruxz.ascend.tool.map
 
 import dev.fruxz.ascend.annotation.ExperimentalAscendApi
 
+/**
+ * This class represents a mutable map of collections of type [C].
+ * @param K the type of keys maintained by this map
+ * @param V the type of values in the collection
+ * @param C the type of collection
+ * @property data the map of collections
+ * @see CollectionMap
+ * @author Fruxz
+ * @since 2023.5
+ */
 @ExperimentalAscendApi
 abstract class MutableCollectionMap<K, V, C : Collection<V>> internal constructor(data: MutableMap<K, C>) : CollectionMap<K, V, C, MutableMap<K, C>>(data), MutableMap<K, C> {
 

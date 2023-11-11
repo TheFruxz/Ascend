@@ -3,6 +3,15 @@ package dev.fruxz.ascend.tool.map.set
 import dev.fruxz.ascend.annotation.ExperimentalAscendApi
 import dev.fruxz.ascend.tool.map.MutableCollectionMap
 
+/**
+ * This class represents a map of [Set]s.
+ * @param K the type of keys maintained by this map
+ * @param V the type of values in the [Set]s
+ * @property data the map of [Set]s
+ * @see MutableCollectionMap
+ * @author Fruxz
+ * @since 2023.5
+ */
 @ExperimentalAscendApi
 class MutableSetMap<K, V>(data: MutableMap<K, Set<V>> = mutableMapOf()) : MutableCollectionMap<K, V, Set<V>>(data) {
 
