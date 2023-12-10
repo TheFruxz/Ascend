@@ -13,13 +13,7 @@ version = "2023.5.2"
 group = "dev.fruxz"
 
 repositories {
-
     mavenCentral()
-
-    maven("https://repo.fruxz.dev/") {
-        name = "fruxz.dev"
-    }
-
 }
 
 dependencies {
@@ -68,7 +62,7 @@ publishing {
     }
 
     publications.create("Ascend", MavenPublication::class) {
-        artifactId = "ascend"
+        artifactId = name.lowercase()
         version = version.lowercase()
 
         artifact(dokkaJavadocJar)
