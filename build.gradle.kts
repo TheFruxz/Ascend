@@ -52,6 +52,7 @@ val sourceJar by tasks.register<Jar>("sourceJar") {
 publishing {
 
     repositories {
+        mavenLocal()
         maven("https://repo.fruxz.dev/releases") {
             name = "fruxz.dev"
             credentials {
