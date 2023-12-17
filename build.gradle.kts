@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "2.0.0-Beta1"
-    kotlin("plugin.serialization") version "1.9.20"
+    kotlin("plugin.serialization") version "1.9.21"
     id("org.jetbrains.dokka") version "1.9.10"
     `maven-publish`
 }
@@ -23,12 +23,12 @@ dependencies {
     testImplementation(kotlin("test"))
     implementation(kotlin("reflect"))
 
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
 
-    implementation("org.jetbrains.exposed:exposed-core:0.44.1")
-    implementation("org.jetbrains.exposed:exposed-dao:0.44.1")
-    implementation("org.jetbrains.exposed:exposed-jdbc:0.44.1")
+    implementation("org.jetbrains.exposed:exposed-core:0.45.0")
+    implementation("org.jetbrains.exposed:exposed-dao:0.45.0")
+    implementation("org.jetbrains.exposed:exposed-jdbc:0.45.0")
 
 }
 
@@ -52,22 +52,17 @@ val sourceJar by tasks.register<Jar>("sourceJar") {
 publishing {
 
     repositories {
-
-        mavenLocal()
-
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.$host")
+        maven("https://repo.fruxz.dev/releases") {
+            name = "fruxz.dev"
             credentials {
-                username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_TOKEN")
+                username = project.findProperty("fruxz.dev.user") as? String? ?: System.getenv("FRUXZ_DEV_USER")
+                password = project.findProperty("fruxz.dev.secret") as? String? ?: System.getenv("FRUXZ_DEV_SECRET")
             }
         }
-
     }
 
     publications.create("Ascend", MavenPublication::class) {
-        artifactId = "ascend"
+        artifactId = name.lowercase()
         version = version.lowercase()
 
         artifact(dokkaJavadocJar)
@@ -99,6 +94,6 @@ kotlin {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    withJavadocJar()
+    withSourcesJar()
 }
