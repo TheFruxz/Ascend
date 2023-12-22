@@ -16,16 +16,16 @@ The design of these tools aims to be seamless, unobtrusive, and easily discovera
 Depending on the nature of your project, you may incorporate Ascend via `Gradle`, or `Maven`. However, we highly recommend `Gradle` for a streamlined experience.
 (Gradle standard was Groovy, now is Kotlin)
 
-### Integration via JitPack
+### Use in your Gradle Project
 
 #### Repository
 ```kotlin
-maven("https://jitpack.io")
+maven("https://repo.fruxz.dev/releases/")
 ```
 
 ##### Dependency
 ```kotlin
-implementation("com.github.TheFruxz:Ascend:$ascendVersion")
+implementation("dev.fruxz:ascend:$ascendVersion")
 ```
 
 # 💡 Collaboration - Together We Ascend!
