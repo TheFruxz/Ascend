@@ -90,7 +90,7 @@ fun randomColor(random: Random = Random, red: Iterable<Int> = 0..255, green: Ite
  */
 fun generateRandomTag(
 	size: TagSize = TagSize(5),
-	prefix: TagPrefix = TagPrefix("#"),
+	prefix: TagPrefix? = TagPrefix("#"),
 	case: RandomTagType = ONLY_UPPERCASE,
 	randomizer: Random = Random(Random.nextLong())
 ): String {
@@ -101,7 +101,7 @@ fun generateRandomTag(
 	}
 
 	return buildString {
-		append(prefix.prefix)
+		append(prefix?.prefix)
 		append(
 			(letters.toCharArray().toList() + (0..9))
 				.mapToString()
