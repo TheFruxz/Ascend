@@ -109,7 +109,7 @@ fun generateRandomTag(
  */
 fun randomTag(
 	size: Int = 5,
-	prefix: TagPrefix? = TagPrefix("#"),
+	prefix: CharSequence? = "#",
 	case: RandomTagType = ONLY_UPPERCASE,
 	randomizer: Random = Random(Random.nextLong())
 ): String {
@@ -120,7 +120,7 @@ fun randomTag(
 	}
 
 	return buildString {
-		append(prefix?.prefix)
+		append(prefix)
 		append(
 			(letters.toCharArray().toList() + (0..9))
 				.mapToString()
