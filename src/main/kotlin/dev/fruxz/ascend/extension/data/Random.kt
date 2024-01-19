@@ -7,9 +7,7 @@ import dev.fruxz.ascend.extension.container.repeatRandomElements
 import dev.fruxz.ascend.extension.data.RandomTagType.MIXED_CASE
 import dev.fruxz.ascend.extension.data.RandomTagType.ONLY_LOWERCASE
 import dev.fruxz.ascend.extension.data.RandomTagType.ONLY_UPPERCASE
-import dev.fruxz.ascend.extension.switch
 import dev.fruxz.ascend.tool.lang.Letter
-import org.jetbrains.annotations.Range
 import java.awt.Color
 import kotlin.random.Random
 import kotlin.random.nextInt
@@ -144,7 +142,7 @@ enum class RandomTagType {
  * @param random the random number generator to use (defaults to a new instance of Random)
  * @return a Set of random Long values
  */
-fun generateSeedSet(amount: Int, random: Random = Random): Set<Long> = buildSet {
+fun randomSeedSet(amount: Int, random: Random = Random): Set<Long> = buildSet {
 	repeat(amount) {
 		add(random.nextLong())
 	}
