@@ -1,6 +1,5 @@
 package dev.fruxz.ascend.tool.exception
 
-import dev.fruxz.ascend.extension.data.generateRandomTag
 import java.util.logging.Logger
 
 /**
