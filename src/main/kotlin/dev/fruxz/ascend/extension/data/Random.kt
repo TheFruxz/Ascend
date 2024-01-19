@@ -5,6 +5,7 @@ import dev.fruxz.ascend.extension.container.mixedCase
 import dev.fruxz.ascend.extension.container.random
 import dev.fruxz.ascend.extension.container.repeatRandomElements
 import dev.fruxz.ascend.extension.data.RandomTagType.MIXED_CASE
+import dev.fruxz.ascend.extension.data.RandomTagType.ONLY_LOWERCASE
 import dev.fruxz.ascend.extension.data.RandomTagType.ONLY_UPPERCASE
 import dev.fruxz.ascend.extension.switch
 import dev.fruxz.ascend.tool.lang.Letter
@@ -116,8 +117,8 @@ fun randomTag(
 ): String {
 	val letters = when (case) {
 		ONLY_UPPERCASE -> Letter.joinToString().uppercase()
+		ONLY_LOWERCASE -> Letter.joinToString().lowercase()
 		MIXED_CASE -> Letter.joinToString().mixedCase()
-		else -> Letter.joinToString().lowercase()
 	}
 
 	return buildString {
