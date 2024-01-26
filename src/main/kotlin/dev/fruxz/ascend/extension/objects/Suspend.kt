@@ -1,7 +1,8 @@
 package dev.fruxz.ascend.extension.objects
 
 /**
- * Using .apply { suspendedProcess.invoke() } is possible, but .apply(suspendedProcess) is not possible, this adds this functionality.
+ * Using .apply { suspendedProcess.invoke() } is possible, but .apply(suspendedProcess) is not possible,
+ * this adds this functionality using a suspend function.
  * @author Fruxz
  * @since 2023.2
  */
