@@ -10,7 +10,7 @@ import dev.fruxz.ascend.extension.tryOrNull
  * @author Fruxz
  * @since 2023.1
  */
-fun <T> List<T>.subList(values: IntRange) = subList(values.first, values.last)
+infix fun <T> List<T>.subList(values: IntRange) = subList(values.first, values.last)
 
 /**
  * Creates a sublist of [this] List<[T]> using the [subList] function
@@ -23,7 +23,7 @@ fun <T> List<T>.subList(values: IntRange) = subList(values.first, values.last)
  * @author Fruxz
  * @since 2023.2
  */
-fun <T> List<T>.subListOrEmpty(values: IntRange) = tryOrNull {
+infix fun <T> List<T>.subListOrEmpty(values: IntRange) = tryOrNull {
     when {
         values.first > values.last -> emptyList()
         else -> subList(values.first, values.last)
