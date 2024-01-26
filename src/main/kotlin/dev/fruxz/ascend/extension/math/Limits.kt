@@ -1,5 +1,7 @@
 package dev.fruxz.ascend.extension.math
 
+import kotlin.time.measureTime
+
 /**
  * Limits [this] to the given [range]. If you want it to something like a [IntProgression],
  * use the [limitToIterable] function instead!
@@ -10,7 +12,13 @@ package dev.fruxz.ascend.extension.math
  * @author Fruxz
  * @since 2023.1
  */
-infix fun <C : Comparable<C>> C.limitTo(range: ClosedRange<C>) = this.minTo(range.start).maxTo(range.endInclusive)
+infix fun <C : Comparable<C>> C.limitTo(range: ClosedRange<C>): C {
+    return when {
+        this < range.start -> range.start
+        this > range.endInclusive -> range.endInclusive
+        else -> this
+    }
+}
 
 /**
  * Limits [this] to the given [range]. If you want it to something like a [ClosedRange],
@@ -22,7 +30,13 @@ infix fun <C : Comparable<C>> C.limitTo(range: ClosedRange<C>) = this.minTo(rang
  * @author Fruxz
  * @since 2023.1
  */
-infix fun <C : Iterable<T>, T : Comparable<T>> T.limitToIterable(range: C) = this.minTo(range.min()).maxTo(range.max())
+infix fun <C : Iterable<T>, T : Comparable<T>> T.limitToIterable(range: C): T {
+    return when {
+        this < range.min() -> range.min()
+        this > range.max() -> range.max()
+        else -> this
+    }
+}
 
 /**
  * Limits [this] to the minimum of [minimum].
