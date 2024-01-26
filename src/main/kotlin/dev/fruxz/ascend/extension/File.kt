@@ -73,15 +73,15 @@ fun Path.createFileAndDirectories(ignoreIfExists: Boolean = true, directoryAttri
  * @author Fruxz
  * @since 2023.1
  */
-inline fun getHomePath(absolute: Boolean = true): Path = Paths.get("").modifiedIf(absolute) { it.toAbsolutePath() }
+inline fun getBasePath(absolute: Boolean = true): Path = Path("").modifiedIf(absolute) { it.toAbsolutePath() }
 
 /**
- * This computational value returns the result of invoking the [getHomePath],
+ * This computational value returns the result of invoking the [getBasePath],
  * with the parameter `absolute` set to true.
  * @author Fruxz
  * @since 2023.1
  */
-val absoluteHomePath = getHomePath(true)
+val absoluteBasePath = getBasePath(true)
 
 /**
  * This function tries to return the result of executing the [readText],

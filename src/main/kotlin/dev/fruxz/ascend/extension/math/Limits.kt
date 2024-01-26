@@ -1,7 +1,5 @@
 package dev.fruxz.ascend.extension.math
 
-import kotlin.time.measureTime
-
 /**
  * Limits [this] to the given [range]. If you want it to something like a [IntProgression],
  * use the [limitToIterable] function instead!
