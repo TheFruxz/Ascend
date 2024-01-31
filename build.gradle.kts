@@ -28,7 +28,7 @@ dependencies {
 
     implementation("org.jetbrains.exposed:exposed-core:0.46.0")
     implementation("org.jetbrains.exposed:exposed-dao:0.46.0")
-    implementation("org.jetbrains.exposed:exposed-jdbc:0.46.0")
+    implementation("org.jetbrains.exposed:exposed-jdbc:0.47.0")
 
 }
 
