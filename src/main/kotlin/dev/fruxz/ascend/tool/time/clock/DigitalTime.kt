@@ -12,6 +12,7 @@ import java.time.Duration as JavaTimeDuration
  * @since 2023.1
  * @author Fruxz
  */
+@Deprecated(message = "Use TimeDisplay instead")
 data class DigitalTime(
 	var ticks: Double
 ) {
