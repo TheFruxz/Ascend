@@ -67,7 +67,7 @@ fun <T> T.modifiedIfSuccess(modification: (T) -> T): T = tryOrNull { modificatio
  * @since 2023.1
  */
 @LanguageFeature
-val Any?.isNull: Boolean
+val Any?.isNull: Boolean // TODO: use kotlin contracts
 	get() = this == null
 
 /**
@@ -76,7 +76,7 @@ val Any?.isNull: Boolean
  * @since 2023.1
  */
 @LanguageFeature
-val Any?.isNotNull: Boolean
+val Any?.isNotNull: Boolean // TODO: use kotlin contracts
 	get() = !isNull
 
 /**
