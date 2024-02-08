@@ -20,7 +20,7 @@ data class TimeDisplay(
             .associateWith { it.durationAccessor.invoke(duration) }
             .toList()
             .reversed()
-            .spatialMap { previous, current, next ->
+            .spatialMap { previous, current, _ ->
                 if (previous == null) return@spatialMap current
                 if (previous.second <= 0) return@spatialMap current
 
