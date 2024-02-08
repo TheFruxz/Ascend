@@ -74,7 +74,7 @@ fun randomLong(progression: Iterable<Int>, random: Random = Random) = progressio
 fun randomColor(random: Random = Random, red: Iterable<Int> = 0..255, green: Iterable<Int> = 0..255, blue: Iterable<Int> = 0..255): Color =
 	Color(randomInt(red, random), randomInt(green, random), randomInt(blue, random))
 
-@Deprecated("Use randomTAg instead")
+@Deprecated("Use randomTag instead")
 @JvmInline value class TagSize(val length: Int)
 @Deprecated("Use randomTag instead")
 @JvmInline value class TagPrefix(val prefix: CharSequence)
