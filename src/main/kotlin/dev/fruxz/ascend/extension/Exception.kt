@@ -1,8 +1,6 @@
 package dev.fruxz.ascend.extension
 
 import dev.fruxz.ascend.extension.container.emptyString
-import dev.fruxz.ascend.extension.data.generateRandomTag
-import dev.fruxz.ascend.extension.data.randomInt
 import dev.fruxz.ascend.extension.data.randomTag
 import dev.fruxz.ascend.tool.exception.ExceptionCatch
 import kotlin.random.Random
