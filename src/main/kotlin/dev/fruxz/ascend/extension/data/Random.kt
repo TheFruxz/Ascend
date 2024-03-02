@@ -74,29 +74,6 @@ fun randomLong(progression: Iterable<Int>, random: Random = Random) = progressio
 fun randomColor(random: Random = Random, red: Iterable<Int> = 0..255, green: Iterable<Int> = 0..255, blue: Iterable<Int> = 0..255): Color =
 	Color(randomInt(red, random), randomInt(green, random), randomInt(blue, random))
 
-@Deprecated("Use randomTag instead")
-@JvmInline value class TagSize(val length: Int)
-@Deprecated("Use randomTag instead")
-@JvmInline value class TagPrefix(val prefix: CharSequence)
-
-/**
- * Generates a random tag string.
- *
- * @param size The length of the tag string. Default is 5.
- * @param prefix The prefix to be added to the tag. Default is "#".
- * @param case The case of the tag letters. Default is ONLY_UPPERCASE.
- * @param randomizer The random generator to be used for generating the tag. Default is a new Random instance.
- *
- * @return The generated random tag string.
- */
-@Deprecated("Use generateRandomTag instead", ReplaceWith("generateRandomTag(size, prefix, case, randomizer)"))
-fun generateRandomTag(
-	size: TagSize = TagSize(5),
-	prefix: TagPrefix? = TagPrefix("#"),
-	case: RandomTagType = ONLY_UPPERCASE,
-	randomizer: Random = Random(Random.nextLong())
-) = randomTag(size.length, prefix?.prefix, case, randomizer)
-
 /**
  * Generates a random tag string.
  *
