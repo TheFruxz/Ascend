@@ -8,9 +8,5 @@ updates:
   - package-ecosystem: "gradle"
     target-branch: "develop"
     directory: "/"
-    labels:
-      - "Type: dependencies"
-      - "From: bot"
-      - "State: verified"
     schedule:
       interval: "daily"
