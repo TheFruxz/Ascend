@@ -13,6 +13,9 @@ import kotlin.io.path.*
 
 /**
  * This function returns the path to a project resource as a [Path].
+ * ***NOTICE: This uses the resource as a file,
+ * this may not work while in an environment, which does not support jar: protocol.
+ * Instead, consider [getResourceAsStream]***
  * @param resource the path of the resource located inside the resources folder
  * @return the path to the resource
  * @throws NoSuchElementException if the resource cannot be found
@@ -24,6 +27,9 @@ inline fun getResource(resource: String): Path = getResourceOrNull(resource) ?: 
 
 /**
  * This function returns the path to a project resource as a [Path].
+ * ***NOTICE: This uses the resource as a file,
+ * this may not work while in an environment, which does not support jar: protocol.
+ * Instead, consider [getResourceAsStreamOrNull]***
  * @param resource the path of the resource located inside the resources folder
  * @return the path to the resource or null if not found
  * @author Fruxz
