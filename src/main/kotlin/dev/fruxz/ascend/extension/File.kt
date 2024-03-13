@@ -63,7 +63,7 @@ inline fun getResourceAsStreamOrNull(resource: String): InputStream? = getClassL
  * @author Fruxz
  * @since 2024.1.2
  */
-inline fun getClassLoader() = object {}.javaClass.classLoader
+inline fun getClassLoader(): ClassLoader = object {}.javaClass.classLoader
 
 /**
  * Converts the string [this] into a full [File] using [this] as a [Path],
