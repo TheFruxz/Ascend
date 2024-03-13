@@ -3,6 +3,7 @@
 package dev.fruxz.ascend.extension
 
 import java.io.File
+import java.io.InputStream
 import java.nio.charset.Charset
 import java.nio.file.Files.createFile
 import java.nio.file.Path
@@ -28,7 +29,35 @@ inline fun getResource(resource: String): Path = getResourceOrNull(resource) ?: 
  * @author Fruxz
  * @since 2023.1
  */
-inline fun getResourceOrNull(resource: String): Path? = object {}.javaClass.classLoader.getResource(resource)?.toURI()?.let(Paths::get)
+inline fun getResourceOrNull(resource: String): Path? = getClassLoader().getResource(resource)?.toURI()?.let(Paths::get)
+
+/**
+ * This function returns the input stream of a project resource.
+ * @param resource the path of the resource located inside the resources folder
+ * @return the input stream of the resource
+ * @throws NoSuchElementException if the resource cannot be found
+ * @see getResourceAsStreamOrNull
+ * @author Fruxz
+ * @since 2024.1.2
+ */
+inline fun getResourceAsStream(resource: String): InputStream = getResourceAsStreamOrNull(resource) ?: throw NoSuchElementException("Resource $resource not found")
+
+/**
+ * This function returns the input stream of a project resource.
+ * @param resource the path of the resource located inside the resources folder
+ * @return the input stream of the resource or null if not found
+ * @author Fruxz
+ * @since 2024.1.2
+ */
+inline fun getResourceAsStreamOrNull(resource: String): InputStream? = getClassLoader()?.getResourceAsStream(resource)
+
+/**
+ * This function returns the class loader of the current class.
+ * @return the class loader of the current class
+ * @author Fruxz
+ * @since 2024.1.2
+ */
+inline fun getClassLoader() = object {}.javaClass.classLoader
 
 /**
  * Converts the string [this] into a full [File] using [this] as a [Path],
