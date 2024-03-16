@@ -10,6 +10,7 @@ import java.nio.file.Path
 import java.nio.file.Paths
 import java.nio.file.attribute.FileAttribute
 import kotlin.io.path.*
+import java.nio.file.FileSystemNotFoundException
 
 /**
  * This function returns the path to a project resource as a [Path].
@@ -19,6 +20,7 @@ import kotlin.io.path.*
  * @param resource the path of the resource located inside the resources folder
  * @return the path to the resource
  * @throws NoSuchElementException if the resource cannot be found
+ * @throws FileSystemNotFoundException if the resource cannot be read
  * @author Fruxz
  * @since 2023.1
  */
@@ -32,6 +34,7 @@ inline fun getResource(resource: String): Path = getResourceOrNull(resource) ?: 
  * Instead, consider [getResourceAsStreamOrNull]***
  * @param resource the path of the resource located inside the resources folder
  * @return the path to the resource or null if not found
+ * @throws FileSystemNotFoundException if the resource cannot be read
  * @author Fruxz
  * @since 2023.1
  */
