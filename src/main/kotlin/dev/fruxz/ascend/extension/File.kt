@@ -55,7 +55,7 @@ inline fun getResourceAsStream(resource: String): InputStream = getResourceAsStr
  * @author Fruxz
  * @since 2024.1.2
  */
-inline fun getResourceAsStreamOrNull(resource: String): InputStream? = getClassLoader()?.getResourceAsStream(resource)
+inline fun getResourceAsStreamOrNull(resource: String): InputStream? = getClassLoader().getResourceAsStream(resource)
 
 /**
  * This function returns the class loader of the current class.
