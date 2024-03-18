@@ -74,9 +74,10 @@ object Zip {
      * @param override if the target directory should be overridden if it already exists
      * @return the target directory path
      * @throws IllegalArgumentException if the target directory already exists and [override] is false
+     * @throws SecurityException if the zip file contains entries, leading outside the target directory
      * @throws Exception if something goes wrong while unpacking the zip file
      */
-    @Throws(IllegalArgumentException::class)
+    @Throws(IllegalArgumentException::class, SecurityException::class)
     fun unpack(zip: Path, target: Path = zip.parent / zip.nameWithoutExtension, override: Boolean = false): Path {
         if (target.exists()) {
             if (!override) throw IllegalArgumentException("Target directory already exists!")
@@ -85,7 +86,10 @@ object Zip {
 
         ZipFile(zip.toFile()).use { zipFile ->
             zipFile.entries().asSequence().forEach { entry ->
-                val targetFile = target.resolve(entry.name)
+                val targetFile = target.resolve(entry.name).normalize()
+
+                if (!targetFile.startsWith(targetFile)) throw SecurityException("Entry is outside of the target directory! (java/zipslip)")
+
                 if (entry.isDirectory) {
                     Files.createDirectories(targetFile)
                 } else {
