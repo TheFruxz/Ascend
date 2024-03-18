@@ -5,6 +5,7 @@ import java.io.FileInputStream
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.StandardCopyOption
+import java.nio.file.StandardOpenOption
 import java.util.zip.ZipEntry
 import java.util.zip.ZipFile
 import java.util.zip.ZipOutputStream
@@ -90,12 +91,15 @@ object Zip {
 
                 if (!targetFile.startsWith(targetFile)) throw SecurityException("Entry is outside of the target directory! (java/zipslip)")
 
+                targetFile.createParentDirectories()
                 if (entry.isDirectory) {
-                    Files.createDirectories(targetFile)
-                } else {
-                    Files.createDirectories(targetFile.parent)
-                    Files.copy(zipFile.getInputStream(entry), targetFile, StandardCopyOption.REPLACE_EXISTING)
+                    target.createDirectory()
+                    return@forEach
                 }
+
+                zipFile
+                    .getInputStream(entry)
+                    .copyTo(targetFile.outputStream(StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING))
             }
         }
 
