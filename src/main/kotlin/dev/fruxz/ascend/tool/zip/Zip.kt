@@ -2,9 +2,7 @@ package dev.fruxz.ascend.tool.zip
 
 import java.io.File
 import java.io.FileInputStream
-import java.nio.file.Files
 import java.nio.file.Path
-import java.nio.file.StandardCopyOption
 import java.nio.file.StandardOpenOption
 import java.util.zip.ZipEntry
 import java.util.zip.ZipFile
