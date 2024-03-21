@@ -34,7 +34,3 @@ Contribution to Ascend is deeply appreciated. When submitting pull requests, abi
 
 ###### We build & use Ascend on Java 17 - [Eclipse Temurin](https://adoptium.net/).
 ###### Also build & run Ascend with [Eclipse Temurin](https://adoptium.net/) to get the best possible development experience!
-
-[![Open Source](https://raw.githubusercontent.com/BraveUX/for-the-badge/master/src/images/badges/open-source.svg)](https://github.com/TheFruxz/Sparkle/blob/main/LICENSE)
-[![Built by developers](https://raw.githubusercontent.com/BraveUX/for-the-badge/master/src/images/badges/built-by-developers.svg)](https://github.com/TheFruxz/Sparkle/graphs/contributors)
-[![Written in Kotlin](https://raw.githubusercontent.com/BraveUX/for-the-badge/master/src/images/badges/makes-people-smile.svg)](https://github.com/JetBrains/kotlin)
