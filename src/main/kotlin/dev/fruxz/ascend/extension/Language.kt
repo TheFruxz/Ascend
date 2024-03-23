@@ -12,4 +12,4 @@ import dev.fruxz.ascend.annotation.LanguageFeature
  * @since 2023.1
  */
 @LanguageFeature
-fun <T, I, O> T.alsoWith(it: I, block: I.(T) -> O): O = it.block(this)
+fun <T, I, O> T.alsoWith(it: I, block: I.(T) -> O): O = block(it, this)
