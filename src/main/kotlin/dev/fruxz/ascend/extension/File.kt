@@ -24,7 +24,7 @@ import java.nio.file.FileSystemNotFoundException
  * @author Fruxz
  * @since 2023.1
  */
-@Throws(NoSuchElementException::class)
+@Throws(NoSuchElementException::class, FileSystemNotFoundException::class)
 inline fun getResource(resource: String): Path = getResourceOrNull(resource) ?: throw NoSuchElementException("Resource $resource not found")
 
 /**
@@ -38,7 +38,7 @@ inline fun getResource(resource: String): Path = getResourceOrNull(resource) ?: 
  * @author Fruxz
  * @since 2023.1
  */
-inline fun getResourceOrNull(resource: String): Path? = getClassLoader().getResource(resource)?.toURI()?.let(Paths::get)
+inline fun getResourceOrNull(resource: String): Path? = tryOrNull { getClassLoader().getResource(resource) }?.toURI()?.let(Paths::get)
 
 /**
  * This function returns the input stream of a project resource.
