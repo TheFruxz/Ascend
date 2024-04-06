@@ -1,5 +1,7 @@
 package dev.fruxz.ascend.extension.security
 
+import dev.fruxz.ascend.annotation.WeakCryptographicAlgorithm
+
 /**
  * Computes the MD5 hash value of the given string.
  *

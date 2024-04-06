@@ -1,5 +1,6 @@
 package dev.fruxz.ascend.extension.security
 
+import dev.fruxz.ascend.annotation.WeakCryptographicAlgorithm
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 

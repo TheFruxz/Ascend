@@ -1,4 +1,4 @@
-package dev.fruxz.ascend.extension.security
+package dev.fruxz.ascend.annotation
 
 @RequiresOptIn(
     level = RequiresOptIn.Level.WARNING,
