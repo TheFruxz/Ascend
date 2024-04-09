@@ -1,13 +1,12 @@
 package dev.fruxz.ascend.extension.display
 
-import dev.fruxz.ascend.tool.time.clock.DigitalTime
-import dev.fruxz.ascend.tool.time.clock.DigitalTime.Format.SECONDS
+import dev.fruxz.ascend.tool.time.clock.TimeDisplay
 import kotlin.time.Duration
 
 /**
- * This function creates a [DigitalTime] from a [Duration] using its [Duration.inWholeSeconds] value.
- * @return [DigitalTime]
+ * This function creates a [TimeDisplay] from this [Duration].
+ * @return [TimeDisplay]
  * @author Fruxz
  * @since 2023.1
  */
-fun Duration.display() = DigitalTime(SECONDS, this.inWholeSeconds.toDouble())
+fun Duration.display() = TimeDisplay(this)

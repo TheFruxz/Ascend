@@ -16,16 +16,16 @@ The design of these tools aims to be seamless, unobtrusive, and easily discovera
 Depending on the nature of your project, you may incorporate Ascend via `Gradle`, or `Maven`. However, we highly recommend `Gradle` for a streamlined experience.
 (Gradle standard was Groovy, now is Kotlin)
 
-### Integration via JitPack
+### Use in your Gradle Project
 
 #### Repository
 ```kotlin
-maven("https://jitpack.io")
+maven("https://repo.fruxz.dev/releases/")
 ```
 
 ##### Dependency
 ```kotlin
-implementation("com.github.TheFruxz:Ascend:$ascendVersion")
+implementation("dev.fruxz:ascend:$ascendVersion")
 ```
 
 # 💡 Collaboration - Together We Ascend!
@@ -34,7 +34,3 @@ Contribution to Ascend is deeply appreciated. When submitting pull requests, abi
 
 ###### We build & use Ascend on Java 17 - [Eclipse Temurin](https://adoptium.net/).
 ###### Also build & run Ascend with [Eclipse Temurin](https://adoptium.net/) to get the best possible development experience!
-
-[![Open Source](https://raw.githubusercontent.com/BraveUX/for-the-badge/master/src/images/badges/open-source.svg)](https://github.com/TheFruxz/Sparkle/blob/main/LICENSE)
-[![Built by developers](https://raw.githubusercontent.com/BraveUX/for-the-badge/master/src/images/badges/built-by-developers.svg)](https://github.com/TheFruxz/Sparkle/graphs/contributors)
-[![Written in Kotlin](https://raw.githubusercontent.com/BraveUX/for-the-badge/master/src/images/badges/makes-people-smile.svg)](https://github.com/JetBrains/kotlin)

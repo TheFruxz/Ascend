@@ -1,8 +1,7 @@
 package dev.fruxz.ascend.extension
 
 import dev.fruxz.ascend.extension.container.emptyString
-import dev.fruxz.ascend.extension.data.generateRandomTag
-import dev.fruxz.ascend.extension.data.randomInt
+import dev.fruxz.ascend.extension.data.randomTag
 import dev.fruxz.ascend.tool.exception.ExceptionCatch
 import kotlin.random.Random
 
@@ -18,7 +17,7 @@ fun <T : Exception> catchException(
 	random: Random = Random,
 ) {
 
-	val tag = generateRandomTag(randomizer = random)
+	val tag = randomTag(randomizer = random)
 	val exceptionShort = exception.stackTrace.firstOrNull()?.className ?: "Unknown exception!"
 
 	catch(exception, tag)

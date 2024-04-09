@@ -14,7 +14,6 @@ import kotlinx.serialization.modules.SerializersModuleBuilder
 import java.awt.Color
 import kotlin.reflect.KClass
 import dev.fruxz.ascend.json.globalJson
-import dev.fruxz.ascend.json.toJsonString
 
 /**
  * This object manages a json instance, which can be used for every purpose.

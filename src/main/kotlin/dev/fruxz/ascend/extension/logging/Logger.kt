@@ -1,6 +1,8 @@
 package dev.fruxz.ascend.extension.logging
 
+import org.slf4j.LoggerFactory
 import kotlin.reflect.KClass
+import org.slf4j.Logger as Slf4jLogger
 import java.util.logging.Logger as JavaUtilLogger
 
 /**
@@ -43,3 +45,26 @@ fun getLogger(clazz: KClass<*>) =
  * @since 2023.1
  */
 fun <T : Any> T.getItsLogger() = getLogger(this::class)
+
+/**
+ * Creates a logger from the [clazz] using the [LoggerFactory].
+ * @param clazz the class
+ * @return the logger
+ * @see LoggerFactory.getLogger
+ * @see Slf4jLogger
+ * @author Fruxz
+ * @since 2023.5.3
+ */
+fun <T : Any> getFactoryLogger(clazz: KClass<T>): Slf4jLogger =
+	LoggerFactory.getLogger(clazz.java)
+
+/**
+ * Creates a logger from the class of [this] using the [LoggerFactory].
+ * @return the logger
+ * @see LoggerFactory.getLogger
+ * @see Slf4jLogger
+ * @author Fruxz
+ * @since 2023.5.3
+ */
+fun <T : Any> T.getThisFactoryLogger(): Slf4jLogger =
+	getFactoryLogger(this::class)

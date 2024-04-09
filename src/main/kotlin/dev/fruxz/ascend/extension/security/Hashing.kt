@@ -1,11 +1,14 @@
 package dev.fruxz.ascend.extension.security
 
+import dev.fruxz.ascend.annotation.WeakCryptographicAlgorithm
+
 /**
  * Computes the MD5 hash value of the given string.
  *
  * @param input The input string for which the MD5 hash value is to be calculated.
  * @return The MD5 hash value of the input string as a hexadecimal string.
  */
+@WeakCryptographicAlgorithm("MD5 is a weak cryptographic algorithm and should not be used.")
 fun md5(input: String) = HashUtils.md5(input)
 
 /**

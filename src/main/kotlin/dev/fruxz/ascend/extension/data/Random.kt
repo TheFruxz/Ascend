@@ -5,10 +5,9 @@ import dev.fruxz.ascend.extension.container.mixedCase
 import dev.fruxz.ascend.extension.container.random
 import dev.fruxz.ascend.extension.container.repeatRandomElements
 import dev.fruxz.ascend.extension.data.RandomTagType.MIXED_CASE
+import dev.fruxz.ascend.extension.data.RandomTagType.ONLY_LOWERCASE
 import dev.fruxz.ascend.extension.data.RandomTagType.ONLY_UPPERCASE
-import dev.fruxz.ascend.extension.switch
 import dev.fruxz.ascend.tool.lang.Letter
-import org.jetbrains.annotations.Range
 import java.awt.Color
 import kotlin.random.Random
 import kotlin.random.nextInt
@@ -75,9 +74,6 @@ fun randomLong(progression: Iterable<Int>, random: Random = Random) = progressio
 fun randomColor(random: Random = Random, red: Iterable<Int> = 0..255, green: Iterable<Int> = 0..255, blue: Iterable<Int> = 0..255): Color =
 	Color(randomInt(red, random), randomInt(green, random), randomInt(blue, random))
 
-@JvmInline value class TagSize(val length: Int)
-@JvmInline value class TagPrefix(val prefix: CharSequence)
-
 /**
  * Generates a random tag string.
  *
@@ -88,24 +84,24 @@ fun randomColor(random: Random = Random, red: Iterable<Int> = 0..255, green: Ite
  *
  * @return The generated random tag string.
  */
-fun generateRandomTag(
-	size: TagSize = TagSize(5),
-	prefix: TagPrefix = TagPrefix("#"),
+fun randomTag(
+	size: Int = 5,
+	prefix: CharSequence? = "#",
 	case: RandomTagType = ONLY_UPPERCASE,
 	randomizer: Random = Random(Random.nextLong())
 ): String {
 	val letters = when (case) {
 		ONLY_UPPERCASE -> Letter.joinToString().uppercase()
+		ONLY_LOWERCASE -> Letter.joinToString().lowercase()
 		MIXED_CASE -> Letter.joinToString().mixedCase()
-		else -> Letter.joinToString().lowercase()
 	}
 
 	return buildString {
-		append(prefix.prefix)
+		append(prefix)
 		append(
 			(letters.toCharArray().toList() + (0..9))
 				.mapToString()
-				.repeatRandomElements(size.length, randomizer)
+				.repeatRandomElements(size, randomizer)
 		)
 	}
 }
@@ -123,7 +119,7 @@ enum class RandomTagType {
  * @param random the random number generator to use (defaults to a new instance of Random)
  * @return a Set of random Long values
  */
-fun generateSeedSet(amount: Int, random: Random = Random): Set<Long> = buildSet {
+fun randomSeedSet(amount: Int, random: Random = Random): Set<Long> = buildSet {
 	repeat(amount) {
 		add(random.nextLong())
 	}

@@ -2,14 +2,14 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "2.0.0-RC1"
-    kotlin("plugin.serialization") version "1.9.21"
-    id("org.jetbrains.dokka") version "1.9.10"
+    kotlin("plugin.serialization") version "1.9.23"
+    id("org.jetbrains.dokka") version "1.9.20"
     `maven-publish`
 }
 
 val host = "github.com/TheFruxz/Ascend"
 
-version = "2023.5-K2"
+version = "2024.2"
 group = "dev.fruxz"
 
 repositories {
@@ -23,12 +23,14 @@ dependencies {
     testImplementation(kotlin("test"))
     implementation(kotlin("reflect"))
 
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
 
-    implementation("org.jetbrains.exposed:exposed-core:0.45.0")
-    implementation("org.jetbrains.exposed:exposed-dao:0.45.0")
-    implementation("org.jetbrains.exposed:exposed-jdbc:0.45.0")
+    implementation("org.jetbrains.exposed:exposed-core:0.49.0")
+    implementation("org.jetbrains.exposed:exposed-dao:0.49.0")
+    implementation("org.jetbrains.exposed:exposed-jdbc:0.49.0")
+
+    implementation("org.pkl-lang:pkl-config-kotlin:0.25.3")
 
 }
 
@@ -52,6 +54,7 @@ val sourceJar by tasks.register<Jar>("sourceJar") {
 publishing {
 
     repositories {
+        mavenLocal()
         maven("https://repo.fruxz.dev/releases") {
             name = "fruxz.dev"
             credentials {

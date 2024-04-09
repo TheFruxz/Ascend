@@ -12,9 +12,10 @@ import java.net.URL
  * @param url The string representing the URL.
  * @return A `URL` object representing the specified URL string.
  * @throws URISyntaxException If the URL string violates syntax rules.
- * @throws MalformedURLException If a protocol handler for the URL could not be found, or if some other error occurred while constructing the
+ * @throws MalformedURLException If a protocol handler for the URL could not be found, or if some other error occurred while constructing the URL
+ * @throws IllegalArgumentException If the given URL is not absolute.
  */
-@Throws(URISyntaxException::class, MalformedURLException::class)
+@Throws(URISyntaxException::class, MalformedURLException::class, IllegalArgumentException::class)
 fun url(@Language("url") url: String): URL = uri(url).toURL() // create URL(...) is deprecated since Java 20
 
 /**

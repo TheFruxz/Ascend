@@ -49,7 +49,7 @@ enum class Letter : Comparable<Letter> {
          * It is case-insensitive, meaning it matches both lowercase and uppercase letters.
          *
          * Example usage:
-         * ```
+         * ```kotlin
          * val input = "Hello World"
          * val matches = regexBothCases.findAll(input)
          * for (match in matches) {

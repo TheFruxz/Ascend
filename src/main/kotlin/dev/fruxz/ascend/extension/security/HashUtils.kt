@@ -1,5 +1,6 @@
 package dev.fruxz.ascend.extension.security
 
+import dev.fruxz.ascend.annotation.WeakCryptographicAlgorithm
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 
@@ -14,6 +15,7 @@ object HashUtils {
     /**
      * Uses the [hash] function to hash the given [ByteArray] with the md5 algorithm.
      */
+    @WeakCryptographicAlgorithm("MD5 is a weak cryptographic algorithm and should not be used.")
     fun md5(input: String) = hash("MD5", input)
 
     /**
@@ -57,10 +59,15 @@ object HashUtils {
  */
 enum class HashType {
 
-    MD5, SHA1, SHA256, SHA512;
+    @WeakCryptographicAlgorithm("MD5 is a weak cryptographic algorithm and should not be used.")
+    MD5,
+
+    SHA1,
+    SHA256,
+    SHA512;
 
     val hash: (String) -> String
-        get() = when (this) {
+        get() = @OptIn(WeakCryptographicAlgorithm::class) when (this) {
             MD5 -> HashUtils::md5
             SHA1 -> HashUtils::sha1
             SHA256 -> HashUtils::sha256
