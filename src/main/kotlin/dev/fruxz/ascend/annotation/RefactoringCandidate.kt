@@ -7,6 +7,5 @@ package dev.fruxz.ascend.annotation
  * @since 2023.1
  */
 internal annotation class RefactoringCandidate(
-    val message: String = "",
     val since: String = ""
 )
