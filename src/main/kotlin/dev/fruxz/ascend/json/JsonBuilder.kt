@@ -11,7 +11,8 @@ import kotlinx.serialization.json.buildJsonObject
  * @author Fruxz
  * @since 2023.1
  */
-@RefactoringCandidate(message = "As discussed in Kotlin/kotlinx.serialization#2308, this may be native in the future!")
+// TODO: "As discussed in Kotlin/kotlinx.serialization#2308, this may be native in the future!"
+@RefactoringCandidate
 fun JsonObjectBuilder.putAll(jsonObject: JsonObject) = jsonObject.entries.forEach {
     this.put(it.key, it.value)
 }

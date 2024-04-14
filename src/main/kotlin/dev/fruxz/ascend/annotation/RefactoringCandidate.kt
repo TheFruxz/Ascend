@@ -6,6 +6,4 @@ package dev.fruxz.ascend.annotation
  * @author Fruxz
  * @since 2023.1
  */
-internal annotation class RefactoringCandidate(
-    val since: String = ""
-)
+internal annotation class RefactoringCandidate
