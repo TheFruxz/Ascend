@@ -82,8 +82,10 @@ publishing {
 
 tasks {
 
-    withType<KotlinCompile> {
-        kotlinOptions.freeCompilerArgs += "-opt-in=kotlinx.serialization.ExperimentalSerializationApi"
+    compileKotlin {
+        compilerOptions {
+            freeCompilerArgs.add("-opt-in=kotlinx.serialization.ExperimentalSerializationApi")
+        }
     }
 
     dokkaHtml.configure {
