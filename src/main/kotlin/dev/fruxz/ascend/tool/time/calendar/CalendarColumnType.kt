@@ -17,7 +17,7 @@ import java.util.TimeZone
  */
 class CalendarColumnType(
     private val timeZone: TimeZone = TimeZone.getDefault(),
-) : ColumnType() {
+) : ColumnType<Calendar>() {
 
     override fun sqlType(): String =
         currentDialect.dataTypeProvider.timeType()
@@ -30,7 +30,7 @@ class CalendarColumnType(
         }
     }
 
-    override fun valueToDB(value: Any?): Any {
+    override fun valueToDB(value: Calendar?): Any {
         return when (value) {
             is Calendar -> value.timeInMilliseconds
             else -> error("Invalid value type")
