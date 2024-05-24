@@ -32,5 +32,5 @@ implementation("dev.fruxz:ascend:$ascendVersion")
 
 Contribution to Ascend is deeply appreciated. When submitting pull requests, abide by the community guidelines of GitHub. Furthermore, respect licensing within this and all repositories you interact with. Feel free to initiate or engage in discussions in the repository's 'Discussions' section.
 
-###### We build & use Ascend on Java 17 - [Eclipse Temurin](https://adoptium.net/).
+###### We build & use Ascend on Java 21 - [Eclipse Temurin](https://adoptium.net/).
 ###### Also build & run Ascend with [Eclipse Temurin](https://adoptium.net/) to get the best possible development experience!
