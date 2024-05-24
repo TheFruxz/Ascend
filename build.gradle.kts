@@ -4,12 +4,13 @@ plugins {
     kotlin("jvm") version "2.0.0"
     kotlin("plugin.serialization") version "2.0.0"
     id("org.jetbrains.dokka") version "1.9.20"
+    id("org.hildan.kotlin-publish") version "1.6.0"
     `maven-publish`
 }
 
 val host = "github.com/TheFruxz/Ascend"
 
-version = "2024.2"
+version = "2024.2.1"
 group = "dev.fruxz"
 
 repositories {
@@ -47,14 +48,6 @@ publishing {
         }
     }
 
-    publications.create("Ascend", MavenPublication::class) {
-        artifactId = name.lowercase()
-        version = version.lowercase()
-
-        from(components["kotlin"])
-
-    }
-
 }
 
 tasks {
@@ -75,9 +68,4 @@ tasks {
 
 kotlin {
     jvmToolchain(21)
-}
-
-java {
-    withJavadocJar()
-    withSourcesJar()
 }
