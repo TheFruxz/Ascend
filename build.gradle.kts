@@ -27,7 +27,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
 
-    implementation("org.jetbrains.exposed:exposed-core:0.54.0")
+    implementation("org.jetbrains.exposed:exposed-core:0.55.0")
     implementation("org.jetbrains.exposed:exposed-dao:0.54.0")
     implementation("org.jetbrains.exposed:exposed-jdbc:0.54.0")
 
