@@ -28,7 +28,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
 
     implementation("org.jetbrains.exposed:exposed-core:0.55.0")
-    implementation("org.jetbrains.exposed:exposed-dao:0.54.0")
+    implementation("org.jetbrains.exposed:exposed-dao:0.55.0")
     implementation("org.jetbrains.exposed:exposed-jdbc:0.55.0")
 
     implementation("org.pkl-lang:pkl-config-kotlin:0.26.3")
