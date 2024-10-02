@@ -12,6 +12,7 @@ import kotlinx.serialization.Serializable
  * @since 2023.1
  */
 @Serializable
+@ConsistentCopyVisibility
 @SerialName("smartAddress")
 data class Address<T> internal constructor(
     @SerialName("path") override val addressString: String,
