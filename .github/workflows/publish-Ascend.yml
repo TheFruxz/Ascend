@@ -1,25 +1,44 @@
 name: Publish Library
-on: [workflow_dispatch]
+on:
+  workflow_dispatch:
 jobs:
-  build:
+  publish:
     runs-on: macos-latest
     permissions:
-      contents: read
+      contents: write
       packages: write
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up JDK 21
-      uses: actions/setup-java@v2
-      with:
-        java-version: '21'
-        distribution: 'temurin'
-        server-id: github
-        settings-path: ${{ github.workspace }}
-    - name: Build with Gradle
-      run: gradle build
-    - name: Publish to GitHub Packages
-      run: gradle publish
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        USERNAME: ${{ github.actor }}
-        TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '23'
+          distribution: 'temurin'
+          cache: 'gradle'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Set CalVer version
+        id: calver
+        run: echo "VERSION=$(date -u +'%Y.%-m')-$(git rev-parse --short "$GITHUB_SHA")" >> $GITHUB_ENV
+
+      - name: Publish package
+        run: ./gradlew publish
+        env:
+          FRUXZ_DEV_USER: ${{ secrets.FRUXZ_DEV_USER }}
+          FRUXZ_DEV_SECRET: ${{ secrets.FRUXZ_DEV_SECRET }}
+          GH_RELEASE_VERSION: ${{ env.VERSION }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_USERNAME: ${{ github.actor }}
+
+      - name: Create GitHub Release
+        uses: elgohr/Github-Release-Action@v5
+        with:
+          tag: ${{ env.VERSION }}
+          title: ${{ env.VERSION }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
