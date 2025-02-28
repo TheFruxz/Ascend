@@ -9,7 +9,7 @@ plugins {
 val host = "github.com/TheFruxz/Ascend"
 val publishVersion = System.getenv("GH_RELEASE_VERSION")
 
-version = publishVersion ?: "2025.1"
+version = publishVersion ?: "2025.2-0a94cd4"
 group = "dev.fruxz"
 
 repositories {
@@ -41,8 +41,8 @@ publishing {
         maven("https://repo.fruxz.dev/releases") {
             name = "fruxz.dev"
             credentials {
-                username = project.findProperty("fruxz.dev.user") as? String? ?: System.getenv("FRUXZ_DEV_USER")
-                password = project.findProperty("fruxz.dev.secret") as? String? ?: System.getenv("FRUXZ_DEV_SECRET")
+                username = project.findProperty("fruxz.dev.user") as? String? ?: System.getenv("FRUXZ_DEV_USER").also { if (it == null) System.err.println("_USER null")  }
+                password = project.findProperty("fruxz.dev.secret") as? String? ?: System.getenv("FRUXZ_DEV_SECRET").also { if (it == null) System.err.println("_SECRET null")  }
             }
         }
     }
