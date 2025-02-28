@@ -55,8 +55,6 @@ tasks {
     compileKotlin {
         compilerOptions {
             freeCompilerArgs.add("-opt-in=kotlinx.serialization.ExperimentalSerializationApi")
-            apiVersion.set(KotlinVersion.KOTLIN_2_0)
-            languageVersion.set(KotlinVersion.KOTLIN_2_0)
         }
     }
 
