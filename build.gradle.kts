@@ -41,11 +41,8 @@ publishing {
         maven("https://repo.fruxz.dev/releases") {
             name = "fruxz.dev"
             credentials {
-                System.getenv().forEach { (key, _) ->
-                    println("env>'$key'")
-                }
-                username = project.findProperty("fruxz.dev.user") as? String? ?: System.getenv("FRUXZ_DEV_USER").also { if (it == null) System.err.println("_USER null")  }
-                password = project.findProperty("fruxz.dev.secret") as? String? ?: System.getenv("FRUXZ_DEV_SECRET").also { if (it == null) System.err.println("_SECRET null")  }
+                username = System.getenv("FRUXZ_DEV_USER")
+                password = System.getenv("FRUXZ_DEV_SECRET")
             }
         }
     }
