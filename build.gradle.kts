@@ -3,10 +3,10 @@ plugins {
     kotlin("plugin.serialization") version "2.1.10"
     id("org.jetbrains.dokka") version "2.0.0"
     id("org.hildan.kotlin-publish") version "1.7.0"
+    id("ru.vyarus.github-info") version "2.0.0"
     `maven-publish`
 }
 
-val host = "github.com/TheFruxz/Ascend"
 val publishVersion = System.getenv("GH_RELEASE_VERSION")
 
 version = publishVersion ?: "2025.2-0a94cd4"
@@ -32,6 +32,11 @@ dependencies {
 
     implementation("org.pkl-lang:pkl-config-kotlin:0.27.2")
 
+}
+
+github {
+    user = "TheFruxz"
+    license = "LGPLv3"
 }
 
 publishing {
