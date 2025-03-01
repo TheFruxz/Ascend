@@ -1,3 +1,5 @@
+import java.util.Calendar
+
 plugins {
     kotlin("jvm") version "2.1.10"
     kotlin("plugin.serialization") version "2.1.10"
@@ -8,8 +10,9 @@ plugins {
 }
 
 val publishVersion = System.getenv("GH_RELEASE_VERSION")
+val calendar = Calendar.getInstance()
 
-version = publishVersion ?: "2025.2-0a94cd4"
+version = publishVersion ?: "${calendar[Calendar.YEAR]}.${calendar[Calendar.MONTH] + 1}-dev"
 group = "dev.fruxz"
 
 repositories {
