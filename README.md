@@ -3,6 +3,8 @@
 <br>
 
 ## 🚀 Ascend: Elevating Your Coding Experience
+[![Build Library](https://github.com/TheFruxz/Ascend/actions/workflows/build-Ascend.yml/badge.svg)](https://github.com/TheFruxz/Ascend/actions/workflows/build-Ascend.yml)
+[![Publish Library](https://github.com/TheFruxz/Ascend/actions/workflows/publish-Ascend.yml/badge.svg)](https://github.com/TheFruxz/Ascend/actions/workflows/publish-Ascend.yml)
 
 Welcome to Ascend, your one-stop utility belt to supercharge your code.
 This toolkit is an ensemble of various nifty features and tools I've found essential for my projects.
