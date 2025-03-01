@@ -23,7 +23,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Set CalVer version
+      - name: Configure version
         id: calver
         run: echo "VERSION=$(date -u +'%Y.%-m')-$(git rev-parse --short "$GITHUB_SHA")" >> $GITHUB_ENV
 
