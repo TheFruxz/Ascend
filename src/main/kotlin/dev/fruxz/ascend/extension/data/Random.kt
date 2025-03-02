@@ -63,6 +63,70 @@ fun randomLong(range: LongRange, random: Random = Random) = range.random(random 
 fun randomLong(progression: Iterable<Int>, random: Random = Random) = progression.random(random = random)
 
 /**
+ * Creates a new random double using the [Random.nextDouble] function
+ * @param random the randomizer to use
+ * @return a random double
+ * @see Random.nextDouble
+ * @author Fruxz
+ * @since 2025.3
+ */
+fun randomDouble(random: Random = Random) = random.nextDouble()
+
+/**
+ * Creates a new random double, which is inside the given [range].
+ * @param range the range of the random double (including the boundaries)
+ * @param random the randomizer to use
+ * @return a random double within the given range
+ * @see Random.nextDouble
+ * @author Fruxz
+ * @since 2025.3
+ */
+fun randomDouble(range: ClosedRange<Double>, random: Random = Random) = random.nextDouble(range.start, range.endInclusive)
+
+/**
+ * Creates a new random double, which is inside the given [progression]
+ * @param progression the possibilities of the random double (including the boundaries)
+ * @param random the randomizer to use
+ * @return a random double within the given progression
+ * @see Random.nextDouble
+ * @author Fruxz
+ * @since 2025.3
+ */
+fun randomDouble(progression: Iterable<Double>, random: Random = Random) = progression.random(random = random)
+
+/**
+ * Creates a new random float using the [Random.nextFloat] function
+ * @param random the randomizer to use
+ * @return a random float
+ * @see Random.nextFloat
+ * @author Fruxz
+ * @since 2025.3
+ */
+fun randomFloat(random: Random = Random) = random.nextFloat()
+
+/**
+ * Creates a new random float, which is inside the given [range].
+ * @param range the range of the random float (including the boundaries)
+ * @param random the randomizer to use
+ * @return a random float within the given range
+ * @see Random.nextFloat
+ * @author Fruxz
+ * @since 2025.3
+ */
+fun randomFloat(range: ClosedRange<Float>, random: Random = Random) = random.nextFloat() * (range.endInclusive - range.start) + range.start
+
+/**
+ * Creates a new random float, which is inside the given [progression]
+ * @param progression the possibilities of the random float (including the boundaries)
+ * @param random the randomizer to use
+ * @return a random float within the given progression
+ * @see Random.nextFloat
+ * @author Fruxz
+ * @since 2025.3
+ */
+fun randomFloat(progression: Iterable<Float>, random: Random = Random) = progression.random(random = random)
+
+/**
  * Generates a random color.
  *
  * @param random The random number generator to use. Default is a new instance of Random.
