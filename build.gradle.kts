@@ -27,7 +27,7 @@ dependencies {
     implementation(kotlin("reflect"))
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
 
     implementation("org.jetbrains.exposed:exposed-core:0.60.0")
     implementation("org.jetbrains.exposed:exposed-dao:0.60.0")
