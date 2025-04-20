@@ -1,6 +1,7 @@
 package dev.fruxz.ascend.tool.time.calendar
 
 import kotlinx.serialization.Serializable
+import kotlin.time.Duration
 
 /**
  * This data class defines a range between two different [Calendar]s, which are each marking a specific time(stamp).
@@ -40,10 +41,20 @@ data class CalendarRange(override val start: Calendar, override val endInclusive
 	 * @author Fruxz
 	 * @since 2023.1
 	 */
-	override fun compareTo(other: Calendar): Int {
+	override operator fun compareTo(other: Calendar): Int {
 		if (other.isBefore(start)) return -1
 		if (other.isAfter(endInclusive)) return 1
 		return 0
 	}
+
+	/**
+	 * This function returns, if the range between [start] and [endInclusive] is smaller than the [duration]-range.
+	 * @param duration is the duration to compare (temporal range)
+	 * @see Duration.compareTo
+	 * @author Fruxz
+	 * @since 2025.4
+	 */
+	operator fun compareTo(duration: Duration): Int =
+		asDuration().compareTo(duration)
 
 }
