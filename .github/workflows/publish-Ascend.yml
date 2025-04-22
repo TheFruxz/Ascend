@@ -30,8 +30,8 @@ jobs:
       - name: Publish package
         run: ./gradlew publish --stacktrace
         env:
-          FRUXZ_DEV_USER: ${{ secrets.FRUXZ_DEV_USER }}
-          FRUXZ_DEV_SECRET: ${{ secrets.FRUXZ_DEV_SECRET }}
+          FXZ_NEXUS_USER: ${{ secrets.FXZ_NEXUS_USER }}
+          FXZ_NEXUS_SECRET: ${{ secrets.FXZ_NEXUS_SECRET }}
           GH_RELEASE_VERSION: ${{ env.VERSION }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_USERNAME: ${{ github.actor }}

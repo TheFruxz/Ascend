@@ -17,6 +17,11 @@ group = "dev.fruxz"
 
 repositories {
     mavenCentral()
+    maven {
+        name = "fruxz.dev"
+        url = uri("https://nexus.fruxz.dev/repository/public/")
+    }
+
 }
 
 dependencies {
@@ -46,13 +51,14 @@ publishing {
 
     repositories {
         mavenLocal()
-        maven("https://repo.fruxz.dev/releases") {
+        maven("https://nexus.fruxz.dev/repository/releases/") {
             name = "fruxz.dev"
             credentials {
-                username = System.getenv("FRUXZ_DEV_USER")
-                password = System.getenv("FRUXZ_DEV_SECRET")
+                username = System.getenv("FXZ_NEXUS_USER")
+                password = System.getenv("FXZ_NEXUS_SECRET")
             }
         }
+
     }
 
 }
