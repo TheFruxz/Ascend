@@ -218,6 +218,7 @@ fun <T> Array<T>.take(intRange: IntRange): List<T> =
  * @param chunkSize The maximum number of elements per page.
  * @return A [Paged] instance containing the partitioned pages.
  */
+@Deprecated(message = "Use chunked instead", replaceWith = ReplaceWith("chunked(chunkSize)"))
 fun <T, C : Iterable<T>> C.partitionByPage(chunkSize: Int): Paged<T> =
 	Paged(chunkSize, this)
 
@@ -228,6 +229,7 @@ fun <T, C : Iterable<T>> C.partitionByPage(chunkSize: Int): Paged<T> =
  * @param chunkSize the size of each page/chunk
  * @return a [Paged] object containing the partitioned pages
  */
+@Deprecated(message = "Use chunked instead", replaceWith = ReplaceWith("chunked(chunkSize)"))
 fun <T> Array<T>.partitionByPage(chunkSize: Int): Paged<T> =
 	toList().partitionByPage(chunkSize)
 

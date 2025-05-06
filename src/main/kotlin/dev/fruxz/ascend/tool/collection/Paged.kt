@@ -15,6 +15,7 @@ import dev.fruxz.ascend.extension.math.ceilToInt
  * @author Fruxz
  * @since 2023.1
  */
+@Deprecated(message = "Use chunked instead")
 data class Paged<T>(
     val size: Int,
     val content: Iterable<T>,
