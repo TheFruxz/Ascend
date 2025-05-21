@@ -59,6 +59,8 @@ object JsonManager {
         explicitNulls = true
         allowStructuredMapKeys = true
         allowSpecialFloatingPointValues = true
+        allowTrailingComma = true
+        allowComments = true
 
         serializersModule = SerializersModule {
             include(serializersModule)
