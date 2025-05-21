@@ -14,8 +14,7 @@ import kotlinx.serialization.encoding.Encoder
  * @author Fruxz
  * @since 2023.1
  */
-@ExperimentalSerializationApi
-class AdaptiveSerializer : KSerializer<Any> {
+object AdaptiveSerializer : KSerializer<Any> {
 	override val descriptor = ContextualSerializer(Any::class, null, emptyArray()).descriptor
 
 	@OptIn(InternalSerializationApi::class)

@@ -17,7 +17,7 @@ import java.awt.Color as AwtColor
  *  It provides functionality to serialize `AwtColor` objects to an `Encoder` and deserialize them
  *  from a `Decoder`.
  */
-class ColorSerializer : KSerializer<AwtColor> {
+object ColorSerializer : KSerializer<AwtColor> {
     override val descriptor: SerialDescriptor = ContextualSerializer(AwtColor::class).descriptor
 
     override fun serialize(encoder: Encoder, value: Color) =

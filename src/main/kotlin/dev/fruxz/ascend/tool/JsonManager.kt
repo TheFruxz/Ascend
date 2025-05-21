@@ -14,6 +14,10 @@ import kotlinx.serialization.modules.SerializersModuleBuilder
 import java.awt.Color
 import kotlin.reflect.KClass
 import dev.fruxz.ascend.json.globalJson
+import dev.fruxz.ascend.json.serializer.KotlinUUIDSerializer
+import dev.fruxz.ascend.json.serializer.UUIDSerializer
+import kotlinx.serialization.modules.contextual
+import kotlin.uuid.ExperimentalUuidApi
 
 /**
  * This object manages a json instance, which can be used for every purpose.
@@ -26,10 +30,15 @@ import dev.fruxz.ascend.json.globalJson
  */
 object JsonManager {
 
-    private val moduleModifications = mutableListOf<Modification<SerializersModuleBuilder>>(modification {
-        contextual(Any::class, AdaptiveSerializer())
-        contextual(Color::class, ColorSerializer())
-    })
+    @OptIn(ExperimentalUuidApi::class)
+    private val moduleModifications = mutableListOf<Modification<SerializersModuleBuilder>>(
+        modification {
+            contextual(AdaptiveSerializer)
+            contextual(ColorSerializer)
+            contextual(UUIDSerializer)
+            contextual(KotlinUUIDSerializer)
+        }
+    )
     private var moduleStateHash: String = moduleModifications.hashCode().toString(16)
 
     private val jsonModifications = mutableListOf<Modification<JsonBuilder>>()
