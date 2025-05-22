@@ -1,6 +1,8 @@
 package dev.fruxz.ascend.extension.math
 
 import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+import java.util.*
 
 /**
  * Returns if the string can be parsed to a [Int].
@@ -55,10 +57,50 @@ fun String?.isBoolean() = this?.lowercase()?.toBooleanStrictOrNull() != null
  * its internal [format] function and the [this] number.
  * @param pattern the pattern to format the number with.
  * @return the formatted number as a string.
+ * @see DecimalFormat
  * @author Fruxz
  * @since 2023.1
  */
-infix fun Number.format(pattern: String): String = DecimalFormat(pattern).format(this)
+infix fun Number.format(pattern: String): String = DecimalFormat(pattern, DecimalFormatSymbols.getInstance()).format(this)
+
+/**
+ * Formats the number to the specific [pattern] using a [DecimalFormat] with
+ * its internal [format] function and the [this] number.
+ * Additionally, it utilizes the [symbols] to format the number.
+ * @param pattern the pattern to format the number with.
+ * @param symbols the [DecimalFormatSymbols] to use for formatting.
+ * @return the formatted number as a string.
+ * @see DecimalFormat
+ * @see DecimalFormatSymbols
+ * @author Fruxz
+ * @since 2025.5
+ */
+fun Number.format(
+	pattern: String,
+	symbols: DecimalFormatSymbols,
+): String = DecimalFormat(pattern, symbols).format(this)
+
+/**
+ * Formats the number to the specific [pattern] using a [DecimalFormat] with
+ * its internal [format] function and the [this] number.
+ * Additionally, it utilizes the [locale] to generate a [DecimalFormatSymbols] and
+ * uses it to format the number.
+ * @param pattern the pattern to format the number with.
+ * @param locale the [Locale] to use for formatting.
+ * @return the formatted number as a string.
+ * @see DecimalFormat
+ * @see DecimalFormatSymbols
+ * @see Locale
+ * @author Fruxz
+ * @since 2025.5
+ */
+fun Number.format(
+	pattern: String,
+	locale: Locale,
+): String = format(
+	pattern = pattern,
+	symbols = DecimalFormatSymbols.getInstance(locale),
+)
 
 /**
  * Formats the number to the '##.##' pattern using the [Number.format] function.
