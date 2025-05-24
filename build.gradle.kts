@@ -21,7 +21,6 @@ repositories {
         name = "fruxz.dev"
         url = uri("https://nexus.fruxz.dev/repository/public/")
     }
-
 }
 
 dependencies {
