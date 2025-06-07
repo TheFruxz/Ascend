@@ -1,10 +1,10 @@
 package dev.fruxz.ascend.tool.time.calendar
 
-import org.jetbrains.exposed.sql.Column
-import org.jetbrains.exposed.sql.ColumnType
-import org.jetbrains.exposed.sql.Table
-import org.jetbrains.exposed.sql.vendors.currentDialect
-import java.util.TimeZone
+import org.jetbrains.exposed.v1.core.Column
+import org.jetbrains.exposed.v1.core.ColumnType
+import org.jetbrains.exposed.v1.core.Table
+import org.jetbrains.exposed.v1.core.vendors.currentDialect
+import java.util.*
 
 /**
  * This column type defines a column, which stores a [Calendar] object,

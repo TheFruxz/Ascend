@@ -1,7 +1,7 @@
 package dev.fruxz.ascend.extension.exposed
 
-import org.jetbrains.exposed.sql.SchemaUtils
-import org.jetbrains.exposed.sql.Table
+import org.jetbrains.exposed.v1.core.Table
+import org.jetbrains.exposed.v1.jdbc.SchemaUtils
 
 /**
  * This function creates or updates [this] table structure in the database.
