@@ -1,6 +1,5 @@
 package dev.fruxz.ascend.extension.container
 
-import dev.fruxz.ascend.tool.collection.Paged
 import java.util.*
 import kotlin.random.Random
 import kotlin.time.Duration
@@ -210,28 +209,6 @@ fun <T, C : Iterable<T>> C.take(intRange: IntRange): List<T> =
  */
 fun <T> Array<T>.take(intRange: IntRange): List<T> =
 	toList().subList(intRange)
-
-
-/**
- * Partitions the elements of the iterable into pages of a given size.
- *
- * @param chunkSize The maximum number of elements per page.
- * @return A [Paged] instance containing the partitioned pages.
- */
-@Deprecated(message = "Use chunked instead", replaceWith = ReplaceWith("chunked(chunkSize)"))
-fun <T, C : Iterable<T>> C.partitionByPage(chunkSize: Int): Paged<T> =
-	Paged(chunkSize, this)
-
-
-/**
- * Partitions the elements of the array into pages of the specified chunk size.
- *
- * @param chunkSize the size of each page/chunk
- * @return a [Paged] object containing the partitioned pages
- */
-@Deprecated(message = "Use chunked instead", replaceWith = ReplaceWith("chunked(chunkSize)"))
-fun <T> Array<T>.partitionByPage(chunkSize: Int): Paged<T> =
-	toList().partitionByPage(chunkSize)
 
 /**
  * This function returns, if the current [Collection]
