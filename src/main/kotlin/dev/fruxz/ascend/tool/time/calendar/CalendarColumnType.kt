@@ -24,9 +24,10 @@ class CalendarColumnType(
 
     override fun valueFromDB(value: Any): Calendar {
         return when (value) {
+            is Calendar -> value
             is Number -> Calendar(timeInMillis = value.toLong(), timeZone = timeZone)
             is String -> Calendar(timeInMillis = value.toLong(), timeZone = timeZone)
-            else -> error("Invalid value type")
+            else -> error("Invalid value type ${value::class.simpleName}/${value.javaClass.name}")
         }
     }
 
