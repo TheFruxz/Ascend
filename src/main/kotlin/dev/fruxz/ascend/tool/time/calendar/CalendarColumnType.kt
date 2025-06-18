@@ -20,7 +20,7 @@ class CalendarColumnType(
 ) : ColumnType<Calendar>() {
 
     override fun sqlType(): String =
-        currentDialect.dataTypeProvider.timeType()
+        currentDialect.dataTypeProvider.longType()
 
     override fun valueFromDB(value: Any): Calendar {
         return when (value) {
