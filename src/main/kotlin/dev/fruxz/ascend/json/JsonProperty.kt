@@ -1,5 +1,6 @@
 package dev.fruxz.ascend.json
 
+import dev.fruxz.ascend.annotation.RefactoringCandidate
 import dev.fruxz.ascend.extension.forceCastOrNull
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
@@ -30,6 +31,7 @@ import kotlin.reflect.typeOf
  *
  * @since 2023.1
  */
+@RefactoringCandidate
 data class JsonProperty<T : Any>(
     val file: Path,
     val key: String,
