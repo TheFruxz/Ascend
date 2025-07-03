@@ -32,6 +32,7 @@ import kotlin.reflect.typeOf
  * @since 2023.1
  */
 @RefactoringCandidate
+@Deprecated(message = "Will be removed soon, use `JsonLocalStorage` -> storedJson(...), or own solution instead.")
 data class JsonProperty<T : Any>(
     val file: Path,
     val key: String,
@@ -102,6 +103,7 @@ data class JsonProperty<T : Any>(
  * @author Fruxz
  * @since 2023.1
  */
+@Deprecated(message = "Will be removed soon, use `JsonLocalStorage` -> storedJson(...), or own solution instead.")
 inline fun <reified T : Any> property(
     file: Path,
     key: String,
