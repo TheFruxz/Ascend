@@ -6,11 +6,15 @@ import kotlin.jvm.Throws
  * Represents a resolvable value that can be nullable.
  *
  * @param T the type of the value to resolve.
+ * @author Fruxz
+ * @since 2025.7
  */
 interface ResolvableNullable<T> : Resolvable<T & Any> {
 
     /**
      * Resolves the value, returning null if it cannot be resolved.
+     * @author Fruxz
+     * @since 2025.7
      */
     fun resolveOrNull(): T?
 
@@ -18,6 +22,8 @@ interface ResolvableNullable<T> : Resolvable<T & Any> {
      * Resolves the value, throwing an exception if it cannot be resolved.
      *
      * @throws NoSuchElementException if the resolved value is null.
+     * @author Fruxz
+     * @since 2025.7
      */
     @Throws(NoSuchElementException::class)
     override fun resolve(): T & Any =

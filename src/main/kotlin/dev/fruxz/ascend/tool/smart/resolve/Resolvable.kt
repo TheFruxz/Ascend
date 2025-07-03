@@ -10,6 +10,8 @@ package dev.fruxz.ascend.tool.smart.resolve
  * Return is always non-nullable, so the implementation must ensure that, for nullable results, use [ResolvableNullable] instead!
  *
  * @param T The type of the value to be resolved.
+ * @author Fruxz
+ * @since 2025.7
  */
 interface Resolvable<T : Any> {
 
