@@ -1,6 +1,10 @@
 @file:Suppress("UNCHECKED_CAST")
+@file:OptIn(ExperimentalContracts::class)
 
 package dev.fruxz.ascend.extension
+
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.contract
 
 /**
  * Cast the given object to the given type and not highlight risky casts in the IDE.
@@ -20,7 +24,11 @@ fun <O> Any?.forceCast() = this as O
  * @since 2023.1
  */
 @Suppress("UNCHECKED_CAST")
-fun <O> Any?.forceCastOrNull() = tryOrNull { this as? O }
+inline fun <reified O> Any?.forceCastOrNull(): O? {
+    contract { returnsNotNull() implies (this@forceCastOrNull is O) }
+
+    return tryOrNull { this as? O }
+}
 
 /**
  * Cast the given object to the given type and not highlight risky casts in the IDE.
@@ -40,7 +48,11 @@ fun <O> Any?.forceNullableCast() = this as O?
  * @since 2023.1
  */
 @Suppress("UNCHECKED_CAST")
-fun <O> Any?.forceNullableCastOrNull() = tryOrNull { this as? O? }
+inline fun <reified O> Any?.forceNullableCastOrNull(): O? {
+    contract { returnsNotNull() implies (this@forceNullableCastOrNull is O) }
+
+    return tryOrNull { this as? O? }
+}
 
 /**
  * Throws away the object by returning [Unit]
