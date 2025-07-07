@@ -12,6 +12,7 @@ import kotlin.io.path.fileSize
 import kotlin.io.path.notExists
 import kotlin.io.path.pathString
 import kotlin.reflect.KProperty
+import kotlin.reflect.typeOf
 
 /**
  * Creates a new [JsonLocalStorage] instance for the specified type [T].
@@ -32,6 +33,7 @@ inline fun <reified T : Any> storedJson(
 
     override val defaultValue: () -> @Serializable T = default
     override val filePath: Path = path
+    override val contentType = typeOf<T>()
     private var cache: T? = null
     override var state: T
         get() = cache ?: readFile() ?: default()

@@ -2,6 +2,8 @@ package dev.fruxz.ascend.json
 
 import dev.fruxz.ascend.annotation.RefactoringCandidate
 import dev.fruxz.ascend.extension.forceCastOrNull
+import dev.fruxz.ascend.json.localstorage.JsonLocalStorage
+import dev.fruxz.ascend.json.localstorage.storedJson
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
@@ -11,6 +13,7 @@ import kotlin.io.path.absolute
 import kotlin.io.path.createParentDirectories
 import kotlin.reflect.KProperty
 import kotlin.reflect.KType
+import kotlin.reflect.full.isSupertypeOf
 import kotlin.reflect.typeOf
 
 /**
@@ -116,3 +119,40 @@ inline fun <reified T : Any> property(
 	json = json,
 	default = defaultValue
 )
+
+// TODO wip
+//object JsonPropertySupervisor {
+//
+//	@JvmInline
+//    value class PropertyKey(val key: String)
+//
+//	val properties = mutableMapOf<Path, JsonLocalStorage<Map<PropertyKey, Any>>>()
+//
+//}
+//
+//inline fun <reified T : Any> inlineProperty(
+//	file: Path,
+//	key: String,
+//	json: Json = globalJson,
+//	noinline defaultValue: () -> T,
+//) = object {
+//
+//	var link by JsonPropertySupervisor.properties.getOrPut(file.absolute()) {
+//		storedJson(
+//			// TODO add json parameter
+//			path = file.absolute(),
+//			default = {
+//				mapOf(
+//					JsonPropertySupervisor.PropertyKey(key) to defaultValue()
+//				)
+//			}
+//		)
+//	}
+//
+//	operator fun getValue(thisRef: Any?, property: KProperty<*>): T = link[JsonPropertySupervisor.PropertyKey(key)] as T? ?: defaultValue()
+//
+//	operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
+//		link += JsonPropertySupervisor.PropertyKey(key) to value
+//	}
+//
+//}

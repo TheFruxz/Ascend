@@ -3,6 +3,7 @@ package dev.fruxz.ascend.json.localstorage
 import kotlinx.serialization.Serializable
 import java.nio.file.Path
 import kotlin.reflect.KProperty
+import kotlin.reflect.KType
 
 /**
  * This interface represents a local storage for JSON data, allowing you to read and write
@@ -31,6 +32,8 @@ interface JsonLocalStorage<T : Any> {
      * @since 2025.7
      */
     val filePath: Path
+
+    val contentType: KType
 
     /**
      * The current state of the stored object.
