@@ -22,7 +22,7 @@ Depending on the nature of your project, you may incorporate Ascend via `Gradle`
 
 #### Repository
 ```kotlin
-maven("https://repo.fruxz.dev/releases/")
+maven("https://nexus.fruxz.dev/repository/public/")
 ```
 
 ##### Dependency
