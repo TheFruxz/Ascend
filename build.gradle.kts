@@ -36,7 +36,7 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-dao:1.0.0-rc-3")
     implementation("org.jetbrains.exposed:exposed-jdbc:1.0.0-rc-3")
 
-    implementation("org.pkl-lang:pkl-config-kotlin:0.29.1")
+    implementation("org.pkl-lang:pkl-config-kotlin:0.30.0")
 
 }
 
