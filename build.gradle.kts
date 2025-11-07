@@ -32,9 +32,9 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
 
-    implementation("org.jetbrains.exposed:exposed-core:1.0.0-rc-2")
-    implementation("org.jetbrains.exposed:exposed-dao:1.0.0-rc-2")
-    implementation("org.jetbrains.exposed:exposed-jdbc:1.0.0-rc-2")
+    implementation("org.jetbrains.exposed:exposed-core:1.0.0-rc-3")
+    implementation("org.jetbrains.exposed:exposed-dao:1.0.0-rc-3")
+    implementation("org.jetbrains.exposed:exposed-jdbc:1.0.0-rc-3")
 
     implementation("org.pkl-lang:pkl-config-kotlin:0.29.1")
 
