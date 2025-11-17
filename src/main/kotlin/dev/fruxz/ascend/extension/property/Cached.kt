@@ -34,7 +34,6 @@ data class CachedProperty<T>(
 /**
  * Generates the property value on first call, or if [duration] has passed since last update.
  * The value is cached internally between calls.
- * HINT: Use [kotlin.reflect.KProperty0.getDelegate] to receive the last-update time
  * @author Fruxz
  * @since 2025.11
  */
