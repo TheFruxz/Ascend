@@ -106,7 +106,7 @@ data class JsonProperty<T : Any>(
  * @author Fruxz
  * @since 2023.1
  */
-@Deprecated(message = "Will be removed soon, use `JsonLocalStorage` -> storedJson(...), or own solution instead.")
+@Deprecated(message = "Will be rewritten soon, you should use `JsonLocalStorage` -> storedJson(...), or own solution instead rn.")
 inline fun <reified T : Any> property(
     file: Path,
     key: String,
