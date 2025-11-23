@@ -60,19 +60,36 @@ publishing {
 }
 
 tasks {
-
     compileKotlin {
         compilerOptions {
             freeCompilerArgs.add("-opt-in=kotlinx.serialization.ExperimentalSerializationApi")
         }
     }
-
-    dokkaHtml.configure {
-        outputDirectory.set(layout.projectDirectory.dir("docs"))
-    }
-
 }
 
 kotlin {
     jvmToolchain(21)
+}
+
+// alias dokkaHtml -> dokkaGenerateHtml
+tasks.register("dokkaHtml") {
+    dependsOn(tasks.dokkaGenerateHtml)
+}
+
+dokka {
+    moduleName.set("Ascend @ MoltenKt")
+    dokkaPublications.html {
+        outputDirectory.set(layout.buildDirectory.dir("dokkaDir"))
+    }
+    dokkaSourceSets.main {
+        //includes.from("README.md")
+        sourceLink {
+            localDirectory.set(file("src/main/kotlin"))
+            remoteUrl("https://github.com/TheFruxz/Ascend/tree/develop/src/main/kotlin")
+        }
+    }
+    pluginsConfiguration.html {
+        homepageLink.set("https://fxz.koeln/")
+        footerMessage.set("Ascend @ MoltenKt - by Fruxz")
+    }
 }
