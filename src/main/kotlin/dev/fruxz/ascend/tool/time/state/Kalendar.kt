@@ -23,9 +23,6 @@ data class Kalendar(
     var timeZone: TimeZone,
 ) : TimeState, Comparable<Kalendar> {
 
-    @Transient
-    private val clock = Clock.System
-
     // operations
 
     operator fun plusAssign(duration: Duration) {
@@ -55,10 +52,10 @@ data class Kalendar(
         instant - other.instant
 
     fun durationToNow() =
-        clock.now() - instant
+        Clock.System.now() - instant
 
     fun durationFromNow() =
-        instant - clock.now()
+        instant - Clock.System.now()
 
     val timeInMilliseconds: Long
         get() = instant.toEpochMilliseconds()
@@ -102,10 +99,10 @@ data class Kalendar(
     override val infinite = instant.isDistantFuture || instant.isDistantPast
 
     override val inFuture: Boolean
-        get() = instant > clock.now()
+        get() = instant > Clock.System.now()
 
     override val inPast: Boolean
-        get() = instant < clock.now()
+        get() = instant < Clock.System.now()
 
     override fun compareTo(other: Kalendar) =
         instant.compareTo(other.instant)
@@ -117,7 +114,6 @@ data class Kalendar(
         var result = infinite.hashCode()
         result = 31 * result + instant.hashCode()
         result = 31 * result + timeZone.hashCode()
-        result = 31 * result + clock.hashCode()
         result = 31 * result + timeInMilliseconds.hashCode()
         result = 31 * result + inFuture.hashCode()
         result = 31 * result + inPast.hashCode()
