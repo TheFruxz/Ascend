@@ -39,10 +39,6 @@ data class Kalendar(
     operator fun minus(duration: Duration) =
         Kalendar(instant - duration, timeZone)
 
-    operator fun rangeTo(other: Kalendar) {
-        TODO("KalendarRange(this, other)")
-    }
-
     // measurement
 
     fun durationTo(other: Kalendar) =
