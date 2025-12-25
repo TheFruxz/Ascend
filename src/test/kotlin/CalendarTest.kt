@@ -1,4 +1,4 @@
-import dev.fruxz.ascend.tool.time.calendar.Calendar
+import dev.fruxz.ascend.tool.time.state.Kalendar
 import kotlin.test.Test
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
@@ -11,9 +11,10 @@ class CalendarTest {
 
     @Test
     fun `Add time to calendar`() {
+
         val add = 10.days
-        val standpointCalendar = Calendar.now().copy(timeInMillis = STANDPOINT)
-        val addedCalendar = Calendar.now().copy(timeInMillis = STANDPOINT + add.inWholeMilliseconds)
+        val standpointCalendar = Kalendar.from(milliseconds = STANDPOINT)
+        val addedCalendar = Kalendar.now().milliseconds(value = STANDPOINT + add.inWholeMilliseconds)
 
         assert(standpointCalendar + add == addedCalendar) { "Addition of $add to $standpointCalendar should be $addedCalendar, but was ${standpointCalendar + add}" }
 
@@ -22,8 +23,8 @@ class CalendarTest {
     @Test
     fun `Subtract time from calendar`() {
         val subtract = 10.days
-        val standpointCalendar = Calendar.now().copy(timeInMillis = STANDPOINT)
-        val subtractedCalendar = Calendar.now().copy(timeInMillis = STANDPOINT - subtract.inWholeMilliseconds)
+        val standpointCalendar = Kalendar.from(milliseconds = STANDPOINT)
+        val subtractedCalendar = Kalendar.now().milliseconds(value = STANDPOINT - subtract.inWholeMilliseconds)
 
         assert(standpointCalendar - subtract == subtractedCalendar) { "Subtraction of $subtract from $standpointCalendar should be $subtractedCalendar, but was ${standpointCalendar - subtract}" }
 
@@ -31,8 +32,8 @@ class CalendarTest {
 
     @Test
     fun `Comparison functionality with Java Calendar`() {
-        val calendar = Calendar.fromMilliseconds(STANDPOINT)
-        val javaCalendar = JavaUtilCalendar.getInstance().apply { timeInMillis = STANDPOINT }
+        val calendar = Kalendar.from(milliseconds = STANDPOINT)
+        val javaCalendar = Kalendar.from(milliseconds = STANDPOINT).java
 
         calendar += 20.days
         calendar += 25000.milliseconds
@@ -42,7 +43,7 @@ class CalendarTest {
         javaCalendar.add(JavaUtilCalendar.MILLISECOND, 25000)
         javaCalendar.add(JavaUtilCalendar.HOUR_OF_DAY, -5)
 
-        assert(calendar.javaCalendar == javaCalendar) { "Calendar $calendar should be equal to Java Calendar $javaCalendar, but was not" }
+        assert(calendar.java == javaCalendar) { "Calendar $calendar should be equal to Java Calendar $javaCalendar, but was not" }
     }
 
 }
