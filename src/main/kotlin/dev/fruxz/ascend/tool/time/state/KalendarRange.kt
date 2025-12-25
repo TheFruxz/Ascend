@@ -1,7 +1,6 @@
 package dev.fruxz.ascend.tool.time.state
 
 import kotlinx.serialization.Serializable
-import kotlin.ranges.rangeTo
 
 @Serializable
 class KalendarRange(
@@ -11,8 +10,9 @@ class KalendarRange(
 
     fun asDuration() = start.durationTo(endInclusive)
 
+    @Suppress("ConvertTwoComparisonsToRangeCheck")
     override fun contains(value: Kalendar): Boolean =
-        value in start..endInclusive
+        start <= value && value <= endInclusive
 
     override fun iterator(): ListIterator<Kalendar> = listOf(start, endInclusive).listIterator()
 

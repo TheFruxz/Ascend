@@ -30,9 +30,4 @@ data class PreciseKalendarColumnType(
 
     override fun notNullValueToDB(value: Kalendar) = value.timeInMilliseconds
 
-    fun Table.kalendarPrecise(
-        name: String,
-        timeZone: TimeZone = TimeZone.currentSystemDefault(),
-    ): Column<Kalendar> = registerColumn(name = name, type = PreciseKalendarColumnType(timeZone))
-
 }

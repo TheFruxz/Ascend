@@ -54,6 +54,9 @@ data class Kalendar(
     operator fun get(timeUnit: TimeUnit) =
         java.get(timeUnit.javaField)
 
+    operator fun rangeTo(other: Kalendar) =
+        KalendarRange(start = this, endInclusive = other)
+
     // measurement
 
     fun durationTo(other: Kalendar) =

@@ -29,7 +29,4 @@ object KalendarColumnType : ColumnType<Kalendar>() {
 
     override fun notNullValueToDB(value: Kalendar) = value.javaOffset.toString()
 
-    fun Table.kalendar(name: String): Column<Kalendar> =
-        registerColumn(name = name, type = KalendarColumnType)
-
 }

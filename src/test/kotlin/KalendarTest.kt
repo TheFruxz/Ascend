@@ -1,6 +1,7 @@
 import dev.fruxz.ascend.json.fromJsonString
 import dev.fruxz.ascend.json.toJsonString
 import dev.fruxz.ascend.tool.time.state.Kalendar
+import dev.fruxz.ascend.tool.time.state.KalendarRange
 import kotlin.test.Test
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
@@ -53,6 +54,21 @@ class KalendarTest {
         val parsedCalendar = json.fromJsonString<Kalendar>()
 
         assert(calendar == parsedCalendar) { "Calendar $calendar should be equal to parsed Calendar $parsedCalendar, but was not" }
+    }
+
+    @Test
+    fun `Kalendar Ranges`() {
+        val start = Kalendar.from(milliseconds = STANDPOINT)
+        val end = start + 10.days
+        val range = start..end
+
+        val inside = start + 5.days
+        val outsideBefore = start - 1.milliseconds
+        val outsideAfter = end + 1.milliseconds
+
+        assert(inside in range) { "$inside should be inside the range $range, but was not" }
+        assert(outsideBefore !in range) { "$outsideBefore should be outside the range $range, but was not" }
+        assert(outsideAfter !in range) { "$outsideAfter should be outside the range $range, but was not" }
     }
 
     companion object {
