@@ -17,6 +17,20 @@ data class Kalendar(
     var timeZone: TimeZone,
 ) : TimeState, Comparable<Kalendar> {
 
+    // modifications
+
+    fun milliseconds(value: Long) = apply {
+        instant = Instant.fromEpochMilliseconds(value)
+    }
+
+    fun timeZone(value: TimeZone) = apply {
+        timeZone = value
+    }
+
+    fun instant(value: Instant) = apply {
+        instant = value
+    }
+
     // operations
 
     operator fun plusAssign(duration: Duration) {
@@ -47,8 +61,11 @@ data class Kalendar(
     fun durationFromNow() =
         instant - Clock.System.now()
 
-    val timeInMilliseconds: Long
+    var timeInMilliseconds: Long
         get() = instant.toEpochMilliseconds()
+        set(value) {
+            instant = Instant.fromEpochMilliseconds(value)
+        }
 
     // java
 
