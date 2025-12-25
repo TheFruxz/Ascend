@@ -126,14 +126,8 @@ data class Kalendar(
         this === other || (other is Kalendar && instant == other.instant && timeZone == other.timeZone)
 
     override fun hashCode(): Int {
-        var result = infinite.hashCode()
-        result = 31 * result + instant.hashCode()
+        var result = instant.hashCode()
         result = 31 * result + timeZone.hashCode()
-        result = 31 * result + timeInMilliseconds.hashCode()
-        result = 31 * result + inFuture.hashCode()
-        result = 31 * result + inPast.hashCode()
-        result = 31 * result + java.hashCode()
-        result = 31 * result + javaOffset.hashCode()
         return result
     }
 
