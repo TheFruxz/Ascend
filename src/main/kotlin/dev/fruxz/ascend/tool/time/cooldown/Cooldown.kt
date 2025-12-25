@@ -2,7 +2,7 @@ package dev.fruxz.ascend.tool.time.cooldown
 
 import dev.fruxz.ascend.annotation.RefactoringCandidate
 import dev.fruxz.ascend.tool.time.TimeState
-import dev.fruxz.ascend.tool.time.calendar.Calendar
+import dev.fruxz.ascend.tool.time.state.Kalendar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
@@ -21,10 +21,10 @@ data class Cooldown(val duration: Duration, var running: Boolean = false, var on
 		inline fun launch(duration: Duration, onFinish: List<CooldownDestination> = emptyList(), onHeartbeat: List<CooldownHeartbeat> = emptyList(), heartBeatDuration: Duration = Duration.ZERO, beatOnRemainingTime: Boolean = true, beatOnLaunch: Boolean = true,  builder: Cooldown.() -> Unit = { }) =
 			create(duration, onFinish, onHeartbeat, heartBeatDuration, beatOnRemainingTime, beatOnLaunch, builder).launchNative()
 
-		inline fun create(destination: Calendar, onFinish: List<CooldownDestination> = emptyList(), onHeartbeat: List<CooldownHeartbeat> = emptyList(), heartBeatDuration: Duration = Duration.ZERO, beatOnRemainingTime: Boolean = true, beatOnLaunch: Boolean = true,  builder: Cooldown.() -> Unit = { }) =
+		inline fun create(destination: Kalendar, onFinish: List<CooldownDestination> = emptyList(), onHeartbeat: List<CooldownHeartbeat> = emptyList(), heartBeatDuration: Duration = Duration.ZERO, beatOnRemainingTime: Boolean = true, beatOnLaunch: Boolean = true,  builder: Cooldown.() -> Unit = { }) =
 			Cooldown(destination.durationFromNow(), false, onFinish, onHeartbeat, heartBeatDuration, beatOnRemainingTime, beatOnLaunch).apply(builder)
 
-		inline fun launch(destination: Calendar, onFinish: List<CooldownDestination> = emptyList(), onHeartbeat: List<CooldownHeartbeat> = emptyList(), heartBeatDuration: Duration = Duration.ZERO, beatOnRemainingTime: Boolean = true, beatOnLaunch: Boolean = true,  builder: Cooldown.() -> Unit = { }) =
+		inline fun launch(destination: Kalendar, onFinish: List<CooldownDestination> = emptyList(), onHeartbeat: List<CooldownHeartbeat> = emptyList(), heartBeatDuration: Duration = Duration.ZERO, beatOnRemainingTime: Boolean = true, beatOnLaunch: Boolean = true,  builder: Cooldown.() -> Unit = { }) =
 			create(destination, onFinish, onHeartbeat, heartBeatDuration, beatOnRemainingTime, beatOnLaunch, builder).launchNative()
 
 	}
@@ -36,7 +36,7 @@ data class Cooldown(val duration: Duration, var running: Boolean = false, var on
 		running = true
 
 		coroutineScope.launch {
-			destination = Calendar.now() + duration
+			destination = Kalendar.now() + duration
 
 			if (beatOnLaunch) onHeartbeat.forEach { onHeartbeat -> onHeartbeat.onBeat() }
 

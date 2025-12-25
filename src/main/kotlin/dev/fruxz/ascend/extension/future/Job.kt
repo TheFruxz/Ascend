@@ -8,7 +8,7 @@ import kotlinx.coroutines.*
  * This function is a convenient wrapper for [Job.join].
  *
  * @receiver The [Job] instance to await for.
- * @throws CancellationException If the current coroutine was cancelled.
+ * @throws CancellationException If the current coroutine was canceled.
  * @author Fruxz
  * @since 2023.1
  */
@@ -94,4 +94,4 @@ fun <T> deferred(job: Job? = null, builder: (CompletableDeferred<T>) -> Unit = {
  * @since 2023.1
  */
 @JvmName("awaitAllDeferred")
-suspend fun <T> List<Deferred<T>>.awaitAll() = this.map { it.await() }
+suspend fun <T> List<Deferred<T>>.awaitAll(): List<T> = this.map { it.await() }

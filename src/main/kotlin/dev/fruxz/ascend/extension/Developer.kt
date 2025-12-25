@@ -84,6 +84,7 @@ val Any?.isNotNull: Boolean // TODO: use kotlin contracts
  * @author Fruxz
  * @since 2023.1
  */
+@Suppress("EmptyMethod")
 fun empty() { }
 
 /**

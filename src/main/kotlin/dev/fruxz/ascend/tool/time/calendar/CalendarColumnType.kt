@@ -15,6 +15,7 @@ import java.util.*
  * @author Fruxz
  * @since 2023.1
  */
+@Deprecated(message = "Use Kalendar instead, if migration is possible")
 class CalendarColumnType(
     private val timeZone: TimeZone = TimeZone.getDefault(),
 ) : ColumnType<Calendar>() {
@@ -43,5 +44,6 @@ class CalendarColumnType(
  * @author Fruxz
  * @since 2023.1
  */
+@Deprecated(message = "Use kalendarPrecise() instead, if migration is possible")
 fun Table.calendar(name: String, timeZone: TimeZone): Column<Calendar> =
     registerColumn(name, CalendarColumnType(timeZone))

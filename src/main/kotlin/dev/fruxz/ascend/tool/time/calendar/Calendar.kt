@@ -6,6 +6,8 @@ import dev.fruxz.ascend.tool.time.TimeState
 import dev.fruxz.ascend.tool.time.calendar.Calendar.FormatStyle.FULL
 import dev.fruxz.ascend.tool.time.calendar.Calendar.FormatStyle.MEDIUM
 import dev.fruxz.ascend.tool.time.TimeUnit
+import dev.fruxz.ascend.tool.time.state.Kalendar
+import kotlinx.datetime.toKotlinTimeZone
 import kotlinx.serialization.Serializable
 import java.text.SimpleDateFormat
 import java.time.Instant
@@ -14,6 +16,7 @@ import java.time.ZonedDateTime
 import java.util.*
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.toKotlinInstant
 import java.io.Serializable as JavaIoSerializable
 import java.util.Calendar as JavaUtilCalendar
 
@@ -25,6 +28,7 @@ import java.util.Calendar as JavaUtilCalendar
  * @since 2023.1
  */
 @Serializable
+@Deprecated("Use Kalendar from the time.state package instead", ReplaceWith("dev.fruxz.ascend.tool.time.state.Kalendar"))
 data class Calendar(
 	private var timeInMillis: Long,
 	private var timeZoneId: String,
@@ -58,8 +62,12 @@ data class Calendar(
 			this.timeInMillis = this@Calendar.timeInMillis
 		}
 
-	override fun produce() = origin
+	fun migrateToKalendar() = Kalendar(
+		instant = this.javaInstant.toKotlinInstant(),
+		timeZone = this.timeZone.toZoneId().toKotlinTimeZone(),
+	)
 
+	override fun produce() = origin
 
 	/**
 	 * This function sets the time of the calendar.

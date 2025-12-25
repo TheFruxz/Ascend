@@ -2,8 +2,12 @@ package dev.fruxz.ascend.tool
 
 import dev.fruxz.ascend.extension.dump
 import dev.fruxz.ascend.extension.forceCast
+import dev.fruxz.ascend.json.globalJson
 import dev.fruxz.ascend.json.serializer.AdaptiveSerializer
 import dev.fruxz.ascend.json.serializer.ColorSerializer
+import dev.fruxz.ascend.json.serializer.KotlinUUIDSerializer
+import dev.fruxz.ascend.json.serializer.UUIDSerializer
+import dev.fruxz.ascend.tool.JsonManager.json
 import dev.fruxz.ascend.tool.smart.Modification
 import dev.fruxz.ascend.tool.smart.modification
 import kotlinx.serialization.KSerializer
@@ -11,12 +15,8 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonBuilder
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.SerializersModuleBuilder
-import java.awt.Color
-import kotlin.reflect.KClass
-import dev.fruxz.ascend.json.globalJson
-import dev.fruxz.ascend.json.serializer.KotlinUUIDSerializer
-import dev.fruxz.ascend.json.serializer.UUIDSerializer
 import kotlinx.serialization.modules.contextual
+import kotlin.reflect.KClass
 import kotlin.uuid.ExperimentalUuidApi
 
 /**
