@@ -7,7 +7,7 @@ import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.milliseconds
 import java.util.Calendar as JavaUtilCalendar
 
-class CalendarTest {
+class KalendarTest {
 
     @Test
     fun `Add time to calendar`() {
@@ -51,7 +51,7 @@ class CalendarTest {
         val calendar = Kalendar.from(milliseconds = STANDPOINT)
         val json = calendar.toJsonString()
         val parsedCalendar = json.fromJsonString<Kalendar>()
-        
+
         assert(calendar == parsedCalendar) { "Calendar $calendar should be equal to parsed Calendar $parsedCalendar, but was not" }
     }
 
