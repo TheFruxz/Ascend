@@ -44,6 +44,6 @@ class CalendarColumnType(
  * @author Fruxz
  * @since 2023.1
  */
-@Deprecated(message = "Use Kalendar instead, if migration is possible")
+@Deprecated(message = "Use kalendarPrecise() instead, if migration is possible")
 fun Table.calendar(name: String, timeZone: TimeZone): Column<Calendar> =
     registerColumn(name, CalendarColumnType(timeZone))
