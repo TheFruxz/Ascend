@@ -103,7 +103,8 @@ data class Kalendar(
 
     // overrides
 
-    override val infinite = instant.isDistantFuture || instant.isDistantPast
+    override val infinite: Boolean
+        get() = instant.isDistantFuture || instant.isDistantPast
 
     override val inFuture: Boolean
         get() = instant > Clock.System.now()
