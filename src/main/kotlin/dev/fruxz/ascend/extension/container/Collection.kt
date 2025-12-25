@@ -260,7 +260,7 @@ inline fun <T, K> Array<T>.hasDuplicates(process: (T) -> K): Boolean =
  * @since 2023.1
  */
 fun <C : Iterable<Duration>> C.average(): Duration =
-	map(Duration::inWholeMilliseconds).sum().div(count()).milliseconds
+    sumOf(Duration::inWholeMilliseconds).div(count()).milliseconds
 
 /**
  * This function returns the summary duration, out of the multiple duration
@@ -270,7 +270,7 @@ fun <C : Iterable<Duration>> C.average(): Duration =
  * @since 2023.1
  */
 fun <C : Iterable<Duration>> C.sum(): Duration =
-	map(Duration::inWholeMilliseconds).sum().milliseconds
+    sumOf(Duration::inWholeMilliseconds).milliseconds
 
 /**
  * This function returns the largest duration, out of the multiple durations

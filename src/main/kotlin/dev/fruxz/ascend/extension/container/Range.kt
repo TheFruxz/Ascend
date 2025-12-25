@@ -2,7 +2,6 @@ package dev.fruxz.ascend.extension.container
 
 import dev.fruxz.ascend.annotation.LanguageFeature
 import kotlin.math.absoluteValue
-import kotlin.time.measureTime
 
 /**
  * Removes every element from this collection that is contained in the [ints] collection.

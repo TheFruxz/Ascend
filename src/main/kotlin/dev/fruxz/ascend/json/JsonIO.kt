@@ -139,7 +139,7 @@ inline fun <reified T> File.writeJsonIfEmpty(content: T, createParent: Boolean =
  */
 inline fun <reified T> Path.writeJsonIfBlank(content: T, createParent: Boolean = true, json: Json = globalJson, vararg options: OpenOption) = apply {
     if (fileSize() > 0L) return@apply
-    if (bufferedReader().useLines { it.any { it.isNotBlank() } }) return@apply
+    if (bufferedReader().useLines { it.any(String::isNotBlank) }) return@apply
 
     if (createParent) parent.createDirectories()
     writeJson(content, json = json, *options)
@@ -157,7 +157,7 @@ inline fun <reified T> Path.writeJsonIfBlank(content: T, createParent: Boolean =
  */
 inline fun <reified T> File.writeJsonIfBlank(content: T, createParent: Boolean = true, json: Json = globalJson) = apply {
     if (length() > 0L) return@apply
-    if (bufferedReader().useLines { it.any { it.isNotBlank() } }) return@apply
+    if (bufferedReader().useLines { it.any(String::isNotBlank) }) return@apply
 
     if (createParent) parentFile.mkdirs()
     writeJson(content, json = json)
