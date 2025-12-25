@@ -1,6 +1,7 @@
 package dev.fruxz.ascend.tool.time.state
 
 import dev.fruxz.ascend.tool.time.TimeState
+import dev.fruxz.ascend.tool.time.TimeUnit
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toJavaZoneId
 import kotlinx.serialization.Serializable
@@ -46,6 +47,12 @@ data class Kalendar(
 
     operator fun minus(duration: Duration) =
         Kalendar(instant - duration, timeZone)
+
+    /**
+     * @see java.util.Calendar.get
+     */
+    operator fun get(timeUnit: TimeUnit) =
+        java.get(timeUnit.javaField)
 
     // measurement
 

@@ -1,6 +1,6 @@
 package dev.fruxz.ascend.extension.property
 
-import dev.fruxz.ascend.tool.time.calendar.Calendar
+import dev.fruxz.ascend.tool.time.state.Kalendar
 import kotlin.reflect.KProperty
 import kotlin.time.Duration
 
@@ -14,19 +14,19 @@ data class CachedProperty<T>(
     val builder: () -> T,
 ) {
     var state: T? = null
-    var updated: Calendar? = null
+    var updated: Kalendar? = null
 
     operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
         if (updated == null || updated!!.durationToNow() > duration) {
             state = builder()
-            updated = Calendar.now()
+            updated = Kalendar.now()
         }
         return state!!
     }
 
     operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
         state = value
-        updated = Calendar.now()
+        updated = Kalendar.now()
     }
 
 }
