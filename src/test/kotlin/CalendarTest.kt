@@ -1,3 +1,5 @@
+import dev.fruxz.ascend.json.fromJsonString
+import dev.fruxz.ascend.json.toJsonString
 import dev.fruxz.ascend.tool.time.state.Kalendar
 import kotlin.test.Test
 import kotlin.time.Duration.Companion.days
@@ -6,8 +8,6 @@ import kotlin.time.Duration.Companion.milliseconds
 import java.util.Calendar as JavaUtilCalendar
 
 class CalendarTest {
-
-    private val STANDPOINT = 1695492368L
 
     @Test
     fun `Add time to calendar`() {
@@ -44,6 +44,19 @@ class CalendarTest {
         javaCalendar.add(JavaUtilCalendar.HOUR_OF_DAY, -5)
 
         assert(calendar.java == javaCalendar) { "Calendar $calendar should be equal to Java Calendar $javaCalendar, but was not" }
+    }
+
+    @Test
+    fun `JSON-Conversion`() {
+        val calendar = Kalendar.from(milliseconds = STANDPOINT)
+        val json = calendar.toJsonString()
+        val parsedCalendar = json.fromJsonString<Kalendar>()
+        
+        assert(calendar == parsedCalendar) { "Calendar $calendar should be equal to parsed Calendar $parsedCalendar, but was not" }
+    }
+
+    companion object {
+        const val STANDPOINT = 1695492368000L
     }
 
 }
