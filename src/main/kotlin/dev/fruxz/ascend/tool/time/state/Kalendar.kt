@@ -2,13 +2,15 @@ package dev.fruxz.ascend.tool.time.state
 
 import dev.fruxz.ascend.tool.time.TimeState
 import dev.fruxz.ascend.tool.time.TimeUnit
+import kotlinx.datetime.*
 import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toJavaZoneId
 import kotlinx.serialization.Serializable
 import java.text.SimpleDateFormat
 import java.time.OffsetDateTime
 import java.util.*
 import kotlin.time.*
+import kotlin.time.Clock
+import kotlin.time.Instant
 import java.util.Calendar as JavaCalendar
 import java.util.TimeZone as JavaTimeZone
 
@@ -99,6 +101,64 @@ data class Kalendar(
     val javaOffset: OffsetDateTime
         get() = OffsetDateTime.ofInstant(instant.toJavaInstant(), timeZone.toJavaZoneId())
 
+    // easy fields
+
+    var localDateTime: LocalDateTime
+        get() = LocalDateTime(year, month, dayOfMonth, hour, minute, second, nanosecond)
+        set(value) {
+            instant = javaOffset.withYear(value.year).withMonth(value.month.number).withDayOfMonth(value.day).withHour(value.hour).withMinute(value.minute).withSecond(value.second).withNano(value.nanosecond).toInstant().toKotlinInstant()
+        }
+
+    var year: Int
+        get() = javaOffset.year
+        set(value) {
+            instant = javaOffset.withYear(value).toInstant().toKotlinInstant()
+        }
+
+    var month: Month
+        get() = javaOffset.month.toKotlinMonth()
+        set(value) {
+            instant = javaOffset.withMonth(value.ordinal + 1).toInstant().toKotlinInstant()
+        }
+
+    /**
+     * @see java.time.OffsetDateTime.getDayOfMonth
+     */
+    var dayOfMonth: Int
+        get() = javaOffset.dayOfMonth
+        set(value) {
+            instant = javaOffset.withDayOfMonth(value).toInstant().toKotlinInstant()
+        }
+
+    val dayOfWeek: DayOfWeek get() = javaOffset.dayOfWeek.toKotlinDayOfWeek()
+
+    var hour: Int
+        get() = javaOffset.hour
+        set(value) {
+            instant = javaOffset.withHour(value).toInstant().toKotlinInstant()
+        }
+
+    var minute: Int
+        get() = javaOffset.minute
+        set(value) {
+            instant = javaOffset.withMinute(value).toInstant().toKotlinInstant()
+        }
+
+    var second: Int
+        get() = javaOffset.second
+        set(value) {
+            instant = javaOffset.withSecond(value).toInstant().toKotlinInstant()
+        }
+
+    var nanosecond: Int
+        get() = javaOffset.nano
+        set(value) {
+            instant = javaOffset.withNano(value).toInstant().toKotlinInstant()
+        }
+
+    val isLeapYear: Boolean
+        get() = localDateTime.toJavaLocalDateTime().toLocalDate().isLeapYear
+
     // strings
 
     override fun toString() = javaOffset.toString()
@@ -110,6 +170,8 @@ data class Kalendar(
     ): String = SimpleDateFormat
         .getDateTimeInstance(date.ordinal, time.ordinal, locale)
         .format(java.time)
+
+    fun toISOString() = LocalDateTime.Formats.ISO.format(localDateTime)
 
     // overrides
 
@@ -141,11 +203,49 @@ data class Kalendar(
             timeZone: TimeZone = TimeZone.currentSystemDefault(),
         ) = Kalendar(instant = instant, timeZone = timeZone)
 
+        fun fromISOString(
+            isoString: String,
+            timeZone: TimeZone = TimeZone.currentSystemDefault(),
+        ) = Kalendar(
+            instant = LocalDateTime.Formats.ISO.parse(isoString).toInstant(timeZone),
+            timeZone = timeZone,
+        )
+
         fun from(
             milliseconds: Long,
             timeZone: TimeZone = TimeZone.currentSystemDefault(),
         ) = Kalendar(
             instant = Instant.fromEpochMilliseconds(milliseconds),
+            timeZone = timeZone,
+        )
+
+        fun from(
+            localDate: LocalDate,
+            timeZone: TimeZone = TimeZone.currentSystemDefault(),
+        ) = Kalendar(
+            instant = localDate.atStartOfDayIn(timeZone),
+            timeZone = timeZone,
+        )
+
+        fun from(
+            localDateTime: LocalDateTime,
+            timeZone: TimeZone = TimeZone.currentSystemDefault(),
+        ) = Kalendar(
+            instant = localDateTime.toInstant(timeZone),
+            timeZone = timeZone,
+        )
+
+        fun from(
+            year: Int,
+            month: Month = Month.JANUARY,
+            dayOfMonth: Int = 1,
+            hour: Int = 0,
+            minute: Int = 0,
+            second: Int = 0,
+            nanosecond: Int = 0,
+            timeZone: TimeZone = TimeZone.currentSystemDefault(),
+        ) = Kalendar(
+            instant = LocalDateTime(year, month, dayOfMonth, hour, minute, second, nanosecond).toInstant(timeZone),
             timeZone = timeZone,
         )
 
