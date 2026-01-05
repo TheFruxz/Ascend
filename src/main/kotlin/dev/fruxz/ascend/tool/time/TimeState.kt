@@ -17,8 +17,11 @@ interface TimeState {
 
 	val inPast: Boolean
 
+	@Deprecated("Use 'inPresent' instead", ReplaceWith("inPresent"))
 	val isNow: Boolean
 		get() = !inFuture && !inPast
+
+	val inPresent: Boolean
 
 	companion object {
 
@@ -27,6 +30,7 @@ interface TimeState {
 			override val inFuture = true
 			override val infinite = true
 			override val inPast = false
+			override val inPresent = false
 		}
 
 		@JvmStatic
@@ -34,6 +38,7 @@ interface TimeState {
 			override val inFuture = false
 			override val infinite = true
 			override val inPast = false
+			override val inPresent = false
 		}
 
 	}

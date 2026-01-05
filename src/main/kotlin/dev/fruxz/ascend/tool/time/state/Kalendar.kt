@@ -184,6 +184,9 @@ data class Kalendar(
     override val inPast: Boolean
         get() = instant < Clock.System.now()
 
+    override val inPresent: Boolean
+        get() = instant == Clock.System.now()
+
     override fun compareTo(other: Kalendar) =
         instant.compareTo(other.instant)
 

@@ -172,6 +172,9 @@ data class Calendar(
 	override val inPast: Boolean
 		get() = isExpired
 
+	override val inPresent: Boolean
+		get() = !inFuture && !inPast
+
 	override val infinite = false
 
 	/**
