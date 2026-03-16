@@ -1,7 +1,7 @@
 import java.util.Calendar
 
 plugins {
-    kotlin("jvm") version "2.3.10"
+    kotlin("jvm") version "2.3.20"
     kotlin("plugin.serialization") version "2.3.10"
     id("org.jetbrains.dokka") version "2.1.0"
     id("org.hildan.kotlin-publish") version "1.7.0"
