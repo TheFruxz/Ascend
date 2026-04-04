@@ -1,10 +1,12 @@
 package dev.fruxz.ascend.json
 
 import dev.fruxz.ascend.extension.readTextOrNull
+import dev.fruxz.ascend.extension.tryOrNull
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.decodeFromStream
 import java.io.File
 import java.io.IOException
 import java.nio.charset.Charset
@@ -182,43 +184,39 @@ inline fun <reified T> Path.readJsonOrNull(json: Json = globalJson) = inputStrea
 
 /**
  * This function reads the file content and parses it to a [JsonElement]
- * using the [parseToJsonElement] function.
+ * using the [Json.decodeFromStream] function.
  * @return the parsed [JsonElement]
  * @author Fruxz
  * @since 2023.1
  */
-@Deprecated(message = "This function utilizes the readText function, which is not recommended for large files and not used by ascend anymore.")
-fun Path.readJsonElement(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = readText(charset).parseToJsonElement(json = json)
+fun Path.readJsonElement(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = json.decodeFromStream<JsonElement>(this.inputStream())
 
 /**
  * This function reads the file content and parses it to a [JsonElement]
- * using the [parseToJsonElementOrNull] function.
+ * using the [Json.decodeFromStream] function.
  * @return the parsed [JsonElement] or null if failed
  * @author Fruxz
  * @since 2023.1
  */
-@Deprecated(message = "This function utilizes the readText function, which is not recommended for large files and not used by ascend anymore.")
-fun Path.readJsonElementOrNull(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = readTextOrNull(charset)?.parseToJsonElementOrNull(json = json)
+fun Path.readJsonElementOrNull(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = tryOrNull { json.decodeFromStream<JsonElement>(this.inputStream()) }
 
 /**
  * This function reads, parses and converts the file content to an [JsonObject]
- * using the [parseToJsonObject] function.
+ * using the [Json.decodeFromStream] function.
  * @return the parsed [JsonObject]
  * @author Fruxz
  * @since 2023.1
  */
-@Deprecated(message = "This function utilizes the readText function, which is not recommended for large files and not used by ascend anymore.")
-fun Path.readJsonObject(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = readText(charset).parseToJsonObject(json = json)
+fun Path.readJsonObject(json: Json = globalJson) = json.decodeFromStream<JsonObject>(this.inputStream())
 
 /**
  * This function reads, parses and converts the file content to an [JsonObject]
- * using the [parseToJsonObjectOrNull] function.
+ * using the [Json.decodeFromStream] function.
  * @return the parsed [JsonObject] or null if failed
  * @author Fruxz
  * @since 2023.1
  */
-@Deprecated(message = "This function utilizes the readText function, which is not recommended for large files and not used by ascend anymore.")
-fun Path.readJsonObjectOrNull(charset: Charset = Charsets.UTF_8, json: Json = globalJson) = readTextOrNull(charset)?.parseToJsonObjectOrNull(json = json)
+fun Path.readJsonObjectOrNull(json: Json = globalJson) = tryOrNull { json.decodeFromStream<JsonObject>(this.inputStream()) }
 
 /**
  * This function returns the content of [this] File using the [inputStream] and [fromJsonStream] function.
