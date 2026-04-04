@@ -27,6 +27,7 @@ import java.util.Calendar as JavaUtilCalendar
  * @author Fruxz
  * @since 2023.1
  */
+@Suppress("DEPRECATION")
 @Serializable
 @Deprecated("Use Kalendar from the time.state package instead", ReplaceWith("dev.fruxz.ascend.tool.time.state.Kalendar"))
 data class Calendar(

@@ -2,9 +2,7 @@ package dev.fruxz.ascend.tool.time.state.sql
 
 import dev.fruxz.ascend.tool.time.state.Kalendar
 import kotlinx.datetime.toKotlinTimeZone
-import org.jetbrains.exposed.v1.core.Column
 import org.jetbrains.exposed.v1.core.ColumnType
-import org.jetbrains.exposed.v1.core.Table
 import org.jetbrains.exposed.v1.core.vendors.currentDialect
 import java.time.OffsetDateTime
 import kotlin.time.toKotlinInstant

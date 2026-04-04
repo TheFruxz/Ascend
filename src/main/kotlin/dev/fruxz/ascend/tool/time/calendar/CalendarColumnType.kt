@@ -15,6 +15,7 @@ import java.util.*
  * @author Fruxz
  * @since 2023.1
  */
+@Suppress("DEPRECATION")
 @Deprecated(message = "Use Kalendar instead, if migration is possible")
 class CalendarColumnType(
     private val timeZone: TimeZone = TimeZone.getDefault(),
