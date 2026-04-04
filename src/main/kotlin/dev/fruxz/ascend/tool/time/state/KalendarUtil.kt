@@ -19,7 +19,7 @@ fun Table.kalendarPrecise(
 ): Column<Kalendar> = registerColumn(name = name, type = PreciseKalendarColumnType(timeZone))
 
 /**
- * Recommended use of [Kalendar]s
+ * Recommended use of [Kalendar]s. utilizes [timestamp] under the hood, and transforms it to a [Kalendar] using the provided [timeZone]. This is more compatible with databases.
  */
 fun Table.kalendarTimestamp(name: String, timeZone: TimeZone = TimeZone.currentSystemDefault()): Column<Kalendar> =
     timestamp(name = name).transform(wrap = { Kalendar(instant = it, timeZone = timeZone) }, unwrap = { it.instant })
