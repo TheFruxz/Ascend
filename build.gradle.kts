@@ -11,7 +11,7 @@ plugins {
 
 val publishVersion = System.getenv("GH_RELEASE_VERSION")
 val calendar = Calendar.getInstance()
-val exposedVersion = "1.2.0"
+val exposedVersion = "1.3.0"
 
 version = publishVersion ?: "${calendar[Calendar.YEAR]}.${calendar[Calendar.MONTH] + 1}-dev"
 group = "dev.fruxz"
