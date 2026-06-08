@@ -252,7 +252,7 @@ inline fun <reified T> File.readJsonOrNull(json: Json = globalJson) = inputStrea
 inline fun <reified T> Path.readJsonOrDefault(default: T, writeIfBlank: Boolean = false, writeCreatesParent: Boolean = true, json: Json = globalJson, vararg options: OpenOption) =
     when {
         writeIfBlank -> {
-            readJsonOrNull<T>() ?: default.also {
+            tryOrNull { readJsonOrNull<T>() } ?: default.also {
                 if (writeCreatesParent) parent.createDirectories()
                 if (this.notExists()) this.createFile()
                 writeJson(default, json = json, *options)
@@ -279,7 +279,7 @@ inline fun <reified T> Path.readJsonOrDefault(default: T, writeIfBlank: Boolean 
 inline fun <reified T> File.readJsonOrDefault(default: T, writeIfBlank: Boolean = false, writeCreatesParent: Boolean = true, json: Json = globalJson) =
     when {
         writeIfBlank -> {
-            readJsonOrNull<T>() ?: default.also {
+            tryOrNull { readJsonOrNull<T>() } ?: default.also {
                 if (writeCreatesParent) parentFile.mkdirs()
                 if (!this.exists()) this.createNewFile()
                 writeJson(default, json = json)
