@@ -249,14 +249,17 @@ inline fun <reified T> File.readJsonOrNull(json: Json = globalJson) = inputStrea
  * @author Fruxz
  * @since 2023.1
  */
-inline fun <reified T> Path.readJsonOrDefault(default: T, writeIfBlank: Boolean = false, writeCreatesParent: Boolean = true, json: Json = globalJson, vararg options: OpenOption) = if (writeIfBlank) {
-    readJsonOrNull<T>() ?: default.also {
-        if (writeCreatesParent) parent.createDirectories()
-        writeJson(default, json = json, *options)
+inline fun <reified T> Path.readJsonOrDefault(default: T, writeIfBlank: Boolean = false, writeCreatesParent: Boolean = true, json: Json = globalJson, vararg options: OpenOption) =
+    when {
+        writeIfBlank -> {
+            readJsonOrNull<T>() ?: default.also {
+                if (writeCreatesParent) parent.createDirectories()
+                if (this.notExists()) this.createFile()
+                writeJson(default, json = json, *options)
+            }
+        }
+        else -> readJsonOrNull<T>(json = json) ?: default
     }
-} else {
-    readJsonOrNull<T>(json = json) ?: default
-}
 
 /**
  * This function reads the content of [this] file, converts it from the
@@ -273,11 +276,14 @@ inline fun <reified T> Path.readJsonOrDefault(default: T, writeIfBlank: Boolean 
  * @author Fruxz
  * @since 2023.1
  */
-inline fun <reified T> File.readJsonOrDefault(default: T, writeIfBlank: Boolean = false, writeCreatesParent: Boolean = true, json: Json = globalJson) = if (writeIfBlank) {
-    readJsonOrNull<T>() ?: default.also {
-        if (writeCreatesParent) parentFile.mkdirs()
-        writeJson(default, json = json)
+inline fun <reified T> File.readJsonOrDefault(default: T, writeIfBlank: Boolean = false, writeCreatesParent: Boolean = true, json: Json = globalJson) =
+    when {
+        writeIfBlank -> {
+            readJsonOrNull<T>() ?: default.also {
+                if (writeCreatesParent) parentFile.mkdirs()
+                if (!this.exists()) this.createNewFile()
+                writeJson(default, json = json)
+            }
+        }
+        else -> readJsonOrNull<T>(json = json) ?: default
     }
-} else {
-    readJsonOrNull<T>(json = json) ?: default
-}
