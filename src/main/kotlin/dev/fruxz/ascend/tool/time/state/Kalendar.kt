@@ -5,6 +5,7 @@ import dev.fruxz.ascend.tool.time.TimeUnit
 import kotlinx.datetime.*
 import kotlinx.datetime.TimeZone
 import kotlinx.serialization.Serializable
+import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.time.OffsetDateTime
 import java.util.*
@@ -161,15 +162,43 @@ data class Kalendar(
 
     // strings
 
+    /**
+     * Formats this calendar using a custom-built [format]
+     */
+    fun format(format: DateFormat): String {
+        return format.format(java.time)
+    }
+
+    /**
+     * Formats this calendar using a custom-built [pattern]
+     */
+    fun format(pattern: String): String {
+        return this.format(SimpleDateFormat(pattern))
+    }
+
+    /**
+     * Formats this calendar using the specified [dateStyle] and [timeStyle] for the [locale]
+     */
+    fun format(dateStyle: FormatStyle, timeStyle: FormatStyle, locale: Locale = Locale.getDefault()): String {
+        val dateFormat = SimpleDateFormat.getDateTimeInstance(dateStyle.ordinal, timeStyle.ordinal, locale)
+        return this.format(dateFormat)
+    }
+
+    /**
+     * Formats this calendar using the default [DateFormat] for the [locale]
+     */
+    fun format(locale: Locale = Locale.getDefault()): String {
+        val dateFormat = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.DEFAULT, locale)
+        return this.format(format = dateFormat)
+    }
+
     override fun toString() = javaOffset.toString()
 
     fun toString(
         date: FormatStyle,
         time: FormatStyle,
         locale: Locale = Locale.getDefault(),
-    ): String = SimpleDateFormat
-        .getDateTimeInstance(date.ordinal, time.ordinal, locale)
-        .format(java.time)
+    ): String = format(dateStyle = date, timeStyle = time, locale = locale)
 
     fun toISOString() = LocalDateTime.Formats.ISO.format(localDateTime)
 
