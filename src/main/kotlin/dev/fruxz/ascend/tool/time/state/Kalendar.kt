@@ -4,6 +4,7 @@ import dev.fruxz.ascend.tool.time.TimeState
 import dev.fruxz.ascend.tool.time.TimeUnit
 import kotlinx.datetime.*
 import kotlinx.datetime.TimeZone
+import kotlinx.datetime.format.DateTimeFormat
 import kotlinx.serialization.Serializable
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -122,6 +123,12 @@ data class Kalendar(
             instant = javaOffset.withMonth(value.ordinal + 1).toInstant().toKotlinInstant()
         }
 
+    var yearMonth: YearMonth
+        get() = YearMonth(year, month)
+        set(value) {
+            instant = javaOffset.withYear(value.year).withMonth(value.month.number).toInstant().toKotlinInstant()
+        }
+
     /**
      * @see java.time.OffsetDateTime.getDayOfMonth
      */
@@ -190,6 +197,13 @@ data class Kalendar(
     fun format(locale: Locale = Locale.getDefault()): String {
         val dateFormat = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.DEFAULT, locale)
         return this.format(format = dateFormat)
+    }
+
+    /**
+     * Formats this calendar using the kotlinx-datetime [DateTimeFormat]
+     */
+    fun format(dateTimeFormat: DateTimeFormat<LocalDateTime>): String {
+        return dateTimeFormat.format(localDateTime)
     }
 
     override fun toString() = javaOffset.toString()
